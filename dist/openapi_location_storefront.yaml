@@ -1,0 +1,846 @@
+openapi: 3.0.1
+info:
+  title: Location Storefront
+  description: |-
+    <div id="overview_LOCATION_STOREFRONT">
+                <h2>LOCATION STOREFRONT</h2>
+                <p>The Location API for the storefront simply allows information about the individual fulfillment locations to be queried at the
+                    storefront. These are not administrative calls for managing location records and groups - they are a set of GET
+                    requests for retrieving location data.</p>
+                <p>To create and update (or perform other management actions) location records, see the Location Administration API service instead.</p>
+            </div>
+  version: 1.0.1
+paths:
+  /commerce/storefront/locationUsageTypes/DS/location:
+    get:
+      tags:
+        - Location
+      summary: Get Direct Ship Location
+      description: >-
+        Get the Direct Ship Location for the Site. This location acts as an
+        origin address from which order packages will ship, as well as the
+        location where product reservations are created when order items are
+        submitted with the direct ship fulfillment type (DS). If the direct ship
+        location usage type is not configured for this site, the operation
+        returns an error.
+      parameters:
+        - name: includeAttributeDefinition
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+  /commerce/storefront/locationUsageTypes/CS/location:
+    get:
+      tags:
+        - Location
+      summary: Get Curbside Location
+      description: >-
+        Get the Curbside Location for the Site. If the location is not
+        associated with a location type configured for the delivery location
+        usage type (CS), the operation returns an error.
+      parameters:
+        - name: includeAttributeDefinition
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+  /commerce/storefront/locationUsageTypes/DL/locations:
+    get:
+      tags:
+        - Location
+      summary: Get Delivery Locations
+      description: Gets the delivery Locations for the site
+      parameters:
+        - name: startIndex
+          in: query
+          description: ''
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageSize
+          in: query
+          description: ''
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: sortBy
+          in: query
+          description: ''
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: ''
+          schema:
+            type: string
+        - name: includeAttributeDefinition
+          in: query
+          description: Include the location attributes associated definition
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+  /commerce/storefront/locationUsageTypes/DL/location:
+    get:
+      tags:
+        - Location
+      summary: Get Delivery Location
+      description: >-
+        Gets a specific Delivery Location for the site. If the location is not
+        associated with a location type configured for the delivery location
+        usage type (DL), the operation returns an error.
+      parameters:
+        - name: includeAttributeDefinition
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+  /commerce/storefront/locationUsageTypes/SP/locations:
+    get:
+      tags:
+        - Location
+      summary: Get In Store Pickup Locations
+      description: >-
+        Gets the in store pickup Locations for the site. For example, an
+        application could use this operation to provide a store finder feature
+        based on the shopper's GPS coordinates.
+      parameters:
+        - name: startIndex
+          in: query
+          description: ''
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageSize
+          in: query
+          description: ''
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: sortBy
+          in: query
+          description: ''
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: ''
+          schema:
+            type: string
+        - name: includeAttributeDefinition
+          in: query
+          description: Include the location attributes associated definition
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+  /commerce/storefront/locationUsageTypes/SP/locations/{locationCode}:
+    get:
+      tags:
+        - Location
+      summary: Get In Store Pickup Location
+      description: >-
+        Get a specific in store pickup Location for the Site. If the location is
+        not associated with a location type configured for the in-store pickup
+        location usage type (SP), the operation returns an error.
+      parameters:
+        - name: locationCode
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: includeAttributeDefinition
+          in: query
+          description: Include the location attributes associated definition
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+  /commerce/storefront/locationUsageTypes/{locationUsageType}/locations:
+    get:
+      tags:
+        - Location
+      summary: Get Locations In Usage Type
+      description: Get the Locations for the Site associated with the locationUsageType.
+      parameters:
+        - name: locationUsageType
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: startIndex
+          in: query
+          description: ''
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageSize
+          in: query
+          description: ''
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: sortBy
+          in: query
+          description: ''
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: ''
+          schema:
+            type: string
+        - name: includeAttributeDefinition
+          in: query
+          description: Include the location attributes associated definition
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+  /commerce/storefront/locations/{locationCode}:
+    get:
+      tags:
+        - Location
+      summary: Get Location
+      description: Get a Location by locationCode.
+      parameters:
+        - name: locationCode
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: includeAttributeDefinition
+          in: query
+          description: Include the location attributes associated definition
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+components:
+  schemas:
+    LocationType:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      additionalProperties: false
+    Coordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+      additionalProperties: false
+    FulfillmentType:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Hours:
+      type: object
+      properties:
+        label:
+          type: string
+          nullable: true
+        openTime:
+          type: string
+          nullable: true
+        closeTime:
+          type: string
+          nullable: true
+        isClosed:
+          type: boolean
+      additionalProperties: false
+    RegularHours:
+      type: object
+      properties:
+        sunday:
+          $ref: '#/components/schemas/Hours'
+        monday:
+          $ref: '#/components/schemas/Hours'
+        tuesday:
+          $ref: '#/components/schemas/Hours'
+        wednesday:
+          $ref: '#/components/schemas/Hours'
+        thursday:
+          $ref: '#/components/schemas/Hours'
+        friday:
+          $ref: '#/components/schemas/Hours'
+        saturday:
+          $ref: '#/components/schemas/Hours'
+        timeZone:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ShippingOriginContact:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        middleNameOrInitial:
+          type: string
+          nullable: true
+        lastNameOrSurname:
+          type: string
+          nullable: true
+        companyOrOrganization:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AttributeValueLocalizedContent:
+      required:
+        - localeCode
+        - value
+      type: object
+      properties:
+        localeCode:
+          type: string
+        value:
+          type: string
+      additionalProperties: false
+    LocationAttribute:
+      type: object
+      properties:
+        attributeDefinition:
+          $ref: '#/components/schemas/CommerceRuntimeAttribute'
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        fullyQualifiedName:
+          type: string
+          nullable: true
+        attributeDefinitionId:
+          type: integer
+          format: int32
+          nullable: true
+        values:
+          type: array
+          items: {}
+          nullable: true
+      additionalProperties: false
+    ProcessingTime:
+      type: object
+      properties:
+        fulfillmentTypeCode:
+          type: string
+          nullable: true
+        hours:
+          type: integer
+          format: int32
+      additionalProperties: false
+    TransferTime:
+      type: object
+      properties:
+        unit:
+          type: string
+          nullable: true
+        value:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Location:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        locationTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationType'
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        geo:
+          $ref: '#/components/schemas/Coordinates'
+        phone:
+          type: string
+          nullable: true
+        fax:
+          type: string
+          nullable: true
+        supportsInventory:
+          type: boolean
+        fulfillmentTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentType'
+          nullable: true
+        regularHours:
+          $ref: '#/components/schemas/RegularHours'
+        shippingOriginContact:
+          $ref: '#/components/schemas/ShippingOriginContact'
+        note:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationAttribute'
+          nullable: true
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        allowFulfillmentWithNoStock:
+          type: boolean
+        isDisabled:
+          type: boolean
+        express:
+          type: boolean
+        transferEnabled:
+          type: boolean
+        shipToHomeConsolidation:
+          type: boolean
+        includeInInventoryAggregrate:
+          type: boolean
+        includeInLocationExport:
+          type: boolean
+        warehouseEnabled:
+          type: boolean
+        requiresManifest:
+          type: boolean
+        processingTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessingTime'
+          nullable: true
+        transferTime:
+          $ref: '#/components/schemas/TransferTime'
+      additionalProperties: false
+    LocationCollection:
+      type: object
+      properties:
+        startIndex:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        pageCount:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+          nullable: true
+      additionalProperties: false
+    AdminUserAuditInfo:
+      type: object
+      properties:
+        updateDate:
+          type: string
+          format: date-time
+          nullable: true
+        createDate:
+          type: string
+          format: date-time
+          nullable: true
+        updateBy:
+          type: string
+          nullable: true
+        createBy:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CommerceRuntimeAttribute:
+      required:
+        - attributeCode
+        - displayGroup
+        - valueType
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        adminName:
+          maxLength: 50
+          type: string
+          nullable: true
+        namespace:
+          maxLength: 200
+          type: string
+          nullable: true
+        attributeCode:
+          maxLength: 50
+          type: string
+        inputType:
+          type: string
+          nullable: true
+        valueType:
+          type: string
+        dataType:
+          type: string
+          nullable: true
+        attributeMetadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommerceRuntimeAttributeMetadataItem'
+          nullable: true
+        attributeFQN:
+          type: string
+          nullable: true
+        content:
+          $ref: '#/components/schemas/CommerceRuntimeAttributeLocalizedContent'
+        validation:
+          $ref: '#/components/schemas/CommerceRuntimeAttributeValidation'
+        vocabularyValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommerceRuntimeAttributeVocabularyValue'
+          nullable: true
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        isActive:
+          type: boolean
+          nullable: true
+        isRequired:
+          type: boolean
+          nullable: true
+        isReadOnly:
+          type: boolean
+        isMultiValued:
+          type: boolean
+          nullable: true
+        isVisible:
+          type: boolean
+          nullable: true
+        order:
+          type: integer
+          format: int32
+          nullable: true
+        displayGroup:
+          type: string
+        availableForOrderRouting:
+          type: boolean
+      additionalProperties: false
+    CommerceRuntimeAddress:
+      type: object
+      properties:
+        address1:
+          type: string
+          nullable: true
+        address2:
+          type: string
+          nullable: true
+        address3:
+          type: string
+          nullable: true
+        address4:
+          type: string
+          nullable: true
+        cityOrTown:
+          type: string
+          nullable: true
+        stateOrProvince:
+          type: string
+          nullable: true
+        postalOrZipCode:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+        addressType:
+          type: string
+          nullable: true
+        isValidated:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    CommerceRuntimeAttributeMetadataItem:
+      required:
+        - key
+        - value
+      type: object
+      properties:
+        key:
+          maxLength: 50
+          type: string
+        value:
+          type: string
+      additionalProperties: false
+    CommerceRuntimeAttributeLocalizedContent:
+      type: object
+      properties:
+        localeCode:
+          maxLength: 8
+          type: string
+          nullable: true
+        value:
+          maxLength: 100
+          type: string
+          nullable: true
+      additionalProperties: false
+    CommerceRuntimeAttributeValidation:
+      type: object
+      properties:
+        regularExpression:
+          maxLength: 200
+          type: string
+          nullable: true
+        minStringLength:
+          type: integer
+          format: int32
+          nullable: true
+        maxStringLength:
+          type: integer
+          format: int32
+          nullable: true
+        minNumericValue:
+          type: number
+          format: double
+          nullable: true
+        maxNumericValue:
+          type: number
+          format: double
+          nullable: true
+        minDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        maxDateTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CommerceRuntimeAttributeVocabularyValue:
+      required:
+        - value
+      type: object
+      properties:
+        value:
+          maxLength: 50
+          type: string
+        sequence:
+          type: integer
+          format: int32
+          nullable: true
+        isHidden:
+          type: boolean
+          nullable: true
+        content:
+          $ref: '#/components/schemas/AttributeValueLocalizedContent'
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      bearerFormat: JWT
+    clientOauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://home.mozu.com/api/platform/applications/authtickets/oauth
+          scopes: {}
+servers:
+  - url: https://t{tenantId}.{env}.mozu.com/api
+    description: Tenant Level Api
+    variables:
+      tenantId:
+        default: '0'
+        description: Id of the Tenant
+      env:
+        default: sandbox
+        enum:
+          - sandbox
+          - tp1
+          - tp2
+          - tp3
+          - tp4
+          - tp5
+          - stg1
+          - stg2
+  - url: https://t{tenantId}-s{siteId}.{env}.mozu.com/api
+    description: Site Level Api
+    variables:
+      tenantId:
+        default: '0'
+        description: Id of the Tenant
+      siteId:
+        default: '0'
+        description: Id of the Site
+      env:
+        default: sandbox
+        enum:
+          - sandbox
+          - tp1
+          - tp2
+          - tp3
+          - tp4
+          - tp5
+          - stg1
+  - url: https://home.mozu.com/api
+    description: HomePod Api
+  - url: https://t{tenantId}.{env}.euw1.kibocommerce.com/api
+    description: EURO Tenant Level Api
+    variables:
+      tenantId:
+        default: '0'
+        description: Id of the Tenant
+      env:
+        default: sandbox
+        enum:
+          - sb
+          - tp1
+  - url: https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api
+    description: EURO Site Level Api
+    variables:
+      tenantId:
+        default: '0'
+        description: Id of the Tenant
+      siteId:
+        default: '0'
+        description: Id of the Site
+      env:
+        default: sandbox
+        enum:
+          - sb
+          - tp1
+  - url: https://home.euw1.kibocommerce.com/api
+    description: EURO HomePod Api
+security:
+  - bearerAuth: []

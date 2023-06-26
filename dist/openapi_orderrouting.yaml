@@ -1,0 +1,2934 @@
+openapi: 3.0.1
+info:
+  title: Order Routing
+  description: |-
+    <div id="overview_ORDERROUTING">
+                <h2>ORDER ROUTING</h2>
+                <p>Although the <a href="https://docs.kibocommerce.com/help/order-routing">Order Routing
+                        interface</a> is the best place to configure order routing rules, some
+                    aspects of routing can be managed through REST API calls when convenient.</p>
+                <p>Use the <strong>Data List</strong> resource to define the cases for which routing filters are applied.</p>
+                <p>Use the <strong>Routing Filter</strong> resource to configure sets of rules that filter out fulfillers that do not match given order criteria.</p>
+                <p>Use the <strong>Routing Group</strong> resource to manage and sort location groups specifically in context of routing
+                    preferences.</p>
+                <p>Use the general <strong>Routing</strong> resource to test your order routing configurations, such as by retrieving a list of eligible fulfillers for a certain order based on set
+                    routing rules or obtain a log of order routing decisions.</p>
+            </div>
+  contact: {}
+  version: 1.0.1
+tags:
+  - description: OrderRoutingAfterAction
+    name: OrderRoutingAfterAction
+  - description: OrderRoutingDataList
+    name: OrderRoutingDataList
+  - description: OrderRoutingEnvironment
+    name: OrderRoutingEnvironment
+  - description: OrderRoutingFilter
+    name: OrderRoutingFilter
+  - description: OrderRoutingGroup
+    name: OrderRoutingGroup
+  - description: OrderRoutingLocation
+    name: OrderRoutingLocation
+  - description: Routing
+    name: Routing
+  - description: OrderRoutingSettings
+    name: OrderRoutingSettings
+  - description: OrderRoutingSite
+    name: OrderRoutingSite
+  - description: OrderRoutingSort
+    name: OrderRoutingSort
+  - description: OrderRoutingTenant
+    name: OrderRoutingTenant
+paths:
+  /commerce/orders/orderrouting/api/v1/dataList:
+    post:
+      tags:
+        - OrderRoutingDataList
+      summary: Create Custom Data List
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: customDataList
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDataList'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomDataListResponse'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: customDataList
+      description: Creates a new custom data list.
+  /commerce/orders/orderrouting/api/v1/dataList/{dataListID}:
+    get:
+      tags:
+        - OrderRoutingDataList
+      summary: Get Custom Data List
+      parameters:
+        - name: dataListID
+          in: path
+          description: dataListID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomDataListResponse'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: Gets a custom data list.
+    put:
+      tags:
+        - OrderRoutingDataList
+      summary: Update Custom Data List
+      parameters:
+        - name: dataListID
+          in: path
+          description: dataListID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: newDataList
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDataList'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomDataListResponse'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: newDataList
+      description: Updates a custom data list.
+    delete:
+      tags:
+        - OrderRoutingDataList
+      summary: Delete Custom Data List
+      parameters:
+        - name: dataListID
+          in: path
+          description: dataListID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+      deprecated: false
+      description: Deletes a custom data list.
+  /commerce/orders/orderrouting/api/v1/filter/criteriaSet:
+    post:
+      tags:
+        - OrderRoutingFilter
+      summary: saveCriteriaSetFilter
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: loc
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationCriteriaSetFilter'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: loc
+      description: saveCriteriaSetFilter
+  /commerce/orders/orderrouting/api/v1/filter/customDataListFilter:
+    post:
+      tags:
+        - OrderRoutingFilter
+      summary: saveCustomDataListFilter
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: filter
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDataListFilter'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: filter
+      description: Saves a custom data list filter.
+  /commerce/orders/orderrouting/api/v1/filter/customDataValueFilter:
+    post:
+      tags:
+        - OrderRoutingFilter
+      summary: saveCustomDataValueFilter
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: customDataValueFilter
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDataValueFilter'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: customDataValueFilter
+      description: saveCustomDataValueFilter
+  /commerce/orders/orderrouting/api/v1/filter/delete/{filterID}:
+    delete:
+      tags:
+        - OrderRoutingFilter
+      summary: deleteFilter
+      parameters:
+        - name: filterID
+          in: path
+          description: filterID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '204':
+          description: No Content
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+      deprecated: false
+      description: Deletes a filter
+  /commerce/orders/orderrouting/api/v1/filter/testcriteria:
+    get:
+      tags:
+        - OrderRoutingFilter
+      summary: testFilter
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: Tests a filter.
+  /commerce/orders/orderrouting/api/v1/filter/testset:
+    get:
+      tags:
+        - OrderRoutingFilter
+      summary: testSetFilter
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: testSetFilter
+  /commerce/orders/orderrouting/api/v1/filter/{filterID}:
+    get:
+      tags:
+        - OrderRoutingFilter
+      summary: getFilter
+      parameters:
+        - name: filterID
+          in: path
+          description: filterID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: Retrieves a filter by ID.
+  /commerce/orders/orderrouting/api/v1/group/delete/{groupID}:
+    delete:
+      tags:
+        - OrderRoutingGroup
+      summary: deleteGroup
+      parameters:
+        - name: groupID
+          in: path
+          description: groupID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '204':
+          description: No Content
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+      deprecated: false
+      description: Deletes a routing group.
+  /commerce/orders/orderrouting/api/v1/group/test:
+    get:
+      tags:
+        - OrderRoutingGroup
+      summary: testGroup
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDocumentationLocationGroup'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: Tests a routing group.
+  /commerce/orders/orderrouting/api/v1/group/{groupID}:
+    get:
+      tags:
+        - OrderRoutingGroup
+      summary: getGroup
+      parameters:
+        - name: groupID
+          in: path
+          description: groupID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDocumentationLocationGroup'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: Retrieves a routing group by ID.
+  /commerce/orders/orderrouting/api/v1/group/{groupID}/setFilters:
+    post:
+      tags:
+        - OrderRoutingGroup
+      summary: setGroupFilters
+      parameters:
+        - name: groupID
+          in: path
+          description: groupID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: filterIDs
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int32
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDocumentationLocationGroup'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: filterIDs
+      description: Sets a routing group's filters.
+  /commerce/orders/orderrouting/api/v1/group/{groupID}/setSorts:
+    post:
+      tags:
+        - OrderRoutingGroup
+      summary: setGroupSorts
+      parameters:
+        - name: groupID
+          in: path
+          description: groupID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: sorts
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LocationSort'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDocumentationLocationGroup'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: sorts
+      description: Sets a routing group's sorting options.
+  /commerce/orders/orderrouting/api/v1/location:
+    get:
+      tags:
+        - OrderRoutingLocation
+      summary: getLocations
+      parameters:
+        - name: pageNum
+          in: query
+          description: pageNum
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          description: pageSize
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          description: x-vol-tenant
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationListResponseModel'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: Retrieve a list of locations.
+  /commerce/orders/orderrouting/api/v1/location/{locationCode}:
+    get:
+      tags:
+        - OrderRoutingLocation
+      summary: getLocationByLocationCode
+      parameters:
+        - name: locationCode
+          in: path
+          description: locationCode
+          required: true
+          schema:
+            type: string
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          description: x-vol-tenant
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationResponseModel'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: Retrieve a specific location by its location code.
+  /commerce/orders/orderrouting/api/v1/routing/candidates:
+    post:
+      tags:
+        - Routing
+      summary: suggestCandidates
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CandidateSuggestionsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CandidateSuggestionsResponse'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: request
+      description: Suggests the routing candidates for an order.
+  /commerce/orders/orderrouting/api/v1/routing/samplerequest:
+    get:
+      tags:
+        - Routing
+      summary: getSampleRequest
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionRequest'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: Retrieves a sample request.
+  /commerce/orders/orderrouting/api/v1/routing/suggestion:
+    post:
+      tags:
+        - Routing
+      summary: suggestRouting
+      parameters:
+        - name: returnSuggestionLog
+          in: query
+          description: returnSuggestionLog
+          schema:
+            type: boolean
+            default: false
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionResponse'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: request
+      description: Suggests the routing assignment for an order.
+  /commerce/orders/orderrouting/api/v1/routing/suggestionTest:
+    post:
+      tags:
+        - Routing
+      summary: suggestRoutingTest
+      parameters:
+        - name: returnSuggestionLog
+          in: query
+          description: returnSuggestionLog
+          schema:
+            type: boolean
+            default: true
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestionTestRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionResponse'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: request
+      description: Tests the routing suggestion logic.
+  /commerce/orders/orderrouting/api/v1/group:
+    post:
+      tags:
+        - OrderRoutingGroup
+      summary: saveGroup
+      parameters:
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        description: loc
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationGroupModel'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDocumentationLocationGroup'
+        '201':
+          description: Created
+          content: {}
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: loc
+      description: saveGroup
+  /commerce/orders/orderrouting/api/v1/routing/suggestionLog:
+    get:
+      tags:
+        - Routing
+      summary: Get Suggestion Log
+      parameters:
+        - name: externalResponseID
+          in: query
+          description: externalResponseID
+          schema:
+            type: string
+        - name: orderID
+          in: query
+          description: orderID
+          schema:
+            type: integer
+            format: int32
+        - name: responseID
+          in: query
+          description: responseID
+          schema:
+            type: integer
+            format: int32
+        - name: suggestionID
+          in: query
+          description: suggestionID
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-site
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: x-vol-tenant
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SuggestionLog'
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+      deprecated: false
+      description: >-
+        Retrieves a log of routing suggestions for an order. You can also view
+        suggestion logs through the <a
+        href="https://docs.kibocommerce.com/help/suggestion-logs-and-debug">Order
+        Routing user interface</a>.
+components:
+  schemas:
+    CustomDataList:
+      title: CustomDataList
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        customDataListID:
+          type: integer
+          format: int32
+        dataType:
+          type: string
+          enum:
+            - STRING
+            - NUMBER
+            - LOCATION
+            - DATE
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomDataListEntry'
+        environmentID:
+          type: integer
+          format: int32
+        fileName:
+          type: string
+        name:
+          type: string
+        notes:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        state:
+          type: string
+          enum:
+            - dataset.ready
+            - dataset.processing
+            - dataset.error.processing
+        stringValues:
+          type: array
+          items:
+            type: string
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+        values:
+          type: array
+          items:
+            type: object
+            properties: {}
+    CustomDataListEntry:
+      title: CustomDataListEntry
+      type: object
+      properties:
+        customDataListEntryID:
+          type: integer
+          format: int32
+        dataValid:
+          type: boolean
+        list:
+          $ref: '#/components/schemas/CustomDataList'
+        notes:
+          type: string
+        stringValue:
+          type: string
+    SiteService:
+      title: SiteService
+      type: object
+    TenantClient:
+      title: TenantClient
+      type: object
+    TenantService:
+      title: TenantService
+      type: object
+      properties:
+        tenantClient:
+          $ref: '#/components/schemas/TenantClient'
+    UserContextInformation:
+      title: UserContextInformation
+      type: object
+      properties:
+        environmentID:
+          type: integer
+          format: int32
+        loaded:
+          type: boolean
+        pathString:
+          type: string
+        siteID:
+          type: integer
+          format: int32
+        siteService:
+          $ref: '#/components/schemas/SiteService'
+        tenantID:
+          type: integer
+          format: int32
+        tenantService:
+          $ref: '#/components/schemas/TenantService'
+    CustomDataListEntryResponse:
+      title: CustomDataListEntryResponse
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        locationAddress:
+          type: string
+        locationID:
+          type: integer
+          format: int32
+        locationName:
+          type: string
+        notes:
+          type: string
+        stringValue:
+          type: string
+    CustomDataListResponse:
+      title: CustomDataListResponse
+      type: object
+      properties:
+        created:
+          type: string
+        creator:
+          type: string
+        dataType:
+          type: string
+          enum:
+            - STRING
+            - NUMBER
+            - LOCATION
+            - DATE
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomDataListEntryResponse'
+        environmentID:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        notes:
+          type: string
+        siteID:
+          type: integer
+          format: int32
+        state:
+          type: string
+          enum:
+            - dataset.ready
+            - dataset.processing
+            - dataset.error.processing
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+        updater:
+          type: string
+    Dimension:
+      title: Dimension
+      type: object
+    UnitOfobject:
+      title: UnitOfobject
+      type: object
+      properties:
+        dimension:
+          $ref: '#/components/schemas/Dimension'
+        standardUnit:
+          $ref: '#/components/schemas/UnitOfobject'
+    LocationCriteriaSetDataDefinition:
+      title: LocationCriteriaSetDataDefinition
+      type: object
+      properties:
+        columnName:
+          type: string
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        dataDefinitionID:
+          type: integer
+          format: int32
+        dataUnitString:
+          type: string
+        defaultValue:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        filterable:
+          type: boolean
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        sortable:
+          type: boolean
+        tenantID:
+          type: integer
+          format: int32
+        unit:
+          $ref: '#/components/schemas/UnitOfobject'
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    LocationCriteriaSet:
+      title: LocationCriteriaSet
+      type: object
+      properties:
+        columnDefinitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationCriteriaSetDataDefinition'
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        fileName:
+          type: string
+        locationCriteriaSetID:
+          type: integer
+          format: int32
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        readyState:
+          type: string
+          enum:
+            - dataset.ready
+            - dataset.processing
+            - dataset.error.processing
+        siteID:
+          type: integer
+          format: int32
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    LocationCriteriaSetFilter:
+      title: LocationCriteriaSetFilter
+      type: object
+      properties:
+        acceptNulls:
+          type: boolean
+        booleanOperator:
+          type: string
+          enum:
+            - filter.logic.equal
+            - filter.logic.not.equal
+            - filter.logic.greater.than
+            - filter.logic.less.than
+            - filter.logic.greater.or.equal
+            - filter.logic.less.or.equal
+            - filter.logic.in
+            - filter.logic.not.in
+            - filter.logic.between
+            - filter.logic.starts.with
+            - filter.logic.ends.with
+            - filter.logic.contains
+            - filter.logic.subset
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        definitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationCriteriaSetDataDefinition'
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleAttributeType:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          type: integer
+          format: int32
+        filterUnit:
+          $ref: '#/components/schemas/UnitOfobject'
+        locationCriteriaSet:
+          $ref: '#/components/schemas/LocationCriteriaSet'
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    AbstractFilter:
+      title: AbstractFilter
+      type: object
+      properties:
+        booleanOperator:
+          type: string
+          enum:
+            - filter.logic.equal
+            - filter.logic.not.equal
+            - filter.logic.greater.than
+            - filter.logic.less.than
+            - filter.logic.greater.or.equal
+            - filter.logic.less.or.equal
+            - filter.logic.in
+            - filter.logic.not.in
+            - filter.logic.between
+            - filter.logic.starts.with
+            - filter.logic.ends.with
+            - filter.logic.contains
+            - filter.logic.subset
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleAttributeType:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          type: integer
+          format: int32
+        filterUnit:
+          $ref: '#/components/schemas/UnitOfobject'
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    CustomDataListFilter:
+      title: CustomDataListFilter
+      type: object
+      properties:
+        booleanOperator:
+          type: string
+          enum:
+            - filter.logic.equal
+            - filter.logic.not.equal
+            - filter.logic.greater.than
+            - filter.logic.less.than
+            - filter.logic.greater.or.equal
+            - filter.logic.less.or.equal
+            - filter.logic.in
+            - filter.logic.not.in
+            - filter.logic.between
+            - filter.logic.starts.with
+            - filter.logic.ends.with
+            - filter.logic.contains
+            - filter.logic.subset
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        customDataListID:
+          type: integer
+          format: int32
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleAttributeType:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          type: integer
+          format: int32
+        filterUnit:
+          $ref: '#/components/schemas/UnitOfobject'
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    CustomDataValueOfobject:
+      title: CustomDataValueOfobject
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        customDataValueID:
+          type: integer
+          format: int32
+        environmentID:
+          type: integer
+          format: int32
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        stringValue:
+          type: string
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    CustomDataValueFilter:
+      title: CustomDataValueFilter
+      type: object
+      properties:
+        booleanOperator:
+          type: string
+          enum:
+            - filter.logic.equal
+            - filter.logic.not.equal
+            - filter.logic.greater.than
+            - filter.logic.less.than
+            - filter.logic.greater.or.equal
+            - filter.logic.less.or.equal
+            - filter.logic.in
+            - filter.logic.not.in
+            - filter.logic.between
+            - filter.logic.starts.with
+            - filter.logic.ends.with
+            - filter.logic.contains
+            - filter.logic.subset
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        customDataValue:
+          $ref: '#/components/schemas/CustomDataValueOfobject'
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleAttributeType:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          type: integer
+          format: int32
+        filterUnit:
+          $ref: '#/components/schemas/UnitOfobject'
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    GroupAfterAction:
+      title: GroupAfterAction
+      type: object
+      properties:
+        actionID:
+          type: integer
+          format: int32
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        failoverAction:
+          type: string
+          enum:
+            - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+            - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+            - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+            - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+            - CANCEL_ORDER
+            - ASSIGN_TO_CUSTOMER_CARE
+            - ASSIGN_TO_GROUP
+            - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+            - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+            - SEND_ORDER_TO_BIDDING
+            - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+            - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+            - ASSIGN_TO_BACKORDER
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        restartAttempt:
+          type: string
+          enum:
+            - START_AT_BEGINNING
+            - CURRENT_GROUP
+            - GROUP_RANK
+        siteID:
+          type: integer
+          format: int32
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    FulfillmentLimit:
+      title: FulfillmentLimit
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        durationType:
+          type: string
+          enum:
+            - HOURS
+            - DAYS
+            - WEEKS
+            - MONTHS
+        environmentID:
+          type: integer
+          format: int32
+        fulfillmentLimit:
+          type: number
+        fulfillmentLimitID:
+          type: integer
+          format: int32
+        fulfillmentType:
+          type: string
+          enum:
+            - ORDERS
+            - ITEMS
+            - DOLLARS
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    RankedLocation:
+      title: RankedLocation
+      type: object
+      properties:
+        locationCode:
+          type: string
+        locationID:
+          type: integer
+          format: int32
+        rank:
+          type: integer
+          format: int32
+    LocationSort:
+      title: LocationSort
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        descending:
+          type: boolean
+        environmentID:
+          type: integer
+          format: int32
+        locationSortID:
+          type: integer
+          format: int32
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        sortingType:
+          type: string
+          enum:
+            - RANK
+            - DISTANCE
+            - LTD
+            - COST
+            - RANDOM
+            - DATA_SET
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    LocationResponseModel:
+      title: LocationResponseModel
+      type: object
+      properties:
+        active:
+          type: boolean
+        addressType:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        created:
+          type: string
+        directShip:
+          type: boolean
+        express:
+          type: boolean
+        fridayHours:
+          type: string
+        latitude:
+          type: number
+          format: double
+        locationCode:
+          type: string
+        locationID:
+          type: integer
+          format: int32
+        locationName:
+          type: string
+        locationTypes:
+          type: array
+          items:
+            type: string
+        longitude:
+          type: number
+          format: double
+        mondayHours:
+          type: string
+        pickup:
+          type: boolean
+        postalCode:
+          type: string
+        requiresManifest:
+          type: boolean
+        saturdayHours:
+          type: string
+        stateOrProvince:
+          type: string
+        sundayHours:
+          type: string
+        tenantID:
+          type: integer
+          format: int32
+        thursdayHours:
+          type: string
+        timezone:
+          type: string
+        transferEnabled:
+          type: boolean
+        tuesdayHours:
+          type: string
+        updated:
+          type: string
+        wednesdayHours:
+          type: string
+        wmsEnabled:
+          type: boolean
+    LocationListResponseModel:
+      title: LocationListResponseModel
+      type: object
+      properties:
+        pageNum:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        paginatedResults:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationResponseModel'
+        totalResults:
+          type: integer
+          format: int64
+    ExclusionListEntryLocationCode:
+      title: ExclusionListEntryLocationCode
+      type: object
+      properties:
+        locationCode:
+          type: string
+        orderItemID:
+          type: integer
+          format: int32
+    ExtendedCustomerInfo:
+      title: ExtendedCustomerInfo
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationAttribute'
+        customerId:
+          type: string
+        segments:
+          type: array
+          items:
+            type: string
+    ExtendedOrderInfo:
+      title: ExtendedOrderInfo
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationAttribute'
+        orderId:
+          type: string
+        type:
+          type: string
+    ExtendedProductInfo:
+      title: ExtendedProductInfo
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationAttribute'
+    ShippingAddress:
+      title: ShippingAddress
+      type: object
+      properties:
+        addressID:
+          type: integer
+          format: int32
+        addressLine1:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        customerID:
+          type: integer
+          format: int32
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        phone:
+          type: string
+        postalCode:
+          type: string
+        state:
+          type: string
+    CandidateSuggestionsRequest:
+      title: CandidateSuggestionsRequest
+      type: object
+      properties:
+        environmentID:
+          type: integer
+          format: int32
+        exclusionListLocationCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+        extendedCustomerInfo:
+          $ref: '#/components/schemas/ExtendedCustomerInfo'
+        extendedOrderInfo:
+          $ref: '#/components/schemas/ExtendedOrderInfo'
+        futureDateLimit:
+          type: string
+          format: date-time
+        futureExclusionListLocationCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+        inventoryRequestType:
+          type: string
+          enum:
+            - ALL
+            - PARTIAL
+            - ANY
+            - ALL_STORES
+        isExpress:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationOrderItem'
+        locationCodeWhiteList:
+          type: array
+          items:
+            type: string
+        orderType:
+          type: string
+          enum:
+            - DIRECTSHIP
+            - TRANSFER
+            - STH_CONSOLIDATED
+        pickupLocationCode:
+          type: string
+        shippingAddress:
+          $ref: '#/components/schemas/ShippingAddress'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CandidateSuggestionFutureInventory:
+      title: CandidateSuggestionFutureInventory
+      type: object
+      properties:
+        available:
+          type: integer
+          format: int32
+        futureDate:
+          type: string
+          format: date-time
+        partNumber:
+          type: string
+        sku:
+          type: string
+        upc:
+          type: string
+    CandidateSuggestionInventory:
+      title: CandidateSuggestionInventory
+      type: object
+      properties:
+        available:
+          type: integer
+          format: int32
+        futureInventory:
+          type: array
+          items:
+            $ref: '#/components/schemas/CandidateSuggestionFutureInventory'
+        partNumber:
+          type: string
+        sku:
+          type: string
+        upc:
+          type: string
+    CandidateSuggestion:
+      title: CandidateSuggestion
+      type: object
+      properties:
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressLine3:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        directShip:
+          type: boolean
+        distance:
+          type: string
+        express:
+          type: boolean
+        inventory:
+          type: array
+          items:
+            $ref: '#/components/schemas/CandidateSuggestionInventory'
+        latitude:
+          type: number
+          format: double
+        locationCode:
+          type: string
+        locationName:
+          type: string
+        longitude:
+          type: number
+          format: double
+        pickup:
+          type: boolean
+        postalCode:
+          type: string
+        state:
+          type: string
+        transferEnabled:
+          type: boolean
+    CandidateSuggestionsResponse:
+      title: CandidateSuggestionsResponse
+      type: object
+      properties:
+        candidateSuggestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CandidateSuggestion'
+    SuggestionRequest:
+      title: SuggestionRequest
+      type: object
+      properties:
+        bundlingStrategy:
+          type: string
+          enum:
+            - ITEM_DEPENDENCY
+        cartID:
+          type: string
+        customData:
+          type: object
+          additionalProperties:
+            type: string
+        environmentID:
+          type: integer
+          format: int32
+        exclusionListLocationCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+        extendedCustomerInfo:
+          $ref: '#/components/schemas/ExtendedCustomerInfo'
+        extendedOrderInfo:
+          $ref: '#/components/schemas/ExtendedOrderInfo'
+        externalResponseID:
+          type: string
+        fraud:
+          type: integer
+          format: int32
+        futureDateLimit:
+          type: string
+          format: date-time
+        futureExclusionListLocationCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+        inventoryRequestType:
+          type: string
+          enum:
+            - ALL
+            - PARTIAL
+            - ANY
+            - ALL_STORES
+        isExpress:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationOrderItem'
+        locationCodeWhiteList:
+          type: array
+          items:
+            type: string
+        numShipmentsNotInRequest:
+          type: integer
+          format: int32
+        orderID:
+          type: integer
+          format: int32
+        orderType:
+          type: string
+          enum:
+            - DIRECTSHIP
+            - TRANSFER
+            - STH_CONSOLIDATED
+        pickupLocationCode:
+          type: string
+        shippingAddress:
+          $ref: '#/components/schemas/ShippingAddress'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        total:
+          type: number
+    AssignmentSuggestion:
+      title: AssignmentSuggestion
+      type: object
+      properties:
+        futureDate:
+          type: string
+          format: date-time
+        futureDateString:
+          type: string
+        locationCode:
+          type: string
+        locationID:
+          type: integer
+          format: int32
+        orderItemID:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        route:
+          type: string
+          enum:
+            - DIRECTSHIP
+            - TRANSFER
+            - STH_CONSOLIDATED
+    StateChangeSuggestion:
+      title: StateChangeSuggestion
+      type: object
+      properties:
+        orderItemID:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+        stateChange:
+          type: string
+          enum:
+            - CANCEL
+            - CUSTOMER_CARE
+            - AVAILABLE
+            - BACKORDER
+    SuggestionEvent:
+      title: SuggestionEvent
+      type: object
+      properties:
+        causeID:
+          type: integer
+          format: int32
+        errors:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - NEW_REQUEST
+            - ROUTE_SELECTED
+            - MAKE_LOCATIONS_AVAILABLE
+            - NO_ROUTE_FOUND
+            - REMOVED_INACTIVE_LOCATIONS
+            - REMOVED_ON_HOLD_LOCATIONS
+            - REMOVED_OVERFULFILLED_LOCATIONS
+            - GROUP
+            - GROUP_FILTER
+            - GROUP_SORT
+            - FILTER
+            - SORT
+            - AFTER_ACTION
+            - FOUND_FULL_ORDER_LOCATION
+            - RESPONSE
+            - AFTER_ACTION_SORT
+            - DEFAULT_RESPONSE
+            - MAX_SPLITS_EXCEEDED
+            - AUTO_ASSIGN_LIMIT_EXCEEDED
+            - INVENTORY_REQUEST
+            - REMOVED_INTERNATIONAL_LOCATIONS
+            - SUGGESTION_UPDATED
+            - NON_EXPRESS_LOCATIONS_FILTERED
+            - STH_CONSOLIDATED_INITIATED
+            - STH_CONSOLIDATED_NOT_USED
+            - STH_CONSOLIDATED_USED
+            - FUTURE_ATP_INITIATED
+            - FUTURE_ATP_NOT_USED
+            - FUTURE_ATP_USED
+    SuggestionLog:
+      title: SuggestionLog
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuggestionEvent'
+        externalResponseID:
+          type: string
+        orderID:
+          type: integer
+          format: int32
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          type: integer
+          format: int32
+        suggestionID:
+          type: integer
+          format: int32
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+    SuggestionResponse:
+      title: SuggestionResponse
+      type: object
+      properties:
+        assignmentSuggestions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+        availableLocations:
+          type: array
+          items:
+            type: integer
+            format: int32
+        emptyResponse:
+          type: boolean
+        externalResponseID:
+          type: string
+        futureAssignmentSuggestions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+        responseID:
+          type: integer
+          format: int32
+        route:
+          type: string
+          enum:
+            - DIRECTSHIP
+            - TRANSFER
+            - STH_CONSOLIDATED
+        stateChangeSuggestions:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+        suggestionLog:
+          $ref: '#/components/schemas/SuggestionLog'
+    SuggestionTestRequest:
+      title: SuggestionTestRequest
+      type: object
+      properties:
+        suggestionRequest:
+          $ref: '#/components/schemas/SuggestionRequest'
+        testInventoryResponses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationInventoryResponse'
+    LocationGroupModel:
+      title: LocationGroupModel
+      type: object
+      properties:
+        active:
+          type: boolean
+        afterActionNone:
+          $ref: '#/components/schemas/GroupAfterAction'
+        afterActionPartial:
+          $ref: '#/components/schemas/GroupAfterAction'
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        description:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        excludedLocationsFromDefaultGroup:
+          type: array
+          items:
+            type: integer
+            format: int32
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/AbstractFilter'
+        fulfillmentLimit:
+          $ref: '#/components/schemas/FulfillmentLimit'
+        groupID:
+          type: integer
+          format: int32
+        isDefaultGroup:
+          type: boolean
+        locationIDs:
+          type: array
+          items:
+            type: integer
+            format: int32
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        rank:
+          type: integer
+          format: int32
+        rankedLocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/RankedLocation'
+        routeID:
+          type: integer
+          format: int32
+        siteID:
+          type: integer
+          format: int32
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationSort'
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        useRetailerExclusionList:
+          type: boolean
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+    ApiDocumentationAttribute:
+      title: Attribute
+      type: object
+      properties:
+        attributeFQN:
+          type: string
+        attributeValues:
+          type: array
+          items:
+            type: string
+    ApiDocumentationFutureInventory:
+      title: FutureInventory
+      type: object
+      properties:
+        allocated:
+          type: integer
+          description: >-
+            Expected change in the actual allocated inventory value when this
+            future inventory record is released.
+          format: int32
+        available:
+          type: integer
+          description: >-
+            Expected change in the actual available inventory value when this
+            future inventory record is released.
+          format: int32
+        createDate:
+          type: string
+          description: Date the inventory was created.
+          format: date-time
+        deliveryDate:
+          type: string
+          description: >-
+            Date at which this inventory will become available. Expected format
+            '2020-09-28T12:00:00-0500'
+          format: date-time
+        futureInventoryID:
+          type: integer
+          description: Future Inventory unique identifier.
+          format: int32
+        onhand:
+          type: integer
+          description: >-
+            Expected change in the actual onhand inventory value when this
+            future inventory record is released.
+          format: int32
+        pending:
+          type: integer
+          description: >-
+            Number of new expected pending items that would be created by
+            releasing this future inventory record assuming no actual inventory
+            is available
+          format: int32
+        type:
+          type: string
+          description: 'Type of future inventory update: REFRESH or ADJUST.'
+      description: Future Inventory Model
+    ApiDocumentationOrderItem:
+      title: OrderItem
+      type: object
+      properties:
+        backorderable:
+          type: boolean
+        customItemData:
+          type: object
+          properties: {}
+        extendedProductInfo:
+          $ref: '#/components/schemas/ExtendedProductInfo'
+        futureOrderable:
+          type: boolean
+        height:
+          type: number
+          format: double
+        itemDependency:
+          type: integer
+          format: int32
+        length:
+          type: number
+          format: double
+        orderItemID:
+          type: integer
+          format: int32
+        partNumber:
+          type: string
+        productTitle:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        sku:
+          type: string
+        taxable:
+          type: boolean
+        upc:
+          type: string
+        weight:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+    ApiDocumentationTagQuantity:
+      title: TagQuantity
+      type: object
+      properties:
+        allocated:
+          type: integer
+          description: >-
+            The quantity the location has that are already allocated for this
+            tag
+          format: int32
+        available:
+          type: integer
+          description: >-
+            The quantity the location has that are available for purchase for
+            this tag
+          format: int32
+        futureInventory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationFutureInventory'
+        onHand:
+          type: integer
+          description: The quantity the the location has in its possession for this tag
+          format: int32
+        pending:
+          type: integer
+          description: The quantity the location has that are pending for this tag
+          format: int32
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Associative Map of <String, String> for tagCategoryName => tagName
+      description: Response object for a tag quantity
+    ApiDocumentationInventoryResponse:
+      title: InventoryResponse
+      type: object
+      properties:
+        allocated:
+          type: integer
+          description: The quantity the location has that are already allocated.
+          format: int32
+        attributes:
+          type: array
+          description: List of Inventory Attributes
+          items:
+            type: string
+        available:
+          type: integer
+          description: The quantity the location has that are available for purchase
+          format: int32
+        blockAssignment:
+          type: boolean
+          description: Whether or not the product is blocked for assignment
+        countryCode:
+          type: string
+          description: The country code of this location
+        currencyID:
+          type: integer
+          description: The currency identifier for the retailPrice
+          format: int32
+        directShip:
+          type: boolean
+          description: Whether this location can ship to a consumer
+        distance:
+          type: number
+          description: The distance in miles from this location to the item's destination
+        floor:
+          type: integer
+          description: >-
+            Absolute minimum quantity of this item that should be in stock at
+            any time
+          format: int32
+        futureInventory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationFutureInventory'
+        inventoryLocatorName:
+          type: string
+          description: The inventory locator name of the individual item
+        locationCode:
+          type: string
+          description: Location Code
+        locationName:
+          type: string
+          description: Location Name
+        ltd:
+          type: number
+          description: Custom field used for store prioritization
+        messages:
+          type: array
+          description: List of messages
+          items:
+            type: string
+        numResults:
+          type: integer
+          description: Number of results
+          format: int32
+        onHand:
+          type: integer
+          description: The quantity the location has in its possession
+          format: int32
+        partNumber:
+          type: string
+          description: Part/Product Number
+        pending:
+          type: integer
+          description: The quantity the location has that are pending.
+          format: int32
+        pickup:
+          type: boolean
+          description: Whether a consumer can pick up product at this location (store)
+        retailPrice:
+          type: number
+          description: The price of the product at this location
+        safetyStock:
+          type: integer
+          description: >-
+            Quantity of this item the location wants to keep in stock to ensure
+            stock isn't completely depleted
+          format: int32
+        sku:
+          type: string
+          description: Stock Keeping Unit
+        success:
+          type: boolean
+          description: Flag for success
+        taggedInventory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentationTagQuantity'
+        tenantID:
+          type: integer
+          description: Tenant Identifier
+          format: int32
+        transferEnabled:
+          type: boolean
+          description: >-
+            Whether the location can ship to another location (store), thus
+            restocking that location.
+        upc:
+          type: string
+          description: Universal Product Code
+      description: Inventory Response
+    ApiDocumentationLocationGroup:
+      title: LocationGroup
+      type: object
+      properties:
+        active:
+          type: boolean
+        afterActionNone:
+          $ref: '#/components/schemas/GroupAfterAction'
+        afterActionPartial:
+          $ref: '#/components/schemas/GroupAfterAction'
+        created:
+          type: string
+          format: date-time
+        creatorUsername:
+          type: string
+        description:
+          type: string
+        environmentID:
+          type: integer
+          format: int32
+        excludedLocationsFromDefaultGroup:
+          type: array
+          items:
+            type: integer
+            format: int32
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/AbstractFilter'
+        fulfillmentLimit:
+          $ref: '#/components/schemas/FulfillmentLimit'
+        groupID:
+          type: integer
+          format: int32
+        isDefaultGroup:
+          type: boolean
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        rank:
+          type: integer
+          format: int32
+        rankedLocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/RankedLocation'
+        siteID:
+          type: integer
+          format: int32
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationSort'
+        tenantID:
+          type: integer
+          format: int32
+        updated:
+          type: string
+          format: date-time
+        updaterUsername:
+          type: string
+        useRetailerExclusionList:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      bearerFormat: JWT
+    clientOauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://home.mozu.com/api/platform/applications/authtickets/oauth
+          scopes: {}
+servers:
+  - url: https://t{tenantId}.{env}.mozu.com/api
+    description: Tenant Level Api
+    variables:
+      tenantId:
+        default: '0'
+        description: Id of the Tenant
+      env:
+        default: sandbox
+        enum:
+          - sandbox
+          - tp1
+          - tp2
+          - tp3
+          - tp4
+          - tp5
+          - stg1
+          - stg2
+  - url: https://t{tenantId}-s{siteId}.{env}.mozu.com/api
+    description: Site Level Api
+    variables:
+      tenantId:
+        default: '0'
+        description: Id of the Tenant
+      siteId:
+        default: '0'
+        description: Id of the Site
+      env:
+        default: sandbox
+        enum:
+          - sandbox
+          - tp1
+          - tp2
+          - tp3
+          - tp4
+          - tp5
+          - stg1
+  - url: https://home.mozu.com/api
+    description: HomePod Api
+  - url: https://t{tenantId}.{env}.euw1.kibocommerce.com/api
+    description: EURO Tenant Level Api
+    variables:
+      tenantId:
+        default: '0'
+        description: Id of the Tenant
+      env:
+        default: sandbox
+        enum:
+          - sb
+          - tp1
+  - url: https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api
+    description: EURO Site Level Api
+    variables:
+      tenantId:
+        default: '0'
+        description: Id of the Tenant
+      siteId:
+        default: '0'
+        description: Id of the Site
+      env:
+        default: sandbox
+        enum:
+          - sb
+          - tp1
+  - url: https://home.euw1.kibocommerce.com/api
+    description: EURO HomePod Api
+security:
+  - bearerAuth: []
