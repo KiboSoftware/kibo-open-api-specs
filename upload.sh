@@ -7,7 +7,7 @@ rdme openapi dist/openapi_customer.yaml --key=$README_API_KEY --id=6491a95c04e52
 rdme openapi dist/openapi_entities.yaml --key=$README_API_KEY --id=6491a9abeec691132e51b0f0
 rdme openapi dist/openapi_event.yaml --key=$README_API_KEY --id=6491aaaae159110058a86605
 rdme openapi dist/openapi_fulfillment.yaml --key=$README_API_KEY --id=6498cefb934bdd005deb19e8
-rdme openapi dist/openapi_importexport.yaml --key=$README_API_KEY --id=6491ab370ec327003a9f7d87
+rdme openapi dist/openapi_importexport.yaml --key=$README_API_KEY --id=64cb902bac59e10b01cb720f
 rdme openapi dist/openapi_inventory.yaml --key=$README_API_KEY --id=6498cd55ddbd210046ea6bd9
 rdme openapi dist/openapi_location_admin.yaml --key=$README_API_KEY --id=6491adc3afa991162da527ef
 rdme openapi dist/openapi_location_storefront.yaml --key=$README_API_KEY --id=6491adfd7c86c0139e3bff99

@@ -15971,12 +15971,6 @@ components:
       description: JWT Authorization header using the Bearer scheme.
       scheme: bearer
       bearerFormat: JWT
-    clientOauth2:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://home.mozu.com/api/platform/applications/authtickets/oauth
-          scopes: {}
 servers:
   - url: https://t{tenantId}.{env}.mozu.com/api
     description: Tenant Level Api
