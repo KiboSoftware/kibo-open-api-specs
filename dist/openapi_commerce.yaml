@@ -578,15 +578,8 @@ paths:
       tags:
         - Cart
       summary: Delete Extended Properties.
-      description: Delete extended properties on the current cart.
-      requestBody:
-        description: Extended properties.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
+      description: Delete extended properties on the current cart
+      
       responses:
         '200':
           description: Success
@@ -5429,14 +5422,6 @@ paths:
             concurrency purposes.
           schema:
             type: string
-      requestBody:
-        description: Keys of extended properties
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
       responses:
         '200':
           description: Success
@@ -15227,7 +15212,12 @@ components:
           nullable: true
         values:
           type: array
-          items: {}
+          items: 
+            oneOf:
+            - type: string
+            - type: number
+            - type: integer
+            - type: boolean
           nullable: true
       additionalProperties: false
     CommerceRuntimeOrderItem:
