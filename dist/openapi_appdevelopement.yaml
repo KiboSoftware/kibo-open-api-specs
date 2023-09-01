@@ -1380,11 +1380,7 @@ components:
           items:
             $ref: '#/components/schemas/FileMetadata'
           nullable: true
-        subFolders:
-          type: array
-          items:
-            $ref: '#/components/schemas/FolderMetadata'
-          nullable: true
+        
       additionalProperties: false
     ApplicationVersionsCollection:
       type: object

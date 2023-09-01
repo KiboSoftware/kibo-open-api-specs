@@ -2951,12 +2951,7 @@ components:
         isDisplayed:
           type: boolean
           description: Indicates whether the FacetValue should be displayed
-        childrenFacetValues:
-          type: array
-          items:
-            $ref: "#/components/schemas/FacetValue"
-          description: When hierarchical Facet
-          nullable: true
+        
       additionalProperties: false
       description: ""
     SolrDebugInfo:
@@ -3465,16 +3460,9 @@ components:
           description: Internal unique identifier of the category. System-supplied and
             read-only.
           format: int32
-        parentCategory:
-          $ref: "#/components/schemas/CatalogRuntimesCategory"
+        
         content:
           $ref: "#/components/schemas/CategoryContent"
-        childrenCategories:
-          type: array
-          items:
-            $ref: "#/components/schemas/CatalogRuntimesCategory"
-          description: List of subcategories that belong to this category.
-          nullable: true
         sequence:
           type: integer
           description: Order in which categories appear when they are at the same level

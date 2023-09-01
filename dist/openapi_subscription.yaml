@@ -4357,8 +4357,7 @@ components:
           description: Unique identifier of the category. System-supplied and read-only.
           format: int32
           nullable: true
-        parent:
-          $ref: '#/components/schemas/CommerceRuntimeCategory'
+
       additionalProperties: false
       description: >-
         Categories to which the product belongs. Discounts can apply to

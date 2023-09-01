@@ -1215,8 +1215,7 @@ components:
           format: int32
         dataValid:
           type: boolean
-        list:
-          $ref: '#/components/schemas/CustomDataList'
+
         notes:
           type: string
         stringValue:
@@ -1326,8 +1325,7 @@ components:
       properties:
         dimension:
           $ref: '#/components/schemas/Dimension'
-        standardUnit:
-          $ref: '#/components/schemas/UnitOfobject'
+        
     LocationCriteriaSetDataDefinition:
       title: LocationCriteriaSetDataDefinition
       type: object

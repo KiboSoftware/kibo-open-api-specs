@@ -4726,11 +4726,7 @@ components:
         id:
           type: integer
           format: int32
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountHierarchyNode'
-          nullable: true
+        
       additionalProperties: false
     B2BAccountHierarchyResult:
       type: object
