@@ -9103,7 +9103,7 @@ components:
           type: boolean
           description: If true, the cart is active. A shopper has added an item to a cart.
           nullable: true
-      additionalProperties: false
+      
       description: >-
         Cart summary, which is the number of items in the active cart, total
         cost of items in the cart, and whether the cart has expired.
@@ -9130,7 +9130,7 @@ components:
           nullable: true
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
       description: "Shipment information, which includes the shipping address, price, estimated delivery date, tracking information, method (for example, Ground, Overnight, or Pick-up), \r\ncarrier (for example, USPS, UPS, FedEx), and current status (for example, Not Shipped, In Transit, Delayed, or Returned To Sender)."
     SuggestedDiscount:
       type: object
@@ -9147,7 +9147,7 @@ components:
           type: boolean
         hasOptions:
           type: boolean
-      additionalProperties: false
+      
     ExtendedProperty:
       type: object
       properties:
@@ -9157,7 +9157,7 @@ components:
         value:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceAggregate:
       type: object
       properties:
@@ -9350,7 +9350,7 @@ components:
           nullable: true
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
       description: Base class for cart and order
     ProductStock:
       type: object
@@ -9379,7 +9379,7 @@ components:
         isSubstitutable:
           type: boolean
           nullable: true
-      additionalProperties: false
+      
     ProductBase:
       type: object
       properties:
@@ -9429,7 +9429,7 @@ components:
           type: string
           description: Fulfillment status of the product.
           nullable: true
-      additionalProperties: false
+      
     CommerceUnitPrice:
       type: object
       properties:
@@ -9455,7 +9455,7 @@ components:
           description: Amount as manually overridden by the Merchant
           format: double
           nullable: true
-      additionalProperties: false
+      
       description: >-
         Pricing details for the product listed on a cart item, including the
         original price, discount amount, and final price.
@@ -9484,7 +9484,7 @@ components:
           type: boolean
           description: Determines if the discount applies to the sale price of the order
           nullable: true
-      additionalProperties: false
+      
       description: Details of the discount applied to a product.
     ShippingDiscount:
       type: object
@@ -9495,7 +9495,7 @@ components:
           nullable: true
         discount:
           $ref: '#/components/schemas/CommerceRuntimeAppliedDiscount'
-      additionalProperties: false
+      
       description: Value of the shipping discount.
     InventoryTags:
       type: object
@@ -9506,7 +9506,7 @@ components:
         value:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceItem:
       type: object
       properties:
@@ -9735,7 +9735,7 @@ components:
           type: number
           format: double
           nullable: true
-      additionalProperties: false
+      
       description: Base class for cart and order items
     Frequency:
       type: object
@@ -9746,7 +9746,7 @@ components:
         value:
           type: integer
           format: int32
-      additionalProperties: false
+      
     Trial:
       type: object
       properties:
@@ -9779,7 +9779,7 @@ components:
             Configurable Options to substitute once the trial period is
             finished.
           nullable: true
-      additionalProperties: false
+      
     SubscriptionInfo:
       type: object
       properties:
@@ -9791,7 +9791,7 @@ components:
           $ref: '#/components/schemas/Frequency'
         trial:
           $ref: '#/components/schemas/Trial'
-      additionalProperties: false
+      
     CartItem:
       type: object
       allOf:
@@ -9811,7 +9811,7 @@ components:
           nullable: true
         subscription:
           $ref: '#/components/schemas/SubscriptionInfo'
-      additionalProperties: false
+      
       description: >-
         Details of an item in the shopper's cart, such as the product name,
         stock count, unit price, discounts, quantity ordered, and total price.
@@ -9837,7 +9837,7 @@ components:
         discountId:
           type: integer
           format: int32
-      additionalProperties: false
+      
       description: >-
         Represents a coupon that is considered invalid by the Mozu pricing
         service.
@@ -9855,7 +9855,7 @@ components:
           items:
             $ref: '#/components/schemas/CommerceRuntimeProduct'
           nullable: true
-      additionalProperties: false
+      
     Cart:
       type: object
       allOf:
@@ -9916,7 +9916,7 @@ components:
         zipCode:
           type: string
           nullable: true
-      additionalProperties: false
+      
       description: "Details of the current cart, including shopper's user ID, items listed in the cart, and any system messages. \r\nFor each item, contains the list of available discounts and the actual discount applied to the cart item."
     CartItemCollection:
       type: object
@@ -9929,7 +9929,7 @@ components:
           items:
             $ref: '#/components/schemas/CartItem'
           nullable: true
-      additionalProperties: false
+      
       description: Collection of items in the cart. A collection is not paged.
     CartChangeMessageCollection:
       type: object
@@ -9942,7 +9942,7 @@ components:
           items:
             $ref: '#/components/schemas/CommerceRuntimeChangeMessage'
           nullable: true
-      additionalProperties: false
+      
       description: >-
         Collection of cart messages returned as a whole. A collection is not
         paged.
@@ -9984,7 +9984,7 @@ components:
           nullable: true
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
       description: Channel used to group sites for commerce purposes.
     ChannelCollection:
       type: object
@@ -10006,7 +10006,7 @@ components:
           items:
             $ref: '#/components/schemas/Channel'
           nullable: true
-      additionalProperties: false
+      
     ChannelGroup:
       type: object
       properties:
@@ -10024,7 +10024,7 @@ components:
           nullable: true
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
       description: Used to group channels together to manage common channel information.
     ChannelGroupCollection:
       type: object
@@ -10046,7 +10046,7 @@ components:
           items:
             $ref: '#/components/schemas/ChannelGroup'
           nullable: true
-      additionalProperties: false
+      
     CheckoutGrouping:
       type: object
       properties:
@@ -10183,7 +10183,7 @@ components:
         taxData:
           type: object
           nullable: true
-      additionalProperties: false
+      
     PaymentActionTarget:
       type: object
       properties:
@@ -10203,7 +10203,7 @@ components:
           description: The number of the Checkout/Order/Return to target.
           format: int32
           nullable: true
-      additionalProperties: false
+      
     PaymentCardReference:
       type: object
       properties:
@@ -10227,7 +10227,7 @@ components:
           type: string
           description: Year when the card expires.
           nullable: true
-      additionalProperties: false
+      
     PaymentCard:
       type: object
       allOf:
@@ -10257,7 +10257,7 @@ components:
           type: string
           description: "Last four digit of Credit card\r\nOnly for OMS Only tenant."
           nullable: true
-      additionalProperties: false
+      
       description: "If the customer is paying by credit card, the card holder's details, such as the name on the card, number, billing \r\naddress, and expiration dates."
     PaymentToken:
       type: object
@@ -10268,7 +10268,7 @@ components:
         type:
           type: string
           nullable: true
-      additionalProperties: false
+      
     PurchaseOrderPayment:
       type: object
       properties:
@@ -10284,7 +10284,7 @@ components:
             $ref: '#/components/schemas/CommerceRuntimePurchaseOrderCustomField'
           description: Memo/custom fields
           nullable: true
-      additionalProperties: false
+      
       description: Purchase order payment
     CheckPayment:
       type: object
@@ -10292,7 +10292,7 @@ components:
         checkNumber:
           type: string
           nullable: true
-      additionalProperties: false
+      
     BillingInfo:
       type: object
       properties:
@@ -10349,7 +10349,7 @@ components:
           type: object
           description: Custom data from payment providers
           nullable: true
-      additionalProperties: false
+      
       description: "Customer's payment details such as payment type (credit card, check by mail, or PayPal)\r\nand cardholder information if payment is by credit card."
     SubPayment:
       type: object
@@ -10371,7 +10371,7 @@ components:
           format: double
         target:
           $ref: '#/components/schemas/PaymentActionTarget'
-      additionalProperties: false
+      
     PaymentGatewayResponseData:
       type: object
       properties:
@@ -10383,7 +10383,7 @@ components:
           type: string
           description: Value from payment gateway
           nullable: true
-      additionalProperties: false
+      
       description: Payment gateway reponse data
     CapturableShipmentSummary:
       type: object
@@ -10402,7 +10402,7 @@ components:
           type: number
           description: The amount applied by the payment action
           format: double
-      additionalProperties: false
+      
     PaymentInteraction:
       type: object
       properties:
@@ -10534,7 +10534,7 @@ components:
             Stores pairings of shipment number to shipment total for all
             captured shipments. This was added for generating TLogs.
           nullable: true
-      additionalProperties: false
+      
       description: "A single interaction of a potential list of intereactions for a transaction. The scope of the transaction is the entire payment\r\ninterchange. It is created upon authorization and is used for all subsequent interactions performed against the authorize,\r\nsuch as consecutive captures."
     GatewayGiftCard:
       type: object
@@ -10554,7 +10554,7 @@ components:
         currencyCode:
           type: string
           nullable: true
-      additionalProperties: false
+      
     Payment:
       type: object
       properties:
@@ -10650,7 +10650,7 @@ components:
           $ref: '#/components/schemas/AdminUserAuditInfo'
         gatewayGiftCard:
           $ref: '#/components/schemas/GatewayGiftCard'
-      additionalProperties: false
+      
       description: "Payment transaction associated with this order. It is the entire payment interchange between the merchant who is forwarding the customer's payment \r\ninformation and the payment service who is authorizing and capturing payment. Payment can be either by credit card, check, or PayPal. (PayPal not\r\ncurrently supported.)"
     AlternateContact:
       type: object
@@ -10671,7 +10671,7 @@ components:
           type: string
           description: Phone Number of alternate contact during order process
           nullable: true
-      additionalProperties: false
+      
     Checkout:
       type: object
       properties:
@@ -10934,7 +10934,7 @@ components:
           type: number
           description: Final total
           format: double
-      additionalProperties: false
+      
     CheckoutCollection:
       type: object
       properties:
@@ -10955,7 +10955,7 @@ components:
           items:
             $ref: '#/components/schemas/Checkout'
           nullable: true
-      additionalProperties: false
+      
       description: Paged collection of checkouts.
     ShippingPrice:
       type: object
@@ -10973,7 +10973,7 @@ components:
             discounts that the merchant offers.
           format: double
           nullable: true
-      additionalProperties: false
+      
       description: >-
         Shipping pricing information which includes the cost to the merchant and
         the price that the customer pays.
@@ -10988,7 +10988,7 @@ components:
           items:
             $ref: '#/components/schemas/CommerceRuntimeShippingRate'
           nullable: true
-      additionalProperties: false
+      
     CheckoutGroupShippingMethod:
       type: object
       properties:
@@ -10997,14 +10997,14 @@ components:
           nullable: true
         shippingRate:
           $ref: '#/components/schemas/CommerceRuntimeShippingRate'
-      additionalProperties: false
+      
     CheckoutAction:
       type: object
       properties:
         actionName:
           type: string
           nullable: true
-      additionalProperties: false
+      
     DigitalWallet:
       type: object
       properties:
@@ -11016,7 +11016,7 @@ components:
           type: string
           description: "Cart ID\r\nNote: This property should only be set if the order is not created and user opted to \r\ncreate the order from cart using digital wallet."
           nullable: true
-      additionalProperties: false
+      
       description: Digital wallet contract
     ItemsForDestination:
       type: object
@@ -11029,7 +11029,7 @@ components:
           items:
             type: string
           nullable: true
-      additionalProperties: false
+      
     ItemsAndDeliveryDates:
       type: object
       properties:
@@ -11041,7 +11041,7 @@ components:
           items:
             type: string
           nullable: true
-      additionalProperties: false
+      
     PaymentGatewayInteraction:
       type: object
       properties:
@@ -11080,7 +11080,7 @@ components:
           type: string
           description: Gateway response text. Supplied by PCIaaS.
           nullable: true
-      additionalProperties: false
+      
       description: Represents a manually entered payment gateway interaction.
     PaymentAction:
       type: object
@@ -11138,7 +11138,7 @@ components:
           type: string
           description: Recaptcha for validation.
           nullable: true
-      additionalProperties: false
+      
     OrderNote:
       type: object
       properties:
@@ -11152,7 +11152,7 @@ components:
           nullable: true
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
       description: >-
         Internal notes that a merchant may add to the order. Maximum 250
         characters.
@@ -11179,12 +11179,12 @@ components:
         optionAttributeFQN:
           type: string
           nullable: true
-      additionalProperties: false
+      
     PackageItem:
       type: object
       allOf:
         - $ref: '#/components/schemas/AbstractFulfillmentItem'
-      additionalProperties: false
+      
       description: An item in a package representing a particular product.
     CollectionOfPackageItem:
       type: object
@@ -11230,7 +11230,7 @@ components:
             $ref: '#/components/schemas/CommerceRuntimeChangeMessage'
           description: Change messages related to the fulfillment unit.
           nullable: true
-      additionalProperties: false
+      
     PackingSlipItemDetail:
       type: object
       properties:
@@ -11253,7 +11253,7 @@ components:
           description: Gets or Sets Quantity
           format: int32
           nullable: true
-      additionalProperties: false
+      
     Adjustment:
       type: object
       properties:
@@ -11267,7 +11267,7 @@ components:
         internalComment:
           type: string
           nullable: true
-      additionalProperties: false
+      
     OrderValidationMessage:
       type: object
       properties:
@@ -11285,7 +11285,7 @@ components:
           type: string
           description: Actual message returned by the validator.
           nullable: true
-      additionalProperties: false
+      
       description: Validation message returned by an order validator.
     OrderValidationResult:
       type: object
@@ -11325,7 +11325,7 @@ components:
             $ref: '#/components/schemas/OrderValidationMessage'
           description: Messages returned by the order validator
           nullable: true
-      additionalProperties: false
+      
       description: The result of an order validator.
     Refund:
       type: object
@@ -11357,7 +11357,7 @@ components:
           nullable: true
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
       description: "Refund associated with an order. A refund is a single exchange of money from merchant to customer\r\nthat either encapsulates a refund to a credit card or an issuance of a store credit.\r\nA refund does not reduce the 'amount collected' on an order and it is possible for a refund to exceed the total order amount."
     CollectionOfPickupItem:
       type: object
@@ -11403,12 +11403,12 @@ components:
             $ref: '#/components/schemas/CommerceRuntimeChangeMessage'
           description: Change messages related to the fulfillment unit.
           nullable: true
-      additionalProperties: false
+      
     Pickup:
       type: object
       allOf:
         - $ref: '#/components/schemas/CollectionOfPickupItem'
-      additionalProperties: false
+      
       description: Represents a pickup by a customer from a merchant.
     DigitalPackageItem:
       type: object
@@ -11418,7 +11418,7 @@ components:
         giftCardCode:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CollectionOfDigitalPackageItem:
       type: object
       properties:
@@ -11463,12 +11463,12 @@ components:
             $ref: '#/components/schemas/CommerceRuntimeChangeMessage'
           description: Change messages related to the fulfillment unit.
           nullable: true
-      additionalProperties: false
+      
     DigitalPackage:
       type: object
       allOf:
         - $ref: '#/components/schemas/CollectionOfDigitalPackageItem'
-      additionalProperties: false
+      
     FulfillmentTask:
       type: object
       properties:
@@ -11511,7 +11511,7 @@ components:
         taskId:
           type: string
           nullable: true
-      additionalProperties: false
+      
     ShipmentItem:
       type: object
       properties:
@@ -11705,7 +11705,7 @@ components:
           type: integer
           format: int32
           nullable: true
-      additionalProperties: false
+      
     FulfillmentAlternateContact:
       type: object
       properties:
@@ -11725,7 +11725,7 @@ components:
           type: string
           description: Phone Number of alternate contact during order process
           nullable: true
-      additionalProperties: false
+      
     FulfillmentServiceAppeasementReason:
       type: object
       properties:
@@ -11735,7 +11735,7 @@ components:
         reasonCode:
           type: string
           nullable: true
-      additionalProperties: false
+      
     FulfillmentServiceAuditInfo:
       type: object
       properties:
@@ -11753,7 +11753,7 @@ components:
           type: string
           format: date-time
           nullable: true
-      additionalProperties: false
+      
     FulfillmentServiceFulfillmentField:
       type: object
       properties:
@@ -11765,7 +11765,7 @@ components:
           nullable: true
         userEnteredValue:
           nullable: true
-      additionalProperties: false
+      
     FulfillmentServiceGiftCard:
       type: object
       properties:
@@ -11805,7 +11805,7 @@ components:
           type: number
           format: double
           nullable: true
-      additionalProperties: false
+      
     FulfillmentServiceInventoryTag:
       type: object
       properties:
@@ -11815,7 +11815,7 @@ components:
         value:
           type: string
           nullable: true
-      additionalProperties: false
+      
     FulfillmentServiceProductOption:
       type: object
       properties:
@@ -11839,7 +11839,7 @@ components:
           nullable: true
         value:
           nullable: true
-      additionalProperties: false
+      
     FulfillmentServiceSubstituteReason:
       type: object
       properties:
@@ -11849,7 +11849,7 @@ components:
         reasonCode:
           type: string
           nullable: true
-      additionalProperties: false
+      
     SubstitutedItem:
       type: object
       properties:
@@ -12129,7 +12129,7 @@ components:
           type: number
           format: double
           nullable: true
-      additionalProperties: false
+      
     Order:
       type: object
       allOf:
@@ -12547,7 +12547,7 @@ components:
             Settings this flag on the order will restrict user from Cancelling
             the order
           nullable: true
-      additionalProperties: false
+      
       description: Order form.
     PaymentCollection:
       type: object
@@ -12560,7 +12560,7 @@ components:
           items:
             $ref: '#/components/schemas/Payment'
           nullable: true
-      additionalProperties: false
+      
       description: A collection of payment transactions.
     ReasonItemBase:
       type: object
@@ -12573,12 +12573,12 @@ components:
           nullable: true
         needsMoreInfo:
           type: boolean
-      additionalProperties: false
+      
     RefundReasonItem:
       type: object
       allOf:
         - $ref: '#/components/schemas/ReasonItemBase'
-      additionalProperties: false
+      
     RefundReasonCollection:
       type: object
       properties:
@@ -12590,7 +12590,7 @@ components:
           items:
             $ref: '#/components/schemas/RefundReasonItem'
           nullable: true
-      additionalProperties: false
+      
     OrderReturnableItem:
       type: object
       properties:
@@ -12666,7 +12666,7 @@ components:
         mfgPartNumber:
           type: string
           nullable: true
-      additionalProperties: false
+      
     OrderReturnableItemCollection:
       type: object
       properties:
@@ -12678,7 +12678,7 @@ components:
           items:
             $ref: '#/components/schemas/OrderReturnableItem'
           nullable: true
-      additionalProperties: false
+      
       description: Collection of fulfillment information for items on an order.
     RepriceShipmentObject:
       type: object
@@ -12687,7 +12687,7 @@ components:
           $ref: '#/components/schemas/CommerceRuntimeShipment'
         newShipment:
           $ref: '#/components/schemas/CommerceRuntimeShipment'
-      additionalProperties: false
+      
     ShipmentAdjustment:
       type: object
       properties:
@@ -12717,7 +12717,7 @@ components:
           nullable: true
         appeasementReason:
           $ref: '#/components/schemas/CommerceRuntimeAppeasementReason'
-      additionalProperties: false
+      
     ShipmentItemAdjustment:
       type: object
       properties:
@@ -12728,7 +12728,7 @@ components:
           nullable: true
         appeasementReason:
           $ref: '#/components/schemas/CommerceRuntimeAppeasementReason'
-      additionalProperties: false
+      
     SplitShipmentsObject:
       type: object
       properties:
@@ -12739,12 +12739,12 @@ components:
           items:
             $ref: '#/components/schemas/CommerceRuntimeShipment'
           nullable: true
-      additionalProperties: false
+      
     CancelReasonItem:
       type: object
       allOf:
         - $ref: '#/components/schemas/ReasonItemBase'
-      additionalProperties: false
+      
     CancelReasonCollection:
       type: object
       properties:
@@ -12756,7 +12756,7 @@ components:
           items:
             $ref: '#/components/schemas/CancelReasonItem'
           nullable: true
-      additionalProperties: false
+      
     OrderCollection:
       type: object
       properties:
@@ -12777,7 +12777,7 @@ components:
           items:
             $ref: '#/components/schemas/Order'
           nullable: true
-      additionalProperties: false
+      
       description: "Paged collection of orders. This is paged in case it's returning a long list the orders. \r\nfor a store."
     OrderAction:
       type: object
@@ -12785,7 +12785,7 @@ components:
         actionName:
           type: string
           nullable: true
-      additionalProperties: false
+      
     PricingTaxContext:
       type: object
       properties:
@@ -12802,7 +12802,7 @@ components:
           $ref: '#/components/schemas/CommerceRuntimeAddress'
         destinationAddress:
           $ref: '#/components/schemas/CommerceRuntimeAddress'
-      additionalProperties: false
+      
     PricingProductPropertyValue:
       type: object
       properties:
@@ -12811,7 +12811,7 @@ components:
         stringValue:
           type: string
           nullable: true
-      additionalProperties: false
+      
     PricingProductAttribute:
       type: object
       properties:
@@ -12830,7 +12830,7 @@ components:
         description:
           type: string
           nullable: true
-      additionalProperties: false
+      
     PricingProductProperty:
       type: object
       properties:
@@ -12850,7 +12850,7 @@ components:
         isMultiValue:
           type: boolean
           nullable: true
-      additionalProperties: false
+      
     PricingDiscountTarget:
       type: object
       properties:
@@ -12897,7 +12897,7 @@ components:
           items:
             type: string
           nullable: true
-      additionalProperties: false
+      
     PricingDiscountCondition:
       type: object
       properties:
@@ -12975,7 +12975,7 @@ components:
           type: integer
           format: int32
           nullable: true
-      additionalProperties: false
+      
     PricingDiscount:
       type: object
       properties:
@@ -13047,7 +13047,7 @@ components:
         stackingLayer:
           type: integer
           format: int32
-      additionalProperties: false
+      
     PricingAppliedDiscount:
       type: object
       properties:
@@ -13063,7 +13063,7 @@ components:
           type: integer
           format: int32
           nullable: true
-      additionalProperties: false
+      
     PricingAppliedLineItemDiscount:
       type: object
       allOf:
@@ -13080,7 +13080,7 @@ components:
         normalizedImpact:
           type: number
           format: double
-      additionalProperties: false
+      
     PricingAppliedLineItemProductDiscount:
       type: object
       allOf:
@@ -13088,7 +13088,7 @@ components:
       properties:
         appliesToSalePrice:
           type: boolean
-      additionalProperties: false
+      
     PricingAppliedLineItemShippingDiscount:
       type: object
       allOf:
@@ -13097,7 +13097,7 @@ components:
         shippingMethodCode:
           type: string
           nullable: true
-      additionalProperties: false
+      
     PricingTaxableLineItem:
       type: object
       properties:
@@ -13170,7 +13170,7 @@ components:
           $ref: '#/components/schemas/CommerceRuntimeAddress'
         destinationAddress:
           $ref: '#/components/schemas/CommerceRuntimeAddress'
-      additionalProperties: false
+      
     PricingTaxAttribute:
       type: object
       properties:
@@ -13185,7 +13185,7 @@ components:
           type: array
           items: {}
           nullable: true
-      additionalProperties: false
+      
     PricingAppliedOrderShippingDiscount:
       type: object
       allOf:
@@ -13194,7 +13194,7 @@ components:
         shippingMethodCode:
           type: string
           nullable: true
-      additionalProperties: false
+      
     PricingTaxableOrder:
       type: object
       properties:
@@ -13268,7 +13268,7 @@ components:
         taxRequestType:
           type: string
           nullable: true
-      additionalProperties: false
+      
     FulfillmentAction:
       type: object
       properties:
@@ -13294,7 +13294,7 @@ components:
             type: string
           description: Ids of digital packages to mark as fulfilled
           nullable: true
-      additionalProperties: false
+      
       description: Action to perform a fulfillment operation on the order.
     OrderItemCollection:
       type: object
@@ -13307,7 +13307,7 @@ components:
           items:
             $ref: '#/components/schemas/CommerceRuntimeOrderItem'
           nullable: true
-      additionalProperties: false
+      
       description: Collection of items listed on the order.
     AttributeValueLocalizedContent:
       required:
@@ -13319,7 +13319,7 @@ components:
           type: string
         value:
           type: string
-      additionalProperties: false
+      
     QuoteComment:
       type: object
       properties:
@@ -13333,7 +13333,7 @@ components:
           nullable: true
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
       description: Quote Comments submitted by B2B buyer/seller.
     AuditRecordChangeField:
       type: object
@@ -13350,7 +13350,7 @@ components:
           type: string
           description: Newly updated value of the field.
           nullable: true
-      additionalProperties: false
+      
       description: This will contains actual change in the AuditHistory.
     AuditRecordChange:
       type: object
@@ -13369,7 +13369,7 @@ components:
             $ref: '#/components/schemas/AuditRecordChangeField'
           description: List of actual changes.
           nullable: true
-      additionalProperties: false
+      
       description: Group all related audit changes into AuditRecordChange.
     AuditRecord:
       type: object
@@ -13385,7 +13385,7 @@ components:
           nullable: true
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
       description: >-
         Group a set of changes made by a single user into a single audit history
         entry.
@@ -13640,7 +13640,7 @@ components:
             $ref: '#/components/schemas/InvalidCoupon'
           description: A list of invalid coupons that were attempted on the quote
           nullable: true
-      additionalProperties: false
+      
     QuoteCollection:
       type: object
       properties:
@@ -13661,7 +13661,7 @@ components:
           items:
             $ref: '#/components/schemas/Quote'
           nullable: true
-      additionalProperties: false
+      
     QuoteAdjustment:
       type: object
       properties:
@@ -13677,7 +13677,7 @@ components:
           type: number
           format: double
           nullable: true
-      additionalProperties: false
+      
     ReturnReason:
       type: object
       properties:
@@ -13689,7 +13689,7 @@ components:
           type: integer
           description: The quantity associated with this Reason.
           format: int32
-      additionalProperties: false
+      
       description: Represents a quantity associated with a given reason for a return
     ReturnBundle:
       type: object
@@ -13704,7 +13704,7 @@ components:
             The amount of this particular product in a bundle that is in this
             Return
           format: int32
-      additionalProperties: false
+      
     ReturnItem:
       type: object
       properties:
@@ -13876,7 +13876,7 @@ components:
           items:
             $ref: '#/components/schemas/InventoryTags'
           nullable: true
-      additionalProperties: false
+      
       description: ''
     Return:
       type: object
@@ -14073,7 +14073,7 @@ components:
             ShipOrBillCountryCode contains country code of shipping address or
             Billing address
           nullable: true
-      additionalProperties: false
+      
       description: ''
     ReturnCollection:
       type: object
@@ -14095,7 +14095,7 @@ components:
           items:
             $ref: '#/components/schemas/Return'
           nullable: true
-      additionalProperties: false
+      
       description: "Paged collection of returns. This is paged in case it's returning a long list of returns. \r\nfor a store."
     ReturnAction:
       type: object
@@ -14114,7 +14114,7 @@ components:
             The list of Returns upon which to perform the action. This is
             required.
           nullable: true
-      additionalProperties: false
+      
       description: ''
     ReasonCollection:
       type: object
@@ -14127,7 +14127,7 @@ components:
           items:
             type: string
           nullable: true
-      additionalProperties: false
+      
     ReturnItemSpecifier:
       type: object
       properties:
@@ -14137,7 +14137,7 @@ components:
         quantity:
           type: integer
           format: int32
-      additionalProperties: false
+      
     RestockableReturnItem:
       type: object
       properties:
@@ -14150,7 +14150,7 @@ components:
         locationCode:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CarrierServiceGenerateLabelResponse:
       type: object
       properties:
@@ -14167,7 +14167,7 @@ components:
         trackingNumber:
           type: string
           nullable: true
-      additionalProperties: false
+      
     AutoRefundRequest:
       type: object
       properties:
@@ -14184,7 +14184,7 @@ components:
         quantity:
           type: integer
           format: int32
-      additionalProperties: false
+      
     RefundPaymentAction:
       type: object
       properties:
@@ -14206,7 +14206,7 @@ components:
         amountRefunded:
           type: number
           format: double
-      additionalProperties: false
+      
     ReturnRefundDetails:
       type: object
       properties:
@@ -14226,7 +14226,7 @@ components:
         defaultReturnProcessingFee:
           type: number
           format: double
-      additionalProperties: false
+      
     ReturnItemCollection:
       type: object
       properties:
@@ -14238,7 +14238,7 @@ components:
           items:
             $ref: '#/components/schemas/ReturnItem'
           nullable: true
-      additionalProperties: false
+      
       description: Collection of return items listed on the order.
     WishlistItem:
       type: object
@@ -14267,7 +14267,7 @@ components:
           type: string
           description: Is the item purchasable?
           nullable: true
-      additionalProperties: false
+      
       description: A single line item of an order.
     Wishlist:
       type: object
@@ -14329,7 +14329,7 @@ components:
           type: string
           description: Id in an external system this item may have been imported from
           nullable: true
-      additionalProperties: false
+      
       description: >-
         Details of the wishlist, items listed in the wishlist, and any system
         messages.
@@ -14353,7 +14353,7 @@ components:
           items:
             $ref: '#/components/schemas/Wishlist'
           nullable: true
-      additionalProperties: false
+      
       description: Paged collection of wishlists.
     WishlistItemCollection:
       type: object
@@ -14375,7 +14375,7 @@ components:
           items:
             $ref: '#/components/schemas/WishlistItem'
           nullable: true
-      additionalProperties: false
+      
       description: Paged collection of wishlists.
     AdminUserAuditInfo:
       type: object
@@ -14394,7 +14394,7 @@ components:
         createBy:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeAttribute:
       required:
         - attributeCode
@@ -14466,7 +14466,7 @@ components:
           type: string
         availableForOrderRouting:
           type: boolean
-      additionalProperties: false
+      
     CommerceRuntimePackage:
       type: object
       allOf:
@@ -14565,7 +14565,7 @@ components:
           type: object
           additionalProperties: {}
           nullable: true
-      additionalProperties: false
+      
       description: Describes a package that will be shipped to somebody
     CommerceRuntimePhone:
       type: object
@@ -14579,7 +14579,7 @@ components:
         work:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeAddress:
       type: object
       properties:
@@ -14613,7 +14613,7 @@ components:
         isValidated:
           type: boolean
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeContact:
       type: object
       properties:
@@ -14640,7 +14640,7 @@ components:
           $ref: '#/components/schemas/CommerceRuntimePhone'
         address:
           $ref: '#/components/schemas/CommerceRuntimeAddress'
-      additionalProperties: false
+      
     CommerceRuntimeDiscount:
       type: object
       properties:
@@ -14668,7 +14668,7 @@ components:
         hasMultipleTargetProducts:
           type: boolean
           description: "Indicates that the discount targets more than a product.  Used\r\nprimarily for BoGa discounts with multiple targets."
-      additionalProperties: false
+      
       description: "Discounts that apply to the order, if any. For example, when the \r\nsubtotal of the order exceeds a certain amount, or for free shipping."
     CommerceRuntimeAppliedDiscount:
       type: object
@@ -14694,7 +14694,7 @@ components:
             Determines whether or not this discount is set up to be ignored by
             the pricing runtime.
           nullable: true
-      additionalProperties: false
+      
       description: "Discount applied to the order, which is a negative number to be subtracted from the original price to get the final price. \r\nIf multiple discounts for the order exist, this is the value most advantageous to the shopper."
     CommerceRuntimeChangeMessage:
       type: object
@@ -14797,7 +14797,7 @@ components:
           additionalProperties: {}
           description: Additional Data. This property will be a Dictionary of objects.
           nullable: true
-      additionalProperties: false
+      
       description: >-
         A message displayed by the system based on the last  action, for
         example, when a product price has changed. System-supplied and
@@ -14820,7 +14820,7 @@ components:
           type: boolean
         requiresCouponCode:
           type: boolean
-      additionalProperties: false
+      
     CommerceRuntimeFutureInventory:
       type: object
       properties:
@@ -14852,7 +14852,7 @@ components:
           type: string
           format: date-time
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeMeasurement:
       type: object
       properties:
@@ -14863,7 +14863,7 @@ components:
           type: number
           format: double
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimePackageMeasurements:
       type: object
       properties:
@@ -14875,7 +14875,7 @@ components:
           $ref: '#/components/schemas/CommerceRuntimeMeasurement'
         weight:
           $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-      additionalProperties: false
+      
       description: >-
         Physical dimensions of the package required to ship the product and its
         weight.
@@ -14908,7 +14908,7 @@ components:
           type: string
           description: Value of the product option.
           nullable: true
-      additionalProperties: false
+      
       description: "Product option for the product listed on this order item. If the product contains \r\nconfigurable or stand-alone options, this is a product option that the shopper has selected."
     CommerceRuntimeProductPropertyValue:
       type: object
@@ -14918,7 +14918,7 @@ components:
           nullable: true
         value:
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeProductProperty:
       type: object
       properties:
@@ -14938,7 +14938,7 @@ components:
           items:
             $ref: '#/components/schemas/CommerceRuntimeProductPropertyValue'
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeCategory:
       type: object
       properties:
@@ -14947,7 +14947,7 @@ components:
           description: Unique identifier of the category. System-supplied and read-only.
           format: int32
           nullable: true        
-      additionalProperties: false
+      
       description: >-
         Categories to which the product belongs. Discounts can apply to
         categories where any product in the category is discounted.
@@ -14993,7 +14993,7 @@ components:
           type: string
           description: "Pricelist entry mode of the product.\r\nNote: possible values are below\r\n1. null : Product doesn't participate in pricelist\r\n2. Bulk : Bulk volume price available(unit price vary based on quantity)\r\n3. Simple:"
           nullable: true
-      additionalProperties: false
+      
       description: Price of the product with any sale and discounts applied.
     CommerceRuntimeBundledProduct:
       type: object
@@ -15027,7 +15027,7 @@ components:
           type: string
           description: ImageUrl of product
           nullable: true
-      additionalProperties: false
+      
       description: Describes products that are bundled inside of a main bundle product.
     CommerceRuntimeFulfillmentField:
       type: object
@@ -15039,7 +15039,7 @@ components:
           nullable: true
         required:
           type: boolean
-      additionalProperties: false
+      
     CommerceRuntimeProduct:
       type: object
       allOf:
@@ -15156,7 +15156,7 @@ components:
             $ref: '#/components/schemas/CommerceRuntimeFulfillmentField'
           description: List of unique product identifiers for an item on shipment
           nullable: true
-      additionalProperties: false
+      
       description: The product as it appears on the order item.
     CommerceRuntimeAppliedLineItemProductDiscount:
       type: object
@@ -15173,7 +15173,7 @@ components:
             The number of the line item that can be used for this particular
             discount.
           format: int32
-      additionalProperties: false
+      
     CommerceRuntimeAppliedLineItemShippingDiscount:
       type: object
       allOf:
@@ -15195,7 +15195,7 @@ components:
           type: number
           description: The impact of this discount pur discount quantity.
           format: double
-      additionalProperties: false
+      
     CommerceRuntimeOrderAttribute:
       type: object
       properties:
@@ -15217,7 +15217,7 @@ components:
             - type: integer
             - type: boolean
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeOrderItem:
       type: object
       allOf:
@@ -15262,7 +15262,7 @@ components:
         isReservationEnabled:
           type: boolean
           description: Flag to indicate reserve inventory in cart
-      additionalProperties: false
+      
       description: A single line item of an order.
     CommerceRuntimeDestination:
       type: object
@@ -15281,7 +15281,7 @@ components:
           type: object
           description: Custom data
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimePurchaseOrderPaymentTerm:
       type: object
       properties:
@@ -15291,7 +15291,7 @@ components:
         description:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimePurchaseOrderCustomField:
       type: object
       properties:
@@ -15304,7 +15304,7 @@ components:
         value:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeShopperNotes:
       type: object
       properties:
@@ -15320,7 +15320,7 @@ components:
           type: string
           description: DeliveryInstructions associated with this order.
           nullable: true
-      additionalProperties: false
+      
       description: >-
         Notes that the shopper has added to this order, for example, a gift
         message or other comments.
@@ -15355,7 +15355,7 @@ components:
           type: object
           description: Custom data returned by the shipping service.
           nullable: true
-      additionalProperties: false
+      
       description: "How much the customer and merchant pay for shipping based on the current shipping rate. \r\nThe cost can differ between the merchant and customer depending on any merchant discounts or \r\nextra fees."
     CommerceRuntimeTracking:
       type: object
@@ -15370,7 +15370,7 @@ components:
         url:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeCredit:
       type: object
       properties:
@@ -15395,12 +15395,12 @@ components:
           $ref: '#/components/schemas/GatewayGiftCard'
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
     CommerceRuntimePickupItem:
       type: object
       allOf:
         - $ref: '#/components/schemas/AbstractFulfillmentItem'
-      additionalProperties: false
+      
       description: >-
         Item that goes into the pickup to determine which items will be picked
         up.
@@ -15413,7 +15413,7 @@ components:
         moreInfo:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeLink:
       type: object
       properties:
@@ -15441,7 +15441,7 @@ components:
         type:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeTaskInput:
       type: object
       properties:
@@ -15481,7 +15481,7 @@ components:
         type:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeWorkflowState:
       type: object
       properties:
@@ -15506,7 +15506,7 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentTask'
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeGiftCard:
       type: object
       properties:
@@ -15546,7 +15546,7 @@ components:
           type: number
           format: double
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeCanceledReason:
       type: object
       properties:
@@ -15559,7 +15559,7 @@ components:
         moreInfo:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeCanceledItem:
       type: object
       allOf:
@@ -15573,7 +15573,7 @@ components:
           $ref: '#/components/schemas/CommerceRuntimeCanceledReason'
         auditInfo:
           $ref: '#/components/schemas/AdminUserAuditInfo'
-      additionalProperties: false
+      
     CommerceRuntimeCustomer:
       type: object
       properties:
@@ -15586,7 +15586,7 @@ components:
           type: boolean
           description: Destination Commercial Flag
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeShipmentNote:
       type: object
       properties:
@@ -15608,7 +15608,7 @@ components:
         username:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeShipment:
       type: object
       properties:
@@ -15831,7 +15831,7 @@ components:
           items:
             $ref: '#/components/schemas/SubstitutedItem'
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeAppeasementReason:
       type: object
       properties:
@@ -15844,7 +15844,7 @@ components:
         moreInfo:
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeAttributeMetadataItem:
       required:
         - key
@@ -15856,7 +15856,7 @@ components:
           type: string
         value:
           type: string
-      additionalProperties: false
+      
     CommerceRuntimeAttributeLocalizedContent:
       type: object
       properties:
@@ -15868,7 +15868,7 @@ components:
           maxLength: 100
           type: string
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeAttributeValidation:
       type: object
       properties:
@@ -15900,7 +15900,7 @@ components:
           type: string
           format: date-time
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeAttributeVocabularyValue:
       required:
         - value
@@ -15918,7 +15918,7 @@ components:
           nullable: true
         content:
           $ref: '#/components/schemas/AttributeValueLocalizedContent'
-      additionalProperties: false
+      
     CommerceRuntimeAttributeCollection:
       type: object
       properties:
@@ -15939,7 +15939,7 @@ components:
           items:
             $ref: '#/components/schemas/CommerceRuntimeAttribute'
           nullable: true
-      additionalProperties: false
+      
     CommerceRuntimeFulfillmentShopperNotes:
       type: object
       properties:
@@ -15952,7 +15952,7 @@ components:
         giftMessage:
           type: string
           nullable: true
-      additionalProperties: false
+      
   securitySchemes:
     bearerAuth:
       type: http
