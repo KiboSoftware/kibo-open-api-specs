@@ -1,0 +1,2846 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Location",
+    "description": "<div id=\"overview_LOCATION\">\n            <h2>LOCATION ADMINISTRATION</h2>\n            <p>The Location and Location Groups APIs enable tenants to associate a physical address with product inventory,\n                provide a store finder for in-store pickup, or both and manage these locations at individual and group levels. See the\n                <a href=\"https://docs.kibocommerce.com/help/locations\">Location user guide</a>\n                for information about the related feature in the Unified Commerce Admin.</p>\n            <p>The <strong>Location Admin</strong>\n                resource\n                allows information about the individual locations to be accessed and edited, including creating new\n                locations.</p>\n            <p>Use the <strong>Location Group</strong> and <strong>Location Group Configuration</strong> resources to manage groups, or sets of similar fulfillment locations that are bundled together\n                to improve efficiency of managing configurations based on catalogs, custom fulfillment flows,\n                available carrier options, and so forth.</p>\n            <p>Use the <strong>Location Types</strong> resource to manage the types of locations your tenant maintains, such as\n                warehouses,\n                physical storefronts, and kiosks.</p>\n            <p>Use the <strong>Location Settings</strong> resource to to define the available usages; or the locations and\n                    location types that interact\n                    with a specified site.</p>\n        </div>",
+    "version": "1.0.1"
+  },
+  "paths": {
+    "/commerce/admin/locations": {
+      "post": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Add Location",
+        "description": "Add a new location.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Location"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Get Locations",
+        "description": "Get locations with optional filtering and paging.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/admin/locations/{locationCode}": {
+      "put": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Update Location",
+        "description": "Update a location by providing its locationCode.",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "path",
+            "description": "the unique code for a location",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "the location update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Location"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Get Location",
+        "description": "Get a location by its unique locationCode.",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/admin/locations/attributedefinition/attributes": {
+      "get": {
+        "tags": [
+          "LocationAttributeDefinitions"
+        ],
+        "summary": "Get Attributes",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get Attributes"
+      },
+      "post": {
+        "tags": [
+          "LocationAttributeDefinitions"
+        ],
+        "summary": "Create Attribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create a new location attribute."
+      }
+    },
+    "/commerce/admin/locations/attributedefinition/attributes/{attributeFQN}/VocabularyValues": {
+      "get": {
+        "tags": [
+          "LocationAttributeDefinitions"
+        ],
+        "summary": "Get Attribute Vocabulary Values",
+        "parameters": [
+          {
+            "name": "attributeFQN",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommerceRuntimeAttributeVocabularyValue"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommerceRuntimeAttributeVocabularyValue"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommerceRuntimeAttributeVocabularyValue"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Retrieves the details of attribute vocabulary values."
+      }
+    },
+    "/commerce/admin/locations/attributedefinition/attributes/{attributeFQN}": {
+      "get": {
+        "tags": [
+          "LocationAttributeDefinitions"
+        ],
+        "summary": "Get Attribute",
+        "parameters": [
+          {
+            "name": "attributeFQN",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get an attribute by its attributeFQN."
+      },
+      "put": {
+        "tags": [
+          "LocationAttributeDefinitions"
+        ],
+        "summary": "Update Attribute",
+        "parameters": [
+          {
+            "name": "attributeFQN",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update a location attribute."
+      }
+    },
+    "/commerce/admin/locationGroups": {
+      "post": {
+        "tags": [
+          "LocationGroup"
+        ],
+        "summary": "Add Location Group",
+        "description": "Add a location group.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationLocationGroup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LocationGroup"
+        ],
+        "summary": "Get Location Groups",
+        "description": "Gets a collection of location groups.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/admin/locationGroups/{locationGroupCode}": {
+      "put": {
+        "tags": [
+          "LocationGroup"
+        ],
+        "summary": "Update Location Group",
+        "description": "Update an existing location group.",
+        "parameters": [
+          {
+            "name": "locationGroupCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationLocationGroup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LocationGroup"
+        ],
+        "summary": "Get Location Group",
+        "description": "Gets a location group by code.",
+        "parameters": [
+          {
+            "name": "locationGroupCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationLocationGroup"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LocationGroup"
+        ],
+        "summary": "Delete Location Group",
+        "description": "Deletes a location group specified by location group code.",
+        "parameters": [
+          {
+            "name": "locationGroupCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/admin/locationGroupConfiguration/{locationGroupCode}": {
+      "get": {
+        "tags": [
+          "LocationGroupConfiguration"
+        ],
+        "summary": "Get Location Group Configuration",
+        "description": "Get this tenants Location Group Configuration Values by locationGroupCode.",
+        "parameters": [
+          {
+            "name": "locationGroupCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "LocationGroupConfiguration"
+        ],
+        "summary": "Set Location Group Configuration",
+        "description": "Set this tenants Location Group Configuration Values.",
+        "parameters": [
+          {
+            "name": "locationGroupCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationGroupConfiguration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/admin/locationGroupConfiguration/location/{locationCode}": {
+      "get": {
+        "tags": [
+          "LocationGroupConfiguration"
+        ],
+        "summary": "Get Location Group Configuration",
+        "description": "Get this tenants Location Group Configuration Values by Location Code.",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationGroupConfiguration"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/DS/location": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get Direct Ship Location",
+        "description": "Get the Direct Ship Location for the Site.",
+        "parameters": [
+          {
+            "name": "includeAttributeDefinition",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/CS/location": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get Curbside Location",
+        "description": "Get the Curbside Location for the Site.",
+        "parameters": [
+          {
+            "name": "includeAttributeDefinition",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/DL/locations": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get Delivery Locations",
+        "description": "Gets the delivery Locations for the site",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAttributeDefinition",
+            "in": "query",
+            "description": "Include the location attributes associated definition",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/DL/location": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get Delivery Location",
+        "description": "Gets a specific Delivery Location for the site",
+        "parameters": [
+          {
+            "name": "includeAttributeDefinition",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/SP/locations": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get In Store Pickup Locations",
+        "description": "Gets the in store pickup Locations for the site.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAttributeDefinition",
+            "in": "query",
+            "description": "Include the location attributes associated definition",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/SP/locations/{locationCode}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get In Store Pickup Location",
+        "description": "Get a specific in store pickup Location for the Site",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAttributeDefinition",
+            "in": "query",
+            "description": "Include the location attributes associated definition",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/{locationUsageType}/locations": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get Locations In Usage Type",
+        "description": "Get the Locations for the Site associated with the locationUsageType.",
+        "parameters": [
+          {
+            "name": "locationUsageType",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAttributeDefinition",
+            "in": "query",
+            "description": "Include the location attributes associated definition",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/storefront/locations/{locationCode}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Get Location",
+        "description": "Get a Location by locationCode.",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAttributeDefinition",
+            "in": "query",
+            "description": "Include the location attributes associated definition",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/settings/locationUsages": {
+      "get": {
+        "tags": [
+          "LocationSettings"
+        ],
+        "summary": "Get Location Usages",
+        "description": "Get the locationUsages for the site.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsageCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsageCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsageCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/settings/locationUsages/{code}": {
+      "get": {
+        "tags": [
+          "LocationSettings"
+        ],
+        "summary": "Get Location Usage",
+        "description": "Get a locationUsage for the Site.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "LocationSettings"
+        ],
+        "summary": "Update Location Usage Async",
+        "description": "Update a locationUsage for the site.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationUsage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationUsage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/admin/locationtypes": {
+      "post": {
+        "tags": [
+          "LocationType"
+        ],
+        "summary": "Add Location Type Async",
+        "description": "Create a LocationType.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LocationType"
+        ],
+        "summary": "Get Location Types",
+        "description": "Get a collection of LocationTypes.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationType"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/admin/locationtypes/{locationTypeCode}": {
+      "put": {
+        "tags": [
+          "LocationType"
+        ],
+        "summary": "Update Location Type",
+        "description": "Update a LocationType.",
+        "parameters": [
+          {
+            "name": "locationTypeCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LocationType"
+        ],
+        "summary": "Get Location Type",
+        "description": "Get a LocationType.",
+        "parameters": [
+          {
+            "name": "locationTypeCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationType"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LocationType"
+        ],
+        "summary": "Delete Location Type",
+        "description": "Delete Location Type.",
+        "parameters": [
+          {
+            "name": "locationTypeCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/admin/locationtypes/withpagination": {
+      "get": {
+        "tags": [
+          "LocationType"
+        ],
+        "summary": "Get Location Types\r\n<param name=\"pageSize\"></param><param name=\"sortBy\"></param>",
+        "description": "Get a collection of LocationTypes.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTypeCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTypeCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTypeCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LocationType": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Coordinates": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FulfillmentType": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Hours": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "openTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "closeTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "isClosed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegularHours": {
+        "type": "object",
+        "properties": {
+          "sunday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "monday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "tuesday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "wednesday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "thursday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "friday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "saturday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "timeZone": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShippingOriginContact": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "middleNameOrInitial": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastNameOrSurname": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyOrOrganization": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AttributeValueLocalizedContent": {
+        "required": [
+          "localeCode",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "localeCode": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationAttribute": {
+        "type": "object",
+        "properties": {
+          "attributeDefinition": {
+            "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "fullyQualifiedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "attributeDefinitionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {},
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProcessingTime": {
+        "type": "object",
+        "properties": {
+          "fulfillmentTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransferTime": {
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationType"
+            },
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "$ref": "#/components/schemas/CommerceRuntimeAddress"
+          },
+          "geo": {
+            "$ref": "#/components/schemas/Coordinates"
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "supportsInventory": {
+            "type": "boolean"
+          },
+          "fulfillmentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentType"
+            },
+            "nullable": true
+          },
+          "regularHours": {
+            "$ref": "#/components/schemas/RegularHours"
+          },
+          "shippingOriginContact": {
+            "$ref": "#/components/schemas/ShippingOriginContact"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationAttribute"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "allowFulfillmentWithNoStock": {
+            "type": "boolean"
+          },
+          "isDisabled": {
+            "type": "boolean"
+          },
+          "express": {
+            "type": "boolean"
+          },
+          "transferEnabled": {
+            "type": "boolean"
+          },
+          "shipToHomeConsolidation": {
+            "type": "boolean"
+          },
+          "includeInInventoryAggregrate": {
+            "type": "boolean"
+          },
+          "includeInLocationExport": {
+            "type": "boolean"
+          },
+          "warehouseEnabled": {
+            "type": "boolean"
+          },
+          "requiresManifest": {
+            "type": "boolean"
+          },
+          "processingTimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProcessingTime"
+            },
+            "nullable": true
+          },
+          "transferTime": {
+            "$ref": "#/components/schemas/TransferTime"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationGroupCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationLocationGroup"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShippingMethodMappings": {
+        "type": "object",
+        "properties": {
+          "shippingMethods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "returnLabelShippingMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "standardDefault": {
+            "type": "string",
+            "nullable": true
+          },
+          "express1DayDefault": {
+            "type": "string",
+            "nullable": true
+          },
+          "express2DayDefault": {
+            "type": "string",
+            "nullable": true
+          },
+          "express3DayDefault": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableSmartPost": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "useDeclaredValue": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "internationalUsReturnLabelShippingMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "requireSignatureAmount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BoxType": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "height": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "width": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "length": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BpmConfiguration": {
+        "type": "object",
+        "properties": {
+          "shipmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "workflowContainerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "workflowProcessId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PackageSettings": {
+        "type": "object",
+        "properties": {
+          "unitType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationGroupConfiguration": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "siteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationGroupId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationGroupCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerFailedToPickupAfterAction": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerFailedToPickupDeadline": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "sendCustomerPickupReminder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "enableForSTH": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enableForISPU": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enableAdvancedOptionForPickWaveCreation": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "maximumNumberOfOrdersInPickWave": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "defaultNumberOfOrdersInPickWave": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pickWavePrintFormat": {
+            "type": "string",
+            "nullable": true
+          },
+          "closePickWavePermissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "wmsEnabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enableScanningOfUpcForShipToHome": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "allowReturns": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "returnRefundReduction": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "defaultReturnRefundReductionAmount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "maximumReturnRefundReductionAmount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "defaultCarrier": {
+            "type": "string",
+            "nullable": true
+          },
+          "carriers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationCarrier"
+            },
+            "nullable": true
+          },
+          "printReturnLabel": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "defaultPrinterType": {
+            "type": "string",
+            "nullable": true
+          },
+          "boxTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BoxType"
+            },
+            "nullable": true
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationAttribute"
+            },
+            "nullable": true
+          },
+          "bpmConfigurations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BpmConfiguration"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "autoPackingListPopup": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "blockPartialStock": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "defaultMaxNumberOfShipmentsInPickWave": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "displayProductImagesInPickWaveDetails": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enablePnpForSTH": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enablePnpForBOPIS": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "blockPartialCancel": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "packageSettings": {
+            "$ref": "#/components/schemas/PackageSettings"
+          },
+          "maxNumberOfPackingSlipsByGroup": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationUsage": {
+        "type": "object",
+        "properties": {
+          "locationUsageTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationTypeCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "locationCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationUsageCollection": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationUsage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationTypeCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationType"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdminUserAuditInfo": {
+        "type": "object",
+        "properties": {
+          "updateDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updateBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createBy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommerceRuntimeAttribute": {
+        "required": [
+          "attributeCode",
+          "displayGroup",
+          "valueType"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "adminName": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "namespace": {
+            "maxLength": 200,
+            "type": "string",
+            "nullable": true
+          },
+          "attributeCode": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "inputType": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueType": {
+            "type": "string"
+          },
+          "dataType": {
+            "type": "string",
+            "nullable": true
+          },
+          "attributeMetadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttributeMetadataItem"
+            },
+            "nullable": true
+          },
+          "attributeFQN": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/CommerceRuntimeAttributeLocalizedContent"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/CommerceRuntimeAttributeValidation"
+          },
+          "vocabularyValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttributeVocabularyValue"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isRequired": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isReadOnly": {
+            "type": "boolean"
+          },
+          "isMultiValued": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isVisible": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "displayGroup": {
+            "type": "string"
+          },
+          "availableForOrderRouting": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommerceRuntimeAddress": {
+        "type": "object",
+        "properties": {
+          "address1": {
+            "type": "string",
+            "nullable": true
+          },
+          "address2": {
+            "type": "string",
+            "nullable": true
+          },
+          "address3": {
+            "type": "string",
+            "nullable": true
+          },
+          "address4": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityOrTown": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateOrProvince": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalOrZipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressType": {
+            "type": "string",
+            "nullable": true
+          },
+          "isValidated": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommerceRuntimeAttributeMetadataItem": {
+        "required": [
+          "key",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "key": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommerceRuntimeAttributeLocalizedContent": {
+        "type": "object",
+        "properties": {
+          "localeCode": {
+            "maxLength": 8,
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommerceRuntimeAttributeValidation": {
+        "type": "object",
+        "properties": {
+          "regularExpression": {
+            "maxLength": 200,
+            "type": "string",
+            "nullable": true
+          },
+          "minStringLength": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxStringLength": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minNumericValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "maxNumericValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "minDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "maxDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommerceRuntimeAttributeVocabularyValue": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "sequence": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isHidden": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/AttributeValueLocalizedContent"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommerceRuntimeAttributeCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationLocationGroup": {
+        "type": "object",
+        "properties": {
+          "locationGroupId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationGroupCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "siteIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationCarrier": {
+        "type": "object",
+        "properties": {
+          "carrierType": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "shippingMethodMappings": {
+            "$ref": "#/components/schemas/ShippingMethodMappings"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
+      "description": "Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}.{env}.mozu.com/api",
+      "description": "Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1",
+            "stg2"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://home.mozu.com/api",
+      "description": "HomePod Api"
+    },
+    {
+      "url": "https://t{tenantId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://home.euw1.kibocommerce.com/api",
+      "description": "EURO HomePod Api"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

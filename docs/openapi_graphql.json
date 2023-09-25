@@ -1,0 +1,122 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GraphQL",
+    "description": "<div id=\"overview_graphql\">...\n  <h2>GraphQL</h2>\n  <p>The GraphQL API provides queries and mutations to the same resources stored on the Kibo platform as those of the REST API.   \n  A full listing of the queries and mutations can be retrieved from the GraphQL schema which can be obtained via <a href='https://graphql.org/learn/introspection/' >introspection</a> or via the Documentation Explorer in the GraphQL playground located in the root of your site /graphql or thru the Graphql Voyager located [yoursite]/graphql/voyager. You can also find more information and examples for Kibo's usage of GraphQL in the <a href=\"https://docs.kibocommerce.com/help/graphql\">extended user guide</a> on the knowledge base.\n  </p>\n  <h3>GraphQL Playground </h3>\n  <p>\n  To access the GraphQL Storefront API Playground and documentation view your sites web front end ( so that a cookie can be set ) and then navigate to /graphql.  </>\n  <p>Then click the settings gear in the upper right corner and set  <code> \"request.credentials\": \"include\"</code>\n  </p>\n  <p><img src='graphql_settings.jpg' ></p>\n  <p>From there you can make any storefront calls allowed by a shopper.\n  </p>\n  <p><img src='graphql_1.jpg'></p>\n  <p>To make admistrative calls.  Use a jwt token gotten from the application development <a href='/?spec=add_dev#post-/platform/applications/authtickets/oauth'>oauth authenticate method.</a>\n</div>\n",
+    "version": "1.0.1"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
+      "description": "Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}.{env}.mozu.com/api",
+      "description": "Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1",
+            "stg2"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://home.mozu.com/api",
+      "description": "HomePod Api"
+    },
+    {
+      "url": "https://t{tenantId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://home.euw1.kibocommerce.com/api",
+      "description": "EURO HomePod Api"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

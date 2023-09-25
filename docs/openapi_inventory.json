@@ -1,22 +1,67 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.0.0",
   "info": {
     "title": "Inventory",
     "description": "<div id=\"overview_INVENTORY\">\n            <h2>INVENTORY</h2>\n            <p>Use the Inventory API to retrieve the inventory levels of requested products, refresh and adjust current\n                stock levels at fulfillment locations, and tag segmented inventory for different channels. When using tags for inventory segmentation, inventory records are separated into categories to identify\n                which portions of its\n                total quantity are intended for different channels, customer groups, fulfillment methods, or other\n                needs.\n                This allows for setting a percentage of the quantity that would be available for each category and\n                setting discrete units at the location level as available for each category. For example, tags could\n                define how much of each\n                inventory record is set aside for a certain sales channel: the Kibo storefront, Walmart, or Amazon. The\n                percentages of the\n                inventory allotted for each channel would add up to 100% - the Kibo storefront could have 80% of the\n                inventory, Amazon 10%, and Walmart 10%. For more information, see the <a href=\"https://docs.kibocommerce.com/help/inventory\">Inventory guides</a>.</p>\n            <p>Use the <strong>Inventory</strong>, <strong>Inventory Allocation</strong>, and <strong>Modify Inventory</strong> resources to retrieve and update inventory levels.</p>  \n            <p>Use the <strong>Inventory Job</strong> resource to retrieve information about your pending inventory update processing jobs.</p> \n            <p>Use the <strong>Inventory Tag</strong> and <strong>Tag Category</strong> resources to segment your inventory records.</p> \n        </div>",
     "version": "1.0.1"
   },
   "paths": {
+    "/commerce/inventory/v1/bin/{bin_id}": {
+      "post": {
+        "tags": [
+          "InventoryBin"
+        ],
+        "description": "Update the designated bin",
+        "parameters": [
+          {
+            "name": "bin_id",
+            "in": "path",
+            "description": "Id of bin to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UpdateBinRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bin"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update Bin"
+      }
+    },
     "/commerce/inventory/v1/export/create": {
       "post": {
         "tags": [
           "ExportInventory"
         ],
         "description": "Creates entirely new export configurations for both FTP and S3 settings. This call allows you to specify all the values for the Export Settings object, such as file type and specific location groups or sites (which cannot be edited through FTP- or S3-specific endpoints). This is the initial setup request required to configure inventory export.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/CreateExportSettingsRequest"
         },
@@ -47,11 +92,7 @@
           "ExportInventory"
         ],
         "description": "Updates the entire Export Settings object, including FTP and S3 configurations as well as file type and specific location groups or sites (which cannot be edited through FTP- or S3-specific endpoints).",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateExportSettingsRequest"
         },
@@ -87,12 +128,7 @@
         "description": "Deletes the entire Export Settings object, including any FTP or S3 configurations within it.",
         "parameters": [
           {
-            "name": "exportSettingsName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/exportSettingsName"
           }
         ],
         "responses": {
@@ -119,11 +155,7 @@
           "ExportInventory"
         ],
         "description": "Creates new FTP settings and adds them to an existing Export Settings object, which may be useful if you want the export to go to a new endpoint instead of the one originally set up (or if the export needs to go to multiple endpoints). This call will not function unless you have performed the initial Create Export Settings request first.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/CreateExportSettingsFTPRequest"
         },
@@ -154,11 +186,7 @@
           "ExportInventory"
         ],
         "description": "Update an Export Settings FTP",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateExportSettingsFTPRequest"
         },
@@ -194,12 +222,7 @@
         "description": "Deletes the specified FTP settings object. Not specifying the FTP Name/ID will delete all FTP settings within the Export Settings. This will not delete the entire Export Settings object.",
         "parameters": [
           {
-            "name": "exportSettingsName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/exportSettingsName"
           },
           {
             "$ref": "#/components/parameters/exportSettingsFTPName"
@@ -229,11 +252,7 @@
           "ExportInventory"
         ],
         "description": "Creates new S3 settings and adds them to an existing Export Settings object, which may be useful if you want the export to go to a new endpoint instead of the one originally set up (or if the export needs to go to multiple endpoints). This call will not function unless you have performed the initial Create Export Settings request first.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/CreateExportSettingsS3Request"
         },
@@ -264,11 +283,7 @@
           "ExportInventory"
         ],
         "description": "Updates the S3 settings within an existing Export Settings object. Note that you cannot update location groups or sites with this request - you must use the full Update Export Settings request instead.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateExportSettingsS3Request"
         },
@@ -304,12 +319,7 @@
         "description": "Deletes the specified S3 settings object. Not specifying the S3 Name/ID will delete all S3 settings within the Export Settings. This will not delete the entire Export Settings object.",
         "parameters": [
           {
-            "name": "exportSettingsName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/exportSettingsName"
           },
           {
             "$ref": "#/components/parameters/exportSettingsS3Name"
@@ -340,9 +350,6 @@
         ],
         "description": "Deletes a fetch file configuration.",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
           {
             "name": "fetchFileConfigID",
             "in": "path",
@@ -383,9 +390,6 @@
         "description": "Attempts to connect to a fetch file endpoint and lists current files if successful",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
             "name": "fetchFileConfigID",
             "in": "path",
             "description": "Id of fetch file config",
@@ -425,9 +429,6 @@
         "description": "Deletes older records from inventory table",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
             "name": "months",
             "in": "path",
             "description": "The x months before which we want the records to get deleted",
@@ -462,9 +463,6 @@
         ],
         "description": "Deletes older records from inventory table of all silos",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
           {
             "name": "months",
             "in": "path",
@@ -504,9 +502,6 @@
         "description": "Get Locations",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
             "name": "locationCode",
             "in": "path",
             "description": "Location Code of the location to get",
@@ -545,9 +540,6 @@
         "description": "Get LocationGroups",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
             "name": "locationGroupCode",
             "in": "path",
             "description": "Location Group Code of the location to get",
@@ -584,11 +576,7 @@
           "ModifyInventory"
         ],
         "description": "Create jobs to redistribute inventory across tags for the given tenant",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -613,11 +601,7 @@
           "ShipmentInventoryAllocation"
         ],
         "description": "Get future Inventory Allocations by shipment Ids",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/ShipmentInventoryAllocationRequest"
         },
@@ -660,11 +644,7 @@
           "InventorySilo"
         ],
         "description": "Updates tenant silo config",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateTenantSiloConfigRequest"
         },
@@ -694,15 +674,7 @@
         "description": "Create a tag",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
-            "name": "tag_category_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagCategoryName"
           }
         ],
         "requestBody": {
@@ -734,20 +706,10 @@
         "description": "Get a tag",
         "parameters": [
           {
-            "name": "tag_category_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagCategoryName"
           },
           {
-            "name": "tag_value",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagValue"
           }
         ],
         "responses": {
@@ -774,20 +736,10 @@
         "description": "Update the designated tag",
         "parameters": [
           {
-            "name": "tag_category_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagCategoryName"
           },
           {
-            "name": "tag_value",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagValue"
           }
         ],
         "requestBody": {
@@ -827,20 +779,10 @@
         "description": "Delete a Tag",
         "parameters": [
           {
-            "name": "tag_category_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagCategoryName"
           },
           {
-            "name": "tag_value",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagValue"
           }
         ],
         "responses": {
@@ -870,11 +812,7 @@
           "InventoryTagCategory"
         ],
         "description": "Get all tag categories for a tenant",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -904,12 +842,7 @@
         "description": "Get a tag category",
         "parameters": [
           {
-            "name": "tag_category_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagCategoryName"
           }
         ],
         "responses": {
@@ -936,12 +869,7 @@
         "description": "Update the designated tag category",
         "parameters": [
           {
-            "name": "tag_category_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagCategoryName"
           }
         ],
         "requestBody": {
@@ -981,12 +909,7 @@
         "description": "Delete a Tag category",
         "parameters": [
           {
-            "name": "tag_category_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tagCategoryName"
           }
         ],
         "responses": {
@@ -1017,9 +940,6 @@
         ],
         "description": "Adjust future_date of future inventory",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
           {
             "name": "futureInventoryID",
             "in": "path",
@@ -1061,6 +981,9 @@
             }
           }
         },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AdjustFutureDateRequest"
+        },
         "summary": "Adjust Future Date"
       }
     },
@@ -1070,11 +993,7 @@
           "InventoryAllocation"
         ],
         "description": "Allocates inventory based on the given request",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AllocateInventoryRequest"
         },
@@ -1117,11 +1036,7 @@
           "InventoryAllocation"
         ],
         "description": "As the Refresh Inventory call does not clear allocated inventory, you can use this Deallocate Inventory call if you have items stuck in \"Allocated\" status. This requires details about the shipment and which specific line items need to be deallocated. For examples on how to find shipments with allocated inventory and perform a deallocation on them, see the <a href=\"https://docs.kibocommerce.com/help/inventory-api-overview\">Inventory API guide</a>.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AllocateInventoryRequest"
         },
@@ -1164,11 +1079,7 @@
           "InventoryAllocation"
         ],
         "description": "Fulfills inventory based on the given request",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AllocateInventoryRequest"
         },
@@ -1211,11 +1122,7 @@
           "InventoryAllocation"
         ],
         "description": "Transitions a cart allocation into a normal order/shipment allocation",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/TransitionCartRequest"
         },
@@ -1252,17 +1159,245 @@
         "summary": "Transition Cart"
       }
     },
+    "/commerce/inventory/v1/bin": {
+      "get": {
+        "tags": [
+          "InventoryBin"
+        ],
+        "description": "Get a list of bins",
+        "parameters": [
+          {
+            "name": "locationID",
+            "in": "query",
+            "description": "Id of location",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "searchTerm",
+            "in": "query",
+            "description": "Term to match in bins",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "description": "Results per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page to show",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bins Not Found"
+          }
+        },
+        "summary": "Get Bins"
+      },
+      "post": {
+        "tags": [
+          "InventoryBin"
+        ],
+        "description": "Create a bin",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateBinRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinIDResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Create Bin"
+      }
+    },
+    "/commerce/inventory/v1/bin/searchInventory": {
+      "post": {
+        "tags": [
+          "InventoryBin"
+        ],
+        "description": "Search bins for a inventory by bin name or any product identifier",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/BinSearchRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Search Bins"
+      }
+    },
+    "/commerce/inventory/v1/bin/loadInventory": {
+      "post": {
+        "tags": [
+          "InventoryBin"
+        ],
+        "description": "Loads bin inventory for designated bins",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/LoadBinInventoryRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoadBinInventoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Load Inventory"
+      }
+    },
+    "/commerce/inventory/v1/bin/binTypes": {
+      "get": {
+        "tags": [
+          "InventoryBin"
+        ],
+        "description": "Get list of bin types",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BinTypeModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Get Bin Types"
+      }
+    },
+    "/commerce/inventory/v1/bin/binStatuses": {
+      "get": {
+        "tags": [
+          "InventoryBin"
+        ],
+        "description": "Get list of bin statuses",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BinStatusModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Get Bin Statuses"
+      }
+    },
+    "/commerce/inventory/v1/bin/updateBins": {
+      "post": {
+        "tags": [
+          "InventoryBin"
+        ],
+        "description": "Update the designated bins",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UpdateBinsRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBinsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Update Bins"
+      }
+    },
     "/commerce/inventory/v5/inventory/blockAssignment": {
       "post": {
         "tags": [
           "InventoryBlockAssignment"
         ],
         "description": "Setting the blockAssignment flag to true for the product based on the given request",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/BlockAssignmentRequest"
         },
@@ -1307,15 +1442,7 @@
         "description": "Get an export settings",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
-            "name": "exportSettingsName",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/exportSettingsName"
           }
         ],
         "responses": {
@@ -1343,11 +1470,7 @@
           "ExportInventory"
         ],
         "description": "Run Export Settings Job",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/ExportInventoryRequest"
         },
@@ -1378,11 +1501,7 @@
           "InventoryFetchFileConfig"
         ],
         "description": "Get the Fetch File Configurations for the current tenant.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -1405,11 +1524,7 @@
           "InventoryFetchFileConfig"
         ],
         "description": "Save a new Fetch File Configuration.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/FetchFileConfigRequest"
         },
@@ -1436,11 +1551,8 @@
         "tags": [
           "Inventory"
         ],
-        "description": "Queries for specified inventory at given location",
+        "description": "Queries for specified inventory at given location. To call the version of this API with RIS (<a href=\"https://docs.kibocommerce.com/help/real-time-inventory-service\">real-time inventory service</a>) data, use the /commerce/realtime-inventory/v5/inventory endpoint instead.",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
           {
             "$ref": "#/components/parameters/x-vol-site"
           }
@@ -1477,9 +1589,6 @@
         "description": "Aggregates inventory.",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
             "$ref": "#/components/parameters/x-vol-site"
           }
         ],
@@ -1512,11 +1621,8 @@
         "tags": [
           "InventoryJob"
         ],
-        "description": "Get the specified inventory upload job. Once an inventory file has been uploaded for processing, use this call to find the correct job ID as well as the status of the job. Once the job has been found, continue calling the API to monitor the status of the inventory upload and see when the job has been successfully uploaded, as well as the number of items uploaded. Note that this call requires the \"Extensibility Read\" user behavior to access jobs.",
+        "description": "Get the specified inventory upload job. Once an inventory file has been uploaded for processing, use this call to find the correct job ID as well as the status of the job. Once the job has been found, continue calling the API to monitor the status of the inventory upload and see when the job has been successfully uploaded, as well as the number of items uploaded.",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
           {
             "name": "jobID",
             "in": "path",
@@ -1566,11 +1672,8 @@
         "tags": [
           "InventoryJob"
         ],
-        "description": "Get the requested jobs. Note that this call requires the \"Extensibility Read\" user behavior to access jobs.",
+        "description": "Get the requested jobs.",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
           {
             "name": "locationCode",
             "in": "query",
@@ -1654,11 +1757,7 @@
           "InventoryLocation"
         ],
         "description": "Get Locations",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -1684,11 +1783,7 @@
           "InventoryLocation"
         ],
         "description": "Save Location",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/LocationRequest"
         },
@@ -1719,11 +1814,7 @@
           "InventoryLocationGroup"
         ],
         "description": "Get LocationGroups",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -1752,11 +1843,7 @@
         ],
         "summary": "Refresh",
         "description": "Sets the inventory count for products at a particular location. These requests are placed into a queue of jobs that are processed one at a time. Due to this, the best practice is to submit fewer requests with more items per call, rather than numerous requests with a small number of items each. Unlike the Adjust API that only accepts a maximum of 1000 items per call, this Refresh API can accept up to 12000 items. However, Kibo recommends batches of 3000 items.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/RefreshRequest"
         },
@@ -1784,11 +1871,7 @@
         ],
         "summary": "Adjust",
         "description": "Adjusts the inventory count for a product at a location. It is different from Inventory Refresh because rather than stating the total quantity of the product, this adjustment specifies the amount of change in the form of increments and decrements (+/-). Increments do not require a + sign and may be sent as a simple integer, but decrements must include the – sign. For example, there would be a -2 quantity for an item if there were two fewer than in the previous count, a 2 quantity if there were two more, and a 0 quantity if there were no change.<br>These requests are placed into a queue of jobs that are processed one at a time. Due to this, the best practice is to submit fewer requests with more items per call, rather than numerous requests with a small number of items each. However, unlike the Refresh API that accepts a maximum of 12000 items per call, this Adjust API only accepts up to 1000 items. If you exceed that limit, a Bad Request error will be returned.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AdjustRequest"
         },
@@ -1835,9 +1918,6 @@
         "description": "Delete Inventory",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
             "$ref": "#/components/parameters/x-vol-site"
           }
         ],
@@ -1870,9 +1950,6 @@
         "description": "Deletes future inventory.",
         "parameters": [
           {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
-          {
             "$ref": "#/components/parameters/x-vol-site"
           }
         ],
@@ -1904,9 +1981,6 @@
         ],
         "description": "Deletes multiple inventory items.",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/x-vol-tenant"
-          },
           {
             "$ref": "#/components/parameters/x-vol-site"
           }
@@ -1946,7 +2020,7 @@
       },
       "exportSettingsName": {
         "name": "exportSettingsName",
-        "in": "path",
+        "in": "query",
         "description": "Export Settings Name",
         "required": true,
         "schema": {
@@ -1957,7 +2031,7 @@
         "name": "exportSettingsFTPName",
         "in": "path",
         "description": "Export Settings FTP Name",
-        "required": true,
+        "required": false,
         "schema": {
           "type": "string"
         }
@@ -1966,23 +2040,14 @@
         "name": "exportSettingsS3Name",
         "in": "path",
         "description": "Export Settings S3 Name",
-        "required": true,
+        "required": false,
         "schema": {
           "type": "string"
         }
       },
       "tagCategoryName": {
         "name": "tagCategoryName",
-        "in": "path",
-        "description": "Tag Category Name",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "tag_category_name": {
-        "name": "tag_category_name",
-        "in": "path",
+        "in": "query",
         "description": "Tag Category Name",
         "required": true,
         "schema": {
@@ -2018,6 +2083,118 @@
       }
     },
     "schemas": {
+      "BaseRequest": {
+        "title": "Base Request",
+        "description": "Base Request Model",
+        "properties": {
+          "locationCode": {
+            "title": "location code",
+            "description": "Location Code",
+            "type": "string"
+          },
+          "userID": {
+            "description": "user id",
+            "type": "integer"
+          },
+          "pageSize": {
+            "description": "how many results to show per page",
+            "type": "integer"
+          },
+          "pageNum": {
+            "description": "which page to show",
+            "type": "integer"
+          },
+          "sortBy": {
+            "description": "index to sort results by",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateBinRequest": {
+        "title": "Update Bin Request",
+        "description": "Request needed for updating a bin",
+        "required": [
+          "binID",
+          "locationCode"
+        ],
+        "allOf": [
+          {
+            "properties": {
+              "binID": {
+                "description": "Bin identifier",
+                "type": "integer"
+              },
+              "binTypeID": {
+                "description": "New Bin's Type ID",
+                "type": "integer"
+              },
+              "binStatusID": {
+                "description": "New Bin's Status ID",
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "BaseResponse": {
+        "title": "Base Response",
+        "description": "Base Response Model",
+        "properties": {
+          "success": {
+            "description": "Flag for success",
+            "type": "boolean"
+          },
+          "messages": {
+            "description": "List of messages",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "numResults": {
+            "description": "Number of results",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Bin": {
+        "title": "Bin Inventory Response",
+        "description": "Response object for a bin",
+        "allOf": [
+          {
+            "properties": {
+              "name": {
+                "description": "Bin Name",
+                "type": "string"
+              },
+              "binID": {
+                "description": "Bin ID",
+                "type": "integer"
+              },
+              "locationCode": {
+                "description": "Location Code",
+                "type": "string"
+              },
+              "binTypeID": {
+                "description": "Bin Type ID",
+                "type": "integer"
+              },
+              "binStatusID": {
+                "description": "Bin Status ID",
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
+          }
+        ]
+      },
       "ExportSettingsFTP": {
         "title": "Export Settings FTP",
         "description": "Export Settings FTP",
@@ -2305,34 +2482,6 @@
         },
         "type": "object"
       },
-      "BaseRequest": {
-        "title": "Base Request",
-        "description": "Base Request Model",
-        "properties": {
-          "locationCode": {
-            "title": "location code",
-            "description": "Location Code",
-            "type": "string"
-          },
-          "userID": {
-            "description": "user id",
-            "type": "integer"
-          },
-          "pageSize": {
-            "description": "how many results to show per page",
-            "type": "integer"
-          },
-          "pageNum": {
-            "description": "which page to show",
-            "type": "integer"
-          },
-          "sortBy": {
-            "description": "index to sort results by",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
       "CreateExportSettingsRequest": {
         "title": "Create Export Settings Request",
         "description": "Request needed for creating Export Settings",
@@ -2390,28 +2539,6 @@
             "$ref": "#/components/schemas/BaseRequest"
           }
         ]
-      },
-      "BaseResponse": {
-        "title": "Base Response",
-        "description": "Base Response Model",
-        "properties": {
-          "success": {
-            "description": "Flag for success",
-            "type": "boolean"
-          },
-          "messages": {
-            "description": "List of messages",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "numResults": {
-            "description": "Number of results",
-            "type": "integer"
-          }
-        },
-        "type": "object"
       },
       "UpdateExportSettingsResponse": {
         "title": "Update Export Settings Response",
@@ -3035,6 +3162,24 @@
         },
         "type": "object"
       },
+      "AdjustFutureDateRequest": {
+        "title": "Adjust Future Date Request",
+        "description": "Request for adjusting the future date",
+        "allOf": [
+          {
+            "properties": {
+              "futureDate": {
+                "description": "Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'",
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
       "AllocateItem": {
         "title": "AllocateItem",
         "description": "Item for Allocation",
@@ -3224,6 +3369,498 @@
           },
           {
             "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "BinModel": {
+        "title": "BinModel",
+        "description": "Bin Model",
+        "properties": {
+          "binID": {
+            "description": "Unique Bin Identifier assigned by the system",
+            "type": "integer"
+          },
+          "locationID": {
+            "description": "Location Identifier of the owning location",
+            "type": "integer"
+          },
+          "binTypeID": {
+            "description": "New Bin's Type ID",
+            "type": "integer"
+          },
+          "binStatusID": {
+            "description": "New Bin's Status ID",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Client specified static bin name",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "BinResponseModel": {
+        "title": "BinResponseModel",
+        "description": "Bin Response Object",
+        "properties": {
+          "bins": {
+            "$ref": "#/components/schemas/BinModel"
+          },
+          "resultCount": {
+            "description": "number of results",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "CreateBinRequest": {
+        "title": "Create Bin Request",
+        "description": "Request needed for creating a new bin",
+        "allOf": [
+          {
+            "properties": {
+              "binTypeID": {
+                "title": "bin type id",
+                "description": "Bin Type Identifier",
+                "type": "integer"
+              },
+              "binStatusID": {
+                "title": "bin status id",
+                "description": "Bin Status Identifier",
+                "type": "integer"
+              },
+              "name": {
+                "title": "name",
+                "description": "Name",
+                "type": "string"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "BinIDResponse": {
+        "title": "Bin ID Response",
+        "description": "Bin ID Response",
+        "properties": {
+          "binID": {
+            "description": "Bin ID",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "BinSearchRequest": {
+        "title": "Bin Search Request",
+        "description": "Request needed for searching for bins",
+        "allOf": [
+          {
+            "properties": {
+              "binName": {
+                "description": "Partial match of bin name",
+                "type": "string"
+              },
+              "product": {
+                "$ref": "#/components/schemas/InventoryProduct"
+              },
+              "sortAscending": {
+                "description": "Flag for sorting ascending",
+                "type": "boolean"
+              },
+              "showNegativeInventory": {
+                "description": "Flag for showing negative inventory",
+                "type": "boolean"
+              },
+              "tags": {
+                "$ref": "#/components/schemas/tags"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "futureInventoryArray": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/InventoryFutureInventory"
+        }
+      },
+      "taggedInventoryMap": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/InventoryTagQuantity"
+        }
+      },
+      "ProductQuantityResponse": {
+        "title": "Product Quantities Response",
+        "description": "A response object for a product and its associated quantity",
+        "properties": {
+          "partNumber": {
+            "description": "Part Number",
+            "type": "string"
+          },
+          "upc": {
+            "description": "UPC",
+            "type": "string"
+          },
+          "sku": {
+            "description": "SKU",
+            "type": "string"
+          },
+          "quantity": {
+            "description": "Quantity of product",
+            "type": "integer"
+          },
+          "binID": {
+            "description": "ID of associated bin",
+            "type": "integer"
+          },
+          "locationCode": {
+            "description": "Location Code of the owning location",
+            "type": "string"
+          },
+          "binTypeID": {
+            "description": "Bin Type ID",
+            "type": "integer"
+          },
+          "binStatusID": {
+            "description": "Bin Status ID",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Name of the product",
+            "type": "string"
+          },
+          "inventoryID": {
+            "description": "Inventory ID",
+            "type": "integer"
+          },
+          "tenantLocProductID": {
+            "description": "Tenant Location Product ID",
+            "type": "integer"
+          },
+          "auditProductID": {
+            "description": "Audit Product ID",
+            "type": "integer"
+          },
+          "auditID": {
+            "description": "Audit ID",
+            "type": "integer"
+          },
+          "onHand": {
+            "description": "Amount of product on hand",
+            "type": "integer"
+          },
+          "available": {
+            "description": "Amount of product available",
+            "type": "integer"
+          },
+          "allocated": {
+            "description": "Amount of product allocated",
+            "type": "integer"
+          },
+          "pending": {
+            "description": "Amount of product pending",
+            "type": "integer"
+          },
+          "ltd": {
+            "description": "Custom field used for store prioritization",
+            "type": "integer"
+          },
+          "floor": {
+            "description": "Absolute minimum quantity of this item that should be in stock at any time",
+            "type": "integer"
+          },
+          "safetystock": {
+            "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
+            "type": "integer"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/taggedInventoryMap"
+          }
+        },
+        "type": "object"
+      },
+      "BinProductResponseQuantities": {
+        "title": "Bin Product Response Quantities",
+        "description": "A response object for a bin and its associated products and quantities",
+        "properties": {
+          "binName": {
+            "description": "Name of the bin",
+            "type": "string"
+          },
+          "products": {
+            "description": "List of ProductQuantities - Products with their associated quantity",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductQuantityResponse"
+            }
+          }
+        },
+        "type": "object"
+      },
+      "BinSearchResponse": {
+        "title": "Bin Search Response",
+        "description": "Bin Search Response Object",
+        "allOf": [
+          {
+            "properties": {
+              "binQuantities": {
+                "description": "List of BinProductQuantities - bins with associated products and quantities",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BinProductResponseQuantities"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
+          }
+        ]
+      },
+      "ProductQuantity": {
+        "title": "Product Quantities",
+        "description": "A product and its associated quantity",
+        "properties": {
+          "partNumber": {
+            "description": "Part Number",
+            "type": "string"
+          },
+          "upc": {
+            "description": "UPC",
+            "type": "string"
+          },
+          "sku": {
+            "description": "SKU",
+            "type": "string"
+          },
+          "quantity": {
+            "description": "Quantity of product",
+            "type": "integer"
+          },
+          "binID": {
+            "description": "ID of associated bin",
+            "type": "integer"
+          },
+          "locationID": {
+            "description": "Location Identifier of the owning location",
+            "type": "integer"
+          },
+          "binTypeID": {
+            "description": "Bin Type ID",
+            "type": "integer"
+          },
+          "binStatusID": {
+            "description": "Bin Status ID",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Name of the product",
+            "type": "string"
+          },
+          "inventoryID": {
+            "description": "Inventory ID",
+            "type": "integer"
+          },
+          "tenantLocProductID": {
+            "description": "Tenant Location Product ID",
+            "type": "integer"
+          },
+          "auditProductID": {
+            "description": "Audit Product ID",
+            "type": "integer"
+          },
+          "auditID": {
+            "description": "Audit ID",
+            "type": "integer"
+          },
+          "onHand": {
+            "description": "Amount of product on hand",
+            "type": "integer"
+          },
+          "available": {
+            "description": "Amount of product available",
+            "type": "integer"
+          },
+          "allocated": {
+            "description": "Amount of product allocated",
+            "type": "integer"
+          },
+          "pending": {
+            "description": "Amount of product pending",
+            "type": "integer"
+          },
+          "ltd": {
+            "description": "Custom field used for store prioritization",
+            "type": "integer"
+          },
+          "floor": {
+            "description": "Absolute minimum quantity of this item that should be in stock at any time",
+            "type": "integer"
+          },
+          "safetystock": {
+            "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
+            "type": "integer"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/tags"
+          }
+        },
+        "type": "object"
+      },
+      "BinProductQuantities": {
+        "title": "Bin Product Quantities",
+        "description": "A bin and its associated products and quantities",
+        "properties": {
+          "binName": {
+            "description": "Name of the bin",
+            "type": "string"
+          },
+          "products": {
+            "description": "List of ProductQuantities - Products with their associated quantity",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductQuantity"
+            }
+          }
+        },
+        "type": "object"
+      },
+      "LoadBinInventoryRequest": {
+        "title": "Load Bin Inventory Request",
+        "description": "Request needed for loading bin inventory",
+        "allOf": [
+          {
+            "properties": {
+              "bins": {
+                "description": "List of bins and their associated product quantities",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BinProductQuantities"
+                }
+              },
+              "dryRun": {
+                "description": "Flag for dry runs",
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "LoadBinInventoryResponse": {
+        "title": "Load Bin Inventory Response",
+        "description": "Response object for loading bin inventory",
+        "allOf": [
+          {
+            "properties": {
+              "unitsAdded": {
+                "description": "Number of units added",
+                "type": "integer"
+              },
+              "unitsRemoved": {
+                "description": "Number of removed units",
+                "type": "integer"
+              },
+              "binsCreated": {
+                "description": "Names of created bins",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "productsCreated": {
+                "description": "List of products created",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InventoryProduct"
+                }
+              },
+              "binQuantities": {
+                "description": "List of new bin product quantities",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BinProductQuantities"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
+          }
+        ]
+      },
+      "BinTypeModel": {
+        "title": "BinTypeModel",
+        "description": "Type of Bin",
+        "properties": {
+          "binTypeID": {
+            "description": "Bin Type Identifier",
+            "type": "integer"
+          },
+          "description": {
+            "description": "Bin Type Description",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "BinStatusModel": {
+        "title": "BinStatusModel",
+        "description": "Status of Bin",
+        "properties": {
+          "binStatusID": {
+            "description": "Bin Status Identifier",
+            "type": "integer"
+          },
+          "description": {
+            "description": "Bin Status Description",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateBinsRequest": {
+        "title": "Update Bins Request",
+        "description": "Request needed for updating bins",
+        "allOf": [
+          {
+            "properties": {
+              "bins": {
+                "description": "List of Update Bin Requests",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateBinRequest"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "UpdateBinsResponse": {
+        "title": "Update Bins Response",
+        "description": "Response for updating bins",
+        "allOf": [
+          {
+            "properties": {
+              "numberAffected": {
+                "description": "Number of affected bins",
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
           }
         ]
       },
@@ -3834,7 +4471,7 @@
                 "type": "boolean"
               },
               "excludeBlockedAssignment": {
-                "description": "Filter out results that are blocked from assignment (at the product/location level)",
+                "description": "Filter out results that are blocked from assignment (at the product/location level) ",
                 "type": "boolean"
               },
               "includeAttributes": {
@@ -3887,18 +4524,6 @@
             "$ref": "#/components/schemas/BaseRequest"
           }
         ]
-      },
-      "futureInventoryArray": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/InventoryFutureInventory"
-        }
-      },
-      "taggedInventoryMap": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/InventoryTagQuantity"
-        }
       },
       "AggregateRequest": {
         "title": "Aggregate Request",
@@ -4534,6 +5159,25 @@
         },
         "type": "object"
       },
+      "InventoryProduct": {
+        "title": "Product",
+        "description": "Product within a bin",
+        "properties": {
+          "partNumber": {
+            "description": "Part Number",
+            "type": "string"
+          },
+          "upc": {
+            "description": "UPC",
+            "type": "string"
+          },
+          "sku": {
+            "description": "SKU",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "InventoryItem": {
         "title": "Item",
         "description": "Item",
@@ -4732,6 +5376,17 @@
       }
     },
     "requestBodies": {
+      "UpdateBinRequest": {
+        "description": "Request to update a bin",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateBinRequest"
+            }
+          }
+        }
+      },
       "CreateExportSettingsRequest": {
         "description": "Request to create a new Export Settings",
         "required": true,
@@ -4842,6 +5497,17 @@
           }
         }
       },
+      "AdjustFutureDateRequest": {
+        "description": "Request for adjusting the future date",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AdjustFutureDateRequest"
+            }
+          }
+        }
+      },
       "AllocateInventoryRequest": {
         "description": "Request to allocate inventory",
         "required": true,
@@ -4860,6 +5526,50 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/TransitionCartRequest"
+            }
+          }
+        }
+      },
+      "CreateBinRequest": {
+        "description": "Request to create a new bin",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateBinRequest"
+            }
+          }
+        }
+      },
+      "BinSearchRequest": {
+        "description": "Request to allocate inventory",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/BinSearchRequest"
+            }
+          }
+        }
+      },
+      "LoadBinInventoryRequest": {
+        "description": "Request to load bin inventory",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LoadBinInventoryRequest"
+            }
+          }
+        }
+      },
+      "UpdateBinsRequest": {
+        "description": "Request to update multiple bins",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateBinsRequest"
             }
           }
         }

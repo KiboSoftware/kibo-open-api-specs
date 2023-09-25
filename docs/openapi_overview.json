@@ -1,0 +1,122 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "UCP",
+    "description": "<div id=\"overview_general\">\n<h2>OVERVIEW</h2>\n        <p>Implementing Unified Commerce REST APIs allows merchants to take advantage of efficient ecommerce, order\n            management, and fulfillment strategies to bridge the gap between online and in-store shopping. To begin\n            working with the toolset, a developer should be familiar with REST APIs and the process of authentication.</p>\n        <p>To test API requests or run example calls through this interactive site, first select an environment and configure your credentials\n            with the API Servers and Authentication configuration pages on the left. Then, you will be able to place calls when\n            viewing the endpoint documentation pages. These configurations are not necessary if you are only referencing the API information\n            and do not intend to perform any calls.</p>\n        <p>The other pages in the lefthand menu are the available API services, each of which contains endpoints to perform\n            different actions. When you select a service, its endpoints and operations will then be displayed below the \n            list of services. The documentation for each endpoint provides the HTTP request and response schemas, \n            including templates and the interactive forms for performing calls.</p>\n        <p>The <a href=\"https://docs.kibocommerce.com/\">Kibo knowledge base</a> includes additional documentation to help \n            developers become more familiar with the REST APIs or other development tools:\n        <ul>\n            <li><a href=\"https://docs.kibocommerce.com/help/sorting-and-filtering-apis\">Sorting and Filtering\n                    API Responses</a></li>\n            <li><a href=\"https://docs.kibocommerce.com/help/status-codes\">API Error Codes</a></li>\n            <li><a href=\"https://docs.kibocommerce.com/help/event-notifications-overview\">Event Notifications</a></li>\n            <li><a href=\"https://docs.kibocommerce.com/help/transactional-logs\">Transactional Logs</a></li>\n            <li><a href=\"https://docs.kibocommerce.com/help/applications-1a6c791\">Application Development</a></li>\n            <li><a href=\"https://docs.kibocommerce.com/help/api-extensions-reference\">API Extensions Actions</a></li>\n            <li><a href=\"https://docs.kibocommerce.com/help/themes\">Custom Themes</a></li>\n            <li><a href=\"https://docs.kibocommerce.com/help/sdks\">Supported SDKs</a></li>\n            <li><a href=\"https://docs.kibocommerce.com/help/api-guides\">Index of All API User Guides</a></li>\n            <li><a href=\"/dist/postman_collection.json?ver=KIBO_API_VERSION_PLACEHOLDER\" target=\"_blank\" >Postman Collection for Version KIBO_API_VERSION_PLACEHOLDER.</a></li>\n        </ul>\n        </p>\n    </div>\n",
+    "version": "1.0.1"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
+      "description": "Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}.{env}.mozu.com/api",
+      "description": "Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1",
+            "stg2"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://home.mozu.com/api",
+      "description": "HomePod Api"
+    },
+    {
+      "url": "https://t{tenantId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://home.euw1.kibocommerce.com/api",
+      "description": "EURO HomePod Api"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

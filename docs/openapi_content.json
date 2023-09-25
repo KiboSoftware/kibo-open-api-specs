@@ -11,7 +11,7 @@
         "tags": [
           "Documents"
         ],
-        "summary": "Get Document Content",
+        "summary": "Get Document Contents",
         "parameters": [
           {
             "name": "documentListName",
