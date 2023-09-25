@@ -1,0 +1,5885 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Catalog Storefront",
+    "version": "1.0.1",
+    "description": "<div id=\"overview_CATALOG_STOREFRONT\">\n            <h2>CATALOG STOREFRONT</h2>\n            <p>The Catalog Storefront APIs are a collection of resources for managing storefront categories, currencies, price lists, products, and\n                product search. This controls how the products in your catalog are organized and displayed on the\n                storefront. See the\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Currencies</strong> resource to retrieve exchange rates for displaying prices on your storefront.</p>\n            <p>Use the <strong>Storefront Categories</strong> resource to view the product category hierarchy as it appears to shoppers\n                who are browsing the storefront. The hierarchy can be returned as a flat list or as a category tree.</p>\n            <p>Use the <strong>Pricelists</strong> resource to retrieve the details of a price list. The details may contain a hierarchy\n                of ancestor and/or descendant price lists dependening on your configuration.</p>\n            <p>Use the <strong>Storefront Products</strong> resource to manage the shopper product selection process during a visit to\n                the web storefront. You can update product options as shoppers pick and choose their product choices. A\n                shopper cannot add a product to a cart until all of its required options have been selected.</p>\n            <p>Use the <strong>Product Search</strong> resource to provide dynamic search results to shoppers as they browse and search\n                for products on the web storefront, and to suggest possible search terms as the shopper enters text. The related <strong>Search Redirect</strong>\n                resource allows you to retrieve any search redirect items.</p>\n        </div>"
+  },
+  "paths": {
+    "/commerce/catalog/storefront/campaigns/all": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Get Search Campaigns",
+        "description": "Get list of Search campaigns.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CampaignResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CampaignResult"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CampaignResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/campaigns/{campaignId}": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Get Search Campaign",
+        "description": "Get a specific campaign by campaign id.",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/currencies/exchangerates": {
+      "get": {
+        "tags": [
+          "Currencies"
+        ],
+        "summary": "Get Exchange Rates",
+        "description": "Retrieves a list of currency exchange rates based on the context's currency code.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CatalogRuntimesCurrencyExchangeRate"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CatalogRuntimesCurrencyExchangeRate"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CatalogRuntimesCurrencyExchangeRate"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/pricelists/resolved": {
+      "get": {
+        "tags": [
+          "PriceLists"
+        ],
+        "summary": "Get Resolved Price List",
+        "description": "This is primarily used when creating an offline order for a shopper. You can use this operation alongside custom Arc.js actions to alter the price list to which a shopper resolves.",
+        "parameters": [
+          {
+            "name": "customerAccountId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedPriceList"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedPriceList"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedPriceList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PriceLists"
+        ],
+        "summary": "Get resolved price list.",
+        "description": "This is primarily used when creating an offline order for a shopper. You can use this operation alongside custom Arc.js actions to alter the price list to which a shopper resolves.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedPriceList"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedPriceList"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedPriceList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/pricelists/{priceListCode}": {
+      "get": {
+        "tags": [
+          "PriceLists"
+        ],
+        "summary": "Get Price List",
+        "description": "Retrieves the price list for the given priceListCode",
+        "parameters": [
+          {
+            "name": "priceListCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesPriceList"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesPriceList"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesPriceList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/categories/tree": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get Category Tree",
+        "description": "Retrieves the list of product categories that appear on the storefront organized in a hierarchical format. Hidden categories do not appear in the list.",
+        "parameters": [
+          {
+            "name": "includeAttributes",
+            "in": "query",
+            "description": "Optional. If True, Return Category Attributes collection with Category",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategoryCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategoryCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategoryCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get Product Categories",
+        "description": "Retrieves a list of product categories that appear on the storefront as a flat list. Hidden categories do not appear in the list.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Optional. A set of filter expressions representing the search parameters for a query:\r\n            eq=equals, ne=not equals, gt=greater than, lt = less than, gt = greater than or equals, le = less than or equals,\r\n            sw = starts with, or cont = contains.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Optional. Used to page results from a query.\r\n            Indicates the zero-based offset in the complete result set where the returned entities begin.\r\n            For example, with a pageSize of 25, to get the 51st through the 75th items, startIndex=3.\r\n            The default value is 0.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optional. Used to page results from a query.\r\n            Indicates the maximum number of entities to return from a query. Default value: 20. Maximum value: 200.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear.\r\n            Either ascending order (a-z) which accepts 'asc' or 'ASC' or descending order (z-a) which accepts 'desc' or 'DESC'.\r\n            The sortBy parameter follows an available property.\r\n            For example, to sort results by category ID ascending, use sortBy=categoryId asc.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAttributes",
+            "in": "query",
+            "description": "Optional. Used to include Category Attributes in response",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategoryPagedCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategoryPagedCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategoryPagedCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/categories/{categoryId}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get Product Category",
+        "description": "Retrieves the name and details of a category that appears on the storefront. ",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Required. Unique identifier of the category whose details you want to get.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "allowInactive",
+            "in": "query",
+            "description": "Optional. Allow the return of items with the IsDisplayed flag set to false.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeAttributes",
+            "in": "query",
+            "description": "Optional. If True, Return Category Attributes collection with Category",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategory"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategory"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesCategory"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Products",
+        "description": "Retrieves a list of products that appear on the storefront according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Optional. A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than, gt = greater than or equals, le = less than or equals, sw = starts with, or cont = contains.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a pageSize of 25, to get the 51st through the 75th items, startIndex=3. Default value: 0.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a single query. Default value: 20. Maximum value: 200.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Optional. Sort the results by and the order in which the results appear. Either ascending order (a-z) which accepts 'asc' or 'ASC' or descending order (z-a) which accepts 'desc' or 'DESC'. The sortBy parameter follows an available property. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "Optional. Response groups to be determined.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseOptions",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursorMark",
+            "in": "query",
+            "description": "Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "defaultSort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAllImages",
+            "in": "query",
+            "description": "Optional. If true return all images instead of default images.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "useSubscriptionPricing",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "includeProductDetailsOnlyProperty",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesProductCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesProductCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesProductCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/products/{productCode}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Product",
+        "description": "Retrieves information about a single product given its product code.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "description": "Required. Merchant-created code associated with the product, for example, a SKU. Max length: 30.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "variationProductCode",
+            "in": "query",
+            "description": "Optional. Merchant-created code associated with a specific product variation. Max length: #.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "Optional. Response groups to be determined.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allowInactive",
+            "in": "query",
+            "description": "Optional. If true, return a product if it is located but inactive.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "skipInventoryCheck",
+            "in": "query",
+            "description": "Determines whether or not to check inventory on an item when validating",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "supressOutOfStock404",
+            "in": "query",
+            "description": "Optional. If true, will still return the product, even if product is out of stock and the out of stock behavior is set to “Hide Product in Store”. If false or omitted, the same product will return a 404 not found. Suppressing the 404 not found is useful for site SEO.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "query",
+            "description": "Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "acceptVariantProductCode",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "purchaseLocation",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "variationProductCodeFilter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sliceValue",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAllImages",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "useSubscriptionPricing",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesProduct"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesProduct"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogRuntimesProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/products/indexing/{productCode}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Product for Indexing",
+        "description": "Retrieves information about a single product given its product code for Mozu to index in the search engine",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "description": "Required. Merchant-created code associated with the product, for example, a SKU. Max length: 30.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "Optional. Response groups to be determined.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productVersion",
+            "in": "query",
+            "description": "Optional. The current version of the product to use for latency checking. \r\n            \tIf this instance of Product Runtime is configured to run against a replicated database node that has a lesser version than this value, it will read from the primary database node to prevent stale data.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lastModifiedDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductForIndexing"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductForIndexing"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductForIndexing"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/products/{productCode}/configure": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Create Variant Product",
+        "description": "Creates a new product selection. A create occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "description": "Merchant-created code for the product being configured, for example, a SKU. Max length: 30.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeOptionDetails",
+            "in": "query",
+            "description": "If true, the response returns product details such as. If false, returns a product summary such as the product name, price, and sale price.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "skipInventoryCheck",
+            "in": "query",
+            "description": "Determines whether or not to check inventory on an item when validating",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "query",
+            "description": "Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "purchaseLocation",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "variationProductCodeFilter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "useSubscriptionPricing",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "subscriptionFrequency",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Shopper-selected options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductOptionSelections"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfiguredProduct"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfiguredProduct"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfiguredProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/products/{productCode}/validate": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Validate Variant Product",
+        "description": "Validate the final state of shopper-selected options.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "description": "Merchant-created code of product being validated.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skipInventoryCheck",
+            "in": "query",
+            "description": "Determines whether or not to check inventory on an item when validating",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "query",
+            "description": "Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "skipDefaults",
+            "in": "query",
+            "description": "Determines whether or not to add configured default-extras on an item when validating",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "purchaseLocation",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "useSubscriptionPricing",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "recalculateDynamicCategories",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "acceptVariantProductCode",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Final state of shopper selected options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductOptionSelections"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductValidationSummary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductValidationSummary"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductValidationSummary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/products/{productCode}/validateDiscounts": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Validate Discounts",
+        "description": "Validate if a collection of discounts is valid for a product.  This includes discounts that would normally be considered order level discounts.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "variationProductCode",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerAccountId",
+            "in": "query",
+            "description": "Customer Id may be set in the querystring or in the user claims bag if the caller context is a shopper.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "allowInactive",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "skipInventoryCheck",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountSelections"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscountValidationSummary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscountValidationSummary"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscountValidationSummary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/products/{productCode}/locationinventory": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Location Inventory",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "locationCodes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationInventoryCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationInventoryCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationInventoryCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get product inventory. You can provide up to a maximum of 200 product codes and 200 location codes in the endpoint by default."
+      }
+    },
+    "/commerce/catalog/storefront/products/{productCode}/substitutions": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get product substitutions",
+        "description": "Returns a list of up to 10 products that can be substituted for the provided product code.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSubstituteCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSubstituteCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSubstituteCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/products/locationinventory": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Location Inventories",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationInventoryQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationInventoryCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationInventoryCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationInventoryCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get location inventories for products"
+      }
+    },
+    "/commerce/catalog/storefront/products/costs": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Product Costs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductCostQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCostCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCostCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCostCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get costs for products. This cost is the amount the merchant pays for the product—it is not the price that the shopper sees on the storefront (which is usually higher)."
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/suggest": {
+      "get": {
+        "tags": [
+          "ProductSearch"
+        ],
+        "summary": "Get Suggested Search Terms",
+        "description": "Suggests possible search terms as the shopper enters search text. In Unified Commerce, a Suggest2 API exists that returns results based on the returnFields option defined in the search settings. The same request structure and response as documented here is supported by both the /suggest and /suggest2 API endpoints, so either one can be used for this purpose with the same data.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Comma delimited list of suggestion groups that should be returned. The default is everything",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groups",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "mid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchSuggestionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchSuggestionResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchSuggestionResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/suggest2": {
+      "get": {
+        "tags": [
+          "ProductSearch"
+        ],
+        "summary": "Gets Suggested Search Terms 2",
+        "description": "Suggests possible search terms as the shopper enters search text. In Unified Commerce, a Suggest2 API exists that returns results based on the returnFields option defined in the search settings. The same request structure and response as documented here is supported by both the /suggest and /suggest2 API endpoints, so either one can be used for this purpose with the same data.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Comma delimited list of suggestion groups that should be returned. The default is everything",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groups",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "searchSettingsName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchSuggestionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchSuggestionResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchSuggestionResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/visualsearch": {
+      "get": {
+        "tags": [
+          "ProductSearch"
+        ],
+        "summary": "Type Ahead Search",
+        "description": "Searches the items displayed on the storefront.",
+        "parameters": [
+          {
+            "name": "SearchTerm",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RequestFilter"
+              }
+            }
+          },
+          {
+            "name": "Returnfields",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "Searchfields",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "Ignoregrouping",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "NumResults",
+            "in": "query",
+            "schema": {
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "ApplicationId",
+            "in": "query",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "name": "CatalogId",
+            "in": "query",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "name": "SessionId",
+            "in": "query",
+            "schema": {
+              "maxLength": 100,
+              "type": "string"
+            }
+          },
+          {
+            "name": "TrackingId",
+            "in": "query",
+            "schema": {
+              "maxLength": 100,
+              "type": "string"
+            }
+          },
+          {
+            "name": "ApiKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Revision",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Cip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DisplayDebug",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisualSearchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisualSearchResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisualSearchResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/randomAccessCursor": {
+      "get": {
+        "tags": [
+          "ProductSearch"
+        ],
+        "summary": "Gets Random Access Cursors",
+        "description": "Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.\\r\\n\\t\\t\\tOptionally provide a query and/or filter to generate a cursor for a subset of products.\\r\\n\\t\\t\\tAfter retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.\\r\\n\\t\\t\\tYou may provide cursorMarks in any order or even in parallel operations.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Optional terms to search on. Only matching products will be included in the cursor.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Optional set of filter expressions to filter on. Only matching products will be included in the cursor.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchRandomAccessCursor"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchRandomAccessCursor"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchRandomAccessCursor"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/search": {
+      "get": {
+        "tags": [
+          "ProductSearch"
+        ],
+        "summary": "Search Products",
+        "description": "Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The terms to search on.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplateSubset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facet",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetFieldRangeQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierPrefix",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierValue",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierDepth",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetStartIndex",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetPageSize",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetSettings",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetValueFilter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "searchSettings",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enableSearchTuningRules",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "searchTuningRuleContext",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchTuningRuleCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplateExclude",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetPrefix",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseOptions",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursorMark",
+            "in": "query",
+            "description": "Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetValueSort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "defaultSort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shouldSlice",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "mid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "omitNamespace",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeAllImages",
+            "in": "query",
+            "description": "Optional. If true return all images instead of default images.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "spellcorrectOverride",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "Default"
+            }
+          },
+          {
+            "name": "useSubscriptionPricing",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "merchandizingRuleCode",
+            "in": "query",
+            "description": "Optional. Use a specific search-merchandizing-rule code if provided.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/siteSearch": {
+      "get": {
+        "tags": [
+          "ProductSearch"
+        ],
+        "summary": "Site Search",
+        "description": "Searches the items displayed on the storefront.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The terms to search on.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplateSubset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facet",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetFieldRangeQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierPrefix",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierValue",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierDepth",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetStartIndex",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetPageSize",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetSettings",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetValueFilter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "searchSettings",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enableSearchTuningRules",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "searchTuningRuleContext",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchTuningRuleCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplateExclude",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetPrefix",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseOptions",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursorMark",
+            "in": "query",
+            "description": "Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetValueSort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "defaultSort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shouldSlice",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "mid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fieldList",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "omitNamespace",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeAllImages",
+            "in": "query",
+            "description": "Optional. If true return all images instead of default images.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "spellcorrectOverride",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "Default"
+            }
+          },
+          {
+            "name": "useSubscriptionPricing",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "merchandizingRuleCode",
+            "in": "query",
+            "description": "Optional. Use a specific search-merchandizing-rule code if provided.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/searchDebug": {
+      "get": {
+        "tags": [
+          "ProductSearch"
+        ],
+        "summary": "Search Debug",
+        "description": "Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The terms to search on.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplate",
+            "in": "query",
+            "description": "The template to use for what facets to compute. ex: categoryId:id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplateSubset",
+            "in": "query",
+            "description": "If you only want to return a subset of the facets defined in the template. ex: category,price,rating",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facet",
+            "in": "query",
+            "description": "Fields to facet on in addition to the optionally provided facetTemplate. ex: category,price,rating",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetFieldRangeQuery",
+            "in": "query",
+            "description": "Facet field range. ex: field:[val+TO+val] can also label",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierPrefix",
+            "in": "query",
+            "description": "Facet hierarchy prefix. Skip these levels on a hierarchical facet. ex: field:foo/bar/bing",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierValue",
+            "in": "query",
+            "description": "Find the node to start with given a unique lookup value, instead of requiring a prefix path. ex: field:bing",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetHierDepth",
+            "in": "query",
+            "description": "Facet hierarchy depth. Number of levels to return. ex: category:1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetStartIndex",
+            "in": "query",
+            "description": "Facet offset",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetPageSize",
+            "in": "query",
+            "description": "Facet page size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetSettings",
+            "in": "query",
+            "description": "Deprecated",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetValueFilter",
+            "in": "query",
+            "description": "Apply facet values as a filter. ex: category:3,price:[* TO 100]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sliceSearchResults",
+            "in": "query",
+            "description": "Whether to slice results or not",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "searchSettings",
+            "in": "query",
+            "description": "The name of a SiteSearchSettings (search relevancy settings) scheme to use. Defaults to whichever Settings is marked as IsDefault=true.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enableSearchTuningRules",
+            "in": "query",
+            "description": "Use search-tuning-rules or not",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "searchTuningRuleContext",
+            "in": "query",
+            "description": "The filters which the search tuning rules will match on.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchTuningRuleCode",
+            "in": "query",
+            "description": "Search-Tuning-Rule Code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "A list of property groups to return instead of using the granular responseFields param. ex: categories,properties,options",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetTemplateExclude",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetPrefix",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseOptions",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursorMark",
+            "in": "query",
+            "description": "Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facetValueSort",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "description": "Only respond with the request made to the search-engine, for one \"groups\" parameter value. Default is false. Optional parameter.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "mid",
+            "in": "query",
+            "description": "Personalization Id (Monetate Id)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "omitNamespace",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "campaignId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "merchandizingRuleCode",
+            "in": "query",
+            "description": "Optional. Use a specific search-merchandizing-rule code if provided.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "optional alternative to query for debugging tools",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/suggestdebug": {
+      "get": {
+        "tags": [
+          "ProductSearch"
+        ],
+        "summary": "Search Suggestion Debug",
+        "description": "Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.",
+        "parameters": [
+          {
+            "name": "groups",
+            "in": "query",
+            "description": "Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The terms to search on.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "searchSettingsName",
+            "in": "query",
+            "description": "Specific Search Configuration. Optional parameter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mid",
+            "in": "query",
+            "description": "Session Id. Optional parameter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "campaignId",
+            "in": "query",
+            "description": "Used to debug with a specific campaign. Optional parameter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "description": "Only respond with the request made to the search-engine, for one \"groups\" parameter value. Default is false. Optional parameter.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/sitesearchpreview": {
+      "post": {
+        "tags": [
+          "SearchPreview"
+        ],
+        "summary": "Site Search Preview",
+        "description": "Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FindProductsPreviewParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchPreviewResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchPreviewResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchPreviewResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/productsearch/preview": {
+      "post": {
+        "tags": [
+          "SearchPreview"
+        ],
+        "summary": "Search Preview",
+        "description": "Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FindProductsPreviewParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchPreviewResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchPreviewResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchPreviewResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/searchmerchandizingrules/previewsearchmerchandizingrule": {
+      "post": {
+        "tags": [
+          "SearchMerchandizingRules"
+        ],
+        "summary": "Preview Search Merchandizing Rule",
+        "description": "Preview search results with given SearchMerchandizingRule object",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchMerchandizingRuleParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchandizingRulePreviewResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchandizingRulePreviewResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchandizingRulePreviewResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/searchredirect/redirects": {
+      "get": {
+        "tags": [
+          "SearchRedirect"
+        ],
+        "summary": "Get Search Redirects",
+        "description": "Get list of search redirect items.",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/catalog/storefront/searchredirect/{redirectId}": {
+      "get": {
+        "tags": [
+          "SearchRedirect"
+        ],
+        "summary": "Get Search Redirect",
+        "description": "Get search redirect item by redirect Id.",
+        "parameters": [
+          {
+            "name": "redirectId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BoostValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "boost": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "operator": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BoostField": {
+        "type": "object",
+        "properties": {
+          "fieldName": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueExpressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BoostValue"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FieldValueBoost": {
+        "type": "object",
+        "properties": {
+          "boostType": {
+            "type": "string",
+            "nullable": true
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BoostField"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CampaignSiteSearchSettings": {
+        "type": "object",
+        "properties": {
+          "searchTermAssociations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "fieldValueBoost": {
+            "$ref": "#/components/schemas/FieldValueBoost"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CampaignProductSuggestSettings": {
+        "type": "object",
+        "properties": {
+          "searchTermAssociations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "fieldValueBoost": {
+            "$ref": "#/components/schemas/FieldValueBoost"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CampaignListingSettings": {
+        "type": "object",
+        "properties": {
+          "fieldValueBoost": {
+            "$ref": "#/components/schemas/FieldValueBoost"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CampaignResult": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "siteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "campaignName": {
+            "type": "string",
+            "nullable": true
+          },
+          "campaignId": {
+            "type": "string",
+            "nullable": true
+          },
+          "json": {
+            "type": "string",
+            "nullable": true
+          },
+          "campaignDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "campaignStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "campaignEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "statusId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "siteSearchSettings": {
+            "$ref": "#/components/schemas/CampaignSiteSearchSettings"
+          },
+          "productSuggestSettings": {
+            "$ref": "#/components/schemas/CampaignProductSuggestSettings"
+          },
+          "listingSettings": {
+            "$ref": "#/components/schemas/CampaignListingSettings"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Campaign result from db"
+      },
+      "ResolvedPriceList": {
+        "type": "object",
+        "properties": {
+          "priceListCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceListNode": {
+        "type": "object",
+        "properties": {
+          "priceListCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parentPriceListId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "priceListLevel": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CategoryImage": {
+        "type": "object",
+        "properties": {
+          "imageLabel": {
+            "type": "string",
+            "description": "Image title.  Unicode data with a maximum length of 50 characters.",
+            "nullable": true
+          },
+          "altText": {
+            "type": "string",
+            "description": "Descriptive text associated with the image. Unicode data with a maximum length of 200 characters.",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "description": "Image URL. Unicode data with a maximum length of 4000 characters.",
+            "nullable": true
+          },
+          "cmsId": {
+            "type": "string",
+            "description": "Id of the image in the CMS.",
+            "nullable": true
+          },
+          "videoUrl": {
+            "type": "string",
+            "description": "URL of the video. Unicode data with a maximum length of 4000 characters.",
+            "nullable": true
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "Type of media. Used by the client to determine how to render the image or video or what have you.",
+            "nullable": true
+          },
+          "sequence": {
+            "type": "integer",
+            "description": "For categories with multiple images, the sequence is the order in which this image appears. Whole number data. Required.",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Image or video associated with a category."
+      },
+      "CategoryContent": {
+        "type": "object",
+        "properties": {
+          "categoryImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryImage"
+            },
+            "description": "Images associated with the category.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the category as it appears on the storefront.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the category as it appears on the storefront.",
+            "nullable": true
+          },
+          "pageTitle": {
+            "type": "string",
+            "description": "Title that appears at the top of new pages.",
+            "nullable": true
+          },
+          "metaTagTitle": {
+            "type": "string",
+            "description": "Metadata title. Metadata can be used to manage information internally.",
+            "nullable": true
+          },
+          "metaTagDescription": {
+            "type": "string",
+            "description": "Metadata description. Metadata can be used to manage information internally.",
+            "nullable": true
+          },
+          "metaTagKeywords": {
+            "type": "string",
+            "description": "Metadata keywords. Metadata can be used to manage information internally.",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "description": "Human-readable identifier given to the category to create friendly URLs.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Name of the category and optionally, a description, page title, friendly URL, associated images, and any metadata."
+      },
+      "BundledProductBase": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Merchant-created code associated with the product, for example, a SKU.",
+            "nullable": true
+          },
+          "goodsType": {
+            "type": "string",
+            "description": "The GoodsType of this product (Physical, Digital, DigitalCredit)",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The quantity of the bundled product",
+            "format": "int32"
+          },
+          "measurements": {
+            "$ref": "#/components/schemas/CatalogRuntimesPackageMeasurements"
+          },
+          "isPackagedStandAlone": {
+            "type": "boolean",
+            "description": "Is this product shipped in its own package",
+            "nullable": true
+          },
+          "inventoryInfo": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductInventoryInfo"
+          },
+          "optionAttributeFQN": {
+            "type": "string",
+            "description": "Fully Qualified Name of the selected option's attribute (only applies to Products as extras)",
+            "nullable": true
+          },
+          "optionValue": {
+            "description": "Value of the selected option (only applies to Products as extras)",
+            "nullable": true
+          },
+          "creditValue": {
+            "type": "number",
+            "description": "Credit Value applicable to this product. Should only be present on DigitalCredit goodsType....",
+            "format": "double",
+            "nullable": true
+          },
+          "productType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Details of a product, including its product code, name, description, options (if any), and current state--whether the product can be purchased given the options selected currently."
+      },
+      "ProductImage": {
+        "type": "object",
+        "properties": {
+          "imageLabel": {
+            "type": "string",
+            "description": "Image title.  Unicode data with a maximum length of 50 characters.",
+            "nullable": true
+          },
+          "altText": {
+            "type": "string",
+            "description": "Descriptive text associated with the image. Unicode data with a maximum length of 200 characters.",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "description": "Image URL. Unicode data with a maximum length of 4000 characters.",
+            "nullable": true
+          },
+          "cmsId": {
+            "type": "string",
+            "description": "Id of the image in the CMS.",
+            "nullable": true
+          },
+          "videoUrl": {
+            "type": "string",
+            "description": "URL of the video. Unicode data with a maximum length of 4000 characters.",
+            "nullable": true
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "Type of media. Used by the client to determine how to render the image or video or what have you.",
+            "nullable": true
+          },
+          "sequence": {
+            "type": "integer",
+            "description": "For products with multiple images, the sequence is the order in which this image appears. Whole number data. Required.",
+            "format": "int32",
+            "nullable": true
+          },
+          "productImageGroupId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Image or video associated with a product."
+      },
+      "ProductContent": {
+        "type": "object",
+        "properties": {
+          "productName": {
+            "type": "string",
+            "description": "Name of the product.",
+            "nullable": true
+          },
+          "productFullDescription": {
+            "type": "string",
+            "description": "Detailed description of the product typically used for a product details page.",
+            "nullable": true
+          },
+          "productShortDescription": {
+            "type": "string",
+            "description": "Brief description of the product typically used when the product is displayed in a list or search results.",
+            "nullable": true
+          },
+          "metaTagTitle": {
+            "type": "string",
+            "description": "Metadata title used to manage information internally.",
+            "nullable": true
+          },
+          "metaTagDescription": {
+            "type": "string",
+            "description": "Metadata description used to manage information internally.",
+            "nullable": true
+          },
+          "metaTagKeywords": {
+            "type": "string",
+            "description": "Metadata keywords used to manage information internally.",
+            "nullable": true
+          },
+          "seoFriendlyUrl": {
+            "type": "string",
+            "description": "Human-readable identifier defined for the product to create friendly URLs.",
+            "nullable": true
+          },
+          "productImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductImage"
+            },
+            "description": "Images associated with the product.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Name of the product and, if supplied, description, metatags, friendly URL, and associated images."
+      },
+      "ValidationMessage": {
+        "type": "object",
+        "properties": {
+          "severity": {
+            "type": "string",
+            "description": "Severity level of the validation failure.\r\n Must be one of the values in SeverityConst.",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "description": "What invoked the validation.  Must be one of the values in SourceTypeConst.",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Message displayed to the user when this validation failure occurred.",
+            "nullable": true
+          },
+          "validationType": {
+            "type": "string",
+            "description": "Type of validation error that occurred. This can be checked programatically. \r\n Must be one of the values in ValidationTypeConst.",
+            "nullable": true
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "Unique identifier of the source that invoked the validation failure.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductPurchasableState": {
+        "type": "object",
+        "properties": {
+          "isPurchasable": {
+            "type": "boolean",
+            "description": "If true, this product is currently available for purchase. For products with options, this is false until the shopper selects all required options."
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationMessage"
+            },
+            "description": "Message associated with this product if it is not ready to be purchased. For products with options, message contains which required options are missing.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Current state of the product purchase, that is, whether it is ready to be purchased. For products with configurable options,     /// the product is purchaseable if the shopper has selected all required options. If not, a message lists which required options are missing."
+      },
+      "ProductPriceRange": {
+        "type": "object",
+        "properties": {
+          "lower": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPrice"
+          },
+          "upper": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPrice"
+          }
+        },
+        "additionalProperties": false,
+        "description": "For products with options that vary the cost of the product, the range between lowest and highest possible price of the product based on the current selection of options."
+      },
+      "ProductVolumePrice": {
+        "type": "object",
+        "properties": {
+          "isCurrent": {
+            "type": "boolean"
+          },
+          "minQty": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxQty": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "priceRange": {
+            "$ref": "#/components/schemas/ProductPriceRange"
+          },
+          "price": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPrice"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AttributeDetail": {
+        "type": "object",
+        "properties": {
+          "valueType": {
+            "type": "string",
+            "description": "The ValueType of the attribute. Valid values for ValueType are defined in ValueTypeTypeConst.",
+            "nullable": true
+          },
+          "inputType": {
+            "type": "string",
+            "description": "The InputType type of the attribute. Valid values for InputType are defined in InputTypeConst.",
+            "nullable": true
+          },
+          "dataType": {
+            "type": "string",
+            "description": "The DataType of the attribute. Valid values for DataType are defined in DataTypeTypeConst.",
+            "nullable": true
+          },
+          "usageType": {
+            "type": "string",
+            "description": "The UsageType of the attribute. Valid values for the usageType are defined in UsageTypeConst .",
+            "nullable": true
+          },
+          "dataTypeSequence": {
+            "type": "integer",
+            "description": "A unique sequence of the attribute By dataType (used for common naming of fields in search index)",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the attribute in the language specified by LocaleCode.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the attribute in the language specified by LocaleCode.",
+            "nullable": true
+          },
+          "validation": {
+            "$ref": "#/components/schemas/CatalogAdminsAttributeValidation"
+          },
+          "searchableInStorefront": {
+            "type": "boolean",
+            "description": "Indicates whether the attribute value is searchable."
+          },
+          "searchDisplayValue": {
+            "type": "boolean",
+            "description": "If true, the system will index the display value of string attributes instead of the canonical value for searching. \r\nThe canonical value will always be used for filtering. Does not apply for for non-string attributes."
+          },
+          "allowFilteringAndSortingInStorefront": {
+            "type": "boolean",
+            "description": "Indicates whether the attribute should be able to be used in filters, facets, and sorting on the public storefront."
+          },
+          "indexValueWithCase": {
+            "type": "boolean",
+            "description": "Indicates whether the attribtue value is indexed with case or not",
+            "nullable": true
+          },
+          "customWeightInStorefrontSearch": {
+            "type": "boolean",
+            "description": "Indicates whether the attribtue value is indexed so that it can have a custom relevency weight compared to other attributes in a tokenized text search",
+            "nullable": true
+          },
+          "displayIntention": {
+            "type": "string",
+            "description": "Am optional hint to the theme about how this attribute should be displayed (what control to use)",
+            "nullable": true
+          },
+          "availableForOrderRouting": {
+            "type": "boolean",
+            "description": "Indicates whether the attribute is available for order routing"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Product Attribute properties common between a Product Propery, Option, and Extra"
+      },
+      "VariationOption": {
+        "type": "object",
+        "properties": {
+          "valueSequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "attributeFQN": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VariationSummary": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Merchant-created code associated with the variation product, for example, a SKU.",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VariationOption"
+            },
+            "description": "The combination of options that resolve to this variation product",
+            "nullable": true
+          },
+          "inventoryInfo": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductInventoryInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Details of a product, including its product code, name, description, options (if any), and current state--whether the product can be purchased given the options selected currently."
+      },
+      "ProductCollectionMember": {
+        "type": "object",
+        "properties": {
+          "memberKey": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductCollectionMemberKey"
+          }
+        },
+        "additionalProperties": false,
+        "description": "List of products that belong to a product collection product."
+      },
+      "ProductForIndexing": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CatalogRuntimesProduct"
+          }
+        ],
+        "properties": {
+          "slices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProduct"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductOptionSelection": {
+        "type": "object",
+        "properties": {
+          "attributeFQN": {
+            "type": "string",
+            "description": "Fully Qualified Name of the selected option's attribute",
+            "nullable": true
+          },
+          "value": {
+            "description": "Value of the selected option",
+            "nullable": true
+          },
+          "attributeValueId": {
+            "type": "integer",
+            "description": "The unique ValueId of the Attribute (this can be sent as an alternative the to the AttributeFqn and Value)",
+            "format": "int32",
+            "nullable": true
+          },
+          "shopperEnteredValue": {
+            "description": "Value that shopper entered if this is an Extra of VaolueType ShopperEntered.  This allows shopper data entry (such as the shopper's initials).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Name of the option that has been selected, and, if this is a stand-alone option, the value that the shopper entered."
+      },
+      "ProductOptionSelections": {
+        "type": "object",
+        "properties": {
+          "variationProductCode": {
+            "type": "string",
+            "description": "For a product with options, the code of the product variation that represents the current selection of product options.",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductOptionSelection"
+            },
+            "description": "List of the product options that the shopper has currently selected.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "If the product has configurable options, the current state of the shopper's selections."
+      },
+      "ConfiguredProduct": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Merchant-created code associated with the product, for example, a SKU.",
+            "nullable": true
+          },
+          "purchaseLocation": {
+            "type": "string",
+            "description": "The location where the product is being purchased.. default is null. Products can have different prices\r\nby purchaseLocation via custom priceListResolution....",
+            "nullable": true
+          },
+          "fulfillmentTypesSupported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Indicates the fulfillment types the product supports.",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "description": "For a product with options, the code of the product variation that represents the current selection of product options. \r\nQuestion: is this right?",
+            "nullable": true
+          },
+          "upc": {
+            "type": "string",
+            "description": "UPC code of the product.",
+            "nullable": true
+          },
+          "mfgPartNumber": {
+            "type": "string",
+            "description": "Manufacturer part number.",
+            "nullable": true
+          },
+          "purchasableState": {
+            "$ref": "#/components/schemas/ProductPurchasableState"
+          },
+          "priceRange": {
+            "$ref": "#/components/schemas/ProductPriceRange"
+          },
+          "volumePriceBands": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductVolumePrice"
+            },
+            "description": "For products with bulk pricing... this will be populated with pricebands, depending on what options have been selected...",
+            "nullable": true
+          },
+          "volumePriceRange": {
+            "$ref": "#/components/schemas/ProductPriceRange"
+          },
+          "price": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPrice"
+          },
+          "availableShippingDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesDiscount"
+            },
+            "description": "List of potential shipping discounts available for this product.",
+            "nullable": true
+          },
+          "measurements": {
+            "$ref": "#/components/schemas/CatalogRuntimesPackageMeasurements"
+          },
+          "inventoryInfo": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductInventoryInfo"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductOption"
+            },
+            "description": "Remaining options and option values that can be selected given the shopper's current selection of options.",
+            "nullable": true
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductProperty"
+            },
+            "description": "Remaining options and option values that can be selected given the shopper's current selection of options.",
+            "nullable": true
+          },
+          "priceListEntryTypeProperty": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductProperty"
+          },
+          "productImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductImage"
+            },
+            "description": "Images associated with the product.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Product as it is currently configured on the storefront. The configuration changes each time the shopper changes the product order."
+      },
+      "BundledProductSummary": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BundledProductBase"
+          }
+        ],
+        "properties": {
+          "productShortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductValidationSummary": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Merchant-created code associated with the product, for example, a SKU.",
+            "nullable": true
+          },
+          "purchaseLocation": {
+            "type": "string",
+            "description": "The location where the product is being purchased.. default is null. Products can have different prices\r\nby purchaseLocation via custom priceListResolution....",
+            "nullable": true
+          },
+          "productUsage": {
+            "type": "string",
+            "description": "The UsageType of this product (Standard, Configurable, Bundle, Component)",
+            "nullable": true
+          },
+          "fulfillmentTypesSupported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Indicates the fulfillment types the product supports.",
+            "nullable": true
+          },
+          "goodsType": {
+            "type": "string",
+            "description": "The GoodsType of the product (Physical, Digital, DigitalCredit....)",
+            "nullable": true
+          },
+          "bundledProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BundledProductSummary"
+            },
+            "description": "The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle",
+            "nullable": true
+          },
+          "upc": {
+            "type": "string",
+            "description": "UPC code of the product.",
+            "nullable": true
+          },
+          "mfgPartNumber": {
+            "type": "string",
+            "description": "Manufacturer part number.",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "description": "For a product with options, the code of the product variation that represents the current selection of product options.",
+            "nullable": true
+          },
+          "purchasableState": {
+            "$ref": "#/components/schemas/ProductPurchasableState"
+          },
+          "price": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPrice"
+          },
+          "measurements": {
+            "$ref": "#/components/schemas/CatalogRuntimesPackageMeasurements"
+          },
+          "isPackagedStandAlone": {
+            "type": "boolean",
+            "description": "Is this product shipped in its own package",
+            "nullable": true
+          },
+          "image": {
+            "$ref": "#/components/schemas/ProductImage"
+          },
+          "productShortDescription": {
+            "type": "string",
+            "description": "Brief description of the product typically used when the product is displayed in a list or search results.",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "description": "Name of the product.",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesCategory"
+            },
+            "description": "Categories to which the product belongs.",
+            "nullable": true
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductProperty"
+            },
+            "description": "List of product Properties.",
+            "nullable": true
+          },
+          "pricingBehavior": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPricingBehaviorInfo"
+          },
+          "inventoryInfo": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductInventoryInfo"
+          },
+          "isTaxable": {
+            "type": "boolean",
+            "description": "If true, the product listed on the live order is subject to tax."
+          },
+          "productType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DiscountSelections": {
+        "type": "object",
+        "properties": {
+          "discountIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Discount Ids",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Discount Selections"
+      },
+      "DiscountValidationSummary": {
+        "type": "object",
+        "properties": {
+          "applicableDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesDiscount"
+            },
+            "description": "Applicable/Valid Discounts",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides a summary (more accurately it is a container) for valid discounts for potentially valid discounts for a product"
+      },
+      "LocationInventory": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "stockAvailable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "softStockAvailable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "mfgPartNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "futureInventories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesFutureInventory"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The inventory for a product at a specific Location"
+      },
+      "LocationInventoryCollection": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationInventory"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductSubstitution": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Merchant-created code associated with the product, for example, a SKU.",
+            "nullable": true
+          },
+          "baseProductCode": {
+            "type": "string",
+            "description": "When a configurable product has IsPurchasable=true on a GetProduct, this property will be populated for submission to cart.",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "nullable": true
+          },
+          "productUsage": {
+            "type": "string",
+            "description": "The UsageType of this product (Standard, Configurable, Bundle, Component, Collection)",
+            "nullable": true
+          },
+          "upc": {
+            "type": "string",
+            "description": "UPC code of the products (populated for configurable products).",
+            "nullable": true
+          },
+          "mfgPartNumber": {
+            "type": "string",
+            "description": "Manufacturer part number.",
+            "nullable": true
+          },
+          "price": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPrice"
+          },
+          "productImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductImage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductSubstituteCollection": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSubstitution"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationInventoryQuery": {
+        "type": "object",
+        "properties": {
+          "locationCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "productCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "inventoryTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesInventoryTag"
+            },
+            "nullable": true
+          },
+          "includeFutureInventory": {
+            "type": "boolean"
+          },
+          "forceDefaultsForUnspecifiedTagCategories": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The inventory for a product at a specific Location"
+      },
+      "ProductCostQuery": {
+        "type": "object",
+        "properties": {
+          "productCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductCostCollection": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductCost"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchSuggestion": {
+        "type": "object",
+        "properties": {
+          "suggestionType": {
+            "type": "string",
+            "description": "The type of Suggestion (e.g. Term, Product, Category). \r\nWill be one of the values of the SuggestionTypeConst type.",
+            "nullable": true
+          },
+          "suggestion": {
+            "description": "A suggested entity based on the search query. Use the SuggestionType to determine the type of entity.\r\nCould be a SearchTerm, Product, or Category",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A suggested result based on the search query"
+      },
+      "SearchSuggestionGroup": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Group Name",
+            "nullable": true
+          },
+          "suggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchSuggestion"
+            },
+            "description": "List of related SearchSuggestions",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchSuggestionResult": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Text that the shopper types in a search query.",
+            "nullable": true
+          },
+          "suggestionGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchSuggestionGroup"
+            },
+            "description": "List of SearchSuggestionGroups",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "List of items to suggest to the shopper who is entering a search query, for example, a search box on the storefront."
+      },
+      "RequestFilter": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VisualSearchResult": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "nullable": true
+          },
+          "trackingId": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductSearchRandomAccessCursor": {
+        "type": "object",
+        "properties": {
+          "cursorMarks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of cursor marks for the query. Provide a given cursor mark to the product search or getProducts cursorMark parameter to retrieve the associated products",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A calculated set of cursor marks for a given query that can be accessed in any order, providing the ability to page through all results in random/paralellized order"
+      },
+      "FacetValue": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "isApplied": {
+            "type": "boolean",
+            "description": "True if this FacetValue was supplied as a facet value filter in the current search",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of occurrences of FacetValue in result set.",
+            "format": "int32"
+          },
+          "value": {
+            "type": "string",
+            "description": "String representation of Facet Value",
+            "nullable": true
+          },
+          "filterValue": {
+            "type": "string",
+            "description": "Submit this as a facet value filter",
+            "nullable": true
+          },
+          "rangeQueryValueStart": {
+            "type": "string",
+            "description": "When range query Facet",
+            "nullable": true
+          },
+          "rangeQueryValueEnd": {
+            "type": "string",
+            "description": "When range query Facet",
+            "nullable": true
+          },
+          "parentFacetValue": {
+            "type": "string",
+            "description": "When hierarchical Facet",
+            "nullable": true
+          },
+          "isDisplayed": {
+            "type": "boolean",
+            "description": "Indicates whether the FacetValue should be displayed"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "SolrDebugInfo": {
+        "type": "object",
+        "properties": {
+          "searchTuningRuleCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "boostedProductCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "blockedProductCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "boostQueries": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "boostFunctions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "solrUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CandidateCorrection": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Collation query from search engine",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Spell correction"
+      },
+      "ProductBaseProductSearchResult": {
+        "type": "object",
+        "properties": {
+          "facets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesFacet"
+            },
+            "nullable": true
+          },
+          "solrDebugInfo": {
+            "$ref": "#/components/schemas/SolrDebugInfo"
+          },
+          "searchRedirect": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchEngine": {
+            "type": "string",
+            "nullable": true
+          },
+          "nextCursorMark": {
+            "type": "string",
+            "nullable": true
+          },
+          "spellcheck": {
+            "$ref": "#/components/schemas/CatalogRuntimesSpellcheck"
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProduct"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductSearchResult": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProductBaseProductSearchResult"
+          }
+        ],
+        "additionalProperties": false,
+        "description": "Products and facets returned from search criteria supplied in a ProductSearch query."
+      },
+      "PreviewCampaignSettings": {
+        "type": "object",
+        "properties": {
+          "campaignName": {
+            "type": "string",
+            "nullable": true
+          },
+          "campaignStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "campaignEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "siteSearchSettings": {
+            "$ref": "#/components/schemas/CampaignSiteSearchSettings"
+          },
+          "productSuggestSettings": {
+            "$ref": "#/components/schemas/CampaignProductSuggestSettings"
+          },
+          "listingSettings": {
+            "$ref": "#/components/schemas/CampaignListingSettings"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FindProductsPreviewParameters": {
+        "type": "object",
+        "properties": {
+          "mid": {
+            "type": "string",
+            "nullable": true
+          },
+          "query": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "searchType": {
+            "type": "string",
+            "nullable": true
+          },
+          "fieldList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "searchSettings": {
+            "type": "string",
+            "nullable": true
+          },
+          "campaignSettings": {
+            "$ref": "#/components/schemas/PreviewCampaignSettings"
+          }
+        },
+        "additionalProperties": false,
+        "description": "This should follow the immutable DTO pattern"
+      },
+      "ProductSearchPreviewResult": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProductBaseProductSearchResult"
+          }
+        ],
+        "additionalProperties": false,
+        "description": "Products and search information returned for search preview query."
+      },
+      "SearchType": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "SearchMerchandizingRuleField": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchMerchandizingImpactItem": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "sliceValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isPinned": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchMerchandizingSortField": {
+        "type": "object",
+        "properties": {
+          "direction": {
+            "type": "string",
+            "nullable": true
+          },
+          "propertyName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchMerchandizingBoostType": {
+        "enum": [
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "SearchMerchandizingBoostValueExpression": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "boostNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "operator": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchMerchandizingBoostField": {
+        "type": "object",
+        "properties": {
+          "fieldName": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueExpressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchMerchandizingBoostValueExpression"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchMerchandizingFieldValueBoost": {
+        "type": "object",
+        "properties": {
+          "boostType": {
+            "$ref": "#/components/schemas/SearchMerchandizingBoostType"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchMerchandizingBoostField"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchMerchandizingFilter": {
+        "type": "object",
+        "properties": {
+          "inclusion": {
+            "type": "string",
+            "nullable": true
+          },
+          "exclusion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchMerchandizingRuleImpact": {
+        "type": "object",
+        "properties": {
+          "rankedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchMerchandizingImpactItem"
+            },
+            "nullable": true
+          },
+          "buriedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchMerchandizingImpactItem"
+            },
+            "nullable": true
+          },
+          "excludedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchMerchandizingImpactItem"
+            },
+            "nullable": true
+          },
+          "sortFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchMerchandizingSortField"
+            },
+            "nullable": true
+          },
+          "fieldValueBoost": {
+            "$ref": "#/components/schemas/SearchMerchandizingFieldValueBoost"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/SearchMerchandizingFilter"
+          }
+        },
+        "additionalProperties": false,
+        "description": "SearchMerchandizingRule Condition"
+      },
+      "SearchMerchandizingRuleParameters": {
+        "type": "object",
+        "properties": {
+          "personalizationUserId": {
+            "type": "string",
+            "description": "User specific personalization ID.\r\nFor Monetate users (AKA MID), it follows this format 2.x.y, where x and y are integers",
+            "nullable": true
+          },
+          "query": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "searchMerchandizingRule": {
+            "$ref": "#/components/schemas/CatalogRuntimesSearchMerchandizingRule"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerchandizingRulePreviewResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "SearchMerchandizingPreview requires Position, IsRanked, IsPinned, IsBuried"
+      },
+      "AdminUserAuditInfo": {
+        "type": "object",
+        "properties": {
+          "updateDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updateBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createBy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesDiscount": {
+        "type": "object",
+        "properties": {
+          "discountId": {
+            "type": "integer",
+            "description": "Unique identifier of the discount.",
+            "format": "int32"
+          },
+          "expirationDate": {
+            "type": "string",
+            "description": "Date when the discount expires.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the discount.",
+            "nullable": true
+          },
+          "friendlyDescription": {
+            "type": "string",
+            "description": "Description of the discount.",
+            "nullable": true
+          },
+          "impact": {
+            "type": "number",
+            "description": "The Impact of the individual Discount",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Discount name and expiration date."
+      },
+      "CatalogRuntimesAppliedDiscount": {
+        "type": "object",
+        "properties": {
+          "couponCode": {
+            "type": "string",
+            "description": "If the discount is a coupon, code associated with the coupon.",
+            "nullable": true
+          },
+          "discount": {
+            "$ref": "#/components/schemas/CatalogRuntimesDiscount"
+          },
+          "discounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesDiscount"
+            },
+            "description": "Discount name and expiration date.",
+            "nullable": true
+          },
+          "impact": {
+            "type": "number",
+            "description": "The new calculated price of the product. That is, the product price minus the discount amount.",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Discount applied to the product."
+      },
+      "CatalogRuntimesFutureInventory": {
+        "type": "object",
+        "properties": {
+          "futureInventoryID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "onhand": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "available": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "allocated": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pending": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "deliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The future inventory for a product at a specific Location"
+      },
+      "CommerceRuntimeMeasurement": {
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesPackageMeasurements": {
+        "type": "object",
+        "properties": {
+          "packageHeight": {
+            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
+          },
+          "packageWidth": {
+            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
+          },
+          "packageLength": {
+            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
+          },
+          "packageWeight": {
+            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Physical dimensions of the package required to ship the product and its weight."
+      },
+      "CatalogRuntimesProductOption": {
+        "type": "object",
+        "properties": {
+          "attributeFQN": {
+            "type": "string",
+            "description": "Attribute fully qualified name",
+            "nullable": true
+          },
+          "isRequired": {
+            "type": "boolean",
+            "description": "If true, the shopper must provide a value for the option before it can be purchased.",
+            "nullable": true
+          },
+          "isMultiValue": {
+            "type": "boolean",
+            "description": "If true, more than one value can be assigned to an option. Only possible with stand-alone options.",
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductOptionValue"
+            },
+            "description": "Possible choices for an option, for example, values of the option \"Color\" can be \"red,\" \"white,\" and \"blue.\"",
+            "nullable": true
+          },
+          "attributeDetail": {
+            "$ref": "#/components/schemas/AttributeDetail"
+          },
+          "isProductImageGroupSelector": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An option for a product and its list of values, if any. Also includes whether the option is configurable or stand-alone, whether it is required, whether it can have mulitple values and whether the shopper can supply its value (for example, engraved initials)."
+      },
+      "CatalogRuntimesProductPropertyValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "nullable": true
+          },
+          "stringValue": {
+            "type": "string",
+            "description": "Localized Value in the language of the locale code",
+            "nullable": true
+          },
+          "displayInfo": {
+            "$ref": "#/components/schemas/CatalogRuntimesAttributeVocabularyValueDisplayInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Value of product property"
+      },
+      "CatalogRuntimesProductProperty": {
+        "type": "object",
+        "properties": {
+          "attributeFQN": {
+            "type": "string",
+            "description": "Attribute fully qualified name",
+            "nullable": true
+          },
+          "isHidden": {
+            "type": "boolean",
+            "description": "Indicates whether the product property should be hidden from the customer",
+            "nullable": true
+          },
+          "isMultiValue": {
+            "type": "boolean",
+            "description": "Indicates whether it's possible for there to be more than one value in the Values field",
+            "nullable": true
+          },
+          "attributeDetail": {
+            "$ref": "#/components/schemas/AttributeDetail"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductPropertyValue"
+            },
+            "description": "Value(s) of the product property",
+            "nullable": true
+          },
+          "propertyType": {
+            "type": "string",
+            "description": "Property Type of the Property",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An attribute used as a property of a product"
+      },
+      "CatalogRuntimesCategory": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "description": "Internal unique identifier of the category. System-supplied and read-only.",
+            "format": "int32"
+          },
+          "content": {
+            "$ref": "#/components/schemas/CategoryContent"
+          },
+          "sequence": {
+            "type": "integer",
+            "description": "Order in which categories appear when they are at the same level (siblings). For example, categories can be sequenced so that a specific category always appears first (or last).",
+            "format": "int32",
+            "nullable": true
+          },
+          "isDisplayed": {
+            "type": "boolean",
+            "description": "Indicates whether the category should be displayed."
+          },
+          "categoryCode": {
+            "type": "string",
+            "description": "External unique identifier of the category.",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer",
+            "description": "Indicates whether the category should be displayed.",
+            "format": "int32",
+            "nullable": true
+          },
+          "updateDate": {
+            "type": "string",
+            "description": "Last Modified Date Time",
+            "format": "date-time"
+          },
+          "shouldSlice": {
+            "type": "boolean",
+            "description": "Indicates whether the category should be sliced"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesCategoryAttribute"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The category hierarchy of your store as it appears on the storefront. This is the category heirarchy defined with the admin/category resource except for any categories with an IsDisplayed value set to false."
+      },
+      "CatalogRuntimesProductPrice": {
+        "type": "object",
+        "properties": {
+          "msrp": {
+            "type": "number",
+            "description": "Manufacturer suggested Retail price, this may be null if one is not set in the catalog.",
+            "format": "double",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "description": "Listed Price of the product. This is the price that the merchant intends to sell the product for if no sale is active.",
+            "format": "double",
+            "nullable": true
+          },
+          "priceType": {
+            "type": "string",
+            "description": "Futher clarification of what value is being returned in the Price field",
+            "nullable": true
+          },
+          "salePrice": {
+            "type": "number",
+            "description": "Current sale price of the product. This can be either a specific numerical amount or it can be calculated based on an active discount. Optional.",
+            "format": "double",
+            "nullable": true
+          },
+          "salePriceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "catalogSalePrice": {
+            "type": "number",
+            "description": "Current sale price of the product listed in the catalog. This is not typically dispalyed directly to the user as it will be listed in SalePrice if applicable.",
+            "format": "double",
+            "nullable": true
+          },
+          "catalogListPrice": {
+            "type": "number",
+            "description": "Current Price Listed in the catalog.",
+            "format": "double",
+            "nullable": true
+          },
+          "priceListEntryEndDate": {
+            "type": "string",
+            "description": "EndDate if PriceListEntry present.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "discount": {
+            "$ref": "#/components/schemas/CatalogRuntimesAppliedDiscount"
+          },
+          "creditValue": {
+            "type": "number",
+            "description": "Credit Value applicable to this product. Should only be present on DigitalCredit goodsType....",
+            "format": "double",
+            "nullable": true
+          },
+          "effectivePricelistCode": {
+            "type": "string",
+            "description": "The priceList that was applied to this product",
+            "nullable": true
+          },
+          "priceListEntryCode": {
+            "type": "string",
+            "description": "The specific PriceListCode that was applied (includes inheritence",
+            "nullable": true
+          },
+          "priceListEntryMode": {
+            "type": "string",
+            "description": "IF a PriceList Entry was applied to this price it will be (simple, bulk...)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Price of the product with any sale and discounts applied."
+      },
+      "CatalogRuntimesBundledProduct": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BundledProductBase"
+          }
+        ],
+        "properties": {
+          "content": {
+            "$ref": "#/components/schemas/ProductContent"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesProduct": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Merchant-created code associated with the product, for example, a SKU.",
+            "nullable": true
+          },
+          "purchaseLocation": {
+            "type": "string",
+            "description": "The location where the product is being purchased.. default is null. Products can have different prices\r\nby purchaseLocation via custom priceListResolution....",
+            "nullable": true
+          },
+          "productSequence": {
+            "type": "integer",
+            "description": "System generated monotonically increasing sequence",
+            "format": "int32",
+            "nullable": true
+          },
+          "productUsage": {
+            "type": "string",
+            "description": "The UsageType of this product (Standard, Configurable, Bundle, Component, Collection)",
+            "nullable": true
+          },
+          "fulfillmentTypesSupported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Indicates the fulfillment types the product supports.",
+            "nullable": true
+          },
+          "goodsType": {
+            "type": "string",
+            "description": "The GoodsType of the product (Physical, Digital, DigitalCredit....)",
+            "nullable": true
+          },
+          "bundledProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesBundledProduct"
+            },
+            "description": "The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/ProductContent"
+          },
+          "purchasableState": {
+            "$ref": "#/components/schemas/ProductPurchasableState"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "If true, the product exists. If not, the product should not appear in search results.",
+            "nullable": true
+          },
+          "publishState": {
+            "type": "string",
+            "description": "Represents the published state of the product returned. Valid values for ValueType are defined in PublishStateConst.",
+            "nullable": true
+          },
+          "price": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPrice"
+          },
+          "priceRange": {
+            "$ref": "#/components/schemas/ProductPriceRange"
+          },
+          "volumePriceBands": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductVolumePrice"
+            },
+            "description": "For products with bulk pricing... this will be populated with pricebands, depending on what options have been selected...",
+            "nullable": true
+          },
+          "volumePriceRange": {
+            "$ref": "#/components/schemas/ProductPriceRange"
+          },
+          "availableShippingDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesDiscount"
+            },
+            "description": "List of potential shipping discounts available for this product.",
+            "nullable": true
+          },
+          "productType": {
+            "type": "string",
+            "nullable": true
+          },
+          "productTypeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isTaxable": {
+            "type": "boolean",
+            "description": "If true, the product is subject to tax."
+          },
+          "isRecurring": {
+            "type": "boolean",
+            "description": "If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription."
+          },
+          "pricingBehavior": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductPricingBehaviorInfo"
+          },
+          "inventoryInfo": {
+            "$ref": "#/components/schemas/CatalogRuntimesProductInventoryInfo"
+          },
+          "createDate": {
+            "type": "string",
+            "description": "When the product was created with the product admin resource.",
+            "format": "date-time"
+          },
+          "updateDate": {
+            "type": "string",
+            "description": "When the product was last modified with the product admin resource.",
+            "format": "date-time"
+          },
+          "dateFirstAvailableInCatalog": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "catalogStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "catalogEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "daysAvailableInCatalog": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "upc": {
+            "type": "string",
+            "description": "UPC code of the product.",
+            "nullable": true
+          },
+          "upCs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "UPC code of the products (populated for configurable products).",
+            "nullable": true
+          },
+          "mfgPartNumber": {
+            "type": "string",
+            "description": "Manufacturer part number.",
+            "nullable": true
+          },
+          "mfgPartNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Manufacturer part numbers (populated for configurable products).",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "description": "When a configurable product has IsPurchasable=true on a GetProduct, this property will be populated for submission to cart.",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesCategory"
+            },
+            "description": "List of categories to which this product belongs.",
+            "nullable": true
+          },
+          "measurements": {
+            "$ref": "#/components/schemas/CatalogRuntimesPackageMeasurements"
+          },
+          "isPackagedStandAlone": {
+            "type": "boolean",
+            "description": "Is this product shipped in its own package",
+            "nullable": true
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductProperty"
+            },
+            "description": "List of product properties. These are attributes that might apply to multiple products, for example, price, size, manufacturer. These attributes cannot be configured by the shopper.",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductOption"
+            },
+            "description": "List of the product's configurable options and extras. \r\nIncludes whether an option is configurable (for example, a T-shirt) or an Extra (for example, monogram or gift-wrapping).",
+            "nullable": true
+          },
+          "variations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VariationSummary"
+            },
+            "nullable": true
+          },
+          "validPriceLists": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of valid pricelists for the product",
+            "nullable": true
+          },
+          "locationsInStock": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Any location code (eq) or array of location codes which are in stock.",
+            "nullable": true
+          },
+          "slicingAttributeFQN": {
+            "type": "string",
+            "nullable": true
+          },
+          "productImageGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductImageGroup"
+            },
+            "description": "List of the image groups this product uses.\r\nImage groups are used to map different images to different product options.\r\nIf the product doesn't have options then all images will be in the default\r\nimage group.",
+            "nullable": true
+          },
+          "sliceValue": {
+            "type": "string",
+            "description": "Readonly value of the selected value of the option corresponding to the Mozu.ProductRuntime.Contracts.Product.SlicingAttributeFQN",
+            "nullable": true
+          },
+          "productCollections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductCollectionInfo"
+            },
+            "description": "List of product codes of product collections that this product is a member of.",
+            "nullable": true
+          },
+          "productCollectionMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCollectionMember"
+            },
+            "description": "list of member products that are part of the collection\r\nThis requires that the ProductUsage be set to Collection",
+            "nullable": true
+          },
+          "collectionMembersProductContent": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductContent"
+            },
+            "description": "Only used for indexing",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "description": "The item's search engine relevancy score.",
+            "format": "double"
+          },
+          "personalizationScore": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Details of a product, including its product code, name, description, options (if any), and current state--whether the product can be purchased given the options selected currently."
+      },
+      "CatalogAdminsAttributeValidation": {
+        "type": "object",
+        "properties": {
+          "regularExpression": {
+            "type": "string",
+            "description": "Regular expression to run against the attribute value. This should follow JavaScript/EMCA's Regular Expression syntax.",
+            "nullable": true
+          },
+          "minStringLength": {
+            "type": "integer",
+            "description": "For validating strings, minimum length allowed for a string.",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxStringLength": {
+            "type": "integer",
+            "description": "For validating strings, maximum length allowed for a string.",
+            "format": "int32",
+            "nullable": true
+          },
+          "minNumericValue": {
+            "type": "number",
+            "description": "For validating Number attribute value, minimum number allowed.",
+            "format": "double",
+            "nullable": true
+          },
+          "maxNumericValue": {
+            "type": "number",
+            "description": "For validating Number attribute value, maximum number allowed.",
+            "format": "double",
+            "nullable": true
+          },
+          "minDateValue": {
+            "type": "string",
+            "description": "For validating a DateTime attribute value, minimum datetime allowed.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "maxDateValue": {
+            "type": "string",
+            "description": "For validating a DateTime attribute value, maximum datetime allowed.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Used to validate attributes."
+      },
+      "CatalogRuntimesInventoryTag": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The tags for the inventory"
+      },
+      "CatalogRuntimesCategoryAttribute": {
+        "type": "object",
+        "properties": {
+          "fullyQualifiedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "values": {
+            "type": "array",
+            "items": {},
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesCurrencyExchangeRate": {
+        "type": "object",
+        "properties": {
+          "fromCurrencyCode": {
+            "type": "string",
+            "description": "The source currency code",
+            "nullable": true
+          },
+          "toCurrencyCode": {
+            "type": "string",
+            "description": "The target currency code",
+            "nullable": true
+          },
+          "rate": {
+            "type": "number",
+            "description": "The exchange rate",
+            "format": "double",
+            "nullable": true
+          },
+          "multiplier": {
+            "type": "number",
+            "description": "An additional multiplier to use in calculations",
+            "format": "double",
+            "nullable": true
+          },
+          "decimalPlaces": {
+            "type": "integer",
+            "description": "Number of decimal places",
+            "format": "int32",
+            "nullable": true
+          },
+          "roundingStrategy": {
+            "type": "integer",
+            "description": "Rounding strategy",
+            "format": "int32",
+            "nullable": true
+          },
+          "referenceData": {
+            "type": "string",
+            "description": "Reference data for miscellaneous metadata from updates",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The currency exchange rates from one currency to another."
+      },
+      "CatalogRuntimesFacet": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "facetType": {
+            "type": "string",
+            "description": "Value, RangeQuery, Hierarchy",
+            "nullable": true
+          },
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FacetValue"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "For faceted searches, name of the facet and list of facet values. For example, a facet called \"Brands\" may have the facet values \"Apple,\" \"Motorola,\" and \"Samsung.\""
+      },
+      "CatalogRuntimesPriceList": {
+        "type": "object",
+        "properties": {
+          "priceListCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceListId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "resolvable": {
+            "type": "boolean"
+          },
+          "isIndexed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "filteredInStoreFront": {
+            "type": "boolean"
+          },
+          "isSiteDefault": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "ancestors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceListNode"
+            },
+            "nullable": true
+          },
+          "descendants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceListNode"
+            },
+            "nullable": true
+          },
+          "validSites": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesProductOptionValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "nullable": true
+          },
+          "attributeValueId": {
+            "type": "integer",
+            "description": "Unique Id for the Value",
+            "format": "int32"
+          },
+          "stringValue": {
+            "type": "string",
+            "description": "Localized Value in the language of the locale code only available for dataType string",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean",
+            "description": "If true, this option is enabled and can be selected. During configuration, this returns false of this option value is invalid with other current selected options.",
+            "nullable": true
+          },
+          "isSelected": {
+            "type": "boolean",
+            "description": "If true, this is the option that is currently selected. It can be either the default value or one that the shopper has selected.",
+            "nullable": true
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "If true, this is the default value that the merchant supplied.",
+            "nullable": true
+          },
+          "deltaWeight": {
+            "type": "number",
+            "description": "How much this option weighs above the weight of the product.",
+            "format": "double",
+            "nullable": true
+          },
+          "deltaPrice": {
+            "type": "number",
+            "description": "How much this option costs above the cost of the product.",
+            "format": "double",
+            "nullable": true
+          },
+          "shopperEnteredValue": {
+            "description": "How much this option costs above the cost of the product.",
+            "nullable": true
+          },
+          "bundledProduct": {
+            "$ref": "#/components/schemas/CatalogRuntimesBundledProduct"
+          },
+          "displayInfo": {
+            "$ref": "#/components/schemas/CatalogRuntimesAttributeVocabularyValueDisplayInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Value of product option...\"red,\" \"white,\" \"blue.\""
+      },
+      "CatalogRuntimesProductPricingBehaviorInfo": {
+        "type": "object",
+        "properties": {
+          "discountsRestricted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "discountsRestrictedStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "discountsRestrictedEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesProductInventoryInfo": {
+        "type": "object",
+        "properties": {
+          "manageStock": {
+            "type": "boolean",
+            "description": "If true, the Products service manages inventory for this product.",
+            "nullable": true
+          },
+          "outOfStockBehavior": {
+            "type": "string",
+            "description": "The behvior when the ManageStock is true and the product is not in stock.",
+            "nullable": true
+          },
+          "onlineStockAvailable": {
+            "type": "integer",
+            "description": "Number of product items currently available for purchase.",
+            "format": "int32",
+            "nullable": true
+          },
+          "onlineSoftStockAvailable": {
+            "type": "integer",
+            "description": "Number of product items currently available for purchase.",
+            "format": "int32",
+            "nullable": true
+          },
+          "onlineLocationCode": {
+            "type": "string",
+            "description": "Directship location code for OnlineStockAvailable",
+            "nullable": true
+          },
+          "availableDate": {
+            "type": "string",
+            "description": "Date the item will become available for back order if out of stock",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isSubstitutable": {
+            "type": "boolean",
+            "description": "ReadOnly flag indicates is the product has substitutions defined"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs."
+      },
+      "CatalogRuntimesProductCost": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The inventory for a product at a specific Location"
+      },
+      "CatalogRuntimesProductCollectionMemberKey": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "This is the key of the product collection member.  For now, it's just product code, but may expand in future"
+      },
+      "CatalogRuntimesProductCollectionInfo": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Product Code of the collection",
+            "nullable": true
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "description": "True if the collection is the primary collection for the containing product."
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesProductImageGroupTag": {
+        "type": "object",
+        "properties": {
+          "attributeFqn": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesProductCollection": {
+        "type": "object",
+        "properties": {
+          "nextCursorMark": {
+            "type": "string",
+            "description": "If a cursorMark is provided on the request, then the nextCursorMark will be populated on the response.\r\nProvide this value as the cursorMark argument on the next request. If a cursorMark is provided on the request and the nextCursorMark value is null, then the end of the resultset was reached",
+            "nullable": true
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProduct"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesAttributeVocabularyValueDisplayInfo": {
+        "type": "object",
+        "properties": {
+          "cmsId": {
+            "type": "string",
+            "description": "Id of the image in the CMS.",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "description": "URL of the image.",
+            "nullable": true
+          },
+          "colorValue": {
+            "type": "string",
+            "description": "Hex Color value to display in a color picker",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Product Attribute properties common between a Product Propery, Option, and Extra"
+      },
+      "CatalogRuntimesSpellcheck": {
+        "type": "object",
+        "properties": {
+          "candidateCorrections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateCorrection"
+            },
+            "nullable": true
+          },
+          "autoCorrected": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "originalQuery": {
+            "type": "string",
+            "nullable": true
+          },
+          "correctedQuery": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Spellcheck related results"
+      },
+      "CatalogRuntimesSearchMerchandizingRuleCondition": {
+        "type": "object",
+        "properties": {
+          "terms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchMerchandizingRuleField"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesSearchMerchandizingRule": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Unique identifier. Will be generated if not provided.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "context": {
+            "$ref": "#/components/schemas/CatalogRuntimesSearchMerchandizingRuleContext"
+          },
+          "ruleImpact": {
+            "$ref": "#/components/schemas/SearchMerchandizingRuleImpact"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "isPersonalizationEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Search Merchandizing Rule"
+      },
+      "CatalogRuntimesCategoryPagedCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesCategory"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection of categories where categories are returned in a series of pages."
+      },
+      "CatalogRuntimesCategoryCollection": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesCategory"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection of categories returned as a whole. A collection is not paged."
+      },
+      "CatalogRuntimesProductImageGroup": {
+        "required": [
+          "productImageGroupId"
+        ],
+        "type": "object",
+        "properties": {
+          "productImageGroupId": {
+            "type": "string"
+          },
+          "productImageGroupTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProductImageGroupTag"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesSearchMerchandizingRuleContext": {
+        "type": "object",
+        "properties": {
+          "searchType": {
+            "$ref": "#/components/schemas/SearchType"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "StartDate",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Defaults to MAXDATE",
+            "format": "date-time",
+            "nullable": true
+          },
+          "condition": {
+            "$ref": "#/components/schemas/CatalogRuntimesSearchMerchandizingRuleCondition"
+          }
+        },
+        "additionalProperties": false,
+        "description": "SearchMerchandizingRule Condition"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
+      "description": "Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}.{env}.mozu.com/api",
+      "description": "Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1",
+            "stg2"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://home.mozu.com/api",
+      "description": "HomePod Api"
+    },
+    {
+      "url": "https://t{tenantId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://home.euw1.kibocommerce.com/api",
+      "description": "EURO HomePod Api"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
