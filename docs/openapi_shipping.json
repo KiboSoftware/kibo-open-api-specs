@@ -1729,7 +1729,7 @@
         "summary": "Get Configured Shipping States",
         "parameters": [
           {
-            "name": "profileCode",
+            "name": "profilecode",
             "in": "path",
             "required": true,
             "schema": {
@@ -2260,19 +2260,19 @@
         }
       }
     },
-    "/commerce/catalog/storefront/shipping/request-manifest": {
+    "/commerce/catalog/storefront/shipping/get-labels": {
       "post": {
         "tags": [
           "Shipping"
         ],
-        "summary": "Get Manifest",
-        "description": "Get Manifest for the list Shipping Labels",
+        "summary": "Get Labels By Tracking Number",
+        "description": "Get shipping labels by tracking number.",
         "requestBody": {
           "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ShippingRuntimeManifestRequest"
+                "$ref": "#/components/schemas/LabelRequest"
               }
             }
           }
@@ -2283,109 +2283,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ManifestResponse"
+                  "$ref": "#/components/schemas/LabelResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ManifestResponse"
+                  "$ref": "#/components/schemas/LabelResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ManifestResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/commerce/catalog/storefront/shipping/{carrierId}/get-manifest-url/{manifestId}": {
-      "get": {
-        "tags": [
-          "Shipping"
-        ],
-        "summary": "Get Manifest URL",
-        "description": "Get Manifest URL for the Manifest Id",
-        "parameters": [
-          {
-            "name": "carrierId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "manifestId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/commerce/catalog/storefront/shipping/cancel-labels": {
-      "post": {
-        "tags": [
-          "Shipping"
-        ],
-        "summary": "Cancel Labels",
-        "description": "Cancel a Unused Label",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CancelLabelRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CancelLabelResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CancelLabelResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CancelLabelResponse"
+                  "$ref": "#/components/schemas/LabelResponse"
                 }
               }
             }
@@ -3841,6 +3749,7 @@
           },
           "labelFormat": {
             "type": "string",
+            "description": "Returns the Label in the requested format.\r\nSpecify either \"LASER\" or \"THERMAL\" format.\r\nActual supported image formats vary by carrier.",
             "nullable": true
           },
           "customerReferences": {
@@ -3848,6 +3757,23 @@
             "items": {
               "$ref": "#/components/schemas/CustomerReferences"
             },
+            "nullable": true
+          },
+          "relatedOrderId": {
+            "type": "string",
+            "description": "The related Order ID for this shipment request.\r\nInformational only.",
+            "nullable": true
+          },
+          "relatedOrderNumber": {
+            "type": "integer",
+            "description": "The related Order Number for this shipment request.\r\nInformational only.",
+            "format": "int32",
+            "nullable": true
+          },
+          "relatedShipmentNumber": {
+            "type": "integer",
+            "description": "The related Shipment Number for this shipment request.\r\nInformational only.",
+            "format": "int32",
             "nullable": true
           }
         },
@@ -3970,99 +3896,54 @@
         },
         "additionalProperties": false
       },
-      "ManifestResponse": {
+      "LabelRequest": {
         "type": "object",
         "properties": {
-          "manifestId": {
-            "type": "string",
-            "nullable": true
-          },
-          "manifestUrl": {
-            "type": "string",
-            "nullable": true
-          },
           "carrierId": {
             "type": "string",
             "nullable": true
           },
-          "locationCode": {
+          "labelFormat": {
             "type": "string",
             "nullable": true
           },
-          "includedShipments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeManifestShipment"
-            },
-            "nullable": true
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Notification"
-            },
-            "nullable": true
-          },
-          "isSuccessful": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CancelLabelRequest": {
-        "type": "object",
-        "properties": {
-          "integratorIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "carrierId": {
+          "trackingNumber": {
             "type": "string",
             "nullable": true
           },
-          "fulfillmentLocationCode": {
+          "packageTrackingNumber": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "LabelStatus": {
+      "PackageLabelResponse": {
         "type": "object",
         "properties": {
-          "integratorId": {
+          "trackingNumber": {
             "type": "string",
             "nullable": true
           },
-          "refundStatus": {
-            "type": "string",
-            "nullable": true
+          "label": {
+            "$ref": "#/components/schemas/ShippingLabel"
           }
         },
         "additionalProperties": false
       },
-      "CancelLabelResponse": {
+      "LabelResponse": {
         "type": "object",
         "properties": {
-          "labelStatus": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LabelStatus"
-            },
+          "trackingNumber": {
+            "type": "string",
             "nullable": true
           },
-          "messages": {
+          "packageLabels": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Notification"
+              "$ref": "#/components/schemas/PackageLabelResponse"
             },
             "nullable": true
-          },
-          "isSuccessful": {
-            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -4393,46 +4274,6 @@
         },
         "additionalProperties": false
       },
-      "ShippingRuntimeManifestShipment": {
-        "type": "object",
-        "properties": {
-          "shipmentNumber": {
-            "type": "integer",
-            "description": "Kibo-ShipmentNumber",
-            "format": "int32"
-          },
-          "integratorIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "List of EasyPost Integration ShipmentIds. Each package under the shipment has its own easypost-shipmentid",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimeManifestRequest": {
-        "type": "object",
-        "properties": {
-          "carrierId": {
-            "type": "string",
-            "nullable": true
-          },
-          "includedShipments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeManifestShipment"
-            },
-            "nullable": true
-          },
-          "locationCode": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "ShippingRuntimeCarrier": {
         "type": "object",
         "properties": {
@@ -4539,7 +4380,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -4560,7 +4401,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"

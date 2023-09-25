@@ -84,8 +84,7 @@
             }
           }
         },
-        "description": "Oauth Authenticate App",
-        "security": []
+        "description": "Oauth Authenticate App"
       }
     },
     "/platform/applications/authtickets/refresh-ticket": {
@@ -1970,6 +1969,13 @@
               "$ref": "#/components/schemas/FileMetadata"
             },
             "nullable": true
+          },
+          "subFolders": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2584,12 +2590,99 @@
   },
   "servers": [
     {
+      "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
+      "description": "Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}.{env}.mozu.com/api",
+      "description": "Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1",
+            "stg2"
+          ]
+        }
+      }
+    },
+    {
       "url": "https://home.mozu.com/api",
-      "description": "aws-us-east-1"
+      "description": "HomePod Api"
+    },
+    {
+      "url": "https://t{tenantId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api",
+      "description": "EURO Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1"
+          ]
+        }
+      }
     },
     {
       "url": "https://home.euw1.kibocommerce.com/api",
-      "description": "aws-euw1-east-1"
+      "description": "EURO HomePod Api"
     }
   ],
   "security": [

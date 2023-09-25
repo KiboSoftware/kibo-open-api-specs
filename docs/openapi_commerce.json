@@ -825,7 +825,7 @@
           "Cart"
         ],
         "summary": "Delete Extended Properties.",
-        "description": "Delete extended properties on the current cart",
+        "description": "Delete extended properties on the current cart.",
         "responses": {
           "200": {
             "description": "Success"
@@ -7440,7 +7440,7 @@
           }
         },
         "summary": "Update Order Restrictions",
-        "description": "Update Order Restrictions"
+        "description": "Updates the flags for restricting edits and/or cancellations by users without override user behaviors."
       }
     },
     "/commerce/orders/{orderId}/coupons/{couponCode}": {
@@ -15594,6 +15594,11 @@
           },
           "gatewayGiftCard": {
             "$ref": "#/components/schemas/GatewayGiftCard"
+          },
+          "installmentPlanCode": {
+            "type": "string",
+            "description": "Stores the Installment Plan code. Installment is only supported on subscription orders",
+            "nullable": true
           }
         },
         "description": "Payment transaction associated with this order. It is the entire payment interchange between the merchant who is forwarding the customer's payment \r\ninformation and the payment service who is authorizing and capturing payment. Payment can be either by credit card, check, or PayPal. (PayPal not\r\ncurrently supported.)"
@@ -16172,6 +16177,11 @@
           "recaptcha": {
             "type": "string",
             "description": "Recaptcha for validation.",
+            "nullable": true
+          },
+          "installmentPlanCode": {
+            "type": "string",
+            "description": "Stores the Installment Plan code. Installment is only supported on subscription orders",
             "nullable": true
           }
         }
@@ -19838,6 +19848,11 @@
             "type": "string",
             "description": "ShipOrBillCountryCode contains country code of shipping address or Billing address",
             "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "A return can be created from an external system. This field is used to store the external id.",
+            "nullable": true
           }
         },
         "description": ""
@@ -20911,6 +20926,9 @@
             "description": "Unique identifier of the category. System-supplied and read-only.",
             "format": "int32",
             "nullable": true
+          },
+          "parent": {
+            "type": "object"
           }
         },
         "description": "Categories to which the product belongs. Discounts can apply to categories where any product in the category is discounted."
@@ -21212,22 +21230,7 @@
           },
           "values": {
             "type": "array",
-            "items": {
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "boolean"
-                }
-              ]
-            },
+            "items": {},
             "nullable": true
           }
         }
@@ -22260,7 +22263,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -22281,7 +22284,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"

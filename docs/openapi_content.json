@@ -379,25 +379,6 @@
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/ContentHttpRequestMessage"
-              }
-            },
-            "application/octet-stream": {
-              "schema": {
-                "$ref": "#/components/schemas/ContentHttpRequestMessage"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContentHttpRequestMessage"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Success"
@@ -3479,7 +3460,14 @@
         "additionalProperties": false
       }
     },
-    "securitySchemes": null
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
   },
   "servers": [
     {
@@ -3544,7 +3532,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -3565,7 +3553,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -3580,7 +3568,7 @@
   ],
   "security": [
     {
-      "clientOauth2": []
+      "bearerAuth": []
     }
   ]
 }

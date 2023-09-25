@@ -1156,7 +1156,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -1177,7 +1177,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"

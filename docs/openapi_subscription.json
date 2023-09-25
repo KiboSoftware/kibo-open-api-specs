@@ -6,6 +6,190 @@
     "version": "1.0.1"
   },
   "paths": {
+    "/commerce/subscriptions/{subscriptionId}/attributes": {
+      "post": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Create Subscription Attributes",
+        "description": "Creates list of subscription attributes specified by subscription Id.",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SubscriptionAttribute"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Get Subscription Attributes",
+        "description": "Gets the list of attributes specified by subscription Id.",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Update Subscription Attribute",
+        "description": "Updates the list of subscription attributes specified by subscription id and removes the missing attributes if not passed when removeMissing flag is set.",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "removeMissing",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SubscriptionAttribute"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionAttribute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/commerce/subscriptions": {
       "get": {
         "tags": [
@@ -1061,6 +1245,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "draft",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -1112,6 +1303,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "draft",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -1160,6 +1358,13 @@
             "in": "path",
             "description": "URLEncoded Key for the Value you want to Insert / Update from the Subscription DataBag",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateMode",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1220,6 +1425,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "updateMode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1277,6 +1489,13 @@
             "in": "path",
             "description": "URLEncoded Key for the Value you want to Insert / Update from the SubscriptionItem DataBag",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateMode",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1343,6 +1562,13 @@
             "in": "path",
             "description": "URLEncoded Key for the Value you want to Delete from the SubscriptionItem DataBag",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateMode",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1651,6 +1877,15 @@
   },
   "components": {
     "schemas": {
+      "SubscriptionAttribute": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommerceRuntimeOrderAttribute"
+          }
+        ],
+        "additionalProperties": false
+      },
       "ProductStock": {
         "type": "object",
         "properties": {
@@ -2704,6 +2939,11 @@
           },
           "gatewayGiftCard": {
             "$ref": "#/components/schemas/GatewayGiftCard"
+          },
+          "installmentPlanCode": {
+            "type": "string",
+            "description": "Stores the Installment Plan code. Installment is only supported on subscription orders",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5687,6 +5927,9 @@
             "description": "Unique identifier of the category. System-supplied and read-only.",
             "format": "int32",
             "nullable": true
+          },
+          "parent": {
+            "type": "object"
           }
         },
         "additionalProperties": false,
@@ -7242,6 +7485,18 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionAttribute"
+            },
+            "nullable": true
+          },
+          "processingErrorMessage": {
+            "type": "string",
+            "description": "LastErrorMessage from subscription ProcessingInfo.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -7366,7 +7621,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -7387,7 +7642,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"

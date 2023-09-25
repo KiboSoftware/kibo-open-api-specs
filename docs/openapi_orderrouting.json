@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Order Routing",
+    "title": "Api Documentation",
     "description": "<div id=\"overview_ORDERROUTING\">\n            <h2>ORDER ROUTING</h2>\n            <p>Although the <a href=\"https://docs.kibocommerce.com/help/order-routing\">Order Routing\n                    interface</a> is the best place to configure order routing rules, some\n                aspects of routing can be managed through REST API calls when convenient.</p>\n            <p>Use the <strong>Data List</strong> resource to define the cases for which routing filters are applied.</p>\n            <p>Use the <strong>Routing Filter</strong> resource to configure sets of rules that filter out fulfillers that do not match given order criteria.</p>\n            <p>Use the <strong>Routing Group</strong> resource to manage and sort location groups specifically in context of routing\n                preferences.</p>\n            <p>Use the general <strong>Routing</strong> resource to test your order routing configurations, such as by retrieving a list of eligible fulfillers for a certain order based on set\n                routing rules or obtain a log of order routing decisions.</p>\n        </div>",
     "contact": {},
     "version": "1.0.1"
@@ -322,7 +322,7 @@
         "tags": [
           "OrderRoutingFilter"
         ],
-        "summary": "saveCriteriaSetFilter",
+        "summary": "Save Criteria Set Filter",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -384,7 +384,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "loc",
-        "description": "saveCriteriaSetFilter"
+        "description": "Saves a criteria set filter."
       }
     },
     "/commerce/orders/orderrouting/api/v1/filter/customDataListFilter": {
@@ -392,7 +392,7 @@
         "tags": [
           "OrderRoutingFilter"
         ],
-        "summary": "saveCustomDataListFilter",
+        "summary": "Save Custom Data List Filter",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -462,7 +462,7 @@
         "tags": [
           "OrderRoutingFilter"
         ],
-        "summary": "saveCustomDataValueFilter",
+        "summary": "Save Custom Data Value Filter",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -524,7 +524,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "customDataValueFilter",
-        "description": "saveCustomDataValueFilter"
+        "description": "Saves a custom data value filter."
       }
     },
     "/commerce/orders/orderrouting/api/v1/filter/delete/{filterID}": {
@@ -532,7 +532,7 @@
         "tags": [
           "OrderRoutingFilter"
         ],
-        "summary": "deleteFilter",
+        "summary": "Delete Filter",
         "parameters": [
           {
             "name": "filterID",
@@ -590,7 +590,7 @@
         "tags": [
           "OrderRoutingFilter"
         ],
-        "summary": "testFilter",
+        "summary": "Test Filter",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -644,7 +644,7 @@
         "tags": [
           "OrderRoutingFilter"
         ],
-        "summary": "testSetFilter",
+        "summary": "Test Set Filter",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -690,7 +690,7 @@
           }
         },
         "deprecated": false,
-        "description": "testSetFilter"
+        "description": "Tests a set filter."
       }
     },
     "/commerce/orders/orderrouting/api/v1/filter/{filterID}": {
@@ -698,7 +698,7 @@
         "tags": [
           "OrderRoutingFilter"
         ],
-        "summary": "getFilter",
+        "summary": "Get Filter",
         "parameters": [
           {
             "name": "filterID",
@@ -762,7 +762,7 @@
         "tags": [
           "OrderRoutingGroup"
         ],
-        "summary": "deleteGroup",
+        "summary": "Delete Group",
         "parameters": [
           {
             "name": "groupID",
@@ -820,7 +820,7 @@
         "tags": [
           "OrderRoutingGroup"
         ],
-        "summary": "testGroup",
+        "summary": "Test Group",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -874,7 +874,7 @@
         "tags": [
           "OrderRoutingGroup"
         ],
-        "summary": "getGroup",
+        "summary": "Get Group",
         "parameters": [
           {
             "name": "groupID",
@@ -938,7 +938,7 @@
         "tags": [
           "OrderRoutingGroup"
         ],
-        "summary": "setGroupFilters",
+        "summary": "Set Group Filters",
         "parameters": [
           {
             "name": "groupID",
@@ -1022,7 +1022,7 @@
         "tags": [
           "OrderRoutingGroup"
         ],
-        "summary": "setGroupSorts",
+        "summary": "Set Group Sorts",
         "parameters": [
           {
             "name": "groupID",
@@ -1105,7 +1105,7 @@
         "tags": [
           "OrderRoutingLocation"
         ],
-        "summary": "getLocations",
+        "summary": "Get Locations",
         "parameters": [
           {
             "name": "pageNum",
@@ -1178,7 +1178,7 @@
         "tags": [
           "OrderRoutingLocation"
         ],
-        "summary": "getLocationByLocationCode",
+        "summary": "Get Location by Location Code",
         "parameters": [
           {
             "name": "locationCode",
@@ -1242,7 +1242,7 @@
         "tags": [
           "Routing"
         ],
-        "summary": "suggestCandidates",
+        "summary": "Suggest Candidates",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -1312,7 +1312,7 @@
         "tags": [
           "Routing"
         ],
-        "summary": "getSampleRequest",
+        "summary": "Get Sample Request",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -1366,7 +1366,7 @@
         "tags": [
           "Routing"
         ],
-        "summary": "suggestRouting",
+        "summary": "Suggest Routing",
         "parameters": [
           {
             "name": "returnSuggestionLog",
@@ -1445,7 +1445,7 @@
         "tags": [
           "Routing"
         ],
-        "summary": "suggestRoutingTest",
+        "summary": "Suggest Routing Test",
         "parameters": [
           {
             "name": "returnSuggestionLog",
@@ -1519,12 +1519,481 @@
         "description": "Tests the routing suggestion logic."
       }
     },
+    "/commerce/orders/orderrouting/api/v1/settings": {
+      "get": {
+        "tags": [
+          "OrderRoutingSettings"
+        ],
+        "summary": "Get Order Routing Settings",
+        "parameters": [
+          {
+            "name": "getDefaults",
+            "in": "query",
+            "description": "getDefaults",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "siteID",
+            "in": "query",
+            "description": "siteID",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "tenantID",
+            "in": "query",
+            "description": "tenantID",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-site",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-tenant",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderRoutingSettings"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "description": "Retrieve a list of order routing settings."
+      },
+      "put": {
+        "tags": [
+          "OrderRoutingSettings"
+        ],
+        "summary": "Save Order Routing Settings",
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-tenant",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "settings",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRoutingSettings"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderRoutingSettings"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "x-codegen-request-body-name": "settings",
+        "description": "Save order routing settings."
+      },
+      "delete": {
+        "tags": [
+          "OrderRoutingSettings"
+        ],
+        "summary": "Delete Order Routing Settings",
+        "parameters": [
+          {
+            "name": "siteID",
+            "in": "query",
+            "description": "siteID",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "tenantID",
+            "in": "query",
+            "description": "tenantID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-site",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-tenant",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "description": "Remove order routing settings."
+      }
+    },
+    "/commerce/orders/orderrouting/api/v1/settings/filterAttributes": {
+      "get": {
+        "tags": [
+          "OrderRoutingSettings"
+        ],
+        "summary": "Get Filter Attributes",
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-tenant",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FilterAttribute"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "description": "Retrieves a list of order routing filter attributes."
+      },
+      "put": {
+        "tags": [
+          "OrderRoutingSettings"
+        ],
+        "summary": "Save Filter Attribute",
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-tenant",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "attribute",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FilterAttribute"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterAttribute"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "x-codegen-request-body-name": "attribute",
+        "description": "Saves an order routing filter attribute."
+      }
+    },
+    "/commerce/orders/orderrouting/api/v1/settings/filterAttributes/{attributeName}": {
+      "get": {
+        "tags": [
+          "OrderRoutingSettings"
+        ],
+        "summary": "Get Filter Attribute",
+        "parameters": [
+          {
+            "name": "attributeName",
+            "in": "path",
+            "description": "attributeName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-vol-site",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-tenant",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterAttribute"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "description": "Retrieve an order routing filter attribute based on its name."
+      },
+      "delete": {
+        "tags": [
+          "OrderRoutingSettings"
+        ],
+        "summary": "Delete Filter Attribute",
+        "parameters": [
+          {
+            "name": "attributeName",
+            "in": "path",
+            "description": "attributeName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-vol-site",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-vol-tenant",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterAttribute"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "description": "Deletes a filter attribute."
+      }
+    },
     "/commerce/orders/orderrouting/api/v1/group": {
       "post": {
         "tags": [
           "OrderRoutingGroup"
         ],
-        "summary": "saveGroup",
+        "summary": "Save Group",
         "parameters": [
           {
             "name": "x-vol-site",
@@ -1586,7 +2055,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "loc",
-        "description": "saveGroup"
+        "description": "Saves a routing group."
       }
     },
     "/commerce/orders/orderrouting/api/v1/routing/suggestionLog": {
@@ -1785,6 +2254,9 @@
           "dataValid": {
             "type": "boolean"
           },
+          "list": {
+            "type": "object"
+          },
           "notes": {
             "type": "string"
           },
@@ -1939,6 +2411,9 @@
         "properties": {
           "dimension": {
             "$ref": "#/components/schemas/Dimension"
+          },
+          "standardUnit": {
+            "type": "object"
           }
         }
       },
@@ -3536,6 +4011,134 @@
           }
         }
       },
+      "FilterAttribute": {
+        "title": "FilterAttribute",
+        "type": "object",
+        "properties": {
+          "filterTypeGroup": {
+            "type": "string",
+            "enum": [
+              "ORDER_INFO",
+              "FULFILLMENT_LOCATION_INFO",
+              "FULFILLMENT_INVENTORY_INFO",
+              "ITEM_ATTRIBUTES",
+              "CUSTOMER_INFORMATION",
+              "UNKNOWN",
+              "EXTENSIBLE_FULFILLMENT_LOCATION_INFO",
+              "EXTENSIBLE_ORDER_INFO",
+              "EXTENSIBLE_PRODUCT_INFO",
+              "EXTENSIBLE_CUSTOMER_INFO"
+            ]
+          },
+          "langTag": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "propertyPath": {
+            "type": "string"
+          },
+          "unitType": {
+            "type": "string",
+            "enum": [
+              "unit.type.currency",
+              "unit.type.distance",
+              "unit.type.length",
+              "unit.type.volume",
+              "unit.type.area",
+              "unit.type.weight",
+              "unit.type.dimensionless"
+            ]
+          }
+        }
+      },
+      "OrderRoutingSettings": {
+        "title": "OrderRoutingSettings",
+        "type": "object",
+        "properties": {
+          "allowInternationalAssignment": {
+            "type": "boolean"
+          },
+          "autoAssignLimit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "defaultStateChange": {
+            "type": "string",
+            "enum": [
+              "CANCEL",
+              "CUSTOMER_CARE",
+              "AVAILABLE",
+              "BACKORDER"
+            ]
+          },
+          "failoverActions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED",
+                "LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY",
+                "QUANTITY_SPLIT_ASSIGN_IF_FULFILLED",
+                "QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY",
+                "CANCEL_ORDER",
+                "ASSIGN_TO_CUSTOMER_CARE",
+                "ASSIGN_TO_GROUP",
+                "LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY",
+                "QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY",
+                "SEND_ORDER_TO_BIDDING",
+                "LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY",
+                "QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY",
+                "ASSIGN_TO_BACKORDER"
+              ]
+            }
+          },
+          "filterAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterAttribute"
+            }
+          },
+          "maxFulfillingLocations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxSplitItemLocations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productIdentifierMapping": {
+            "type": "string",
+            "enum": [
+              "PART_NUMBER_ONLY",
+              "UPC_ONLY",
+              "SKU_ONLY",
+              "PART_NUMBER_AND_UPC",
+              "PART_NUMBER_AND_SKU",
+              "UPC_AND_SKU",
+              "PART_NUMBER_AND_UPC_AND_SKU"
+            ]
+          },
+          "siteID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tooManyAssignsAction": {
+            "type": "string",
+            "enum": [
+              "CANCEL",
+              "CUSTOMER_CARE",
+              "AVAILABLE",
+              "BACKORDER"
+            ]
+          }
+        }
+      },
       "LocationGroupModel": {
         "title": "LocationGroupModel",
         "type": "object",
@@ -4114,7 +4717,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -4135,7 +4738,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"

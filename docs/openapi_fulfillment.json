@@ -555,7 +555,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FulfillmentManifestRequest"
+                "$ref": "#/components/schemas/ManifestRequest"
               }
             }
           }
@@ -2177,6 +2177,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "default": {
+            "description": "other"
           }
         }
       },
@@ -8335,6 +8338,38 @@
           }
         }
       },
+      "ManifestShipment": {
+        "title": "ManifestShipment",
+        "type": "object",
+        "properties": {
+          "destination": {
+            "$ref": "#/components/schemas/FulfillmentDestination"
+          },
+          "externalOrderId": {
+            "type": "string"
+          },
+          "fulfillmentLocationCode": {
+            "type": "string"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "packages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentPackage"
+            }
+          },
+          "shipmentNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "shipmentType": {
+            "type": "string"
+          }
+        }
+      },
       "Manifest": {
         "title": "Manifest",
         "type": "object",
@@ -8374,7 +8409,7 @@
           "shipments": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FulfillmentManifestShipment"
+              "$ref": "#/components/schemas/ManifestShipment"
             }
           },
           "tenantId": {
@@ -8429,6 +8464,28 @@
           }
         }
       },
+      "ManifestRequest": {
+        "title": "ManifestRequest",
+        "required": [
+          "carrierId",
+          "locationCode"
+        ],
+        "type": "object",
+        "properties": {
+          "carrierId": {
+            "type": "string"
+          },
+          "includedShipments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ManifestRequestShipment"
+            }
+          },
+          "locationCode": {
+            "type": "string"
+          }
+        }
+      },
       "EntityModelOfManifest": {
         "title": "EntityModelOfManifest",
         "type": "object",
@@ -8471,7 +8528,7 @@
           "shipments": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FulfillmentManifestShipment"
+              "$ref": "#/components/schemas/ManifestShipment"
             }
           },
           "tenantId": {
@@ -11606,60 +11663,6 @@
           }
         }
       },
-      "FulfillmentManifestShipment": {
-        "title": "ManifestShipment",
-        "type": "object",
-        "properties": {
-          "destination": {
-            "$ref": "#/components/schemas/FulfillmentDestination"
-          },
-          "externalOrderId": {
-            "type": "string"
-          },
-          "fulfillmentLocationCode": {
-            "type": "string"
-          },
-          "orderNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "packages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentPackage"
-            }
-          },
-          "shipmentNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "shipmentType": {
-            "type": "string"
-          }
-        }
-      },
-      "FulfillmentManifestRequest": {
-        "title": "ManifestRequest",
-        "required": [
-          "carrierId",
-          "locationCode"
-        ],
-        "type": "object",
-        "properties": {
-          "carrierId": {
-            "type": "string"
-          },
-          "includedShipments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ManifestRequestShipment"
-            }
-          },
-          "locationCode": {
-            "type": "string"
-          }
-        }
-      },
       "FulfillmentFulfillmentShopperNotes": {
         "title": "ShopperNotes",
         "type": "object",
@@ -11748,7 +11751,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -11769,7 +11772,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"

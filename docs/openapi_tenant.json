@@ -262,29 +262,6 @@
   },
   "servers": [
     {
-      "url": "https://t{tenantId}.{env}.mozu.com/api",
-      "description": "Tenant Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
-        },
-        "env": {
-          "default": "sandbox",
-          "enum": [
-            "sandbox",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg1",
-            "stg2"
-          ]
-        }
-      }
-    },
-    {
       "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
       "description": "Site Level Api",
       "variables": {
@@ -311,6 +288,29 @@
       }
     },
     {
+      "url": "https://t{tenantId}.{env}.mozu.com/api",
+      "description": "Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg1",
+            "stg2"
+          ]
+        }
+      }
+    },
+    {
       "url": "https://home.mozu.com/api",
       "description": "HomePod Api"
     },
@@ -323,7 +323,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -344,7 +344,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"

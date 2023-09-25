@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Catalog Storefront",
-    "version": "1.0.1",
-    "description": "<div id=\"overview_CATALOG_STOREFRONT\">\n            <h2>CATALOG STOREFRONT</h2>\n            <p>The Catalog Storefront APIs are a collection of resources for managing storefront categories, currencies, price lists, products, and\n                product search. This controls how the products in your catalog are organized and displayed on the\n                storefront. See the\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Currencies</strong> resource to retrieve exchange rates for displaying prices on your storefront.</p>\n            <p>Use the <strong>Storefront Categories</strong> resource to view the product category hierarchy as it appears to shoppers\n                who are browsing the storefront. The hierarchy can be returned as a flat list or as a category tree.</p>\n            <p>Use the <strong>Pricelists</strong> resource to retrieve the details of a price list. The details may contain a hierarchy\n                of ancestor and/or descendant price lists dependening on your configuration.</p>\n            <p>Use the <strong>Storefront Products</strong> resource to manage the shopper product selection process during a visit to\n                the web storefront. You can update product options as shoppers pick and choose their product choices. A\n                shopper cannot add a product to a cart until all of its required options have been selected.</p>\n            <p>Use the <strong>Product Search</strong> resource to provide dynamic search results to shoppers as they browse and search\n                for products on the web storefront, and to suggest possible search terms as the shopper enters text. The related <strong>Search Redirect</strong>\n                resource allows you to retrieve any search redirect items.</p>\n        </div>"
+    "description": "<div id=\"overview_CATALOG_STOREFRONT\">\n            <h2>CATALOG STOREFRONT</h2>\n            <p>The Catalog Storefront APIs are a collection of resources for managing storefront categories, currencies, price lists, products, and\n                product search. This controls how the products in your catalog are organized and displayed on the\n                storefront. See the\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Currencies</strong> resource to retrieve exchange rates for displaying prices on your storefront.</p>\n            <p>Use the <strong>Storefront Categories</strong> resource to view the product category hierarchy as it appears to shoppers\n                who are browsing the storefront. The hierarchy can be returned as a flat list or as a category tree.</p>\n            <p>Use the <strong>Pricelists</strong> resource to retrieve the details of a price list. The details may contain a hierarchy\n                of ancestor and/or descendant price lists dependening on your configuration.</p>\n            <p>Use the <strong>Storefront Products</strong> resource to manage the shopper product selection process during a visit to\n                the web storefront. You can update product options as shoppers pick and choose their product choices. A\n                shopper cannot add a product to a cart until all of its required options have been selected.</p>\n            <p>Use the <strong>Product Search</strong> resource to provide dynamic search results to shoppers as they browse and search\n                for products on the web storefront, and to suggest possible search terms as the shopper enters text. The related <strong>Search Redirect</strong>\n                resource allows you to retrieve any search redirect items.</p>\n        </div>",
+    "version": "1.0.1"
   },
   "paths": {
     "/commerce/catalog/storefront/campaigns/all": {
@@ -766,8 +766,8 @@
         "tags": [
           "Products"
         ],
-        "summary": "Create Variant Product",
-        "description": "Creates a new product selection. A create occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.",
+        "summary": "Configure Variation Product",
+        "description": "Configure a new product selection. This occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.",
         "parameters": [
           {
             "name": "productCode",
@@ -1918,6 +1918,7 @@
           {
             "name": "facetTemplate",
             "in": "query",
+            "description": "Identifier of the current category, in the format of either categoryCode:{categoryCode}  or categoryId:{categoryId}. In the example of no category being selected, the root will be used instead. Refer to the corresponding <a href=\"https://apidocs.kibocommerce.com/?spec=catalog_admin#get-/commerce/catalog/admin/facets/category\">Catalog Admin</a> call.",
             "schema": {
               "type": "string"
             }
@@ -1925,6 +1926,7 @@
           {
             "name": "facetTemplateSubset",
             "in": "query",
+            "description": "Use if you only want to return a subset of the facets defined in the template such has category, price, rating.",
             "schema": {
               "type": "string"
             }
@@ -1932,6 +1934,7 @@
           {
             "name": "facet",
             "in": "query",
+            "description": "The additional facets to use (comma delimited) that are not already defined in the facet template  in the Product Admin API.",
             "schema": {
               "type": "string"
             }
@@ -1946,6 +1949,7 @@
           {
             "name": "facetHierPrefix",
             "in": "query",
+            "description": "Allows you to skip these levels on a hierarchical facet.",
             "schema": {
               "type": "string"
             }
@@ -1953,6 +1957,7 @@
           {
             "name": "facetHierValue",
             "in": "query",
+            "description": "The current level to pull categories from, in the format of categoryId:{categoryId}.",
             "schema": {
               "type": "string"
             }
@@ -1960,6 +1965,7 @@
           {
             "name": "facetHierDepth",
             "in": "query",
+            "description": "The number of levels to return such as category:1.",
             "schema": {
               "type": "string"
             }
@@ -1981,6 +1987,7 @@
           {
             "name": "facetSettings",
             "in": "query",
+            "description": "May be deprecated.",
             "schema": {
               "type": "string"
             }
@@ -1988,6 +1995,7 @@
           {
             "name": "facetValueFilter",
             "in": "query",
+            "description": "A comma delimited list of applied facetsValues (such as tenant~brand-name-attribute%3abroil+king).  If the facet is part of the search results facet template as a “range” display style, then you can  specify a min and max that doesn't have to match the predefined ranges (such as &facetValueFilter=price:[38 to 105]).",
             "schema": {
               "type": "string"
             }
@@ -2022,6 +2030,7 @@
           {
             "name": "searchSettings",
             "in": "query",
+            "description": "Use this to override search settings for testing purposes in the format of &searchSettings=testConfig1.",
             "schema": {
               "type": "string"
             }
@@ -2029,6 +2038,7 @@
           {
             "name": "enableSearchTuningRules",
             "in": "query",
+            "description": "Whether or not to enable search tuning rules.",
             "schema": {
               "type": "boolean",
               "default": true
@@ -2037,6 +2047,7 @@
           {
             "name": "searchTuningRuleContext",
             "in": "query",
+            "description": "Deprecated or internal-only, do not use.",
             "schema": {
               "type": "string"
             }
@@ -2044,6 +2055,7 @@
           {
             "name": "searchTuningRuleCode",
             "in": "query",
+            "description": "Deprecated or internal-only, do not use.",
             "schema": {
               "type": "string"
             }
@@ -2051,6 +2063,7 @@
           {
             "name": "responseGroups",
             "in": "query",
+            "description": "Deprecated or internal-only, do not use.",
             "schema": {
               "type": "string"
             }
@@ -2072,6 +2085,7 @@
           {
             "name": "responseOptions",
             "in": "query",
+            "description": "Deprecated or internal-only, do not use.",
             "schema": {
               "type": "string"
             }
@@ -2087,6 +2101,7 @@
           {
             "name": "facetValueSort",
             "in": "query",
+            "description": "Sorts the values array in a facet. Valid values are Count,Index, CountAscending, CountDescending,  ValuesAscending, ValuesDescending, AttributeDefinition, and AttributeDefinitionDescending.",
             "schema": {
               "type": "string"
             }
@@ -2094,6 +2109,7 @@
           {
             "name": "defaultSort",
             "in": "query",
+            "description": "Deprecated or internal-only, do not use.",
             "schema": {
               "type": "string"
             }
@@ -2101,6 +2117,7 @@
           {
             "name": "shouldSlice",
             "in": "query",
+            "description": "Whether or not to slice products.",
             "schema": {
               "type": "boolean"
             }
@@ -2108,6 +2125,7 @@
           {
             "name": "mid",
             "in": "query",
+            "description": "This is the customer identifier for personalization. This value can be found in the Monetate  cookie (mt.v) that is uniquely set for each visitor so that personalization of the search results  can use all Monetate functionality.",
             "schema": {
               "type": "string"
             }
@@ -2115,6 +2133,7 @@
           {
             "name": "fieldList",
             "in": "query",
+            "description": "Explicitly request any field or attribute you want in the response.  Only product codes are returned by default. Some common values include productName, priceL (price low), priceH (price high),  product attribute by name, product image URLs, product category names, category IDs and codes,  product short/long descriptions, and score (the relevancy score). ",
             "schema": {
               "type": "string"
             }
@@ -2122,6 +2141,7 @@
           {
             "name": "omitNamespace",
             "in": "query",
+            "description": "Allows you to drop the tenant~ or similar prefix.",
             "schema": {
               "type": "boolean"
             }
@@ -2138,6 +2158,7 @@
           {
             "name": "spellcorrectOverride",
             "in": "query",
+            "description": "Valid values are Default, SkipAutocorrect, SkipDidyoumean, and SkipAll.",
             "schema": {
               "type": "string",
               "default": "Default"
@@ -2146,6 +2167,7 @@
           {
             "name": "useSubscriptionPricing",
             "in": "query",
+            "description": "Whether or not to use subscription pricing instead of the default product pricing.",
             "schema": {
               "type": "boolean",
               "default": false
@@ -4058,6 +4080,14 @@
           "isDisplayed": {
             "type": "boolean",
             "description": "Indicates whether the FacetValue should be displayed"
+          },
+          "childrenFacetValues": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "When hierarchical Facet",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -4731,8 +4761,19 @@
             "description": "Internal unique identifier of the category. System-supplied and read-only.",
             "format": "int32"
           },
+          "parentCategory": {
+            "type": "object"
+          },
           "content": {
             "$ref": "#/components/schemas/CategoryContent"
+          },
+          "childrenCategories": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "List of subcategories that belong to this category.",
+            "nullable": true
           },
           "sequence": {
             "type": "integer",
@@ -5843,7 +5884,7 @@
           "description": "Id of the Tenant"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
@@ -5864,7 +5905,7 @@
           "description": "Id of the Site"
         },
         "env": {
-          "default": "sandbox",
+          "default": "sb",
           "enum": [
             "sb",
             "tp1"
