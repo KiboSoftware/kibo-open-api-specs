@@ -34,7 +34,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/shipping/request-rates": {
@@ -52,6 +62,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -104,6 +122,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -176,22 +202,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShipmentResponse"
+                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShipmentResponse"
+                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShipmentResponse"
+                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
                 }
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/shipping/get-labels": {
@@ -232,7 +268,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     }
   },
@@ -772,35 +818,6 @@
         },
         "additionalProperties": false
       },
-      "PackageResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "label": {
-            "$ref": "#/components/schemas/ShippingLabel"
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "integratorId": {
-            "type": "string",
-            "description": "Easypost ShipmentId required for manifests",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "Notification": {
         "type": "object",
         "properties": {
@@ -815,43 +832,6 @@
           "code": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShipmentResponse": {
-        "type": "object",
-        "properties": {
-          "shippingTotal": {
-            "$ref": "#/components/schemas/Money"
-          },
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "packageResponses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PackageResponse"
-            },
-            "nullable": true
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Notification"
-            },
-            "nullable": true
-          },
-          "isSuccessful": {
-            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -1258,6 +1238,35 @@
         },
         "additionalProperties": false
       },
+      "ShippingRuntimePackageResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "trackingNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "label": {
+            "$ref": "#/components/schemas/ShippingLabel"
+          },
+          "customAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true
+          },
+          "integratorId": {
+            "type": "string",
+            "description": "Easypost ShipmentId required for manifests",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ShippingRuntimeCarrier": {
         "type": "object",
         "properties": {
@@ -1290,6 +1299,43 @@
         },
         "additionalProperties": false,
         "description": "A Carrier definition supported by Shipping Runtime."
+      },
+      "ShippingRuntimeShipmentResponse": {
+        "type": "object",
+        "properties": {
+          "shippingTotal": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "trackingNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "packageResponses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimePackageResponse"
+            },
+            "nullable": true
+          },
+          "customAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "nullable": true
+          },
+          "isSuccessful": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {

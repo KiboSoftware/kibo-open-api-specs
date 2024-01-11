@@ -51,6 +51,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -113,7 +121,17 @@
             }
           }
         },
-        "description": "Create a new customer attribute."
+        "description": "Create a new customer attribute.",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/accountattributedefinition/attributes/{attributeFQN}/VocabularyValues": {
@@ -134,6 +152,14 @@
           {
             "name": "responseGroups",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -194,6 +220,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -230,6 +264,14 @@
             "name": "attributeFQN",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -307,7 +349,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/authtickets": {
@@ -348,7 +400,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/authtickets/refresh": {
@@ -363,6 +425,14 @@
             "name": "refreshToken",
             "in": "query",
             "description": "The user's refresh token.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -420,7 +490,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/b2baccounts/{accountId}/attributes": {
@@ -478,6 +558,14 @@
               "type": "string",
               "default": ""
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -518,6 +606,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -578,6 +674,14 @@
             "in": "path",
             "description": "Fully qualified name of the attribute that you want to retrieve.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -660,6 +764,14 @@
             "name": "attributeFQN",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -773,6 +885,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -835,7 +955,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/b2baccounts/{accountId}": {
@@ -860,6 +990,14 @@
             "name": "responseGroups",
             "in": "query",
             "description": "Used to refine the default information returned from a request. To reduce amount of customer account information returned, use the valid response groups: Contacts, CustomerAccountNotes, and OrderSummary. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -903,6 +1041,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -965,6 +1111,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1017,6 +1171,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1065,6 +1227,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1162,6 +1332,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1217,6 +1395,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1283,6 +1469,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1322,6 +1516,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1405,7 +1607,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/b2baccounts/{accountId}/user": {
@@ -1424,6 +1636,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1538,6 +1758,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1587,6 +1815,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1652,6 +1888,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1683,6 +1927,14 @@
             "in": "path",
             "description": "Unique identifier of the user.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1746,6 +1998,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1856,6 +2116,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1934,6 +2202,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2003,6 +2279,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2038,6 +2322,14 @@
           {
             "name": "userId",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2092,6 +2384,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2129,6 +2429,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2207,6 +2515,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2254,6 +2570,14 @@
             "name": "userId",
             "in": "query",
             "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2318,6 +2642,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2355,6 +2687,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2456,6 +2796,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2502,6 +2850,14 @@
             "name": "userId",
             "in": "query",
             "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2571,6 +2927,14 @@
           {
             "name": "userId",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2671,6 +3035,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -2723,6 +3095,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2762,6 +3142,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -2822,6 +3210,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2867,6 +3263,14 @@
             "name": "cardId",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2995,6 +3399,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3035,6 +3447,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3086,6 +3506,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3161,6 +3589,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3216,6 +3652,14 @@
             "name": "userId",
             "in": "query",
             "description": "If provided, the primary markings on the contact will be stored as the user's preferred primary override",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3369,6 +3813,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3431,7 +3883,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/accounts/{accountId}": {
@@ -3462,6 +3924,14 @@
           {
             "name": "userId",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3505,6 +3975,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3579,6 +4057,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3622,6 +4108,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3672,6 +4166,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3761,6 +4263,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3825,6 +4335,14 @@
               "type": "string",
               "default": ""
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3865,6 +4383,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3929,6 +4455,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3979,6 +4513,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4105,6 +4647,14 @@
               "type": "string",
               "default": ""
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4181,6 +4731,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4225,6 +4783,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4265,6 +4831,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4315,6 +4889,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4367,6 +4949,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4455,6 +5045,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4526,6 +5124,14 @@
               "type": "string",
               "default": "B2C"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4571,6 +5177,14 @@
           {
             "name": "customerSetCode",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -4621,6 +5235,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4668,6 +5290,14 @@
             "name": "userId",
             "in": "query",
             "description": "EmailAddress of the customer whose details you want to view.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -4730,6 +5360,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -4787,7 +5425,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/accounts/Reset-Password": {
@@ -4811,7 +5459,17 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/accounts/Update-Forgotten-Password": {
@@ -4835,7 +5493,17 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/accounts/{accountId}/Create-Login": {
@@ -4853,6 +5521,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4926,7 +5602,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/accounts/{accountId}/Set-Login-Locked": {
@@ -4950,6 +5636,14 @@
           {
             "name": "userId",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -4993,6 +5687,14 @@
           {
             "name": "userId",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -5054,7 +5756,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/attributedefinition/attributes": {
@@ -5098,6 +5810,14 @@
           {
             "name": "filter",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -5164,7 +5884,17 @@
           }
         },
         "summary": "Create Attribute",
-        "description": "Customer attributes are custom attributes that you can apply to customer accounts to add further definition for special uses, such as marketing campaigns, or discounts."
+        "description": "Customer attributes are custom attributes that you can apply to customer accounts to add further definition for special uses, such as marketing campaigns, or discounts.",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/attributedefinition/attributes/{attributeFQN}/VocabularyValues": {
@@ -5184,6 +5914,14 @@
           {
             "name": "responseGroups",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -5244,6 +5982,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5280,6 +6026,14 @@
             "name": "attributeFQN",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -5365,6 +6119,14 @@
               "type": "string",
               "default": ""
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5427,7 +6189,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/segments/{id}": {
@@ -5445,6 +6217,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5485,6 +6265,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5560,6 +6348,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5663,6 +6459,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5702,6 +6506,14 @@
             "in": "path",
             "description": "Unique identifier of a customer group.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -5769,7 +6581,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "get": {
         "tags": [
@@ -5813,6 +6635,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5852,6 +6682,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -5902,6 +6740,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -5974,6 +6820,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6036,7 +6890,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/instocknotifications/{id}": {
@@ -6055,6 +6919,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -6122,8 +6994,7 @@
           "value": {
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AddressValidationRequest": {
         "type": "object",
@@ -6132,7 +7003,6 @@
             "$ref": "#/components/schemas/CommerceRuntimeAddress"
           }
         },
-        "additionalProperties": false,
         "description": "Address Validation Request"
       },
       "AddressValidationResponse": {
@@ -6147,7 +7017,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Address Validation Response"
       },
       "CustomerUserAuthInfo": {
@@ -6161,8 +7030,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CurrencyAmount": {
         "type": "object",
@@ -6178,7 +7046,6 @@
             "format": "double"
           }
         },
-        "additionalProperties": false,
         "description": "The currency code and amount of an order listed in the order history of a customer account. Currently, only USD is supported."
       },
       "CommerceSummary": {
@@ -6209,7 +7076,6 @@
             "format": "int32"
           }
         },
-        "additionalProperties": false,
         "description": "Commerce (orders and wishlists) on a customer account which lists all the orders the customer has made with the order date, order amount, and status. Includes cancellations and returns.  Also includes wishlist information."
       },
       "ContactType": {
@@ -6222,8 +7088,7 @@
           "isPrimary": {
             "type": "boolean"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerContact": {
         "type": "object",
@@ -6282,7 +7147,6 @@
             "$ref": "#/components/schemas/CommerceRuntimeAddress"
           }
         },
-        "additionalProperties": false,
         "description": "CustomerContact information for a customer account including the name, company, phone numbers, email addresses, and billing and shipping addresses (if supplied)."
       },
       "CustomerNote": {
@@ -6302,7 +7166,6 @@
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
         },
-        "additionalProperties": false,
         "description": "Note added to the customer account. Merchants can add internal notes, for example, to keep track of a customer's interests or complaints."
       },
       "CustomerAttribute": {
@@ -6325,8 +7188,7 @@
             "items": {},
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AccountBase": {
         "type": "object",
@@ -6410,7 +7272,6 @@
             "description": "Indicates Subscription migration is required or not."
           }
         },
-        "additionalProperties": false,
         "description": "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \r\nMerchants can edit accounts to add internal notes or assign them to segments."
       },
       "CustomerAccount": {
@@ -6472,7 +7333,6 @@
             "description": "Indicates if an external password is set on this account"
           }
         },
-        "additionalProperties": false,
         "description": "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \r\nMerchants can edit accounts to add internal notes or assign them to segments."
       },
       "CustomerAuthTicket": {
@@ -6505,8 +7365,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerAttributeCollection": {
         "type": "object",
@@ -6535,7 +7394,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of notes added to a customer account returned as a whole. A collection is not paged."
       },
       "UserScope": {
@@ -6554,8 +7412,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "Resource": {
         "type": "object",
@@ -6568,8 +7425,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "UserRole": {
         "type": "object",
@@ -6606,8 +7462,7 @@
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "B2BUser": {
         "type": "object",
@@ -6662,7 +7517,6 @@
             "description": "Indicates if an external password is set on this account"
           }
         },
-        "additionalProperties": false,
         "description": "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \r\nMerchants can edit accounts to add internal notes or assign them to segments."
       },
       "AccountSalesRep": {
@@ -6676,8 +7530,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "B2BAccount": {
         "type": "object",
@@ -6731,7 +7584,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \r\nMerchants can edit accounts to add internal notes or assign them to segments."
       },
       "B2BAccountCollection": {
@@ -6761,7 +7613,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of all the B2B Accounts returned as a whole. A collection is not paged."
       },
       "AccountHierarchyNode": {
@@ -6778,8 +7629,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "B2BAccountHierarchyResult": {
         "type": "object",
@@ -6795,8 +7645,7 @@
           "hierarchy": {
             "$ref": "#/components/schemas/AccountHierarchyNode"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "UpgradeToB2BAccountError": {
         "type": "object",
@@ -6810,7 +7659,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "This class is used for reporting errors while upgrading the B2C account to B2B."
       },
       "UpgradeToB2BAccountResponse": {
@@ -6840,7 +7688,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "This class is used for sending custom response while upgrading the B2C accounts to B2B.\r\nThe custom response returns a list of success, skipped and error accountIDs while upgrade."
       },
       "B2BUserAndAuthInfo": {
@@ -6856,8 +7703,7 @@
           "isImport": {
             "type": "boolean"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "B2BUserCollection": {
         "type": "object",
@@ -6886,7 +7732,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of users in a B2B account."
       },
       "ExtendedCustomerContact": {
@@ -6949,8 +7794,7 @@
           "address": {
             "$ref": "#/components/schemas/CommerceRuntimeAddress"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ExtendedCustomerContactCollection": {
         "type": "object",
@@ -6979,7 +7823,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of contacts returned as a whole."
       },
       "CreditAuditEntry": {
@@ -7003,7 +7846,6 @@
             "format": "int32"
           }
         },
-        "additionalProperties": false,
         "description": "Log entry for any change made to a Credit.\r\n\r\nThe system will generate all entries.  Contract is for display only.\r\nAll values are ReadOnly."
       },
       "CreditAuditEntryCollection": {
@@ -7032,8 +7874,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CreditCollection": {
         "type": "object",
@@ -7061,8 +7902,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CreditTransaction": {
         "type": "object",
@@ -7101,7 +7941,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Credit Transactions are used to make adjustments to a Credit Balance"
       },
       "CreditTransactionCollection": {
@@ -7130,8 +7969,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "Card": {
         "type": "object",
@@ -7170,8 +8008,7 @@
           "isDefaultPayMethod": {
             "type": "boolean"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CardCollection": {
         "type": "object",
@@ -7187,8 +8024,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerContactCollection": {
         "type": "object",
@@ -7217,7 +8053,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of contacts returned as a whole."
       },
       "CustomerAccountCollection": {
@@ -7247,7 +8082,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of all the merchant's customers returned as a whole. A collection is not paged."
       },
       "Transaction": {
@@ -7281,8 +8115,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerNoteCollection": {
         "type": "object",
@@ -7311,7 +8144,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of notes added to a customer account returned as a whole. A collection is not paged."
       },
       "CustomerSegmentCollection": {
@@ -7341,7 +8173,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of customer segements returned as a whole. A collection is not paged."
       },
       "CustomerAuditEntry": {
@@ -7397,8 +8228,7 @@
             "description": "New Value after this event",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerAuditEntryCollection": {
         "type": "object",
@@ -7426,8 +8256,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerPurchaseOrderPaymentTerm": {
         "type": "object",
@@ -7447,8 +8276,7 @@
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerPurchaseOrderAccount": {
         "type": "object",
@@ -7496,8 +8324,7 @@
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "PurchaseOrderTransaction": {
         "type": "object",
@@ -7574,7 +8401,6 @@
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
         },
-        "additionalProperties": false,
         "description": "Customer purchase order transaction log"
       },
       "PurchaseOrderTransactionCollection": {
@@ -7604,7 +8430,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of purchase order transactions returned as a whole. \r\nA collection is not paged."
       },
       "CustomerPurchaseOrderAccountCollection": {
@@ -7633,8 +8458,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "LoginState": {
         "type": "object",
@@ -7683,8 +8507,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "AccountPasswordInfo": {
         "type": "object",
@@ -7708,7 +8531,6 @@
             "$ref": "#/components/schemas/CustomerPasswordInfo"
           }
         },
-        "additionalProperties": false,
         "description": "Password information for an Account"
       },
       "AccountPasswordInfoCollection": {
@@ -7725,8 +8547,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ChangePasswordResult": {
         "type": "object",
@@ -7742,8 +8563,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ChangePasswordResultCollection": {
         "type": "object",
@@ -7759,8 +8579,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ConfirmationInfo": {
         "type": "object",
@@ -7781,7 +8600,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Used to update a user's forgotten password. Contains the user's email address, new password, and the confirmation code \r\nthat is required to update the password."
       },
       "CustomerLoginInfo": {
@@ -7807,8 +8625,7 @@
             "type": "boolean",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerAccountAndAuthInfo": {
         "type": "object",
@@ -7827,8 +8644,7 @@
           "isImport": {
             "type": "boolean"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerSetSite": {
         "type": "object",
@@ -7845,8 +8661,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerSetAggregateInfo": {
         "type": "object",
@@ -7855,8 +8670,7 @@
             "type": "integer",
             "format": "int32"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerSet": {
         "type": "object",
@@ -7893,7 +8707,6 @@
             "$ref": "#/components/schemas/CustomerSetAggregateInfo"
           }
         },
-        "additionalProperties": false,
         "description": "A customer segment."
       },
       "CustomerSetCollection": {
@@ -7922,8 +8735,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "Visit": {
         "type": "object",
@@ -7981,8 +8793,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "VisitCollection": {
         "type": "object",
@@ -8010,8 +8821,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "InStockNotificationSubscription": {
         "type": "object",
@@ -8052,7 +8862,6 @@
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
         },
-        "additionalProperties": false,
         "description": "Inventory in-stock notification subscription.  Notification sender/processor view.  Generally for internal consumption only."
       },
       "InStockNotificationSubscriptionCollection": {
@@ -8082,7 +8891,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Collection of InStockNotificationSubscriptions"
       },
       "AdminUserAuditInfo": {
@@ -8106,8 +8914,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerUserRoleCollection": {
         "type": "object",
@@ -8123,8 +8930,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerPasswordInfo": {
         "type": "object",
@@ -8145,7 +8951,6 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
         "description": "Old password and new password."
       },
       "CustomerResetPasswordInfo": {
@@ -8163,8 +8968,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommerceRuntimeAttribute": {
         "required": [
@@ -8261,8 +9065,7 @@
           "availableForOrderRouting": {
             "type": "boolean"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommerceRuntimePhone": {
         "type": "object",
@@ -8279,8 +9082,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommerceRuntimeAddress": {
         "type": "object",
@@ -8325,8 +9127,7 @@
             "type": "boolean",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerCredit": {
         "type": "object",
@@ -8389,7 +9190,6 @@
             "format": "int32"
           }
         },
-        "additionalProperties": false,
         "description": "Represetation of a store credit or gift card."
       },
       "CommerceRuntimeAttributeMetadataItem": {
@@ -8406,8 +9206,7 @@
           "value": {
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommerceRuntimeAttributeLocalizedContent": {
         "type": "object",
@@ -8422,8 +9221,7 @@
             "type": "string",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommerceRuntimeAttributeValidation": {
         "type": "object",
@@ -8463,8 +9261,7 @@
             "format": "date-time",
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommerceRuntimeAttributeVocabularyValue": {
         "required": [
@@ -8488,8 +9285,7 @@
           "content": {
             "$ref": "#/components/schemas/AttributeValueLocalizedContent"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CommerceRuntimeAttributeCollection": {
         "type": "object",
@@ -8517,8 +9313,7 @@
             },
             "nullable": true
           }
-        },
-        "additionalProperties": false
+        }
       },
       "CustomerCustomerSegment": {
         "type": "object",
@@ -8547,7 +9342,6 @@
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
         },
-        "additionalProperties": false,
         "description": "A customer segment."
       }
     },

@@ -43,7 +43,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/campaigns/{campaignId}": {
@@ -59,6 +69,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -125,7 +143,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/pricelists/resolved": {
@@ -142,6 +170,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -204,7 +240,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/pricelists/{priceListCode}": {
@@ -219,6 +265,14 @@
             "name": "priceListCode",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -263,6 +317,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -340,6 +402,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -399,6 +469,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -529,6 +607,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -668,6 +754,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -734,6 +828,14 @@
             "schema": {
               "type": "string",
               "format": "date-time"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -829,6 +931,14 @@
           {
             "name": "subscriptionFrequency",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -945,6 +1055,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1031,6 +1149,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1088,6 +1214,30 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "includeFutureInventory",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "includeSegmentedInventory",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1115,53 +1265,12 @@
         "description": "Get product inventory. You can provide up to a maximum of 200 product codes and 200 location codes in the endpoint by default."
       }
     },
-    "/commerce/catalog/storefront/products/{productCode}/substitutions": {
-      "get": {
-        "tags": [
-          "Products"
-        ],
-        "summary": "Get product substitutions",
-        "description": "Returns a list of up to 10 products that can be substituted for the provided product code.",
-        "parameters": [
-          {
-            "name": "productCode",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProductSubstituteCollection"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProductSubstituteCollection"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProductSubstituteCollection"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/commerce/catalog/storefront/products/locationinventory": {
       "post": {
         "tags": [
           "Products"
         ],
-        "summary": "Get Location Inventories",
+        "summary": "Get location inventories for a list of products",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1193,7 +1302,66 @@
             }
           }
         },
-        "description": "Get location inventories for products"
+        "description": "Get location inventories for a list of products",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/catalog/storefront/products/{productCode}/substitutions": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get product substitutions",
+        "description": "Returns a list of up to 10 products that can be substituted for the provided product code.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSubstituteCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSubstituteCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSubstituteCollection"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/commerce/catalog/storefront/products/costs": {
@@ -1233,7 +1401,17 @@
             }
           }
         },
-        "description": "Get costs for products. This cost is the amount the merchant pays for the product—it is not the price that the shopper sees on the storefront (which is usually higher)."
+        "description": "Get costs for products. This cost is the amount the merchant pays for the product—it is not the price that the shopper sees on the storefront (which is usually higher).",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/productsearch/suggest": {
@@ -1279,6 +1457,14 @@
           {
             "name": "filter",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1357,6 +1543,14 @@
           {
             "name": "filter",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1521,6 +1715,14 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1578,6 +1780,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1862,6 +2072,14 @@
             "name": "merchandizingRuleCode",
             "in": "query",
             "description": "Optional. Use a specific search-merchandizing-rule code if provided.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2177,6 +2395,14 @@
             "name": "merchandizingRuleCode",
             "in": "query",
             "description": "Optional. Use a specific search-merchandizing-rule code if provided.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2589,6 +2815,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2636,7 +2870,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/productsearch/preview": {
@@ -2677,7 +2921,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/searchmerchandizingrules/previewsearchmerchandizingrule": {
@@ -2718,7 +2972,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/searchredirect/redirects": {
@@ -2732,7 +2996,17 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/searchredirect/{redirectId}": {
@@ -2748,6 +3022,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3743,6 +4025,79 @@
         "additionalProperties": false,
         "description": "Provides a summary (more accurately it is a container) for valid discounts for potentially valid discounts for a product"
       },
+      "TagData": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "tag": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SegmentedQuantity": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagData"
+            },
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "sthFulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bopisFulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "transferFulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sthProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bopisProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "transferProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "futureInventory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesFutureInventory"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LocationInventory": {
         "type": "object",
         "properties": {
@@ -3778,6 +4133,43 @@
               "$ref": "#/components/schemas/CatalogRuntimesFutureInventory"
             },
             "nullable": true
+          },
+          "sthFulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bopisFulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "transferFulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sthProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bopisProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "transferProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "segmentedQuantities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SegmentedQuantity"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -3799,6 +4191,44 @@
           }
         },
         "additionalProperties": false
+      },
+      "LocationInventoryQuery": {
+        "type": "object",
+        "properties": {
+          "locationCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "productCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "inventoryTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesInventoryTag"
+            },
+            "nullable": true
+          },
+          "includeFutureInventory": {
+            "type": "boolean"
+          },
+          "forceDefaultsForUnspecifiedTagCategories": {
+            "type": "boolean",
+            "deprecated": true
+          },
+          "includeSegmentedInventory": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The inventory for a product at a specific Location"
       },
       "ProductSubstitution": {
         "type": "object",
@@ -3861,40 +4291,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "LocationInventoryQuery": {
-        "type": "object",
-        "properties": {
-          "locationCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "productCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "inventoryTags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CatalogRuntimesInventoryTag"
-            },
-            "nullable": true
-          },
-          "includeFutureInventory": {
-            "type": "boolean"
-          },
-          "forceDefaultsForUnspecifiedTagCategories": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false,
-        "description": "The inventory for a product at a specific Location"
       },
       "ProductCostQuery": {
         "type": "object",
@@ -4622,6 +5018,36 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "sthFulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bopisProcessingTimeDate": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "transferFulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sthProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bopisProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "transferProcessingTimeHours": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5180,6 +5606,11 @@
           "personalizationScore": {
             "type": "number",
             "format": "double"
+          },
+          "costPriceMargin": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
           }
         },
         "additionalProperties": false,

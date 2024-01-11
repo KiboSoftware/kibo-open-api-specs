@@ -21,6 +21,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -61,6 +69,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -140,6 +156,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -180,6 +204,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -259,6 +291,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -309,6 +349,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -397,6 +445,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -447,6 +503,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -646,14 +710,18 @@
         },
         "additionalProperties": false
       },
-      "ProcessingTime": {
+      "FulfillmentProcessingTime": {
         "type": "object",
         "properties": {
           "fulfillmentTypeCode": {
             "type": "string",
             "nullable": true
           },
-          "hours": {
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
             "type": "integer",
             "format": "int32"
           }
@@ -670,6 +738,39 @@
           "value": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReceiveProcessingTime": {
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProcessingTimes": {
+        "type": "object",
+        "properties": {
+          "fulfillment": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentProcessingTime"
+            },
+            "nullable": true
+          },
+          "transfer": {
+            "$ref": "#/components/schemas/TransferTime"
+          },
+          "receive": {
+            "$ref": "#/components/schemas/ReceiveProcessingTime"
           }
         },
         "additionalProperties": false
@@ -775,14 +876,7 @@
             "type": "boolean"
           },
           "processingTimes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProcessingTime"
-            },
-            "nullable": true
-          },
-          "transferTime": {
-            "$ref": "#/components/schemas/TransferTime"
+            "$ref": "#/components/schemas/ProcessingTimes"
           }
         },
         "additionalProperties": false
