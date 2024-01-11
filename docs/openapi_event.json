@@ -49,6 +49,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -88,6 +96,14 @@
             "in": "path",
             "description": "Unique identifier of the event. System-supplied and read-only.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -157,6 +173,14 @@
             "name": "filter",
             "in": "query",
             "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -238,6 +262,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -288,6 +320,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -363,6 +403,14 @@
             "name": "responseGroups",
             "in": "query",
             "description": "Used to get more specific information from the request.  Available response groups: SubscribingSites.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }

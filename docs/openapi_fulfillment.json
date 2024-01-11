@@ -85,6 +85,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -138,6 +146,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -188,6 +204,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -282,7 +306,17 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/shipments/{shipmentNumber}/futureItems": {
@@ -309,6 +343,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -381,6 +423,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -438,6 +488,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -510,6 +568,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -593,7 +659,17 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/fulfillment/shipping/manifests/eligibleShipments": {
@@ -633,6 +709,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -683,6 +767,14 @@
             "description": "manifestId",
             "required": true,
             "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -770,7 +862,17 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/pickwaves/open/{fulfillmentLocationCode}": {
@@ -817,6 +919,14 @@
             "description": "userDisplayName",
             "required": false,
             "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -882,6 +992,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -934,6 +1052,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1000,6 +1126,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1060,6 +1194,14 @@
             "description": "sortContentsByLocator",
             "required": false,
             "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1146,6 +1288,14 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1199,6 +1349,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1251,6 +1409,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1290,6 +1456,14 @@
             "description": "returnId",
             "required": true,
             "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1335,6 +1509,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1395,6 +1577,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1483,6 +1673,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1541,6 +1739,14 @@
             "description": "key",
             "required": true,
             "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1653,6 +1859,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1710,6 +1924,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1824,6 +2046,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1881,6 +2111,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1951,6 +2189,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2009,6 +2255,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2143,6 +2397,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2241,7 +2503,17 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/shipments/bulk": {
@@ -2296,7 +2568,17 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/shipments/countsByStep": {
@@ -2324,6 +2606,14 @@
             "required": false,
             "style": "form",
             "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2400,6 +2690,14 @@
             "style": "form",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -2488,6 +2786,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -2561,6 +2867,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2616,6 +2930,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -2685,6 +3007,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2811,6 +3141,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -2885,6 +3223,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -2954,6 +3300,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3031,6 +3385,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -3105,6 +3467,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -3176,6 +3546,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3256,6 +3634,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3318,6 +3704,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3395,6 +3789,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -3469,6 +3871,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3531,6 +3941,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3608,6 +4026,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3653,6 +4079,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3718,6 +4152,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3795,6 +4237,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -3883,6 +4333,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3921,6 +4379,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3981,6 +4447,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -4058,6 +4532,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -4132,6 +4614,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -4203,6 +4693,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -4281,6 +4779,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4343,6 +4849,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -4420,6 +4934,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -4485,6 +5007,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4547,6 +5077,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4602,6 +5140,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4672,6 +5218,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -4759,6 +5313,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4834,6 +5396,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4896,6 +5466,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -4973,6 +5551,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5038,6 +5624,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5081,6 +5675,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5123,6 +5725,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5193,6 +5803,14 @@
             "style": "form",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5365,6 +5983,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5445,6 +6071,14 @@
             "style": "form",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5637,6 +6271,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5726,6 +6368,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -5859,6 +6509,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5930,6 +6588,14 @@
             "in": "header",
             "description": "If-Match",
             "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -6080,6 +6746,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -6191,6 +6865,14 @@
             "description": "carrier",
             "required": true,
             "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -6329,6 +7011,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6376,6 +7066,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -6431,6 +7129,14 @@
             "description": "processId",
             "required": true,
             "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -6500,6 +7206,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6562,6 +7276,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6611,6 +7333,14 @@
             "description": "shipmentType",
             "required": true,
             "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -6677,6 +7407,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6736,6 +7474,14 @@
             "description": "locationGroupCode",
             "required": true,
             "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }

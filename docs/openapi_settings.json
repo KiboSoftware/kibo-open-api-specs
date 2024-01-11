@@ -34,7 +34,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -72,7 +82,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -110,7 +130,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/checkout": {
@@ -141,7 +171,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/checkout/paymentsettings/thirdpartyworkflows": {
@@ -181,7 +221,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -202,7 +252,17 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/checkout/paymentsettings/thirdpartyworkflows/{fullyQualifiedName}": {
@@ -241,6 +301,14 @@
             "name": "fullyQualifiedName",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -298,7 +366,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -337,7 +415,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/fulfillment/fulfillmentsettings": {
@@ -368,7 +456,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -406,7 +504,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -444,7 +552,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/general/customroutes": {
@@ -484,7 +602,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "get": {
         "tags": [
@@ -513,7 +641,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -551,7 +689,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -594,7 +742,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -633,7 +791,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/general/taxableterritories": {
@@ -673,7 +841,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -712,7 +890,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -762,7 +950,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/inventory/inventorySettings": {
@@ -793,7 +991,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -831,7 +1039,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -869,7 +1087,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/return/returnsettings": {
@@ -900,7 +1128,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -938,7 +1176,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -976,7 +1224,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/shipping": {
@@ -1007,7 +1265,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/shipping/orderhandlingfee": {
@@ -1039,7 +1307,17 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -1079,7 +1357,17 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -1119,7 +1407,17 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/settings/subscription/subscriptionsettings": {
@@ -1150,7 +1448,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -1188,7 +1496,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -1226,7 +1544,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     }
   },
@@ -1237,6 +1565,12 @@
         "properties": {
           "enableHandlingFee": {
             "type": "boolean"
+          },
+          "reserveCartInventoryInterval": {
+            "type": "integer",
+            "description": "Specifies the amount of time to reserve inventory in cart",
+            "format": "int32",
+            "nullable": true
           },
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"
@@ -2854,10 +3188,6 @@
           "inventoryExportJob": {
             "$ref": "#/components/schemas/InventoryExportJob"
           },
-          "reserveCartInventoryInterval": {
-            "type": "integer",
-            "format": "int32"
-          },
           "locationFulfillmentTypeSettings": {
             "type": "array",
             "items": {
@@ -2993,6 +3323,12 @@
           "subscriptionPausedReminderOffset": {
             "type": "integer",
             "description": "Specifies the number of days to send subscription paused reminder email.",
+            "format": "int32",
+            "nullable": true
+          },
+          "restrictOrderNowOffset": {
+            "type": "integer",
+            "description": "Specifies the number of days, `order all items now` or `order partial items now` actions cannot be repeated from the last action.",
             "format": "int32",
             "nullable": true
           },

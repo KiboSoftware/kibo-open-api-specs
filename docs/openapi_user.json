@@ -49,6 +49,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -110,7 +118,17 @@
             }
           }
         },
-        "description": "Adds an admin group"
+        "description": "Adds an admin group",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/platform/adminuser/groups/{groupCode}": {
@@ -126,6 +144,14 @@
             "in": "path",
             "description": "groupCode",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -165,6 +191,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -243,6 +277,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -298,6 +340,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -350,6 +400,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -395,6 +453,14 @@
           {
             "name": "redirect",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -461,6 +527,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -503,6 +577,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -553,6 +635,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -629,6 +719,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -672,6 +770,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -709,6 +815,14 @@
             "in": "path",
             "description": "Unique identifier of the user whose login information you want to change.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -792,6 +906,14 @@
             "name": "responseGroups",
             "in": "query",
             "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -880,6 +1002,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -925,7 +1055,17 @@
             }
           }
         },
-        "description": "Creates a new user"
+        "description": "Creates a new user",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/platform/adminuser/accounts/{userId}/roles": {
@@ -941,6 +1081,14 @@
             "in": "path",
             "description": "Unique identifier of the user.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -995,6 +1143,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1053,6 +1209,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1086,6 +1250,14 @@
             "in": "path",
             "description": "Unique identifier of the user for whom to change the password.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1129,7 +1301,17 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/platform/adminuser/accounts/{userId}/unlock": {
@@ -1144,6 +1326,14 @@
             "in": "path",
             "description": "The user id.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1172,6 +1362,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1222,6 +1420,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1311,6 +1517,14 @@
             "name": "filter",
             "in": "query",
             "description": "Optional filter param to filter the roles",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }

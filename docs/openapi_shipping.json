@@ -48,6 +48,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -90,6 +98,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -127,6 +143,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -177,6 +201,14 @@
             "in": "path",
             "description": "",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -264,54 +296,11 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ServiceType"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ServiceType"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ServiceType"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Used for retrieving the available service types for the Mozu Default Application carriers"
-      }
-    },
-    "/commerce/shipping/global/carriers/serviceTypes/{localeCode}": {
-      "get": {
-        "tags": [
-          "CarrierConfigurationGlobal"
-        ],
-        "summary": "Get Service Types (without Carrier ID)",
-        "parameters": [
+          },
           {
-            "name": "localeCode",
-            "in": "path",
-            "description": "",
-            "required": true,
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -348,7 +337,66 @@
             }
           }
         },
-        "description": "Used for retrieving the available service types for the Mozu Default Application carriers"
+        "description": "Retrieves the available service types for the Default Application carriers"
+      }
+    },
+    "/commerce/shipping/global/carriers/serviceTypes/{localeCode}": {
+      "get": {
+        "tags": [
+          "CarrierConfigurationGlobal"
+        ],
+        "summary": "Get Service Types (without Carrier ID)",
+        "parameters": [
+          {
+            "name": "localeCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceType"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceType"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Retrieves the available service types for the Default Application carriers"
       }
     },
     "/commerce/shipping/admin/carriers/credentials/{carrierId}": {
@@ -363,6 +411,14 @@
             "in": "path",
             "description": "The carrier ID.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -441,6 +497,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -503,6 +567,14 @@
             "name": "locationCode",
             "in": "query",
             "description": "The location code, if any.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -631,6 +703,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -670,6 +750,14 @@
             "in": "path",
             "description": "The carrier ID.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -734,6 +822,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -780,6 +876,14 @@
             "in": "path",
             "description": "The carrier credential set code.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -892,6 +996,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -924,13 +1036,21 @@
         "tags": [
           "CarrierDefinition"
         ],
-        "summary": "Returns a Mozu",
+        "summary": "Get Carrier Definition",
         "parameters": [
           {
             "name": "carrierId",
             "in": "path",
             "description": "The carrier ID.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -958,7 +1078,7 @@
             }
           }
         },
-        "description": "hippingAdmin.Contracts.Carriers.CarrierDefinition for the specified carrier."
+        "description": "Retrieves the carrier definition for the specified carrier"
       }
     },
     "/commerce/shipping/admin/carriers/definitions": {
@@ -966,7 +1086,7 @@
         "tags": [
           "CarrierDefinition"
         ],
-        "summary": "Returns a list of Mozu",
+        "summary": "Get Carrier Definitions",
         "responses": {
           "200": {
             "description": "Success",
@@ -998,7 +1118,17 @@
             }
           }
         },
-        "description": "hippingAdmin.Contracts.Carriers.CarrierDefinitions for the specified tenant."
+        "description": "Retrieves all shipping carrier definitions for the specified tenant",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees": {
@@ -1015,6 +1145,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1039,7 +1177,7 @@
             }
           }
         },
-        "description": "Get Order Handling Fee Rules"
+        "description": "Retrieve all order handling fee rules"
       },
       "post": {
         "tags": [
@@ -1051,6 +1189,14 @@
             "name": "profilecode",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1087,7 +1233,7 @@
             }
           }
         },
-        "description": "Create Order Handling Fee Rule"
+        "description": "Creates a new order handling fee rule"
       }
     },
     "/commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}": {
@@ -1112,6 +1258,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1136,7 +1290,7 @@
             }
           }
         },
-        "description": "Get Order Handling Fee Rule"
+        "description": "Retrieves an order handling fee rule by ID"
       },
       "put": {
         "tags": [
@@ -1156,6 +1310,14 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1192,7 +1354,7 @@
             }
           }
         },
-        "description": "Update Order Handling Fee Rule"
+        "description": "Updates an existing order handling fee rule"
       },
       "delete": {
         "tags": [
@@ -1239,7 +1401,7 @@
             }
           }
         },
-        "description": "Delete Order Handling Fee Rule"
+        "description": "Deletes an existing order handling fee rule"
       }
     },
     "/commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees": {
@@ -1253,6 +1415,14 @@
             "name": "profilecode",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1280,7 +1450,7 @@
             }
           }
         },
-        "description": "Get Product Handling Fee Rules"
+        "description": "Retrieves all product handling fee rules"
       },
       "post": {
         "tags": [
@@ -1292,6 +1462,14 @@
             "name": "profilecode",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1328,7 +1506,7 @@
             }
           }
         },
-        "description": "Create Product Handling Fee Rule"
+        "description": "Creates a new product handling fee rule"
       }
     },
     "/commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}": {
@@ -1353,6 +1531,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1377,7 +1563,7 @@
             }
           }
         },
-        "description": "Get Product Handling Fee Rule"
+        "description": "Retrieves a product handling fee rule by ID"
       },
       "put": {
         "tags": [
@@ -1397,6 +1583,14 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1433,7 +1627,7 @@
             }
           }
         },
-        "description": "Update Product Handling Fee Rule"
+        "description": "Updates an existing product handling fee rule"
       },
       "delete": {
         "tags": [
@@ -1463,7 +1657,7 @@
             "description": "Success"
           }
         },
-        "description": "Delete Product Handling Fee Rule"
+        "description": "Deletes an existing product handling fee rule"
       }
     },
     "/commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions": {
@@ -1477,6 +1671,14 @@
             "name": "profilecode",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1504,7 +1706,7 @@
             }
           }
         },
-        "description": "Get Shipping Inclusion Rules"
+        "description": "Retrieves all shipping inclusion rules"
       },
       "post": {
         "tags": [
@@ -1516,6 +1718,14 @@
             "name": "profilecode",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1552,7 +1762,7 @@
             }
           }
         },
-        "description": "Create Shipping Inclusion Rule"
+        "description": "Creates a new shipping inclusion rule"
       }
     },
     "/commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}": {
@@ -1577,6 +1787,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1601,7 +1819,7 @@
             }
           }
         },
-        "description": "Get Shipping Inclusion Rule"
+        "description": "Retrieves a shipping inclusion rule by ID"
       },
       "put": {
         "tags": [
@@ -1621,6 +1839,14 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1657,7 +1883,7 @@
             }
           }
         },
-        "description": "Update Shipping Inclusion Rule"
+        "description": "Updates an existing shipping inclusion rule"
       },
       "delete": {
         "tags": [
@@ -1687,7 +1913,7 @@
             "description": "Success"
           }
         },
-        "description": "Delete Shipping Inclusion Rule"
+        "description": "Deletes an existing shipping inclusion rule"
       }
     },
     "/commerce/shipping/admin/profiles": {
@@ -1695,7 +1921,7 @@
         "tags": [
           "ShippingProfile"
         ],
-        "summary": "Get Shipping Profiles for the Tenant/Master Catalog",
+        "summary": "Get Shipping Profiles",
         "responses": {
           "200": {
             "description": "Success",
@@ -1718,7 +1944,17 @@
             }
           }
         },
-        "description": "Get Shipping Profiles for the Tenant/Master Catalog"
+        "description": "Get shipping profiles for the tenant/master catalog",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/shipping/admin/profiles/{profilecode}/shippingstates": {
@@ -1732,6 +1968,14 @@
             "name": "profilecode",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1768,7 +2012,7 @@
             }
           }
         },
-        "description": ""
+        "description": "Retrieves all configured shipping states"
       },
       "put": {
         "tags": [
@@ -1779,6 +2023,14 @@
             "name": "profilecode",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1828,7 +2080,7 @@
           }
         },
         "summary": "Update States",
-        "description": "Update States"
+        "description": "Updates the configured shipping states"
       }
     },
     "/commerce/targetrules": {
@@ -1870,6 +2122,14 @@
             "name": "filter",
             "in": "query",
             "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1935,7 +2195,17 @@
             }
           }
         },
-        "description": "Create Target Rule"
+        "description": "Create Target Rule",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/targetrules/{code}": {
@@ -1949,6 +2219,14 @@
             "name": "code",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1988,6 +2266,14 @@
             "name": "code",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -2069,7 +2355,17 @@
             "description": "Success"
           }
         },
-        "description": "Validate Target Rule"
+        "description": "Validate Target Rule",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/shipping/carriers": {
@@ -2100,7 +2396,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/shipping/request-rates": {
@@ -2118,6 +2424,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -2170,6 +2484,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -2242,22 +2564,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShipmentResponse"
+                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShipmentResponse"
+                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShipmentResponse"
+                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
                 }
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/storefront/shipping/get-labels": {
@@ -2298,7 +2630,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     }
   },
@@ -3812,35 +4154,6 @@
         },
         "additionalProperties": false
       },
-      "PackageResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "label": {
-            "$ref": "#/components/schemas/ShippingLabel"
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "integratorId": {
-            "type": "string",
-            "description": "Easypost ShipmentId required for manifests",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "Notification": {
         "type": "object",
         "properties": {
@@ -3855,43 +4168,6 @@
           "code": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShipmentResponse": {
-        "type": "object",
-        "properties": {
-          "shippingTotal": {
-            "$ref": "#/components/schemas/Money"
-          },
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "packageResponses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PackageResponse"
-            },
-            "nullable": true
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Notification"
-            },
-            "nullable": true
-          },
-          "isSuccessful": {
-            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -4274,6 +4550,35 @@
         },
         "additionalProperties": false
       },
+      "ShippingRuntimePackageResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "trackingNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "label": {
+            "$ref": "#/components/schemas/ShippingLabel"
+          },
+          "customAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true
+          },
+          "integratorId": {
+            "type": "string",
+            "description": "Easypost ShipmentId required for manifests",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ShippingRuntimeCarrier": {
         "type": "object",
         "properties": {
@@ -4306,6 +4611,43 @@
         },
         "additionalProperties": false,
         "description": "A Carrier definition supported by Shipping Runtime."
+      },
+      "ShippingRuntimeShipmentResponse": {
+        "type": "object",
+        "properties": {
+          "shippingTotal": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "trackingNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "packageResponses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimePackageResponse"
+            },
+            "nullable": true
+          },
+          "customAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "nullable": true
+          },
+          "isSuccessful": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {
