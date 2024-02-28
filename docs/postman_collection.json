@@ -10734,7 +10734,7 @@
            "name": "{productSortDefinitionId}",
            "item": [
             {
-             "name": "Get Product Sort Definition",
+             "name": "Get product sort definition",
              "request": {
               "method": "GET",
               "header": [
@@ -10760,17 +10760,12 @@
                  "value": "productSortDefinitionId"
                 }
                ],
-               "query": [
-                {
-                 "key": "responseFields",
-                 "disabled": true
-                }
-               ]
+               "query": []
               }
              }
             },
             {
-             "name": "Update Product Sort Definition",
+             "name": "Update product sort definition",
              "request": {
               "method": "PUT",
               "header": [
@@ -10796,17 +10791,12 @@
                  "value": "productSortDefinitionId"
                 }
                ],
-               "query": [
-                {
-                 "key": "responseFields",
-                 "disabled": true
-                }
-               ]
+               "query": []
               }
              }
             },
             {
-             "name": "Delete Product Sort Definition",
+             "name": "Delete product sort definition",
              "request": {
               "method": "DELETE",
               "header": [
@@ -10839,7 +10829,7 @@
            ]
           },
           {
-           "name": "Get Product Sort Definitions",
+           "name": "Get product sort definitions",
            "request": {
             "method": "GET",
             "header": [
@@ -10875,17 +10865,13 @@
               {
                "key": "filter",
                "disabled": true
-              },
-              {
-               "key": "responseFields",
-               "disabled": true
               }
              ]
             }
            }
           },
           {
-           "name": "Add Product Sort Definition",
+           "name": "Add product sort definition",
            "request": {
             "method": "POST",
             "header": [
@@ -10908,10 +10894,6 @@
              "query": [
               {
                "key": "useProvidedId",
-               "disabled": true
-              },
-              {
-               "key": "responseFields",
                "disabled": true
               }
              ]
@@ -11706,7 +11688,7 @@
              "name": "{searchTuningRuleCode}",
              "item": [
               {
-               "name": "Get Search tuning Rule",
+               "name": "Get search tuning rule",
                "request": {
                 "method": "GET",
                 "header": [
@@ -11733,17 +11715,12 @@
                    "value": "searchTuningRuleCode"
                   }
                  ],
-                 "query": [
-                  {
-                   "key": "responseFields",
-                   "disabled": true
-                  }
-                 ]
+                 "query": []
                 }
                }
               },
               {
-               "name": "Update Search Tuning Rule",
+               "name": "Update search tuning rule",
                "request": {
                 "method": "PUT",
                 "header": [
@@ -11770,12 +11747,7 @@
                    "value": "searchTuningRuleCode"
                   }
                  ],
-                 "query": [
-                  {
-                   "key": "responseFields",
-                   "disabled": true
-                  }
-                 ]
+                 "query": []
                 }
                }
               },
@@ -11814,7 +11786,7 @@
              ]
             },
             {
-             "name": "Get Search Tuning Rules",
+             "name": "Get search tuning rules",
              "request": {
               "method": "GET",
               "header": [
@@ -11855,17 +11827,13 @@
                 {
                  "key": "responseGroups",
                  "disabled": true
-                },
-                {
-                 "key": "responseFields",
-                 "disabled": true
                 }
                ]
               }
              }
             },
             {
-             "name": "Add Search Tuning Rule",
+             "name": "Add search tuning rule",
              "request": {
               "method": "POST",
               "header": [
@@ -11886,12 +11854,7 @@
                 "searchtuningrules"
                ],
                "variable": [],
-               "query": [
-                {
-                 "key": "responseFields",
-                 "disabled": true
-                }
-               ]
+               "query": []
               }
              }
             }
@@ -11901,7 +11864,7 @@
            "name": "searchtuningrulesortfields",
            "item": [
             {
-             "name": "Get Search Tuning Rule Sort Fields",
+             "name": "Get search tuning rule sort fields",
              "request": {
               "method": "GET",
               "header": [
@@ -11922,17 +11885,12 @@
                 "searchtuningrulesortfields"
                ],
                "variable": [],
-               "query": [
-                {
-                 "key": "responseFields",
-                 "disabled": true
-                }
-               ]
+               "query": []
               }
              }
             },
             {
-             "name": "Update Search Tuning Rule Sort Fields",
+             "name": "Update search tuning rule sort fields",
              "request": {
               "method": "POST",
               "header": [
@@ -11953,12 +11911,7 @@
                 "searchtuningrulesortfields"
                ],
                "variable": [],
-               "query": [
-                {
-                 "key": "responseFields",
-                 "disabled": true
-                }
-               ]
+               "query": []
               }
              }
             }
@@ -24976,97 +24929,6 @@
          ]
         },
         {
-         "name": "deleteOldInventory",
-         "item": [
-          {
-           "name": "allSilo",
-           "item": [
-            {
-             "name": "{months}",
-             "item": [
-              {
-               "name": "Delete All Old Inventory",
-               "request": {
-                "method": "DELETE",
-                "header": [
-                 {
-                  "key": "x-vol-site",
-                  "value": "{{siteId}}",
-                  "disabled": false
-                 }
-                ],
-                "url": {
-                 "raw": "{{baseUrl}}/commerce/inventory/v1/deleteOldInventory/allSilo/:months",
-                 "host": "{{baseUrl}}",
-                 "path": [
-                  "commerce",
-                  "inventory",
-                  "v1",
-                  "deleteOldInventory",
-                  "allSilo",
-                  ":months"
-                 ],
-                 "variable": [
-                  {
-                   "key": "months",
-                   "value": "months"
-                  }
-                 ],
-                 "query": [
-                  {
-                   "disabled": true
-                  }
-                 ]
-                }
-               }
-              }
-             ]
-            }
-           ]
-          },
-          {
-           "name": "{months}",
-           "item": [
-            {
-             "name": "Delete Old Inventory",
-             "request": {
-              "method": "DELETE",
-              "header": [
-               {
-                "key": "x-vol-site",
-                "value": "{{siteId}}",
-                "disabled": false
-               }
-              ],
-              "url": {
-               "raw": "{{baseUrl}}/commerce/inventory/v1/deleteOldInventory/:months",
-               "host": "{{baseUrl}}",
-               "path": [
-                "commerce",
-                "inventory",
-                "v1",
-                "deleteOldInventory",
-                ":months"
-               ],
-               "variable": [
-                {
-                 "key": "months",
-                 "value": "months"
-                }
-               ],
-               "query": [
-                {
-                 "disabled": true
-                }
-               ]
-              }
-             }
-            }
-           ]
-          }
-         ]
-        },
-        {
          "name": "export",
          "item": [
           {
@@ -25840,50 +25702,6 @@
              ]
             }
            }
-          }
-         ]
-        },
-        {
-         "name": "silo",
-         "item": [
-          {
-           "name": "siloConfig",
-           "item": [
-            {
-             "name": "Update Tenant Silo Config",
-             "request": {
-              "method": "POST",
-              "header": [
-               {
-                "key": "x-vol-site",
-                "value": "{{siteId}}",
-                "disabled": false
-               }
-              ],
-              "url": {
-               "raw": "{{baseUrl}}/commerce/inventory/v1/silo/siloConfig",
-               "host": "{{baseUrl}}",
-               "path": [
-                "commerce",
-                "inventory",
-                "v1",
-                "silo",
-                "siloConfig"
-               ],
-               "variable": [],
-               "query": [
-                {
-                 "disabled": true
-                },
-                {
-                 "key": "responseFields",
-                 "disabled": true
-                }
-               ]
-              }
-             }
-            }
-           ]
           }
          ]
         },
@@ -45241,6 +45059,46 @@
                "key": "updateMode",
                "disabled": true
               },
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "priceList",
+         "item": [
+          {
+           "name": "Change Pricelist On Subscription",
+           "request": {
+            "method": "PUT",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/subscriptions/:subscriptionId/priceList",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "subscriptions",
+              ":subscriptionId",
+              "priceList"
+             ],
+             "variable": [
+              {
+               "key": "subscriptionId",
+               "value": "subscriptionId"
+              }
+             ],
+             "query": [
               {
                "key": "responseFields",
                "disabled": true

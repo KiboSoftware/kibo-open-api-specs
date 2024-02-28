@@ -187,7 +187,7 @@
           }
         },
         "summary": "Update Batch Job",
-        "description": "Updates an existing batch job"
+        "description": "Updates an existing batch job. Currently only allows you to change the name of a job."
       },
       "delete": {
         "tags": [
@@ -331,7 +331,7 @@
           }
         },
         "summary": "Perform Batch Action",
-        "description": "Performs an action on the specified batch job"
+        "description": "Performs an action on the specified batch job. Possible actions are start, cancel, and reset actions. Reset can only be called for jobs that are already completed or canceled, and will remove all items so that you can re-use the empty job."
       },
       "get": {
         "tags": [
@@ -522,7 +522,7 @@
           }
         },
         "summary": "Get Batch Job Items",
-        "description": "Retrieve a list of all batch job items"
+        "description": "Retrieve a list of all batch job items. Query for items of a specific processing status and/or resource by appending ?processingStatus={processingStatus}&resourceType={resourceType}. Resource type can be Products, ProductProperty, or Pricelistentries."
       }
     },
     "/platform/data/batchJob/actions/{code}/items/{correlationId}": {

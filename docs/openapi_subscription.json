@@ -1246,6 +1246,66 @@
         }
       }
     },
+    "/commerce/subscriptions/{subscriptionId}/priceList": {
+      "put": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Change Pricelist On Subscription",
+        "description": "Updates the price list on the subscription.",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The subscription identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The price list to be applied.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionPriceList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionRuntimeSubscription"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionRuntimeSubscription"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionRuntimeSubscription"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/commerce/subscriptions/{subscriptionId}/removecoupon": {
       "put": {
         "tags": [
@@ -2589,6 +2649,12 @@
           },
           "lineItemAdjustment": {
             "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "dutyAmount": {
+            "type": "number",
+            "description": "Indicate Duty Amount for this item.",
             "format": "double",
             "nullable": true
           }
@@ -5468,6 +5534,11 @@
             "type": "boolean",
             "description": "Whether the shopper opts in to curbside text notifications."
           },
+          "forceSTHConsolidationOnSplitShipments": {
+            "type": "boolean",
+            "description": "Overrides the Fulfillment SiteSetting value for `ForceSTHConsolidationOnSplitShipments`.\r\nTODO autogen instead of manual addition",
+            "nullable": true
+          },
           "subscriptionIds": {
             "type": "array",
             "items": {
@@ -5545,6 +5616,17 @@
         },
         "additionalProperties": false,
         "description": "Installment plan to be updated on the subscription"
+      },
+      "SubscriptionPriceList": {
+        "type": "object",
+        "properties": {
+          "priceListCode": {
+            "type": "string",
+            "description": "Price-list code for the Subscription",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "SubscriptionCoupons": {
         "type": "object",
