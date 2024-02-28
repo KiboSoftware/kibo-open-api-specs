@@ -2493,6 +2493,10 @@
           },
           "shippingMethodMappings": {
             "$ref": "#/components/schemas/ShippingMethodMappings"
+          },
+          "enableMultiPieceShipment": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false

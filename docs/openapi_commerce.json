@@ -16667,6 +16667,12 @@
             "type": "number",
             "format": "double",
             "nullable": true
+          },
+          "dutyAmount": {
+            "type": "number",
+            "description": "Indicate Duty Amount for this item.",
+            "format": "double",
+            "nullable": true
           }
         },
         "description": "Base class for cart and order items"
@@ -20086,6 +20092,11 @@
             "type": "boolean",
             "description": "Whether the shopper opts in to curbside text notifications."
           },
+          "forceSTHConsolidationOnSplitShipments": {
+            "type": "boolean",
+            "description": "Overrides the Fulfillment SiteSetting value for `ForceSTHConsolidationOnSplitShipments`.\r\nTODO autogen instead of manual addition",
+            "nullable": true
+          },
           "subscriptionIds": {
             "type": "array",
             "items": {
@@ -20338,6 +20349,11 @@
             "nullable": true
           },
           "handlingTaxAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "dutyAdjustment": {
             "type": "number",
             "format": "double",
             "nullable": true

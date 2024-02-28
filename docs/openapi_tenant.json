@@ -54,7 +54,7 @@
             }
           }
         },
-        "description": "Retrieve information about a tenant. The attributes object will contain flags indicating whether or not certain features are enabled on the tenant. This includes <ul> <li>DisableBopisTransferInventoryAllocation (which indicates if the tenant is not allocating inv at the BOPIS location in case of transfers)</li> <li>CatalogDisabled</li> <li>SmsEnabled</li> <li>CurbsideOnly</li> <li>OmsOnly</li> <li>SyncSiteSettings</li> <li>DisableProductIndexing (which may be used in cases such as disabling OMS-only tenants or recovering from production problems)</li> <li>OverrideSiteInventoryQuantity (which indicates that the site inventory calculation is overridden in the product-runtime API by given number)</li> <li>OrderRoutingExtensibilityEnabled</li> <li>SubscriptionsEnabled</li> <li>UsesRealtimeInventoryService (which determines which inventory service to call)</li> <li>DoNotApplyDiscountsToHandlingFees (which indicates if handling fees can be discounted with shipping discounts)</li> <li>SupportsOrderRoutingApiExtensions</li> </ul>"
+        "description": "Retrieve information about a tenant. The attributes object will contain flags indicating whether or not certain features are enabled on the tenant. Kibo employees can reference <a href=\"https://docs.kibocommerce.com/help/tenant-attributes\"this internal-only documentation</a> for a list of all attributes. </ul>"
       }
     }
   },

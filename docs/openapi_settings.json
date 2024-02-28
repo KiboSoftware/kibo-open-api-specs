@@ -2299,6 +2299,15 @@
         },
         "additionalProperties": false
       },
+      "ForceSTHConsolidationOnSplitShipments": {
+        "type": "object",
+        "properties": {
+          "isEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "ShipToHomeConsolidation": {
         "type": "object",
         "properties": {
@@ -2310,6 +2319,9 @@
           },
           "cancellationSTHC": {
             "$ref": "#/components/schemas/Cancellation"
+          },
+          "forceSTHConsolidationOnSplitShipments": {
+            "$ref": "#/components/schemas/ForceSTHConsolidationOnSplitShipments"
           }
         },
         "additionalProperties": false

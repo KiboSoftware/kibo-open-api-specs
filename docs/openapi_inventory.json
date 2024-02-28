@@ -521,79 +521,6 @@
         "summary": "Test Connection"
       }
     },
-    "/commerce/inventory/v1/deleteOldInventory/{months}": {
-      "delete": {
-        "tags": [
-          "InventoryJob"
-        ],
-        "description": "Deletes older records from inventory table",
-        "parameters": [
-          {
-            "name": "months",
-            "in": "path",
-            "description": "The x months before which we want the records to get deleted",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JobIDResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "summary": "Delete Old Inventory"
-      }
-    },
-    "/commerce/inventory/v1/deleteOldInventory/allSilo/{months}": {
-      "delete": {
-        "tags": [
-          "InventoryJob"
-        ],
-        "description": "Deletes older records from inventory table of all silos",
-        "parameters": [
-          {
-            "name": "months",
-            "in": "path",
-            "description": "The x months before which we want the records to get deleted",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/JobIDResponse"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "summary": "Delete All Old Inventory"
-      }
-    },
     "/commerce/inventory/v1/location/{locationCode}": {
       "get": {
         "tags": [
@@ -770,43 +697,6 @@
           }
         },
         "summary": "Get Shipment Inventory Allocations"
-      }
-    },
-    "/commerce/inventory/v1/silo/siloConfig": {
-      "post": {
-        "tags": [
-          "InventorySilo"
-        ],
-        "description": "Updates tenant silo config",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/UpdateTenantSiloConfigRequest"
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TenantSiloConfigModel"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "summary": "Update Tenant Silo Config"
       }
     },
     "/commerce/inventory/v1/tagCategory/{tagCategoryName}/tag": {
@@ -3238,17 +3128,6 @@
         },
         "type": "object"
       },
-      "JobIDResponse": {
-        "title": "Job ID Response",
-        "description": "Job ID Response",
-        "properties": {
-          "jobID": {
-            "description": "Job ID",
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
       "LocationResponse": {
         "title": "LocationResponse",
         "description": "Location Response Object",
@@ -3538,64 +3417,6 @@
         "properties": {
           "shipments": {
             "$ref": "#/components/schemas/shipments"
-          }
-        },
-        "type": "object"
-      },
-      "UpdateTenantSiloConfigRequest": {
-        "title": "Create Tenant Silo Config Request",
-        "description": "Request for creating or updating tenant silo config.",
-        "properties": {
-          "tenantID": {
-            "description": "A Tenant ID",
-            "type": "integer"
-          },
-          "batchWorkers": {
-            "description": "Number of batch workers to run for this tenant.",
-            "type": "integer"
-          },
-          "eventSenderWorkers": {
-            "description": "Number of event sender workers to run for this tenant.",
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
-      "TenantSiloConfigModel": {
-        "title": "Tenant Silo Config Model",
-        "description": "Model of a tenant silo config.",
-        "properties": {
-          "siloID": {
-            "description": "A Silo ID",
-            "type": "integer"
-          },
-          "name": {
-            "description": "Name of the Silo",
-            "type": "string"
-          },
-          "description": {
-            "description": "Description of silo configuration",
-            "type": "string"
-          },
-          "usable": {
-            "description": "Whether the  silo config is usable or not",
-            "type": "boolean"
-          },
-          "additonalTenantsAllowed": {
-            "description": "Check whether theAdditional tenants allowed or not ",
-            "type": "boolean"
-          },
-          "batchWorkers": {
-            "description": "Number of Batch Workers to run for this tenant.",
-            "type": "integer"
-          },
-          "eventSenderWorkers": {
-            "description": "Number of Event Sender Workers to run for this tenant.",
-            "type": "integer"
-          },
-          "tenantID": {
-            "description": "A Tenant ID",
-            "type": "integer"
           }
         },
         "type": "object"
@@ -5025,7 +4846,7 @@
                 "type": "boolean"
               },
               "transferEnabled": {
-                "description": "Filter results by locations that apply tax (true) or don't (false)",
+                "description": "Filter results by locations that have transfer enabled (true) or don't (false)",
                 "type": "boolean"
               },
               "pickup": {
@@ -5279,6 +5100,17 @@
             "$ref": "#/components/schemas/BaseRequest"
           }
         ]
+      },
+      "JobIDResponse": {
+        "title": "Job ID Response",
+        "description": "Job ID Response",
+        "properties": {
+          "jobID": {
+            "description": "Job ID",
+            "type": "integer"
+          }
+        },
+        "type": "object"
       },
       "AdjustItem": {
         "title": "Adjust Item",
@@ -5943,17 +5775,6 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ShipmentInventoryAllocationRequest"
-            }
-          }
-        }
-      },
-      "UpdateTenantSiloConfigRequest": {
-        "description": "Request to create tenant silo config",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/UpdateTenantSiloConfigRequest"
             }
           }
         }
