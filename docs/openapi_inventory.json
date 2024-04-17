@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Inventory",
-    "description": "<div id=\"overview_INVENTORY\">\n            <h2>INVENTORY</h2>\n            <p>Use the Inventory API to retrieve the inventory levels of requested products, refresh and adjust current\n                stock levels at fulfillment locations, and tag segmented inventory for different channels. When using tags for inventory segmentation, inventory records are separated into categories to identify\n                which portions of its\n                total quantity are intended for different channels, customer groups, fulfillment methods, or other\n                needs.\n                This allows for setting a percentage of the quantity that would be available for each category and\n                setting discrete units at the location level as available for each category. For example, tags could\n                define how much of each\n                inventory record is set aside for a certain sales channel: the Kibo storefront, Walmart, or Amazon. The\n                percentages of the\n                inventory allotted for each channel would add up to 100% - the Kibo storefront could have 80% of the\n                inventory, Amazon 10%, and Walmart 10%. For more information, see the <a href=\"https://docs.kibocommerce.com/help/inventory\">Inventory guides</a>.</p>\n            <p>Use the <strong>Inventory</strong>, <strong>Inventory Allocation</strong>, and <strong>Modify Inventory</strong> resources to retrieve and update inventory levels.</p>  \n            <p>Use the <strong>Inventory Job</strong> resource to retrieve information about your pending inventory update processing jobs.</p> \n            <p>Use the <strong>Inventory Tag</strong> and <strong>Tag Category</strong> resources to segment your inventory records.</p> \n        </div>",
+    "description": "<div id=\"overview_INVENTORY\">\r\n            <h2>INVENTORY</h2>\r\n            <p>Use the Inventory API to retrieve the inventory levels of requested products, refresh and adjust current\r\n                stock levels at fulfillment locations, and tag segmented inventory for different channels. When using tags for inventory segmentation, inventory records are separated into categories to identify\r\n                which portions of its\r\n                total quantity are intended for different channels, customer groups, fulfillment methods, or other\r\n                needs.\r\n                This allows for setting a percentage of the quantity that would be available for each category and\r\n                setting discrete units at the location level as available for each category. For example, tags could\r\n                define how much of each\r\n                inventory record is set aside for a certain sales channel: the Kibo storefront, Walmart, or Amazon. The\r\n                percentages of the\r\n                inventory allotted for each channel would add up to 100% - the Kibo storefront could have 80% of the\r\n                inventory, Amazon 10%, and Walmart 10%. For more information, see the <a href=\"https://docs.kibocommerce.com/help/inventory\">Inventory guides</a>.</p>\r\n            <p>Use the <strong>Inventory</strong>, <strong>Inventory Allocation</strong>, and <strong>Modify Inventory</strong> resources to retrieve and update inventory levels.</p>  \r\n            <p>Use the <strong>Inventory Job</strong> resource to retrieve information about your pending inventory update processing jobs.</p> \r\n            <p>Use the <strong>Inventory Tag</strong> and <strong>Tag Category</strong> resources to segment your inventory records.</p> \r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -21,14 +21,6 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -69,16 +61,7 @@
           "ExportInventory"
         ],
         "description": "Creates entirely new export configurations for both FTP and S3 settings. This call allows you to specify all the values for the Export Settings object, such as file type and specific location groups or sites (which cannot be edited through FTP- or S3-specific endpoints). This is the initial setup request required to configure inventory export.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/CreateExportSettingsRequest"
         },
@@ -109,16 +92,7 @@
           "ExportInventory"
         ],
         "description": "Updates the entire Export Settings object, including FTP and S3 configurations as well as file type and specific location groups or sites (which cannot be edited through FTP- or S3-specific endpoints).",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateExportSettingsRequest"
         },
@@ -187,16 +161,7 @@
           "ExportInventory"
         ],
         "description": "Creates new FTP settings and adds them to an existing Export Settings object, which may be useful if you want the export to go to a new endpoint instead of the one originally set up (or if the export needs to go to multiple endpoints). This call will not function unless you have performed the initial Create Export Settings request first.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/CreateExportSettingsFTPRequest"
         },
@@ -227,16 +192,7 @@
           "ExportInventory"
         ],
         "description": "Update an Export Settings FTP",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateExportSettingsFTPRequest"
         },
@@ -314,16 +270,7 @@
           "ExportInventory"
         ],
         "description": "Creates new S3 settings and adds them to an existing Export Settings object, which may be useful if you want the export to go to a new endpoint instead of the one originally set up (or if the export needs to go to multiple endpoints). This call will not function unless you have performed the initial Create Export Settings request first.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/CreateExportSettingsS3Request"
         },
@@ -354,16 +301,7 @@
           "ExportInventory"
         ],
         "description": "Updates the S3 settings within an existing Export Settings object. Note that you cannot update location groups or sites with this request - you must use the full Update Export Settings request instead.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateExportSettingsS3Request"
         },
@@ -490,14 +428,6 @@
               "type": "integer",
               "format": "int64"
             }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -521,6 +451,79 @@
         "summary": "Test Connection"
       }
     },
+    "/commerce/inventory/v1/deleteOldInventory/{months}": {
+      "delete": {
+        "tags": [
+          "InventoryJob"
+        ],
+        "description": "Deletes older records from inventory table",
+        "parameters": [
+          {
+            "name": "months",
+            "in": "path",
+            "description": "The x months before which we want the records to get deleted",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobIDResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Delete Old Inventory"
+      }
+    },
+    "/commerce/inventory/v1/deleteOldInventory/allSilo/{months}": {
+      "delete": {
+        "tags": [
+          "InventoryJob"
+        ],
+        "description": "Deletes older records from inventory table of all silos",
+        "parameters": [
+          {
+            "name": "months",
+            "in": "path",
+            "description": "The x months before which we want the records to get deleted",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobIDResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Delete All Old Inventory"
+      }
+    },
     "/commerce/inventory/v1/location/{locationCode}": {
       "get": {
         "tags": [
@@ -533,14 +536,6 @@
             "in": "path",
             "description": "Location Code of the location to get",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -582,14 +577,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -619,16 +606,7 @@
           "ModifyInventory"
         ],
         "description": "Create jobs to redistribute inventory across tags for the given tenant",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -653,16 +631,7 @@
           "ShipmentInventoryAllocation"
         ],
         "description": "Get future Inventory Allocations by shipment Ids",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/ShipmentInventoryAllocationRequest"
         },
@@ -699,6 +668,34 @@
         "summary": "Get Shipment Inventory Allocations"
       }
     },
+    "/commerce/inventory/v1/silo/siloConfig": {
+      "post": {
+        "tags": [
+          "InventorySilo"
+        ],
+        "description": "Updates tenant silo config",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UpdateTenantSiloConfigRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantSiloConfigModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Update Tenant Silo Config"
+      }
+    },
     "/commerce/inventory/v1/tagCategory/{tagCategoryName}/tag": {
       "post": {
         "tags": [
@@ -711,14 +708,6 @@
             "in": "path",
             "description": "Tag Category Name",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -769,14 +758,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -816,14 +797,6 @@
             "in": "path",
             "description": "Tag Value",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -911,16 +884,7 @@
           "InventoryTagCategory"
         ],
         "description": "Get all tag categories for a tenant",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -957,14 +921,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -995,14 +951,6 @@
             "in": "path",
             "description": "Tag Category Name",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
             "schema": {
               "type": "string"
             }
@@ -1091,14 +1039,6 @@
               "type": "integer",
               "format": "int64"
             }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -1143,16 +1083,7 @@
           "InventoryAllocation"
         ],
         "description": "Allocates inventory based on the given request",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AllocateInventoryRequest"
         },
@@ -1195,16 +1126,7 @@
           "InventoryAllocation"
         ],
         "description": "As the Refresh Inventory call does not clear allocated inventory, you can use this Deallocate Inventory call if you have items stuck in \"Allocated\" status. This requires details about the shipment and which specific line items need to be deallocated. For examples on how to find shipments with allocated inventory and perform a deallocation on them, see the <a href=\"https://docs.kibocommerce.com/help/inventory-api-overview\">Inventory API guide</a>.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AllocateInventoryRequest"
         },
@@ -1247,16 +1169,7 @@
           "InventoryAllocation"
         ],
         "description": "Fulfills inventory based on the given request",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AllocateInventoryRequest"
         },
@@ -1299,16 +1212,7 @@
           "InventoryAllocation"
         ],
         "description": "Transitions a cart allocation into a normal order/shipment allocation",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/TransitionCartRequest"
         },
@@ -1391,14 +1295,6 @@
               "type": "integer",
               "format": "int64"
             }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -1423,16 +1319,7 @@
           "InventoryBin"
         ],
         "description": "Create a bin",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/CreateBinRequest"
         },
@@ -1460,16 +1347,7 @@
           "InventoryBin"
         ],
         "description": "Search bins for a inventory by bin name or any product identifier",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/BinSearchRequest"
         },
@@ -1497,16 +1375,7 @@
           "InventoryBin"
         ],
         "description": "Loads bin inventory for designated bins",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/LoadBinInventoryRequest"
         },
@@ -1534,16 +1403,7 @@
           "InventoryBin"
         ],
         "description": "Get list of bin types",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -1571,16 +1431,7 @@
           "InventoryBin"
         ],
         "description": "Get list of bin statuses",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -1608,16 +1459,7 @@
           "InventoryBin"
         ],
         "description": "Update the designated bins",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateBinsRequest"
         },
@@ -1645,16 +1487,7 @@
           "InventoryBlockAssignment"
         ],
         "description": "Setting the blockAssignment flag to true for the product based on the given request",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/BlockAssignmentRequest"
         },
@@ -1706,14 +1539,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -1741,16 +1566,7 @@
           "ExportInventory"
         ],
         "description": "Run Export Settings Job",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/ExportInventoryRequest"
         },
@@ -1780,17 +1596,8 @@
         "tags": [
           "InventoryFetchFileConfig"
         ],
-        "description": "Get the Fetch File Configurations for the current tenant.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Get the Fetch File Configs for the current tenant",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -1813,16 +1620,7 @@
           "InventoryFetchFileConfig"
         ],
         "description": "Save a new Fetch File Configuration.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/FetchFileConfigRequest"
         },
@@ -1850,25 +1648,7 @@
           "Inventory"
         ],
         "description": "Queries for specified inventory at given location. To call the version of this API with RIS (<a href=\"https://docs.kibocommerce.com/help/real-time-inventory-service\">real-time inventory service</a>) data, use the /commerce/realtime-inventory/v5/inventory endpoint instead.",
-        "parameters": [
-          {
-            "name": "x-vol-site",
-            "in": "query",
-            "description": "Site ID",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/InventoryRequest"
         },
@@ -1899,25 +1679,7 @@
           "Inventory"
         ],
         "description": "Aggregates inventory.",
-        "parameters": [
-          {
-            "name": "x-vol-site",
-            "in": "query",
-            "description": "Site ID",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AggregateRequest"
         },
@@ -1957,14 +1719,6 @@
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -2068,14 +1822,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -2105,16 +1851,7 @@
           "InventoryLocation"
         ],
         "description": "Get Locations",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -2140,16 +1877,7 @@
           "InventoryLocation"
         ],
         "description": "Save Location",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/LocationRequest"
         },
@@ -2180,16 +1908,7 @@
           "InventoryLocationGroup"
         ],
         "description": "Get LocationGroups",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -2218,16 +1937,7 @@
         ],
         "summary": "Refresh",
         "description": "Sets the inventory count for products at a particular location. These requests are placed into a queue of jobs that are processed one at a time. Due to this, the best practice is to submit fewer requests with more items per call, rather than numerous requests with a small number of items each. Unlike the Adjust API that only accepts a maximum of 1000 items per call, this Refresh API can accept up to 12000 items. However, Kibo recommends batches of 3000 items.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/RefreshRequest"
         },
@@ -2255,16 +1965,7 @@
         ],
         "summary": "Adjust",
         "description": "Adjusts the inventory count for a product at a location. It is different from Inventory Refresh because rather than stating the total quantity of the product, this adjustment specifies the amount of change in the form of increments and decrements (+/-). Increments do not require a + sign and may be sent as a simple integer, but decrements must include the – sign. For example, there would be a -2 quantity for an item if there were two fewer than in the previous count, a 2 quantity if there were two more, and a 0 quantity if there were no change.<br>These requests are placed into a queue of jobs that are processed one at a time. Due to this, the best practice is to submit fewer requests with more items per call, rather than numerous requests with a small number of items each. However, unlike the Refresh API that accepts a maximum of 12000 items per call, this Adjust API only accepts up to 1000 items. If you exceed that limit, a Bad Request error will be returned.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/AdjustRequest"
         },
@@ -2309,25 +2010,7 @@
           "ModifyInventory"
         ],
         "description": "Delete Inventory",
-        "parameters": [
-          {
-            "name": "x-vol-site",
-            "in": "query",
-            "description": "Site ID",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/DeleteItemRequest"
         },
@@ -2355,25 +2038,7 @@
           "ModifyInventory"
         ],
         "description": "Deletes future inventory.",
-        "parameters": [
-          {
-            "name": "x-vol-site",
-            "in": "query",
-            "description": "Site ID",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/DeleteFutureItemRequest"
         },
@@ -2401,25 +2066,7 @@
           "ModifyInventory"
         ],
         "description": "Deletes multiple inventory items.",
-        "parameters": [
-          {
-            "name": "x-vol-site",
-            "in": "query",
-            "description": "Site ID",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/DeleteItemsRequest"
         },
@@ -3128,6 +2775,17 @@
         },
         "type": "object"
       },
+      "JobIDResponse": {
+        "title": "Job ID Response",
+        "description": "Job ID Response",
+        "properties": {
+          "jobID": {
+            "description": "Job ID",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "LocationResponse": {
         "title": "LocationResponse",
         "description": "Location Response Object",
@@ -3417,6 +3075,64 @@
         "properties": {
           "shipments": {
             "$ref": "#/components/schemas/shipments"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateTenantSiloConfigRequest": {
+        "title": "Create Tenant Silo Config Request",
+        "description": "Request for creating or updating tenant silo config.",
+        "properties": {
+          "tenantID": {
+            "description": "A Tenant ID",
+            "type": "integer"
+          },
+          "batchWorkers": {
+            "description": "Number of batch workers to run for this tenant.",
+            "type": "integer"
+          },
+          "eventSenderWorkers": {
+            "description": "Number of event sender workers to run for this tenant.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "TenantSiloConfigModel": {
+        "title": "Tenant Silo Config Model",
+        "description": "Model of a tenant silo config.",
+        "properties": {
+          "siloID": {
+            "description": "A Silo ID",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Name of the Silo",
+            "type": "string"
+          },
+          "description": {
+            "description": "Description of silo configuration",
+            "type": "string"
+          },
+          "usable": {
+            "description": "Whether the  silo config is usable or not",
+            "type": "boolean"
+          },
+          "additonalTenantsAllowed": {
+            "description": "Check whether theAdditional tenants allowed or not ",
+            "type": "boolean"
+          },
+          "batchWorkers": {
+            "description": "Number of Batch Workers to run for this tenant.",
+            "type": "integer"
+          },
+          "eventSenderWorkers": {
+            "description": "Number of Event Sender Workers to run for this tenant.",
+            "type": "integer"
+          },
+          "tenantID": {
+            "description": "A Tenant ID",
+            "type": "integer"
           }
         },
         "type": "object"
@@ -5101,17 +4817,6 @@
           }
         ]
       },
-      "JobIDResponse": {
-        "title": "Job ID Response",
-        "description": "Job ID Response",
-        "properties": {
-          "jobID": {
-            "description": "Job ID",
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
       "AdjustItem": {
         "title": "Adjust Item",
         "description": "Adjust Item",
@@ -5775,6 +5480,17 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ShipmentInventoryAllocationRequest"
+            }
+          }
+        }
+      },
+      "UpdateTenantSiloConfigRequest": {
+        "description": "Request to create tenant silo config",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateTenantSiloConfigRequest"
             }
           }
         }

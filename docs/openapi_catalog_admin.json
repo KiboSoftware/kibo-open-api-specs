@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Catalog Admin",
-    "description": "<div id=\"overview_CATALOG_ADMIN\">\n            <h2>CATALOG ADMINISTRATION</h2>\n            <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including\n                discounts and coupon sets, faceting, price lists, and different types or variations of products. See the\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs.</p>\n            <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create\n                and maintain a hierarchy of categories and subcategories where the site will store properties.</p>\n            <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple\n                coupon codes together and associate them with one or more discounts.</p>\n            <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the\n                currencies that are supported for placing orders in.</p>\n            <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or\n                orders. The discounts can be a specified amount off the price, percentage off the price, or for free\n                shipping. You can create a coupon code that shoppers can use to redeem the discount.</p>\n            <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a\n                storefront. Facets can include categories, product attributes, or prices, and use either a range of\n                values or discrete values.</p>\n            <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to\n                manage the product publishing mode for each master catalog.</p>\n            <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the\n                catalog pricing of products for specific customer segments and/or sites.</p>\n            <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which\n                catalogs will feature products. You can also assign attribute values and different options or properties for defined products, manage\n                product-level location inventory, configure the variations of a product with the <strong>Product Variations</strong> resource, and use the <strong>Product Sort Definitions</strong> resource for visual merchandising. Publish and discard product changes\n                from a master catalog.</p>\n            <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>\n            <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as\n                well as search tuning rules.</p>\n        </div>",
+    "description": "<div id=\"overview_CATALOG_ADMIN\">\r\n            <h2>CATALOG ADMINISTRATION</h2>\r\n            <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including\r\n                discounts and coupon sets, faceting, price lists, and different types or variations of products. See the\r\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\r\n                for information about the related features in the Unified Commerce Admin.</p>\r\n            <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs.</p>\r\n            <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create\r\n                and maintain a hierarchy of categories and subcategories where the site will store properties.</p>\r\n            <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple\r\n                coupon codes together and associate them with one or more discounts.</p>\r\n            <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the\r\n                currencies that are supported for placing orders in.</p>\r\n            <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or\r\n                orders. The discounts can be a specified amount off the price, percentage off the price, or for free\r\n                shipping. You can create a coupon code that shoppers can use to redeem the discount.</p>\r\n            <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a\r\n                storefront. Facets can include categories, product attributes, or prices, and use either a range of\r\n                values or discrete values.</p>\r\n            <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to\r\n                manage the product publishing mode for each master catalog.</p>\r\n            <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the\r\n                catalog pricing of products for specific customer segments and/or sites.</p>\r\n            <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which\r\n                catalogs will feature products. You can also assign attribute values and different options or properties for defined products, manage\r\n                product-level location inventory, configure the variations of a product with the <strong>Product Variations</strong> resource, and use the <strong>Product Sort Definitions</strong> resource for visual merchandising. Publish and discard product changes\r\n                from a master catalog.</p>\r\n            <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>\r\n            <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as\r\n                well as search tuning rules.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -2749,15 +2749,22 @@
         ],
         "summary": "Validate Unique Coupon Set Code",
         "description": "Tests a coupone set code for uniqueness and validity.",
-        "parameters": [
-          {
-            "name": "code",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
             }
-          },
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "parameters": [
           {
             "name": "responseFields",
             "in": "query",
@@ -2766,12 +2773,7 @@
               "type": "string"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
+        ]
       }
     },
     "/commerce/catalog/admin/couponsets/{couponSetCode}": {
@@ -5892,6 +5894,7 @@
           {
             "name": "allowPartialSuccess",
             "in": "query",
+            "description": "Returns status codes of 200 (complete success), 206 (some entries failed validation), 409 (all entries failed validation), or 500 (unexpected failure)",
             "schema": {
               "type": "boolean"
             }
@@ -9841,6 +9844,275 @@
         ]
       }
     },
+    "/commerce/catalog/admin/productsortdefinitions": {
+      "get": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Get product sort definitions",
+        "description": "Retrieves a list of product sort definitions according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinitionPagedCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinitionPagedCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinitionPagedCollection"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Add product sort definition",
+        "description": "Adds a new product sort definition.",
+        "parameters": [
+          {
+            "name": "useProvidedId",
+            "in": "query",
+            "description": "If true, the provided Id value will be used as the ProductSortDefinitionId. If omitted or false, the system will generate a ProductSortDefinitionId",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Properties of the new product sort definition. Required properties of StartDate and Name.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductSortDefinition"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/admin/productsortdefinitions/{productSortDefinitionId}": {
+      "get": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Get product sort definition",
+        "description": "Gets a single product sort definition.",
+        "parameters": [
+          {
+            "name": "productSortDefinitionId",
+            "in": "path",
+            "description": "Unique identifier of the product sort definition.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Update product sort definition",
+        "description": "Updates the details of a product sort definition.",
+        "parameters": [
+          {
+            "name": "productSortDefinitionId",
+            "in": "path",
+            "description": "Unique identifier of the product sort definition.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The details of the product sort definition to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductSortDefinition"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Delete product sort definition",
+        "description": "Deletes the product sort definition specified by its ProductSortDefinitionID.",
+        "parameters": [
+          {
+            "name": "productSortDefinitionId",
+            "in": "path",
+            "description": "Unique identifier of the product sort definition.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/commerce/catalog/admin/attributedefinition/producttypes": {
       "get": {
         "tags": [
@@ -11972,6 +12244,350 @@
         "description": "Delete a specific synonym definition by ID."
       }
     },
+    "/commerce/catalog/admin/search/searchtuningrules": {
+      "get": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Get search tuning rules",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get search tuning rules"
+      },
+      "post": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Add search tuning rule",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTuningRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Add search tuning rule",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/catalog/admin/search/searchtuningrules/{searchTuningRuleCode}": {
+      "get": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Get search tuning rule",
+        "parameters": [
+          {
+            "name": "searchTuningRuleCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get search tuning rule"
+      },
+      "put": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Update search tuning rule",
+        "parameters": [
+          {
+            "name": "searchTuningRuleCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTuningRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update search tuning rule"
+      },
+      "delete": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Delete search tuning rule",
+        "parameters": [
+          {
+            "name": "searchTuningRuleCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Delete search tuning rule"
+      }
+    },
+    "/commerce/catalog/admin/search/searchtuningrulesortfields": {
+      "get": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Get search tuning rule sort fields",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get search tuning rule sort fields",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Update search tuning rule sort fields",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update search tuning rule sort fields",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/commerce/catalog/admin/search/{name}/categorysuggestsettings": {
       "get": {
         "tags": [
@@ -14053,6 +14669,96 @@
         "description": "Publish"
       }
     },
+    "/commerce/catalog/admin/searchSchema/stopwords/{language}": {
+      "get": {
+        "tags": [
+          "StopWords"
+        ],
+        "summary": "Get Stopwords",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "Language code (en, es, fr)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Downloads the stopwords file for the language"
+      },
+      "put": {
+        "tags": [
+          "StopWords"
+        ],
+        "summary": "Add Stopwords",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "Language code use by the site (en, es, fr)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Upload a stopwords file for a language as a list of strings"
+      }
+    },
     "/commerce/catalog/admin/searchSchema/suggest/{language}": {
       "get": {
         "tags": [
@@ -14063,7 +14769,7 @@
           {
             "name": "language",
             "in": "path",
-            "description": "langage code used by the site (en, es, fr)",
+            "description": "Language code used by the site (en, es, fr)",
             "required": true,
             "schema": {
               "type": "string"
@@ -14089,7 +14795,7 @@
         "tags": [
           "SuggestDefinition"
         ],
-        "summary": "Uploads a suggest file for the site in tab seperated format)",
+        "summary": "Uploads a suggest file for the site in tab separated format)",
         "parameters": [
           {
             "name": "language",
@@ -14140,7 +14846,7 @@
             }
           }
         },
-        "description": "Uploads a suggest file for the site in tab seperated format)"
+        "description": "Uploads a suggest file for the site in tab separated format)"
       }
     },
     "/commerce/catalog/admin/searchSchema/suggest/settings/{language}": {
@@ -14153,7 +14859,7 @@
           {
             "name": "language",
             "in": "path",
-            "description": "language code use by the site (en, es, fr)",
+            "description": "Language code use by the site (en, es, fr)",
             "required": true,
             "schema": {
               "type": "string"
@@ -14201,7 +14907,7 @@
           {
             "name": "language",
             "in": "path",
-            "description": "language code use by the site (en, es, fr)",
+            "description": "Language code use by the site (en, es, fr)",
             "required": true,
             "schema": {
               "type": "string"
@@ -14217,7 +14923,7 @@
           }
         ],
         "requestBody": {
-          "description": "suggset definition in",
+          "description": "Suggest definition in",
           "content": {
             "text/plain": {
               "schema": {
@@ -14430,6 +15136,10 @@
       "x-displayName": "ProductQuickEdit"
     },
     {
+      "name": "ProductSortDefinitions",
+      "x-displayName": "ProductSortDefinitions"
+    },
+    {
       "name": "ProductTypes",
       "x-displayName": "ProductTypes"
     },
@@ -14444,6 +15154,10 @@
     {
       "name": "SearchSynonyms",
       "x-displayName": "SearchSynonyms"
+    },
+    {
+      "name": "SearchTuningRules",
+      "x-displayName": "SearchTuningRules"
     },
     {
       "name": "SearchCategorySuggestSettings",
@@ -14482,6 +15196,10 @@
       "x-displayName": "SchemaDefinition"
     },
     {
+      "name": "StopWords",
+      "x-displayName": "StopWords"
+    },
+    {
       "name": "SuggestDefinition",
       "x-displayName": "SuggestDefinition"
     },
@@ -14512,10 +15230,12 @@
         "ProductOptions",
         "ProductProperties",
         "ProductQuickEdit",
+        "ProductSortDefinitions",
         "ProductTypes",
         "ProductPublishing",
         "Publishing",
         "SearchSynonyms",
+        "SearchTuningRules",
         "SearchCategorySuggestSettings",
         "SearchListingSettings",
         "SearchProductSuggestSettings",
@@ -14530,6 +15250,7 @@
       "tags": [
         "FieldTypeDefinition",
         "SchemaDefinition",
+        "StopWords",
         "SuggestDefinition",
         "Synonym"
       ]
@@ -16279,7 +17000,7 @@
           "price": {
             "$ref": "#/components/schemas/CatalogAdminsProductPrice"
           },
-          "isSeoContentOverridden": {
+          "isSEOContentOverridden": {
             "type": "boolean",
             "description": "If true, the SEO content for this product is overridden in the catalog. If false, the MasterCatalog level SEO content will be used for the product.",
             "nullable": true
@@ -17164,6 +17885,149 @@
         "additionalProperties": false,
         "description": "Aggregates the individual results of update actions per product update"
       },
+      "ProductSortExpression": {
+        "required": [
+          "field"
+        ],
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The name of the field to sort on.\r\nMust be a known sort field or sortable attribute"
+          },
+          "direction": {
+            "type": "string",
+            "description": "ASC or DESC",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductSortOverride": {
+        "required": [
+          "productCode"
+        ],
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "The product code of the product being overridden"
+          },
+          "sliceValue": {
+            "type": "string",
+            "description": "The slicing value of the product being overridden",
+            "nullable": true
+          },
+          "position": {
+            "type": "integer",
+            "description": "Indicates the relative position of the product to other overridden products.\r\nPosition is absolute if IsPinned is true.\r\nNot applicable to buried products. Buried products will be given a default\r\nposition of -1",
+            "format": "int32",
+            "nullable": true
+          },
+          "isPinned": {
+            "type": "boolean",
+            "description": "Flag to indicate that the product is pinned at the specified position.\r\nNot applicable to buried products",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a product that is positioned out of its normal sort position.\r\nIt can be boosted to the top of the list, positioned exactly or buried at the bottom"
+      },
+      "ProductSortDefinition": {
+        "required": [
+          "name",
+          "sortExpressions",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "productSortDefinitionId": {
+            "type": "integer",
+            "description": "System or user provided ID for the ProductSortDefinition",
+            "format": "int32",
+            "nullable": true
+          },
+          "categoryId": {
+            "type": "integer",
+            "description": "",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Short Name for the sort definition. Required."
+          },
+          "startDate": {
+            "type": "string",
+            "description": "The Start Date when the sort definition becomes active",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Optional end date for a product sort definition",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortExpressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSortExpression"
+            },
+            "description": "Sort expression to apply\r\nMax two expressions"
+          },
+          "boosted": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSortOverride"
+            },
+            "description": "List of products being positioned",
+            "nullable": true
+          },
+          "buried": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSortOverride"
+            },
+            "description": "List of products being positioned",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a default sort for a list of products and allows some products to be\r\nboosted to the top or pinned ot a specific position, or buried at the bottom of the\r\nlist.  Only 10 items can be boosted or pinned and up to"
+      },
+      "ProductSortDefinitionPagedCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSortDefinition"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection of product sort definitions where product sort definitions are returned in a series of pages."
+      },
       "AttributeInProductTypeDisplayInfo": {
         "type": "object",
         "properties": {
@@ -17519,6 +18383,135 @@
         },
         "additionalProperties": false,
         "description": "Paged collection of synonyms for a Site-Locale."
+      },
+      "SearchTuningRuleFilter": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchTuningRule": {
+        "type": "object",
+        "properties": {
+          "siteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "searchTuningRuleCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchTuningRuleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchTuningRuleDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchTuningRuleFilter"
+            },
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "activeStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "activeEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boostedProductCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "blockedProductCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchTuningRuleCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchTuningRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchTuningRuleSortFields": {
+        "type": "object",
+        "properties": {
+          "sortFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "inclusionExclusionType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "FieldWeight": {
         "type": "object",
@@ -20201,7 +21194,7 @@
             "nullable": true
           },
           "usageRestrictions": {
-            "description": "Restricts the fields used by specific SOLR analyzer.\r\nOriginally developed for entity entraction/ aka noun_extraction\r\n(e.g. searching for sofa tables should return tables, not sofas)",
+            "description": "Restricts the fields used by specific SOLR analyzer.\r\nOriginally developed for entity extraction/ aka noun_extraction\r\n(e.g. searching for sofa tables should return tables, not sofas)",
             "nullable": true
           }
         },

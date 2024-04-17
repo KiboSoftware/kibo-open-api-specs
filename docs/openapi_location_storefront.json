@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Location Storefront",
-    "description": "<div id=\"overview_LOCATION_STOREFRONT\">\n            <h2>LOCATION STOREFRONT</h2>\n            <p>The Location API for the storefront simply allows information about the individual fulfillment locations to be queried at the\n                storefront. These are not administrative calls for managing location records and groups - they are a set of GET\n                requests for retrieving location data.</p>\n            <p>To create and update (or perform other management actions) location records, see the Location Administration API service instead.</p>\n        </div>",
+    "description": "<div id=\"overview_LOCATION_STOREFRONT\">\r\n            <h2>LOCATION STOREFRONT</h2>\r\n            <p>The Location API for the storefront simply allows information about the individual fulfillment locations to be queried at the\r\n                storefront. These are not administrative calls for managing location records and groups - they are a set of GET\r\n                requests for retrieving location data.</p>\r\n            <p>To create and update (or perform other management actions) location records, see the Location Administration API service instead.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {

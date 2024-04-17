@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Reservation Web",
-    "description": "<div id=\"overview_RESERVATION\">\n            <h2>RESERVATIONS</h2>\n            <p>The Reservation APIs are used to create and manage inventory reservations. This includes updating items and quantities, fulfillment methods, zip codes and pickup locations, and resetting\n                the expiration timer for a reservation. For more information, see the <a href=\"https://docs.kibocommerce.com/help/reserve-inventory-in-cart\">Reservations feature guide</a>.\n            </p>\n        </div>",
+    "description": "<div id=\"overview_RESERVATION\">\r\n            <h2>RESERVATIONS</h2>\r\n            <p>The Reservation APIs are used to create and manage inventory reservations. This includes updating items and quantities, fulfillment methods, zip codes and pickup locations, and resetting\r\n                the expiration timer for a reservation. For more information, see the <a href=\"https://docs.kibocommerce.com/help/reserve-inventory-in-cart\">Reservations feature guide</a>.\r\n            </p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
