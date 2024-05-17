@@ -1733,7 +1733,7 @@
           "Subscription"
         ],
         "summary": "Update Subscription Item Data",
-        "description": "Insert / Updates the Value of the given Key in the SubscriptionItem Data bag.",
+        "description": "Updates the value of the given key on a subscription item bag.",
         "parameters": [
           {
             "name": "subscriptionId",
@@ -1949,7 +1949,7 @@
           "Subscription"
         ],
         "summary": "Update Item Quantity",
-        "description": "Update Item Quantity on existing subscription.",
+        "description": "Updates an item's quantity on a existing subscription.",
         "parameters": [
           {
             "name": "subscriptionId",
@@ -2180,7 +2180,84 @@
           }
         },
         "summary": "Upsert Inventory Tags",
-        "description": "Upsert Inventory Tags"
+        "description": "Updates and replaces inventory tags."
+      }
+    },
+    "/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/fulfillment": {
+      "put": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Update Item Fulfillment",
+        "description": "Update an item's fulfillment type on an existing subscription.",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "subscription id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subscriptionItemId",
+            "in": "path",
+            "description": "subscription item id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateMode",
+            "in": "query",
+            "description": "Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "subscription item id",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionRuntimeSubscription"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionRuntimeSubscription"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionRuntimeSubscription"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -2225,6 +2302,16 @@
               "$ref": "#/components/schemas/CommerceRuntimeFutureInventory"
             },
             "nullable": true
+          },
+          "availableFutureInventories": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalAvailableStock": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
           },
           "isSubstitutable": {
             "type": "boolean",
@@ -4528,6 +4615,29 @@
             "type": "string",
             "description": "Gift message for item",
             "nullable": true
+          },
+          "priceMode": {
+            "type": "string",
+            "description": "Determines if the item is using external or internal(catalog) pricing",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FulfillmentShopperNotes": {
+        "type": "object",
+        "properties": {
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryInstructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "giftMessage": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4721,381 +4831,6 @@
           },
           "reasonCode": {
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SubstitutedItem": {
-        "type": "object",
-        "properties": {
-          "actualPrice": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "allocatedQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "allowsBackOrder": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "allowsFutureAllocate": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "allowsSubstitution": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "appeasementReason": {
-            "$ref": "#/components/schemas/FulfillmentServiceAppeasementReason"
-          },
-          "attributes": {
-            "type": "object",
-            "additionalProperties": {},
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
-          },
-          "backorderReleaseDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "cartItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "childItemIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "creditCurrencyCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "creditValue": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "additionalProperties": {},
-            "nullable": true
-          },
-          "duty": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "expectedDeliveryDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "fulfillmentFields": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceFulfillmentField"
-            },
-            "nullable": true
-          },
-          "giftCards": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceGiftCard"
-            },
-            "nullable": true
-          },
-          "giftMessage": {
-            "type": "string",
-            "nullable": true
-          },
-          "goodsType": {
-            "type": "string",
-            "nullable": true
-          },
-          "handling": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingDiscount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingTax": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "height": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "imageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "inventoryTags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceInventoryTag"
-            },
-            "nullable": true
-          },
-          "isAssemblyRequired": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isGift": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isPackagedStandAlone": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isReservedInventory": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isTaxable": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "itemDiscount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "itemTax": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "length": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "lineId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "lineItemAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "lineItemCost": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "locatorName": {
-            "type": "string",
-            "nullable": true
-          },
-          "manageStock": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "optionAttributeFQN": {
-            "type": "string",
-            "nullable": true
-          },
-          "options": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceProductOption"
-            },
-            "nullable": true
-          },
-          "originalLineId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "originalOrderItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "originalQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "overridePrice": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "parentItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "partNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "productCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "purchaseLocation": {
-            "type": "string",
-            "nullable": true
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "readyForPickupQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "shipping": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingDiscount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingTax": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "sku": {
-            "type": "string",
-            "nullable": true
-          },
-          "substituteItemLineIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "nullable": true
-          },
-          "substituteQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "substituteReason": {
-            "$ref": "#/components/schemas/FulfillmentServiceSubstituteReason"
-          },
-          "taxData": {
-            "nullable": true
-          },
-          "taxableHandling": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "taxableLineItemCost": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "taxableShipping": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "transferQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "trueTransferQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "unitPrice": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "upc": {
-            "type": "string",
-            "nullable": true
-          },
-          "variationProductCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "weight": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightUnit": {
-            "type": "string",
-            "nullable": true
-          },
-          "weightedDutyAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedHandlingAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedHandlingTaxAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedLineItemTaxAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedShipmentAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedShippingAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedShippingTaxAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "width": {
-            "type": "number",
-            "format": "double",
             "nullable": true
           }
         },
@@ -5566,6 +5301,10 @@
             "type": "boolean",
             "description": "Settings this flag on the order will restrict user from Cancelling the order",
             "nullable": true
+          },
+          "isContinuityOrder": {
+            "type": "boolean",
+            "description": "Flag to check if the order is continuityOrder."
           }
         },
         "additionalProperties": false,
@@ -6311,6 +6050,11 @@
             "type": "string",
             "description": "Pricelist entry mode of the product.\r\nNote: possible values are below\r\n1. null : Product doesn't participate in pricelist\r\n2. Bulk : Bulk volume price available(unit price vary based on quantity)\r\n3. Simple:",
             "nullable": true
+          },
+          "isOverRidePriceSalePrice": {
+            "type": "boolean",
+            "description": "Indicate that External Price (TenantOverridePrice) is a Sale Price. And is used to calculate the line item discounts.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -6632,6 +6376,11 @@
           },
           "giftInfo": {
             "$ref": "#/components/schemas/GiftInfo"
+          },
+          "priceMode": {
+            "type": "string",
+            "description": "Determines if the item is using external or internal(catalog) pricing",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -7099,6 +6848,385 @@
         },
         "additionalProperties": false
       },
+      "CommerceRuntimeSubstitutedItem": {
+        "type": "object",
+        "properties": {
+          "actualPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allocatedQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "allowsBackOrder": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "allowsFutureAllocate": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "allowsSubstitution": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "appeasementReason": {
+            "$ref": "#/components/schemas/FulfillmentServiceAppeasementReason"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
+          },
+          "backorderReleaseDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cartItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "childItemIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "creditCurrencyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true
+          },
+          "duty": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "expectedDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fulfillmentFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceFulfillmentField"
+            },
+            "nullable": true
+          },
+          "giftCards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceGiftCard"
+            },
+            "nullable": true
+          },
+          "giftMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "goodsType": {
+            "type": "string",
+            "nullable": true
+          },
+          "handling": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "handlingDiscount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "handlingTax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "height": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "inventoryTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceInventoryTag"
+            },
+            "nullable": true
+          },
+          "isAssemblyRequired": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isGift": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isPackagedStandAlone": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isReservedInventory": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isTaxable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "itemDiscount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "itemTax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "length": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "lineId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lineItemAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "lineItemCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "locatorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "manageStock": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionAttributeFQN": {
+            "type": "string",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceProductOption"
+            },
+            "nullable": true
+          },
+          "originalLineId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "originalOrderItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "overridePrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "parentItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "partNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "purchaseLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "readyForPickupQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "shipping": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingDiscount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingTax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "substituteItemLineIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "substituteQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "substituteReason": {
+            "$ref": "#/components/schemas/FulfillmentServiceSubstituteReason"
+          },
+          "taxData": {
+            "nullable": true
+          },
+          "taxableHandling": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "taxableLineItemCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "taxableShipping": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transferQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "trueTransferQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "upc": {
+            "type": "string",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "weight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightUnit": {
+            "type": "string",
+            "nullable": true
+          },
+          "weightedDutyAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedHandlingAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedHandlingTaxAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedLineItemTaxAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedShipmentAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedShippingAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedShippingTaxAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "width": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CommerceRuntimeShipment": {
         "type": "object",
         "properties": {
@@ -7377,7 +7505,7 @@
             "nullable": true
           },
           "shopperNotes": {
-            "$ref": "#/components/schemas/CommerceRuntimeFulfillmentShopperNotes"
+            "$ref": "#/components/schemas/FulfillmentShopperNotes"
           },
           "customer": {
             "$ref": "#/components/schemas/CommerceRuntimeCustomer"
@@ -7395,7 +7523,7 @@
           "substitutedItems": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SubstitutedItem"
+              "$ref": "#/components/schemas/CommerceRuntimeSubstitutedItem"
             },
             "nullable": true
           }
@@ -7854,24 +7982,6 @@
             "items": {
               "$ref": "#/components/schemas/SubscriptionRuntimeSubscription"
             },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommerceRuntimeFulfillmentShopperNotes": {
-        "type": "object",
-        "properties": {
-          "comments": {
-            "type": "string",
-            "nullable": true
-          },
-          "deliveryInstructions": {
-            "type": "string",
-            "nullable": true
-          },
-          "giftMessage": {
-            "type": "string",
             "nullable": true
           }
         },

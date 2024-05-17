@@ -46,13 +46,19 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               },
               "text/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               },
               "text/plain": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               }
             }
           }
@@ -97,7 +103,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AppDevHttpRequestMessage"
+                "type": "object"
               }
             }
           }
@@ -107,13 +113,19 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               },
               "text/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               },
               "text/plain": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               }
             }
           }
@@ -267,7 +279,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AppDevHttpRequestMessage"
+                "type": "object"
               }
             }
           }
@@ -277,13 +289,19 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               },
               "text/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               },
               "text/plain": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               }
             }
           }
@@ -1249,13 +1267,19 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               },
               "text/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               },
               "text/plain": {
-                "schema": {}
+                "schema": {
+                  "type": "object"
+                }
               }
             }
           }
@@ -1265,33 +1289,6 @@
   },
   "components": {
     "schemas": {
-      "StringStringIEnumerableKeyValuePair": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "HttpMethod": {
-        "type": "object",
-        "properties": {
-          "method": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "EntityCollection": {
         "type": "object",
         "properties": {
@@ -1313,7 +1310,9 @@
           },
           "items": {
             "type": "array",
-            "items": {},
+            "items": {
+              "type": "object"
+            },
             "nullable": true
           }
         },
@@ -1362,6 +1361,7 @@
             "nullable": true
           },
           "item": {
+            "type": "object",
             "description": "The entity in json format.",
             "nullable": true
           },
@@ -1469,6 +1469,7 @@
             "nullable": true
           },
           "metaData": {
+            "type": "object",
             "description": "An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.",
             "nullable": true
           },
@@ -1572,6 +1573,7 @@
             "nullable": true
           },
           "metadata": {
+            "type": "object",
             "description": "An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.",
             "nullable": true
           },
@@ -1641,55 +1643,6 @@
               "$ref": "#/components/schemas/ListView"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AppDevHttpContent": {
-        "type": "object",
-        "properties": {
-          "headers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StringStringIEnumerableKeyValuePair"
-            },
-            "nullable": true,
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AppDevHttpRequestMessage": {
-        "type": "object",
-        "properties": {
-          "version": {
-            "type": "string",
-            "nullable": true
-          },
-          "content": {
-            "$ref": "#/components/schemas/AppDevHttpContent"
-          },
-          "method": {
-            "$ref": "#/components/schemas/HttpMethod"
-          },
-          "requestUri": {
-            "type": "string",
-            "format": "uri",
-            "nullable": true
-          },
-          "headers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StringStringIEnumerableKeyValuePair"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "properties": {
-            "type": "object",
-            "additionalProperties": {},
-            "nullable": true,
-            "readOnly": true
           }
         },
         "additionalProperties": false
