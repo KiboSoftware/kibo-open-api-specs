@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Catalog Admin",
-    "description": "<div id=\"overview_CATALOG_ADMIN\">\n            <h2>CATALOG ADMINISTRATION</h2>\n            <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including\n                discounts and coupon sets, faceting, price lists, and different types or variations of products. See the\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs.</p>\n            <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create\n                and maintain a hierarchy of categories and subcategories where the site will store properties.</p>\n            <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple\n                coupon codes together and associate them with one or more discounts.</p>\n            <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the\n                currencies that are supported for placing orders in.</p>\n            <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or\n                orders. The discounts can be a specified amount off the price, percentage off the price, or for free\n                shipping. You can create a coupon code that shoppers can use to redeem the discount.</p>\n            <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a\n                storefront. Facets can include categories, product attributes, or prices, and use either a range of\n                values or discrete values.</p>\n            <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to\n                manage the product publishing mode for each master catalog.</p>\n            <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the\n                catalog pricing of products for specific customer segments and/or sites.</p>\n            <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which\n                catalogs will feature products. You can also assign attribute values and different options or properties for defined products, manage\n                product-level location inventory, configure the variations of a product with the <strong>Product Variations</strong> resource, and use the <strong>Product Sort Definitions</strong> resource for visual merchandising. Publish and discard product changes\n                from a master catalog.</p>\n            <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>\n            <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as\n                well as search tuning rules.</p>\n        </div>",
+    "description": "<div id=\"overview_CATALOG_ADMIN\">\n            <h2>CATALOG ADMINISTRATION</h2>\n            <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including\n                discounts and coupon sets, faceting, price lists, and different types or variations of products. See the\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\n                you can still access attribute data that has not yet been rewritten to the new model by providing\n                an x-api-version header set to \"1\". </p>\n            <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create\n                and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\n                you can still access category data that has not yet been rewritten to the new model by providing\n                an x-api-version header set to \"1\". </p>\n            <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple\n                coupon codes together and associate them with one or more discounts.</p>\n            <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the\n                currencies that are supported for placing orders in.</p>\n            <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or\n                orders. This current version of the Discounts API includes localizedContent to\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\n                you can still access discount data that has not yet been rewritten to the new model by providing\n                an x-api-version header set to \"1\". </p>\n            <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a\n                storefront. Facets can include categories, product attributes, or prices, and use either a range of\n                values or discrete values.</p>\n            <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to\n                manage the product publishing mode for each master catalog.</p>\n            <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the\n                catalog pricing of products for specific customer segments and/or sites.</p>\n            <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which\n                catalogs will feature products. This current version of the Products API includes localizedContent to\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\n                you can still access product data that has not yet been rewritten to the new model by providing\n                an x-api-version header set to \"1\".</p>\n            <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>\n            <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as\n                well as search tuning rules.</p>\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -11,7 +11,7 @@
         "tags": [
           "ProductAttributes"
         ],
-        "summary": "Get product attributes",
+        "summary": "Get Product Attributes.",
         "parameters": [
           {
             "name": "startIndex",
@@ -83,14 +83,14 @@
             }
           }
         },
-        "description": "Get product attributes. Product attributes define the characteristics of products, enabling you to uniquely describe a product. They consist of options, properties, and extras."
+        "description": "Get product attributes. This current version of the Attributes API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\"."
       },
       "post": {
         "tags": [
           "ProductAttributes"
         ],
         "summary": "Add Product Attribute",
-        "description": "Add / Create Attribute. The attribute name, attribute type, input type, and data type are required.",
+        "description": "Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "requestBody": {
           "description": "",
           "content": {
@@ -141,7 +141,7 @@
           "ProductAttributes"
         ],
         "summary": "Get Product Attribute",
-        "description": "Retrieves a product attribute by its FQN",
+        "description": "Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "attributeFQN",
@@ -195,7 +195,7 @@
           "ProductAttributes"
         ],
         "summary": "Update Product Attribute",
-        "description": "Updates a product attribute by its FQN",
+        "description": "Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "attributeFQN",
@@ -1417,7 +1417,7 @@
         "tags": [
           "Categories"
         ],
-        "description": "Retrieves a list of category attributes.",
+        "description": "Retrieves a list of category attributes. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "categoryId",
@@ -1504,7 +1504,7 @@
           "Categories"
         ],
         "summary": "Add Category Attribute",
-        "description": "Adds a new category attribute to the category.",
+        "description": "Adds a new category attribute to the category. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "categoryId",
@@ -1565,7 +1565,7 @@
           "Categories"
         ],
         "summary": "Get Category Attribute",
-        "description": "Retrieves the details of a single category attribute.",
+        "description": "Retrieves the details of a single category attribute. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "categoryId",
@@ -1623,7 +1623,7 @@
           "Categories"
         ],
         "summary": "Update Category Attribute",
-        "description": "Modifies the category attribute.",
+        "description": "Modifies the category attribute. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "categoryId",
@@ -1726,7 +1726,7 @@
           "Categories"
         ],
         "summary": "Get Categories",
-        "description": "Retrieves a list of categories according to any specified filter criteria and sort options.",
+        "description": "Retrieves a list of categories according to any specified filter criteria and sort options. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "startIndex",
@@ -1817,7 +1817,7 @@
           "Categories"
         ],
         "summary": "Add Category",
-        "description": "Adds a new category to the catalog's category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.",
+        "description": "Adds a new category to the catalog's category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "incrementSequence",
@@ -1886,7 +1886,7 @@
           "searchCategoryAttributes"
         ],
         "summary": "Search Category Attributes",
-        "description": "Retrieves a list of categories according to any specified filter criteria and sort options for attributes.",
+        "description": "Retrieves a list of categories according to any specified filter criteria and sort options for attributes. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "startIndex",
@@ -1979,7 +1979,7 @@
           "Categories"
         ],
         "summary": "Get Category",
-        "description": "Retrieves the details of a single category.",
+        "description": "Retrieves the details of a single category. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "categoryId",
@@ -2036,7 +2036,7 @@
           "Categories"
         ],
         "summary": "Update Category",
-        "description": "Modifies a category such as moving it to another location in the category tree, or changing whether it is visible on the storefront. This PUT replaces the existing resource, so be sure \\r\\n\\t\\t\\t\\t\\t\\t\\tto include all the information that you want to maintain for the category. Any unspecified \\r\\n\\t\\t\\t\\t\\t\\t\\tproperties are set to null.",
+        "description": "Modifies a category such as moving it to another location in the category tree, or changing whether it is visible on the storefront. This PUT replaces the existing resource, so be sure to include all the information that you want to maintain for the category. Any unspecified properties are set to null.<br><br>This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "categoryId",
@@ -2104,7 +2104,7 @@
           "Categories"
         ],
         "summary": "Delete Category",
-        "description": "Deletes the category specified by its category ID.",
+        "description": "Deletes the category specified by its category ID. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "categoryId",
@@ -2157,7 +2157,7 @@
           "Categories"
         ],
         "summary": "Get Child Categories",
-        "description": "Retrieves the immediate subcategories of a category.",
+        "description": "Retrieves the immediate subcategories of a category. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "categoryId",
@@ -2749,15 +2749,22 @@
         ],
         "summary": "Validate Unique Coupon Set Code",
         "description": "Tests a coupone set code for uniqueness and validity.",
-        "parameters": [
-          {
-            "name": "code",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
             }
-          },
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "parameters": [
           {
             "name": "responseFields",
             "in": "query",
@@ -2766,12 +2773,7 @@
               "type": "string"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
+        ]
       }
     },
     "/commerce/catalog/admin/couponsets/{couponSetCode}": {
@@ -3982,7 +3984,7 @@
           "Discounts"
         ],
         "summary": "Get Discounts",
-        "description": "Retrieves a list of discounts according to any specified filter criteria and sort options.",
+        "description": "Retrieves a list of discounts according to any specified filter criteria and sort options. This current version of the Discounts API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "startIndex",
@@ -4064,7 +4066,7 @@
           "Discounts"
         ],
         "summary": "Create Discount",
-        "description": "Creates a discount.",
+        "description": "Creates a discount. This current version of the Discounts API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "tagCode",
@@ -4122,7 +4124,7 @@
           "Discounts"
         ],
         "summary": "Get Discount",
-        "description": "Retrieves the details of a single discount.",
+        "description": "Retrieves the details of a single discount. This current version of the Discounts API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "discountId",
@@ -4171,7 +4173,7 @@
           "Discounts"
         ],
         "summary": "Update Discount",
-        "description": "Modifies a discount.",
+        "description": "Modifies a discount. This current version of the Discounts API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "discountId",
@@ -5892,6 +5894,7 @@
           {
             "name": "allowPartialSuccess",
             "in": "query",
+            "description": "Returns status codes of 200 (complete success), 206 (some entries failed validation), 409 (all entries failed validation), or 500 (unexpected failure)",
             "schema": {
               "type": "boolean"
             }
@@ -6120,7 +6123,7 @@
           "Products"
         ],
         "summary": "Get Products",
-        "description": "Retrieves a list of products according to any specified filter criteria and sort options.",
+        "description": "Retrieves a list of products according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "startIndex",
@@ -6225,7 +6228,7 @@
           "Products"
         ],
         "summary": "Add Product",
-        "description": "Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.",
+        "description": "Creates a new product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "batchJobCode",
@@ -6283,7 +6286,7 @@
           "Products"
         ],
         "summary": "Get Product",
-        "description": "Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.",
+        "description": "Retrieves details about a product based on the specified response group. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "productCode",
@@ -6339,7 +6342,7 @@
           "Products"
         ],
         "summary": "Update Product",
-        "description": "Modifies an existing product.",
+        "description": "Modifies an existing product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -6436,7 +6439,7 @@
           "Products"
         ],
         "summary": "Update Product in Catalog",
-        "description": "Update a product in a particular catalog.",
+        "description": "Update a product in a particular catalog. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -6532,7 +6535,7 @@
           "Products"
         ],
         "summary": "Get Product in Catalog",
-        "description": "Retrieves a product in a particular catalog.",
+        "description": "Retrieves a product in a particular catalog. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -6589,8 +6592,8 @@
         "tags": [
           "Products"
         ],
-        "summary": "Get Products in Catalog",
-        "description": "Retrieve products in catalogs.",
+        "summary": "Get Products in Catalogs",
+        "description": "Retrieve products in catalogs. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -6646,7 +6649,7 @@
           "Products"
         ],
         "summary": "Update Product in Catalogs",
-        "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.",
+        "description": "Updates existing products across your catalogs. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "productCode",
@@ -6714,7 +6717,7 @@
           "Products"
         ],
         "summary": "Add Product in Catalogs",
-        "description": "Add a product to catalogs.",
+        "description": "Add a product to catalogs. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -6772,7 +6775,7 @@
           "Products"
         ],
         "summary": "Rename Product Codes",
-        "description": "Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.",
+        "description": "Action that allows productCodes to be renamed.",
         "requestBody": {
           "description": "An array specifying the existing productCode and the new productCode it should be renamed to",
           "content": {
@@ -6809,7 +6812,7 @@
           "ProductVariations"
         ],
         "summary": "Get Product Variations",
-        "description": "Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options.",
+        "description": "Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "productCode",
@@ -6893,7 +6896,7 @@
           "ProductVariations"
         ],
         "summary": "Update Product Variations",
-        "description": "Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for variations that represent configurable options for sale. Also use to change the price or inventory count of an existing product variation. Read-only options are ignored.",
+        "description": "Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for variations that represent configurable options for sale. Also use to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -6953,7 +6956,7 @@
           "ProductVariations"
         ],
         "summary": "Get Product Variation",
-        "description": "Retrieves an existing product variation for a specific product and variation key.",
+        "description": "Retrieves an existing product variation for a specific product and variation key. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
         "parameters": [
           {
             "name": "productCode",
@@ -7010,7 +7013,7 @@
           "ProductVariations"
         ],
         "summary": "Update Product Variation",
-        "description": "Modifies an existing product variation specified by its variation key. Typically used to change the price or inventory count of an existing product variation. Read-only options are ignored.",
+        "description": "Modifies an existing product variation specified by its variation key. Typically used to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -7077,7 +7080,7 @@
           "ProductVariations"
         ],
         "summary": "Delete Product Variation",
-        "description": "Deletes an existing product variation.",
+        "description": "Deletes an existing product variation. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -7873,7 +7876,7 @@
           "Products"
         ],
         "summary": "Change product type.",
-        "description": "Change a product's product type.",
+        "description": "Change a product's product type. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -7931,7 +7934,7 @@
           "ProductExtras"
         ],
         "summary": "Get Product Extras",
-        "description": "Get extras for the product.",
+        "description": "Get extras for the product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -7988,7 +7991,7 @@
           "ProductExtras"
         ],
         "summary": "Add Product Extra",
-        "description": "Add extra",
+        "description": "Add extra. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8048,7 +8051,7 @@
           "ProductExtras"
         ],
         "summary": "Get Product Extra",
-        "description": "Get individual extra.",
+        "description": "Get individual extra. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8105,7 +8108,7 @@
           "ProductExtras"
         ],
         "summary": "Update Product Extra",
-        "description": "Update extra",
+        "description": "Update extra. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8206,7 +8209,7 @@
           "ProductExtras"
         ],
         "summary": "Get Extra Localized Delta Price",
-        "description": "Get extra value localized delta price.",
+        "description": "Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8278,7 +8281,7 @@
           "ProductExtras"
         ],
         "summary": "Update Extra Localized Delta Price",
-        "description": "Update extra value localized delta price.",
+        "description": "Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8362,7 +8365,7 @@
           "ProductExtras"
         ],
         "summary": "Add Extra Localized Delta Price",
-        "description": "Add a extra value localized delta price.",
+        "description": "Add a extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8436,7 +8439,7 @@
           "ProductExtras"
         ],
         "summary": "Update Extra Localized Delta Price",
-        "description": "Update extra value localized delta price.",
+        "description": "Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8562,7 +8565,7 @@
           "ProductExtras"
         ],
         "summary": "Get Extra Localized Delta Price",
-        "description": "Get extra value localized delta price",
+        "description": "Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8635,7 +8638,7 @@
           "ProductOptions"
         ],
         "summary": "Get Product Options",
-        "description": "Get options for a product",
+        "description": "Get options for a product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8692,7 +8695,7 @@
           "ProductOptions"
         ],
         "summary": "Add Product Option",
-        "description": "Add an option to a product",
+        "description": "Add an option to a product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8752,7 +8755,7 @@
           "ProductOptions"
         ],
         "summary": "Get Product Option",
-        "description": "Get an individual option for a product.",
+        "description": "Get an individual option for a product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8809,7 +8812,7 @@
           "ProductOptions"
         ],
         "summary": "Update Product Option",
-        "description": "Update an individual option for a product.",
+        "description": "Update an individual option for a product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8910,7 +8913,7 @@
           "ProductProperties"
         ],
         "summary": "Get Product Properties",
-        "description": "Get properties for a product.",
+        "description": "Get properties for a product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -8967,7 +8970,7 @@
           "ProductProperties"
         ],
         "summary": "Add Product Property",
-        "description": "Add a property to a product.",
+        "description": "Add a property to a product. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -9034,7 +9037,7 @@
           "ProductProperties"
         ],
         "summary": "Get Product Property",
-        "description": "Get a specific product property.",
+        "description": "Get a specific product property. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -9091,7 +9094,7 @@
           "ProductProperties"
         ],
         "summary": "Update Product Property",
-        "description": "Update a specific product property.",
+        "description": "Update a specific product property. This current version of the Products API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
             "name": "productCode",
@@ -9637,6 +9640,597 @@
         }
       }
     },
+    "/commerce/catalog/admin/productsV1": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Products",
+        "description": "Retrieves a list of products according to any specified filter criteria and sort options. This is the legacy version of the Products API,  which allows you to access product data that hasn't yet been rewritten to the newer  API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to  support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qLimit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "noCount",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCollectionV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCollectionV1"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCollectionV1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Add Product",
+        "description": "Creates a new product. This is the legacy version of the Products API,  which allows you to access product data that hasn't yet been rewritten to the newer  API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to  support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "batchJobCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Properties of the new product. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. Mozu.ProductAdmin.Contracts.Product",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/admin/productsV1/{productCode}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Product",
+        "description": "Retrieves details about a product based on the specified response group. This is the legacy version of the Products API,  which allows you to access product data that hasn't yet been rewritten to the newer  API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to  support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "description": "Merchant-created code associated with the product, for example, a SKU. Required.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update Product",
+        "description": "Modifies an existing product. This is the legacy version of the Products API, which allows you to access product data that hasn't yet been rewritten to the newer API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "description": "Merchant-created code associated with the product, for example, a SKU. Required.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "batchJobCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Properties of the product that you want to update. Required properties: ProductCode, Content.ProductName, and Price.ListPrice.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductV1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs/{catalogId}": {
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update Product in Catalog",
+        "description": "Updates products in a particular catalog. This is the legacy version of the Products API, which allows you to access product data that hasn't yet been rewritten to the newer API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Product in Catalog",
+        "description": "Retrieves a product in a particular catalog. This is the legacy version of the Products API, which allows you to access product data that hasn't yet been rewritten to the newer API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Products in Catalogs",
+        "description": "Retrieve existing products across all catalog. This is the legacy version of the Products API, which allows you to access product data that hasn't yet been rewritten to the newer API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update Products in Catalogs",
+        "description": "Updates existing products across your catalogs. This is the legacy version of the Products API, which allows you to access product data that hasn't yet been rewritten to the newer API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Add Product in Catalogs",
+        "description": "Adds a new product to your catalogs. This is the legacy version of the Products API, which allows you to access product data that hasn't yet been rewritten to the newer API model with localizedContent. If possible, Kibo recommends calling the /products endpoint with an x-api-version header set to \"1\" instead of using this V1 endpoint (as it may be deprecated at some point). This is only necessary if you upgraded your implementation to use the new API version by default to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>.",
+        "parameters": [
+          {
+            "name": "productCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/commerce/catalog/admin/quickedit/products/properties": {
       "post": {
         "tags": [
@@ -9839,6 +10433,275 @@
             }
           }
         ]
+      }
+    },
+    "/commerce/catalog/admin/productsortdefinitions": {
+      "get": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Get product sort definitions",
+        "description": "Retrieves a list of product sort definitions according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinitionPagedCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinitionPagedCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinitionPagedCollection"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Add product sort definition",
+        "description": "Adds a new product sort definition.",
+        "parameters": [
+          {
+            "name": "useProvidedId",
+            "in": "query",
+            "description": "If true, the provided Id value will be used as the ProductSortDefinitionId. If omitted or false, the system will generate a ProductSortDefinitionId",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Properties of the new product sort definition. Required properties of StartDate and Name.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductSortDefinition"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/catalog/admin/productsortdefinitions/{productSortDefinitionId}": {
+      "get": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Get product sort definition",
+        "description": "Gets a single product sort definition.",
+        "parameters": [
+          {
+            "name": "productSortDefinitionId",
+            "in": "path",
+            "description": "Unique identifier of the product sort definition.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Update product sort definition",
+        "description": "Updates the details of a product sort definition.",
+        "parameters": [
+          {
+            "name": "productSortDefinitionId",
+            "in": "path",
+            "description": "Unique identifier of the product sort definition.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The details of the product sort definition to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductSortDefinition"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSortDefinition"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductSortDefinitions"
+        ],
+        "summary": "Delete product sort definition",
+        "description": "Deletes the product sort definition specified by its ProductSortDefinitionID.",
+        "parameters": [
+          {
+            "name": "productSortDefinitionId",
+            "in": "path",
+            "description": "Unique identifier of the product sort definition.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     },
     "/commerce/catalog/admin/attributedefinition/producttypes": {
@@ -11972,6 +12835,350 @@
         "description": "Delete a specific synonym definition by ID."
       }
     },
+    "/commerce/catalog/admin/search/searchtuningrules": {
+      "get": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Get search tuning rules",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get search tuning rules"
+      },
+      "post": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Add search tuning rule",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTuningRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Add search tuning rule",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/catalog/admin/search/searchtuningrules/{searchTuningRuleCode}": {
+      "get": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Get search tuning rule",
+        "parameters": [
+          {
+            "name": "searchTuningRuleCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get search tuning rule"
+      },
+      "put": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Update search tuning rule",
+        "parameters": [
+          {
+            "name": "searchTuningRuleCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTuningRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update search tuning rule"
+      },
+      "delete": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Delete search tuning rule",
+        "parameters": [
+          {
+            "name": "searchTuningRuleCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Delete search tuning rule"
+      }
+    },
+    "/commerce/catalog/admin/search/searchtuningrulesortfields": {
+      "get": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Get search tuning rule sort fields",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get search tuning rule sort fields",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "SearchTuningRules"
+        ],
+        "summary": "Update search tuning rule sort fields",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchTuningRuleSortFields"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update search tuning rule sort fields",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/commerce/catalog/admin/search/{name}/categorysuggestsettings": {
       "get": {
         "tags": [
@@ -14053,6 +15260,96 @@
         "description": "Publish"
       }
     },
+    "/commerce/catalog/admin/searchSchema/stopwords/{language}": {
+      "get": {
+        "tags": [
+          "StopWords"
+        ],
+        "summary": "Get Stopwords",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "Language code (en, es, fr)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Downloads the stopwords file for the language"
+      },
+      "put": {
+        "tags": [
+          "StopWords"
+        ],
+        "summary": "Add Stopwords",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "Language code use by the site (en, es, fr)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Upload a stopwords file for a language as a list of strings"
+      }
+    },
     "/commerce/catalog/admin/searchSchema/suggest/{language}": {
       "get": {
         "tags": [
@@ -14063,7 +15360,7 @@
           {
             "name": "language",
             "in": "path",
-            "description": "langage code used by the site (en, es, fr)",
+            "description": "Language code used by the site (en, es, fr)",
             "required": true,
             "schema": {
               "type": "string"
@@ -14089,7 +15386,7 @@
         "tags": [
           "SuggestDefinition"
         ],
-        "summary": "Uploads a suggest file for the site in tab seperated format)",
+        "summary": "Uploads a suggest file for the site in tab separated format)",
         "parameters": [
           {
             "name": "language",
@@ -14140,7 +15437,7 @@
             }
           }
         },
-        "description": "Uploads a suggest file for the site in tab seperated format)"
+        "description": "Uploads a suggest file for the site in tab separated format)"
       }
     },
     "/commerce/catalog/admin/searchSchema/suggest/settings/{language}": {
@@ -14153,7 +15450,7 @@
           {
             "name": "language",
             "in": "path",
-            "description": "language code use by the site (en, es, fr)",
+            "description": "Language code use by the site (en, es, fr)",
             "required": true,
             "schema": {
               "type": "string"
@@ -14201,7 +15498,7 @@
           {
             "name": "language",
             "in": "path",
-            "description": "language code use by the site (en, es, fr)",
+            "description": "Language code use by the site (en, es, fr)",
             "required": true,
             "schema": {
               "type": "string"
@@ -14217,7 +15514,7 @@
           }
         ],
         "requestBody": {
-          "description": "suggset definition in",
+          "description": "Suggest definition in",
           "content": {
             "text/plain": {
               "schema": {
@@ -14430,6 +15727,10 @@
       "x-displayName": "ProductQuickEdit"
     },
     {
+      "name": "ProductSortDefinitions",
+      "x-displayName": "ProductSortDefinitions"
+    },
+    {
       "name": "ProductTypes",
       "x-displayName": "ProductTypes"
     },
@@ -14444,6 +15745,10 @@
     {
       "name": "SearchSynonyms",
       "x-displayName": "SearchSynonyms"
+    },
+    {
+      "name": "SearchTuningRules",
+      "x-displayName": "SearchTuningRules"
     },
     {
       "name": "SearchCategorySuggestSettings",
@@ -14482,6 +15787,10 @@
       "x-displayName": "SchemaDefinition"
     },
     {
+      "name": "StopWords",
+      "x-displayName": "StopWords"
+    },
+    {
       "name": "SuggestDefinition",
       "x-displayName": "SuggestDefinition"
     },
@@ -14512,10 +15821,12 @@
         "ProductOptions",
         "ProductProperties",
         "ProductQuickEdit",
+        "ProductSortDefinitions",
         "ProductTypes",
         "ProductPublishing",
         "Publishing",
         "SearchSynonyms",
+        "SearchTuningRules",
         "SearchCategorySuggestSettings",
         "SearchListingSettings",
         "SearchProductSuggestSettings",
@@ -14530,6 +15841,7 @@
       "tags": [
         "FieldTypeDefinition",
         "SchemaDefinition",
+        "StopWords",
         "SuggestDefinition",
         "Synonym"
       ]
@@ -16107,6 +17419,66 @@
         "additionalProperties": false,
         "description": "Category"
       },
+      "ProductCategory": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "description": "Unique identifier of the category. System-supplied and read-only.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Categories to which the product belongs."
+      },
+      "ProductInCatalogInfo": {
+        "type": "object",
+        "properties": {
+          "catalogId": {
+            "type": "integer",
+            "description": "The CatalogId of the catalog that the product is associated with (The catalog must a valid catalog within the MasterCatalog that the product belongs to)",
+            "format": "int32"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "If true, the product is marked as available for sale in the catalog. Setting a product to IsActive = false will prevent it from being shown on the customer facing storefront.",
+            "nullable": true
+          },
+          "isPriceOverridden": {
+            "type": "boolean",
+            "description": "If true, the price for this product is overridden in the catalog. If false, the MasterCatalog level price will be used for the product.",
+            "nullable": true
+          },
+          "price": {
+            "$ref": "#/components/schemas/CatalogAdminsProductPrice"
+          },
+          "productCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCategory"
+            },
+            "description": "Categories to which the product belongs for this catalog.",
+            "nullable": true
+          },
+          "primaryProductCategory": {
+            "$ref": "#/components/schemas/ProductCategory"
+          },
+          "dateFirstAvailableInCatalog": {
+            "type": "string",
+            "description": "Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "activeDateRange": {
+            "$ref": "#/components/schemas/CatalogAdminsActiveDateRange"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs."
+      },
       "ProductLocalizedImage": {
         "type": "object",
         "properties": {
@@ -16237,82 +17609,6 @@
         },
         "additionalProperties": false,
         "description": "Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display a product in multiple languages yet manage it as a single product internally."
-      },
-      "ProductCategory": {
-        "type": "object",
-        "properties": {
-          "categoryId": {
-            "type": "integer",
-            "description": "Unique identifier of the category. System-supplied and read-only.",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Categories to which the product belongs."
-      },
-      "ProductInCatalogInfo": {
-        "type": "object",
-        "properties": {
-          "catalogId": {
-            "type": "integer",
-            "description": "The CatalogId of the catalog that the product is associated with (The catalog must a valid catalog within the MasterCatalog that the product belongs to)",
-            "format": "int32"
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": "If true, the product is marked as available for sale in the catalog. Setting a product to IsActive = false will prevent it from being shown on the customer facing storefront.",
-            "nullable": true
-          },
-          "isContentOverridden": {
-            "type": "boolean",
-            "description": "If true, the content for this product is overridden in the catalog. If false, the MasterCatalog level content will be used for the product.",
-            "nullable": true
-          },
-          "content": {
-            "$ref": "#/components/schemas/ProductLocalizedContent"
-          },
-          "isPriceOverridden": {
-            "type": "boolean",
-            "description": "If true, the price for this product is overridden in the catalog. If false, the MasterCatalog level price will be used for the product.",
-            "nullable": true
-          },
-          "price": {
-            "$ref": "#/components/schemas/CatalogAdminsProductPrice"
-          },
-          "isSeoContentOverridden": {
-            "type": "boolean",
-            "description": "If true, the SEO content for this product is overridden in the catalog. If false, the MasterCatalog level SEO content will be used for the product.",
-            "nullable": true
-          },
-          "seoContent": {
-            "$ref": "#/components/schemas/ProductLocalizedSEOContent"
-          },
-          "productCategories": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductCategory"
-            },
-            "description": "Categories to which the product belongs for this catalog.",
-            "nullable": true
-          },
-          "primaryProductCategory": {
-            "$ref": "#/components/schemas/ProductCategory"
-          },
-          "dateFirstAvailableInCatalog": {
-            "type": "string",
-            "description": "Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "activeDateRange": {
-            "$ref": "#/components/schemas/CatalogAdminsActiveDateRange"
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs."
       },
       "ProductExtraValueDeltaPrice": {
         "type": "object",
@@ -16829,6 +18125,324 @@
         },
         "additionalProperties": false
       },
+      "ProductInCatalogInfoV1": {
+        "type": "object",
+        "properties": {
+          "catalogId": {
+            "type": "integer",
+            "description": "The CatalogId of the catalog that the product is associated with (The catalog must a valid catalog within the MasterCatalog that the product belongs to)",
+            "format": "int32"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "If true, the product is marked as available for sale in the catalog. Setting a product to IsActive = false will prevent it from being shown on the customer facing storefront.",
+            "nullable": true
+          },
+          "isContentOverridden": {
+            "type": "boolean",
+            "description": "If true, the content for this product is overridden in the catalog. If false, the MasterCatalog level content will be used for the product.",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/ProductLocalizedContent"
+          },
+          "isPriceOverridden": {
+            "type": "boolean",
+            "description": "If true, the price for this product is overridden in the catalog. If false, the MasterCatalog level price will be used for the product.",
+            "nullable": true
+          },
+          "price": {
+            "$ref": "#/components/schemas/CatalogAdminsProductPrice"
+          },
+          "isSEOContentOverridden": {
+            "type": "boolean",
+            "description": "If true, the SEO content for this product is overridden in the catalog. If false, the MasterCatalog level SEO content will be used for the product.",
+            "nullable": true
+          },
+          "seoContent": {
+            "$ref": "#/components/schemas/ProductLocalizedSEOContent"
+          },
+          "productCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCategory"
+            },
+            "description": "Categories to which the product belongs for this catalog.",
+            "nullable": true
+          },
+          "primaryProductCategory": {
+            "$ref": "#/components/schemas/ProductCategory"
+          },
+          "dateFirstAvailableInCatalog": {
+            "type": "string",
+            "description": "Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "activeDateRange": {
+            "$ref": "#/components/schemas/CatalogAdminsActiveDateRange"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Use the Products resource to create and manage products for your store.\r\nYou can create products with options that a shopper configures\r\n(such as a T-shirt color and size). The system can manage inventory for all\r\ncombinations of your product options, and can calculate tax and shipping costs."
+      },
+      "ProductV1": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Merchant-created code identifier associated with the product, for example, a SKU or product item number.",
+            "nullable": true
+          },
+          "productUsage": {
+            "type": "string",
+            "description": "Indicates the usage type of this product. Must be one of the values in ProductUsageConst.",
+            "nullable": true
+          },
+          "fulfillmentTypesSupported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Indicates the fulfillment types the product supports.",
+            "nullable": true
+          },
+          "masterCatalogId": {
+            "type": "integer",
+            "description": "Identifier of the Master Catalog that this product is a member of. System-supplied and read-only",
+            "format": "int32",
+            "nullable": true
+          },
+          "productSequence": {
+            "type": "integer",
+            "description": "System generated monotonically increasing sequence",
+            "format": "int32",
+            "nullable": true
+          },
+          "productTypeId": {
+            "type": "integer",
+            "description": "Unique identifier of the productType of the product. Refers to a valid ProductType that was previously created with the ProductType resource.",
+            "format": "int32",
+            "nullable": true
+          },
+          "isValidForProductType": {
+            "type": "boolean",
+            "description": "Read only flag that indicates if the product meets the product type constraints (All adminRequired attributes have a valid value)",
+            "nullable": true
+          },
+          "baseProductCode": {
+            "type": "string",
+            "description": "This is the base product ProductCode of a product that is a variation. It is read-only and only populated for products that are variations of a configurable base product.",
+            "nullable": true
+          },
+          "productInCatalogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductInCatalogInfoV1"
+            },
+            "description": "Catalog specific info for each catalog a product is valid in. There should always be one or more entries here.",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/ProductLocalizedContent"
+          },
+          "price": {
+            "$ref": "#/components/schemas/CatalogAdminsProductPrice"
+          },
+          "pricingBehavior": {
+            "$ref": "#/components/schemas/CatalogAdminsProductPricingBehaviorInfo"
+          },
+          "seoContent": {
+            "$ref": "#/components/schemas/ProductLocalizedSEOContent"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsProductOption"
+            },
+            "description": "The Options defined in the product Type that are currently assigned to this product",
+            "nullable": true
+          },
+          "extras": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductExtra"
+            },
+            "description": "The Extras defined in the product Type that are currently assigned to this product",
+            "nullable": true
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsProductProperty"
+            },
+            "description": "The Properties defined in the product Type that are currently assigned to this product",
+            "nullable": true
+          },
+          "isTaxable": {
+            "type": "boolean",
+            "description": "If true, the product is subject to tax.",
+            "nullable": true
+          },
+          "inventoryInfo": {
+            "$ref": "#/components/schemas/CatalogAdminsProductInventoryInfo"
+          },
+          "shippingClassId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isRecurring": {
+            "type": "boolean",
+            "description": "If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.",
+            "nullable": true
+          },
+          "upc": {
+            "type": "string",
+            "description": "UPC code of the product.",
+            "nullable": true
+          },
+          "supplierInfo": {
+            "$ref": "#/components/schemas/ProductSupplierInfo"
+          },
+          "isPackagedStandAlone": {
+            "type": "boolean",
+            "description": "Does this product need to be packaged on its own",
+            "nullable": true
+          },
+          "standAlonePackageType": {
+            "type": "string",
+            "description": "When packaged alone this is the package type",
+            "nullable": true
+          },
+          "packageHeight": {
+            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
+          },
+          "packageWidth": {
+            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
+          },
+          "packageLength": {
+            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
+          },
+          "packageWeight": {
+            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
+          },
+          "applicableDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsDiscount"
+            },
+            "description": "Read only. List of discounts that are available for a product.",
+            "nullable": true
+          },
+          "isVariation": {
+            "type": "boolean",
+            "description": "Read only. If true, this is a product variation of a product with configurable options. System-supplied and read-only."
+          },
+          "variationKey": {
+            "type": "string",
+            "description": "Read only. If IsVariation true, thish provides a unique key to manage the variation of the base product.",
+            "nullable": true
+          },
+          "hasConfigurableOptions": {
+            "type": "boolean",
+            "description": "Read only. If true, this product has configurable options. The product is not purchasable until the shopper selects options that resolve to a product variation. System-supplied and read-only."
+          },
+          "hasStandAloneOptions": {
+            "type": "boolean",
+            "description": "Read only. If true, the product has stand-alone options that a shopper may select. System-supplied and read-only."
+          },
+          "variationOptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductVariationOption"
+            },
+            "description": "Read only List of variations that exist for a product. This is only populated when IsVariation is true. To get the list of options, the GET request must include the VariationOptions response group.",
+            "nullable": true
+          },
+          "publishingInfo": {
+            "$ref": "#/components/schemas/ProductPublishingInfo"
+          },
+          "bundledProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsBundledProduct"
+            },
+            "description": "list of other products that are included in a BundleProduct\r\nThis requires that the ProductUsage be set to Bundle",
+            "nullable": true
+          },
+          "productCollectionProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCollectionProduct"
+            },
+            "description": "list of other products that are members of a ProductCollection\r\nThis requires that the ProductUsage be set to Collection",
+            "nullable": true
+          },
+          "productCollections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsProductCollectionInfo"
+            },
+            "description": "List of Mozu.ProductAdmin.Contracts.ProductCollectionInfo that this product belongs to",
+            "nullable": true
+          },
+          "productImageGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsProductImageGroup"
+            },
+            "description": "List of the image groups this product uses.\r\nImage groups are used to map different images to different product options.\r\nIf the product doesn't have options then all images will be in the default\r\nimage group.",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "slicingSettings": {
+            "$ref": "#/components/schemas/SlicingSettings"
+          },
+          "primaryProductCollectionCode": {
+            "type": "string",
+            "description": "When this product belongs to a product collection this is the product id for the primary collection.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs."
+      },
+      "ProductCollectionV1": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductV1"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection of products returned as a whole. A collection is not paged."
+      },
       "ProductPropertyPatchOperation": {
         "type": "object",
         "properties": {
@@ -16938,7 +18552,7 @@
         "additionalProperties": false,
         "description": "Aggregates the individual results of update actions per product update"
       },
-      "ProductInCatalogInfoPatchOperation": {
+      "ProductInCatalogInfoV1PatchOperation": {
         "type": "object",
         "properties": {
           "value": {
@@ -16959,13 +18573,13 @@
         },
         "additionalProperties": false
       },
-      "ProductInCatalogInfoPatchDocument": {
+      "ProductInCatalogInfoV1PatchDocument": {
         "type": "object",
         "properties": {
           "operations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductInCatalogInfoPatchOperation"
+              "$ref": "#/components/schemas/ProductInCatalogInfoV1PatchOperation"
             },
             "nullable": true
           }
@@ -16986,7 +18600,7 @@
             "format": "int32"
           },
           "patches": {
-            "$ref": "#/components/schemas/ProductInCatalogInfoPatchDocument"
+            "$ref": "#/components/schemas/ProductInCatalogInfoV1PatchDocument"
           },
           "saveAndPublish": {
             "type": "boolean",
@@ -17011,7 +18625,7 @@
         "additionalProperties": false,
         "description": "List of Mozu.ProductAdmin.Contracts.ProductInCatalogPatchActions to be applied"
       },
-      "ProductPatchOperation": {
+      "ProductV1PatchOperation": {
         "type": "object",
         "properties": {
           "value": {
@@ -17032,13 +18646,13 @@
         },
         "additionalProperties": false
       },
-      "ProductPatchDocument": {
+      "ProductV1PatchDocument": {
         "type": "object",
         "properties": {
           "operations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductPatchOperation"
+              "$ref": "#/components/schemas/ProductV1PatchOperation"
             },
             "nullable": true
           }
@@ -17054,7 +18668,7 @@
             "nullable": true
           },
           "patches": {
-            "$ref": "#/components/schemas/ProductPatchDocument"
+            "$ref": "#/components/schemas/ProductV1PatchDocument"
           },
           "saveAndPublish": {
             "type": "boolean",
@@ -17096,7 +18710,7 @@
             "description": "Whether to run in test mode.  If true, no changes will be made."
           },
           "patches": {
-            "$ref": "#/components/schemas/ProductPatchDocument"
+            "$ref": "#/components/schemas/ProductV1PatchDocument"
           },
           "saveAndPublish": {
             "type": "boolean",
@@ -17163,6 +18777,149 @@
         },
         "additionalProperties": false,
         "description": "Aggregates the individual results of update actions per product update"
+      },
+      "ProductSortExpression": {
+        "required": [
+          "field"
+        ],
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The name of the field to sort on.\r\nMust be a known sort field or sortable attribute"
+          },
+          "direction": {
+            "type": "string",
+            "description": "ASC or DESC",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductSortOverride": {
+        "required": [
+          "productCode"
+        ],
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "The product code of the product being overridden"
+          },
+          "sliceValue": {
+            "type": "string",
+            "description": "The slicing value of the product being overridden",
+            "nullable": true
+          },
+          "position": {
+            "type": "integer",
+            "description": "Indicates the relative position of the product to other overridden products.\r\nPosition is absolute if IsPinned is true.\r\nNot applicable to buried products. Buried products will be given a default\r\nposition of -1",
+            "format": "int32",
+            "nullable": true
+          },
+          "isPinned": {
+            "type": "boolean",
+            "description": "Flag to indicate that the product is pinned at the specified position.\r\nNot applicable to buried products",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a product that is positioned out of its normal sort position.\r\nIt can be boosted to the top of the list, positioned exactly or buried at the bottom"
+      },
+      "ProductSortDefinition": {
+        "required": [
+          "name",
+          "sortExpressions",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "productSortDefinitionId": {
+            "type": "integer",
+            "description": "System or user provided ID for the ProductSortDefinition",
+            "format": "int32",
+            "nullable": true
+          },
+          "categoryId": {
+            "type": "integer",
+            "description": "",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Short Name for the sort definition. Required."
+          },
+          "startDate": {
+            "type": "string",
+            "description": "The Start Date when the sort definition becomes active",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Optional end date for a product sort definition",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortExpressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSortExpression"
+            },
+            "description": "Sort expression to apply\r\nMax two expressions"
+          },
+          "boosted": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSortOverride"
+            },
+            "description": "List of products being positioned",
+            "nullable": true
+          },
+          "buried": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSortOverride"
+            },
+            "description": "List of products being positioned",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a default sort for a list of products and allows some products to be\r\nboosted to the top or pinned ot a specific position, or buried at the bottom of the\r\nlist.  Only 10 items can be boosted or pinned and up to"
+      },
+      "ProductSortDefinitionPagedCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductSortDefinition"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection of product sort definitions where product sort definitions are returned in a series of pages."
       },
       "AttributeInProductTypeDisplayInfo": {
         "type": "object",
@@ -17519,6 +19276,135 @@
         },
         "additionalProperties": false,
         "description": "Paged collection of synonyms for a Site-Locale."
+      },
+      "SearchTuningRuleFilter": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchTuningRule": {
+        "type": "object",
+        "properties": {
+          "siteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "searchTuningRuleCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchTuningRuleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchTuningRuleDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchTuningRuleFilter"
+            },
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "activeStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "activeEndDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boostedProductCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "blockedProductCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchTuningRuleCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchTuningRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchTuningRuleSortFields": {
+        "type": "object",
+        "properties": {
+          "sortFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "inclusionExclusionType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "FieldWeight": {
         "type": "object",
@@ -18246,6 +20132,14 @@
             "description": "If the publishingMode is Pending and LiveEditsEnabled = true, DataViewMode live can be passed in the header and live products can be directly edited. This should only be enabled for immediate changes to the live version of products. ",
             "nullable": true
           },
+          "supportedLocaleCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Master catalog supported locale codes",
+            "nullable": true
+          },
           "isDeleted": {
             "type": "boolean",
             "description": "Indicates whether the MasterCatalog has been deleted and should no longer be used"
@@ -18384,7 +20278,6 @@
       "CatalogAdminsDiscount": {
         "required": [
           "amountType",
-          "content",
           "scope",
           "target"
         ],
@@ -18398,6 +20291,14 @@
           },
           "content": {
             "$ref": "#/components/schemas/DiscountLocalizedContent"
+          },
+          "localizedContent": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DiscountLocalizedContent"
+            },
+            "description": "Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode).\r\nThis enables you to display the discount name in multiple languages yet manage it as a single discount internally.",
+            "nullable": true
           },
           "scope": {
             "type": "string",
@@ -18551,7 +20452,6 @@
       },
       "CatalogAdminsThresholdMessage": {
         "required": [
-          "content",
           "discountId",
           "thresholdValue"
         ],
@@ -18585,6 +20485,14 @@
           },
           "content": {
             "$ref": "#/components/schemas/ThresholdMessageLocalizedContent"
+          },
+          "localizedContent": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ThresholdMessageLocalizedContent"
+            },
+            "description": "Container for the language-specific name of the threshold message. You will have a container for each supported language (LocaleCode).\r\nThis enables you to display the message in multiple languages yet manage it as a single message internally.",
+            "nullable": true
           },
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"
@@ -18735,6 +20643,14 @@
           },
           "content": {
             "$ref": "#/components/schemas/CategoryLocalizedContent"
+          },
+          "localizedContent": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryLocalizedContent"
+            },
+            "description": "Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). \r\nThis enables you to display a category in multiple languages yet manage it as a single category internally.",
+            "nullable": true
           },
           "dynamicExpression": {
             "$ref": "#/components/schemas/DynamicExpression"
@@ -18942,6 +20858,14 @@
           "content": {
             "$ref": "#/components/schemas/ProductLocalizedContent"
           },
+          "localizedContent": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductLocalizedContent"
+            },
+            "description": "The content for each locale code supported by the master catalog",
+            "nullable": true
+          },
           "price": {
             "$ref": "#/components/schemas/CatalogAdminsProductPrice"
           },
@@ -18950,6 +20874,13 @@
           },
           "seoContent": {
             "$ref": "#/components/schemas/ProductLocalizedSEOContent"
+          },
+          "localizedSEOContent": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductLocalizedSEOContent"
+            },
+            "nullable": true
           },
           "options": {
             "type": "array",
@@ -20201,7 +22132,7 @@
             "nullable": true
           },
           "usageRestrictions": {
-            "description": "Restricts the fields used by specific SOLR analyzer.\r\nOriginally developed for entity entraction/ aka noun_extraction\r\n(e.g. searching for sofa tables should return tables, not sofas)",
+            "description": "Restricts the fields used by specific SOLR analyzer.\r\nOriginally developed for entity extraction/ aka noun_extraction\r\n(e.g. searching for sofa tables should return tables, not sofas)",
             "nullable": true
           }
         },

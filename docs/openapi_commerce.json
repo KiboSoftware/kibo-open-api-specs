@@ -1792,6 +1792,16 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "Update fields on the item.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemQuantityUpdate"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -1861,6 +1871,15 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemQuantityUpdate"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -6242,7 +6261,7 @@
         "tags": [
           "Order"
         ],
-        "summary": "This endpoint is use to Reprice Canceled shipment",
+        "summary": "Reprice Canceled Shipment",
         "parameters": [
           {
             "name": "orderId",
@@ -6293,7 +6312,7 @@
             }
           }
         },
-        "description": "\nFFMT svc will call this during full shipment cancelation or last item cancelation.\r\nFFMT svs is performing shipment Rate validation.(FFMT svc is responsible for sending valid FlatratePerOrder shipments.)\r\nShipping costs of the canceled shipment will distribute to the active shipment.\r\nReset Shipping Costs of the canceled shipment to zero."
+        "description": "Reprices a fully canceled shipment or when the last item is canceled."
       }
     },
     "/commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments": {
@@ -6690,6 +6709,274 @@
                   "items": {
                     "$ref": "#/components/schemas/OrderValidationResult"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/orders/queuedorders": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Queued Orders",
+        "description": "Retrieves a list of queuedorders according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, \r\n            gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qLimit",
+            "in": "query",
+            "description": "Limit of the records to include in a search, used for global search",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueuedOrderCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueuedOrderCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueuedOrderCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/orders/queuedorders/historical": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Queued Historical Orders",
+        "description": "Retrieves a list of queued historical orders according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, \r\n            gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qLimit",
+            "in": "query",
+            "description": "Limit of the records to include in a search, used for global search",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueuedOrderCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueuedOrderCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueuedOrderCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/orders/queuedorders/{orderId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Queued Order",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique identifier of the order whose details you want.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        },
+        "description": "RRetrieves the details of an order specified by the order ID."
+      }
+    },
+    "/commerce/orders/queuedorders/historical/{orderId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Queued Historical Order",
+        "description": "Retrieves the details of a historical order specified by the order ID.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique identifier of the order whose details you want.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
                 }
               }
             }
@@ -10318,6 +10605,15 @@
             }
           },
           {
+            "name": "isOverRidePriceSalePrice",
+            "in": "query",
+            "description": "Indicate override price is sale price or list price.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "updateMode",
             "in": "query",
             "description": "Determines the update strategy for this update (ApplyAndCommit, ApplyToOriginal, ApplyToDraft)",
@@ -10427,6 +10723,16 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "Update fields on the item.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemQuantityUpdate"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -12974,6 +13280,16 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "Update fields on the item.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemQuantityUpdate"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -13032,6 +13348,15 @@
             "schema": {
               "type": "number",
               "format": "double"
+            }
+          },
+          {
+            "name": "isOverRidePriceSalePrice",
+            "in": "query",
+            "description": "Indicate override price is sale price or list price.",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           },
           {
@@ -16248,6 +16573,16 @@
             },
             "nullable": true
           },
+          "availableFutureInventories": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalAvailableStock": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
           "isSubstitutable": {
             "type": "boolean",
             "nullable": true
@@ -16768,6 +17103,11 @@
           },
           "subscription": {
             "$ref": "#/components/schemas/SubscriptionInfo"
+          },
+          "priceMode": {
+            "type": "string",
+            "description": "Determines if the item is using external or internal(catalog) pricing",
+            "nullable": true
           }
         },
         "description": "Details of an item in the shopper's cart, such as the product name, stock count, unit price, discounts, quantity ordered, and total price."
@@ -16915,6 +17255,22 @@
           }
         },
         "description": "Collection of items in the cart. A collection is not paged."
+      },
+      "ItemQuantityUpdate": {
+        "type": "object",
+        "properties": {
+          "tenantOverridePrice": {
+            "type": "number",
+            "description": "An external price applied to the item.",
+            "format": "double",
+            "nullable": true
+          },
+          "isOverRidePriceSalePrice": {
+            "type": "boolean",
+            "description": "Indicate that External Price (TenantOverridePrice) is a Sale Price or List Price. And is used to calculate the line item discounts.",
+            "nullable": true
+          }
+        }
       },
       "CartChangeMessageCollection": {
         "type": "object",
@@ -19096,6 +19452,28 @@
             "type": "string",
             "description": "Gift message for item",
             "nullable": true
+          },
+          "priceMode": {
+            "type": "string",
+            "description": "Determines if the item is using external or internal(catalog) pricing",
+            "nullable": true
+          }
+        }
+      },
+      "FulfillmentShopperNotes": {
+        "type": "object",
+        "properties": {
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryInstructions": {
+            "type": "string",
+            "nullable": true
+          },
+          "giftMessage": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -19281,380 +19659,6 @@
           },
           "reasonCode": {
             "type": "string",
-            "nullable": true
-          }
-        }
-      },
-      "SubstitutedItem": {
-        "type": "object",
-        "properties": {
-          "actualPrice": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "allocatedQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "allowsBackOrder": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "allowsFutureAllocate": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "allowsSubstitution": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "appeasementReason": {
-            "$ref": "#/components/schemas/FulfillmentServiceAppeasementReason"
-          },
-          "attributes": {
-            "type": "object",
-            "additionalProperties": {},
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
-          },
-          "backorderReleaseDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "cartItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "childItemIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "creditCurrencyCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "creditValue": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "additionalProperties": {},
-            "nullable": true
-          },
-          "duty": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "expectedDeliveryDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "fulfillmentFields": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceFulfillmentField"
-            },
-            "nullable": true
-          },
-          "giftCards": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceGiftCard"
-            },
-            "nullable": true
-          },
-          "giftMessage": {
-            "type": "string",
-            "nullable": true
-          },
-          "goodsType": {
-            "type": "string",
-            "nullable": true
-          },
-          "handling": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingDiscount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingTax": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "height": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "imageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "inventoryTags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceInventoryTag"
-            },
-            "nullable": true
-          },
-          "isAssemblyRequired": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isGift": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isPackagedStandAlone": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isReservedInventory": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isTaxable": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "itemDiscount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "itemTax": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "length": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "lineId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "lineItemAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "lineItemCost": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "locatorName": {
-            "type": "string",
-            "nullable": true
-          },
-          "manageStock": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "optionAttributeFQN": {
-            "type": "string",
-            "nullable": true
-          },
-          "options": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceProductOption"
-            },
-            "nullable": true
-          },
-          "originalLineId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "originalOrderItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "originalQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "overridePrice": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "parentItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "partNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "productCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "purchaseLocation": {
-            "type": "string",
-            "nullable": true
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "readyForPickupQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "shipping": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingDiscount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingTax": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "sku": {
-            "type": "string",
-            "nullable": true
-          },
-          "substituteItemLineIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "nullable": true
-          },
-          "substituteQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "substituteReason": {
-            "$ref": "#/components/schemas/FulfillmentServiceSubstituteReason"
-          },
-          "taxData": {
-            "nullable": true
-          },
-          "taxableHandling": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "taxableLineItemCost": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "taxableShipping": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "transferQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "trueTransferQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "unitPrice": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "upc": {
-            "type": "string",
-            "nullable": true
-          },
-          "variationProductCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "weight": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightUnit": {
-            "type": "string",
-            "nullable": true
-          },
-          "weightedDutyAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedHandlingAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedHandlingTaxAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedLineItemTaxAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedShipmentAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedShippingAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedShippingTaxAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "width": {
-            "type": "number",
-            "format": "double",
             "nullable": true
           }
         }
@@ -20124,6 +20128,10 @@
             "type": "boolean",
             "description": "Settings this flag on the order will restrict user from Cancelling the order",
             "nullable": true
+          },
+          "isContinuityOrder": {
+            "type": "boolean",
+            "description": "Flag to check if the order is continuityOrder."
           }
         },
         "description": "Order form."
@@ -20398,6 +20406,62 @@
           "message": {
             "type": "string",
             "description": "Gift Message",
+            "nullable": true
+          }
+        }
+      },
+      "QueuedOrder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "$ref": "#/components/schemas/Order"
+          },
+          "lastErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "processingStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updateDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "QueuedOrderCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueuedOrder"
+            },
             "nullable": true
           }
         }
@@ -22371,6 +22435,11 @@
             "type": "string",
             "description": "Is the item purchasable?",
             "nullable": true
+          },
+          "priceMode": {
+            "type": "string",
+            "description": "Determines if the item is using external or internal(catalog) pricing",
+            "nullable": true
           }
         },
         "description": "A single line item of an order."
@@ -23251,6 +23320,11 @@
             "type": "string",
             "description": "Pricelist entry mode of the product.\r\nNote: possible values are below\r\n1. null : Product doesn't participate in pricelist\r\n2. Bulk : Bulk volume price available(unit price vary based on quantity)\r\n3. Simple:",
             "nullable": true
+          },
+          "isOverRidePriceSalePrice": {
+            "type": "boolean",
+            "description": "Indicate that External Price (TenantOverridePrice) is a Sale Price. And is used to calculate the line item discounts.",
+            "nullable": true
           }
         },
         "description": "Price of the product with any sale and discounts applied."
@@ -23565,6 +23639,11 @@
           },
           "giftInfo": {
             "$ref": "#/components/schemas/GiftInfo"
+          },
+          "priceMode": {
+            "type": "string",
+            "description": "Determines if the item is using external or internal(catalog) pricing",
+            "nullable": true
           }
         },
         "description": "A single line item of an order."
@@ -24014,6 +24093,384 @@
           }
         }
       },
+      "CommerceRuntimeSubstitutedItem": {
+        "type": "object",
+        "properties": {
+          "actualPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allocatedQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "allowsBackOrder": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "allowsFutureAllocate": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "allowsSubstitution": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "appeasementReason": {
+            "$ref": "#/components/schemas/FulfillmentServiceAppeasementReason"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
+          },
+          "backorderReleaseDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cartItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "childItemIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "creditCurrencyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true
+          },
+          "duty": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "expectedDeliveryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fulfillmentFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceFulfillmentField"
+            },
+            "nullable": true
+          },
+          "giftCards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceGiftCard"
+            },
+            "nullable": true
+          },
+          "giftMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "goodsType": {
+            "type": "string",
+            "nullable": true
+          },
+          "handling": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "handlingDiscount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "handlingTax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "height": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "inventoryTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceInventoryTag"
+            },
+            "nullable": true
+          },
+          "isAssemblyRequired": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isGift": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isPackagedStandAlone": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isReservedInventory": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isTaxable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "itemDiscount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "itemTax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "length": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "lineId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lineItemAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "lineItemCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "locatorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "manageStock": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionAttributeFQN": {
+            "type": "string",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceProductOption"
+            },
+            "nullable": true
+          },
+          "originalLineId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "originalOrderItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "overridePrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "parentItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "partNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "purchaseLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "readyForPickupQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "shipping": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingDiscount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingTax": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "substituteItemLineIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "substituteQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "substituteReason": {
+            "$ref": "#/components/schemas/FulfillmentServiceSubstituteReason"
+          },
+          "taxData": {
+            "nullable": true
+          },
+          "taxableHandling": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "taxableLineItemCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "taxableShipping": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transferQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "trueTransferQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "upc": {
+            "type": "string",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "weight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightUnit": {
+            "type": "string",
+            "nullable": true
+          },
+          "weightedDutyAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedHandlingAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedHandlingTaxAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedLineItemTaxAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedShipmentAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedShippingAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedShippingTaxAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "width": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        }
+      },
       "CommerceRuntimeShipment": {
         "type": "object",
         "properties": {
@@ -24292,7 +24749,7 @@
             "nullable": true
           },
           "shopperNotes": {
-            "$ref": "#/components/schemas/CommerceRuntimeFulfillmentShopperNotes"
+            "$ref": "#/components/schemas/FulfillmentShopperNotes"
           },
           "customer": {
             "$ref": "#/components/schemas/CommerceRuntimeCustomer"
@@ -24310,7 +24767,7 @@
           "substitutedItems": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SubstitutedItem"
+              "$ref": "#/components/schemas/CommerceRuntimeSubstitutedItem"
             },
             "nullable": true
           }
@@ -24478,23 +24935,6 @@
             "nullable": true
           },
           "integratorId": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
-      "CommerceRuntimeFulfillmentShopperNotes": {
-        "type": "object",
-        "properties": {
-          "comments": {
-            "type": "string",
-            "nullable": true
-          },
-          "deliveryInstructions": {
-            "type": "string",
-            "nullable": true
-          },
-          "giftMessage": {
             "type": "string",
             "nullable": true
           }
