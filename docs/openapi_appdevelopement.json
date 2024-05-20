@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "App Developement",
+    "title": "App Development",
     "description": "<div id=\"overview_APPDEVELOPEMENT\">\n            <h2>APP DEVELOPMENT</h2>\n            <p>The Applications API updates and retrieves details about the applications installed for your tenant. Use\n                the AuthTickets resource for applications resource to manage authentication tickets for your apps. For information about creating applications, see the <a href=\"https://docs.kibocommerce.com/help/applications-1a6c791\">Application Development</a> guides.</p>\n            <p>Use the<strong>App Auth Tickets</strong> resource to manage authentication tickets for your applications.</p>\n            <p>Use the <strong>Filebased Package</strong> resource to download a file-based representation of the application definition to work on collaboratively with your team using your own source control process.</p>\n            <p>Use the <strong>Package</strong> resource to manage the application packages and retrieve summaries.</p>\n            <p>Use the <strong>Public Application</strong> resource to retrieve package metadata or application versions as well as manage package files.</p>\n        </div>",
     "version": "1.0.1"
   },
@@ -237,6 +237,165 @@
           }
         },
         "description": "Get File"
+      }
+    },
+    "/platform/appdev/headless-app/logs/{branchName}/runtime": {
+      "get": {
+        "tags": [
+          "HeadlessApp"
+        ],
+        "summary": "Get Runtime Logs",
+        "parameters": [
+          {
+            "name": "branchName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Get Runtime Logs"
+      }
+    },
+    "/platform/appdev/headless-app/builds/{branchName}": {
+      "get": {
+        "tags": [
+          "HeadlessApp"
+        ],
+        "summary": "Get Application Build Jobs",
+        "description": "Get the builds of a specifc code branch for a Kibo Hosted Headless application.\r\nA Kibo site must be first linked to a headless hosted application before using this API.",
+        "parameters": [
+          {
+            "name": "branchName",
+            "in": "path",
+            "description": "The name of the branch to use for the request",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "description": "The maximum number of records to list in a single response. defaults to 20, maximum is 100",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "description": "A pagination token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadlessAppBuildJobResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadlessAppBuildJobResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadlessAppBuildJobResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/platform/appdev/headless-app/builds/{branchName}/logs/{jobId}": {
+      "get": {
+        "tags": [
+          "HeadlessApp"
+        ],
+        "summary": "Get Application Build Log",
+        "description": "Get the build logs of a specifc code branch and build for a Kibo Hosted Headless application.\r\nA Kibo site must be first linked to a headless hosted application before using this API.",
+        "parameters": [
+          {
+            "name": "branchName",
+            "in": "path",
+            "description": "The name of the branch to use for the request",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The Identifier of the build to retrieve logs for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadlessAppBuildLog"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadlessAppBuildLog"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadlessAppBuildLog"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/platform/appdev/apppackages/project": {
@@ -1344,6 +1503,113 @@
           }
         },
         "additionalProperties": false
+      },
+      "HeadlessAppBuildJob": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "description": "The unique identifier for a Headless Application Build Job.",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The name of the third party feature.",
+            "nullable": true
+          },
+          "commitId": {
+            "type": "string",
+            "description": "The Commit ID for the build job.",
+            "nullable": true
+          },
+          "commitTime": {
+            "type": "string",
+            "description": "The time of code commit for the build job.",
+            "format": "date-time"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "The start time for the build job.",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "The end time for the build job.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A job that represents the build of a Kibo hosted headless application."
+      },
+      "HeadlessAppBuildJobResponse": {
+        "type": "object",
+        "properties": {
+          "nextToken": {
+            "type": "string",
+            "description": "A token used for paginating through build jobs on subsequent requests.",
+            "nullable": true
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HeadlessAppBuildJob"
+            },
+            "description": "A list of items representing headless application build jobs.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response object for looking up headless storefront build jobs."
+      },
+      "HeadlessAppBuildStep": {
+        "type": "object",
+        "properties": {
+          "stepName": {
+            "type": "string",
+            "description": "The name of the build step producing logs during the build Job.",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The status result of the step during the build job",
+            "nullable": true
+          },
+          "logUrl": {
+            "type": "string",
+            "description": "The url to access logs generated during the build step.",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "description": "The start time for the build job step.",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "The end time for the build job step.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A job that represents the build of a Kibo hosted headless application."
+      },
+      "HeadlessAppBuildLog": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HeadlessAppBuildStep"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The list of steps taken during the build job with links to logs."
       },
       "ApplicationBehavior": {
         "type": "object",
