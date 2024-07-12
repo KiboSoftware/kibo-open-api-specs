@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Shipping Admin",
-    "description": "<div id=\"overview_SHIPPING\">\n            <h2>SHIPPING</h2>\n            <p>The Shipping APIs are a collection of resources for administrating shipping settings such as carrier configurations and\n                shipping profiles. For more information about site settings and the associated configurations in the Unified Commerce Admin\n                interface, see the <a href=\"https://docs.kibocommerce.com/help/shipping-settings\">Shipping Settings\n                    documentation</a>.</p>\n            <p>Use the <strong>Carrier Configuration</strong> (specific and global) resources to manage your settings for fulfillment carriers.</p>\n            <p>Use the <strong>Carrier Credential</strong> and <strong>Credential Set</strong> resources to manage the authentication for your carrier configurations.</p>\n            <p>Use the <strong>Shipping</strong> and <strong>Shipping Profile</strong> resources to set rules for shipping fees, profiles, and inclusion.</p>\n            <p>Use the <strong>Target Rules</strong> resource to manage your target rules for products and zones. For example, you can set specific rules that dictate shipping options for specific products.</p>\n        </div>",
+    "description": "<div id=\"overview_SHIPPING\">\r\n            <h2>SHIPPING</h2>\r\n            <p>The Shipping APIs are a collection of resources for administrating shipping settings such as carrier configurations and\r\n                shipping profiles. For more information about site settings and the associated configurations in the Unified Commerce Admin\r\n                interface, see the <a href=\"https://docs.kibocommerce.com/help/shipping-settings\">Shipping Settings\r\n                    documentation</a>.</p>\r\n            <p>Use the <strong>Carrier Configuration</strong> (specific and global) resources to manage your settings for fulfillment carriers.</p>\r\n            <p>Use the <strong>Carrier Credential</strong> and <strong>Credential Set</strong> resources to manage the authentication for your carrier configurations.</p>\r\n            <p>Use the <strong>Shipping</strong> and <strong>Shipping Profile</strong> resources to set rules for shipping fees, profiles, and inclusion.</p>\r\n            <p>Use the <strong>Target Rules</strong> resource to manage your target rules for products and zones. For example, you can set specific rules that dictate shipping options for specific products.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -397,6 +397,56 @@
           }
         },
         "description": "Retrieves the available service types for the Default Application carriers"
+      }
+    },
+    "/commerce/shipping/global/carriers/signatureOptions": {
+      "get": {
+        "tags": [
+          "CarrierConfigurationGlobal"
+        ],
+        "summary": "Gets all the Signature Options",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignatureOption"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignatureOption"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignatureOption"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets all the Signature Options",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/shipping/admin/carriers/credentials/{carrierId}": {
@@ -2864,6 +2914,52 @@
         "additionalProperties": false,
         "description": "Service Type aka Shipping Method"
       },
+      "Option": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "description": "User readable value to be shown to the user",
+            "nullable": true
+          },
+          "carrierValue": {
+            "type": "string",
+            "description": "Value required by the actual carrier in carrier request",
+            "nullable": true
+          },
+          "alternateCarrierValue": {
+            "type": "string",
+            "description": "Value required by other carrier or carrier aggragator like Easypost",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Option class for signature option"
+      },
+      "SignatureOption": {
+        "type": "object",
+        "properties": {
+          "isEnabled": {
+            "type": "boolean",
+            "description": "If carrier is enabled for signature option."
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Option"
+            },
+            "description": "Supported signature options",
+            "nullable": true
+          },
+          "carrierId": {
+            "type": "string",
+            "description": "Carrier Id",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Signature options against a carrier"
+      },
       "CarrierCredentialSetValue": {
         "type": "object",
         "properties": {
@@ -4084,9 +4180,9 @@
             "description": "Selected Shipment Request Type.",
             "nullable": true
           },
-          "requiresSignature": {
-            "type": "boolean",
-            "description": "Designates that the shipment requires a signature for delivery\r\nNot fully implemented...",
+          "signatureOption": {
+            "type": "string",
+            "description": "Specify an optional signature option for this shipment.\r\nAll packages will inherit this option value automatically.\r\nSet this option on the package level to override this value.",
             "nullable": true
           },
           "labelFormat": {
@@ -4250,9 +4346,9 @@
             },
             "nullable": true
           },
-          "requiresSignature": {
-            "type": "boolean",
-            "description": "Package delivery requires a signature when true.",
+          "signatureOption": {
+            "type": "string",
+            "description": "Specify an optional signature option for this package.\r\nIf not specified, will inherit the option value from the shipment.",
             "nullable": true
           },
           "packagingType": {

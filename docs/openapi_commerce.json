@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Cart/Checkout/Quote",
-    "description": "<div id=\"overview_COMMERCE\">\n            <h2>COMMERCE</h2>\n            <p>The Commerce API interacts with the commerce entities of your tenant, including shoppers's active shopping\n                carts, checkouts, submitted orders, wishlists, and returns as well as B2B quotes.</p>\n            <p>Use the <strong>Carts</strong> resource to manage storefront shopping carts as shoppers add and remove items for purchase.\n                Each time a shopper's cart is modified, the Carts resource updates the estimated total with any\n                applicable\n                discounts.</p>\n            <p>Use the <strong>Channels</strong> and <strong>Channel Groups</strong> resources to manage the channels a company uses to create logical\n                commercial business divisions based on region or types of sales, such as \"US Online,\" \"Amazon,\" or \"EMEA\n                Retail.\"\n                All orders include a channel association that enables the company to perform financial reporting for\n                each defined channel.\n                Because channels are managed at the tenant level, you must associate all the tenant's sites with a\n                channel. Sites that do not\n                have a defined channel association cannot successfully submit orders.</p>\n            <p>Use the <strong>Checkouts</strong> resource to track a shopper's order items and their intended destinations on sites that\n                have the multiple shipment feature enabled.</p>\n            <p>Use the <strong>Orders</strong> resource to manage all components of order processing, payment, and order-level\n                fulfillment.</p>\n            <p>Use the <strong>Quotes</strong> resource to support B2B functionality by managing order quotes, similar to wishlists.</p>\n            <p>Use the <strong>Returns</strong> resource to manage returned items that were previously fufilled. Returns can include any\n                number of items associated with an original\n                order. Each return must either be associated with an original order or a product definition to represent\n                each returned item.</p>\n            <p>Use the <strong>Wish Lists</strong> resource to manage the shopper wish lists of products associated with a customer\n                account. Although customer accounts are managed at the tenant\n                level, the system stores shopper wish lists at the site level. This enables the same customer to have\n                wish lists for each of a merchant's sites. The <strong>Wish List Items</strong>\n                resource allows you to manage the individual items in a wish list.</p>\n        </div>",
+    "description": "<div id=\"overview_COMMERCE\">\r\n            <h2>COMMERCE</h2>\r\n            <p>The Commerce API interacts with the commerce entities of your tenant, including shoppers's active shopping\r\n                carts, checkouts, submitted orders, wishlists, and returns as well as B2B quotes.</p>\r\n            <p>Use the <strong>Carts</strong> resource to manage storefront shopping carts as shoppers add and remove items for purchase.\r\n                Each time a shopper's cart is modified, the Carts resource updates the estimated total with any\r\n                applicable\r\n                discounts.</p>\r\n            <p>Use the <strong>Channels</strong> and <strong>Channel Groups</strong> resources to manage the channels a company uses to create logical\r\n                commercial business divisions based on region or types of sales, such as \"US Online,\" \"Amazon,\" or \"EMEA\r\n                Retail.\"\r\n                All orders include a channel association that enables the company to perform financial reporting for\r\n                each defined channel.\r\n                Because channels are managed at the tenant level, you must associate all the tenant's sites with a\r\n                channel. Sites that do not\r\n                have a defined channel association cannot successfully submit orders.</p>\r\n            <p>Use the <strong>Checkouts</strong> resource to track a shopper's order items and their intended destinations on sites that\r\n                have the multiple shipment feature enabled.</p>\r\n            <p>Use the <strong>Orders</strong> resource to manage all components of order processing, payment, and order-level\r\n                fulfillment.</p>\r\n            <p>Use the <strong>Quotes</strong> resource to support B2B functionality by managing order quotes, similar to wishlists.</p>\r\n            <p>Use the <strong>Returns</strong> resource to manage returned items that were previously fufilled. Returns can include any\r\n                number of items associated with an original\r\n                order. Each return must either be associated with an original order or a product definition to represent\r\n                each returned item.</p>\r\n            <p>Use the <strong>Wish Lists</strong> resource to manage the shopper wish lists of products associated with a customer\r\n                account. Although customer accounts are managed at the tenant\r\n                level, the system stores shopper wish lists at the site level. This enables the same customer to have\r\n                wish lists for each of a merchant's sites. The <strong>Wish List Items</strong>\r\n                resource allows you to manage the individual items in a wish list.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -6465,6 +6465,76 @@
         }
       }
     },
+    "/commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments/bulk": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Update Shipment and Multiple Shipment Items Adjustment",
+        "description": "Updates shipment and shipment items adjustment.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shipmentNumber",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShipmentAndItemsAdjustment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeShipment"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeShipment"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceRuntimeShipment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/commerce/orders/{orderId}/shipments/{shipmentNumber}/split": {
       "post": {
         "tags": [
@@ -9212,6 +9282,365 @@
         }
       }
     },
+    "/commerce/orders/{orderId}/data": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Order Data",
+        "description": "Retrieves all the values in the Order Data bag",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique Identifier of the Order whose Data you want to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/orders/{orderId}/item/{orderItemId}/data": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Order Item Data",
+        "description": "Retrieves a specific value in the OrderItem Data bag.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique Identifier of the Order you want to get the Order Items for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderItemId",
+            "in": "path",
+            "description": "Unique Identifier of the OrderItem whose Data you want to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/orders/{orderId}/data/{orderDataId}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Update Order Data",
+        "description": "Insert / Updates the Value of the given Key in the OrderData bag.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique Identifier of the Order you want to insert / update the Databag for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderDataId",
+            "in": "path",
+            "description": "URLEncoded Key for the Value you want to Insert / Update from the Order DataBag",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Data Object you are trying to insert / update",
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Delete Order Data",
+        "description": "Delete Value of the given Key in the OrderData bag.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique Identifier of the Order you want to Delete the Databag for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderDataId",
+            "in": "path",
+            "description": "URLEncoded Key for the Value you want to Delete from the Order DataBag",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Update Order Item Data",
+        "description": "Insert / Updates the Value of the given Key in the OrderItem Data bag.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique Identifier of the Order you want to get the Items for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderItemId",
+            "in": "path",
+            "description": "Unique Identifier of the OrderItem you want to Insert / Update the Databag for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderItemDataId",
+            "in": "path",
+            "description": "URLEncoded Key for the Value you want to Insert / Update from the OrderItem DataBag",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Data Object you are trying to insert / update",
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Delete Order Item Data",
+        "description": "Deletes the Value of the given Key in the OrderItem Data bag.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique Identifier of the Order you want to get the Items for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderItemId",
+            "in": "path",
+            "description": "Unique Identifier of the OrderItem you want to delete the Databag for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderItemDataId",
+            "in": "path",
+            "description": "URLEncoded Key for the Value you want to Delete from the OrderItem DataBag",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/commerce/orders/{orderId}/digitalpackages": {
       "post": {
         "tags": [
@@ -11536,17 +11965,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               }
             }
@@ -13691,8 +14120,8 @@
         "tags": [
           "Return"
         ],
-        "summary": "Get Reasons",
-        "description": "Gets all the return reasons.",
+        "summary": "Update Return",
+        "description": "Updates an existing return.",
         "parameters": [
           {
             "name": "returnId",
@@ -13822,8 +14251,8 @@
         "tags": [
           "Return"
         ],
-        "summary": "Delete Return",
-        "description": "Perform Return Action.",
+        "summary": "Perform Return Action",
+        "description": "Performs a specified action on one or more returns.",
         "requestBody": {
           "description": "A ReturnAction instance that takes the name of the action to be performed and a list of Return Ids upon which to perform the action.",
           "content": {
@@ -20385,6 +20814,35 @@
           }
         }
       },
+      "BulkShipmentItemAdjustment": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShipmentItemAdjustment"
+          }
+        ],
+        "properties": {
+          "itemId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ShipmentAndItemsAdjustment": {
+        "type": "object",
+        "properties": {
+          "shipmentAdjustment": {
+            "$ref": "#/components/schemas/ShipmentAdjustment"
+          },
+          "itemAdjustments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BulkShipmentItemAdjustment"
+            },
+            "nullable": true
+          }
+        }
+      },
       "SplitShipmentsObject": {
         "type": "object",
         "properties": {
@@ -22686,6 +23144,9 @@
           },
           "availableForOrderRouting": {
             "type": "boolean"
+          },
+          "availableForDiscounts": {
+            "type": "boolean"
           }
         }
       },
@@ -22971,6 +23432,11 @@
           "excluded": {
             "type": "boolean",
             "description": "Determines whether or not this discount is set up to be ignored by the pricing runtime.",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "description": "Stores any custom data sent from external discounts.",
             "nullable": true
           }
         },
@@ -24885,34 +25351,6 @@
           }
         }
       },
-      "CommerceRuntimeAttributeCollection": {
-        "type": "object",
-        "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
-            },
-            "nullable": true
-          }
-        }
-      },
       "CommerceRuntimePackageResponse": {
         "type": "object",
         "properties": {
@@ -24973,6 +25411,34 @@
           },
           "isSuccessful": {
             "type": "boolean"
+          }
+        }
+      },
+      "CommerceRuntimeCommerceRuntimeAttributeCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+            },
+            "nullable": true
           }
         }
       }

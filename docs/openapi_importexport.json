@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Import Export",
-    "description": "<div id=\"overview_IMPORTEXPORT\">\n            <h2>Import Export</h2>\n            <p>The Import Export APIs are used to \"import and export\" Kibo's resources efficiently in <strong>CSV</strong> file format.</p>\n            <p> For Importing, files are first zipped and uploaded via the <strong>Files API</strong>. Then an import job can be created, referencing the uploaded files using the <strong>Import API.</strong></p>\n            <p> For Exporting, create an export job via the  <strong></strong>Export API, specifying  the resource to be exported. Then after completion, the csv extracts can be downloaded via the <strong>File API</strong></p>\n            \n        </div>",
+    "description": "<div id=\"overview_IMPORTEXPORT\">\r\n            <h2>Import Export</h2>\r\n            <p>The Import Export APIs are used to \"import and export\" Kibo's resources efficiently in <strong>CSV</strong> file format.</p>\r\n            <p> For Importing, files are first zipped and uploaded via the <strong>Files API</strong>. Then an import job can be created, referencing the uploaded files using the <strong>Import API.</strong></p>\r\n            <p> For Exporting, create an export job via the  <strong></strong>Export API, specifying  the resource to be exported. Then after completion, the csv extracts can be downloaded via the <strong>File API</strong></p>\r\n            \r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {

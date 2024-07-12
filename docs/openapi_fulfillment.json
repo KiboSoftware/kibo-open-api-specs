@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Fulfillment  - Production Profile",
-    "description": "<div id=\"overview_FULFILLMENT\">\n            <h2>FULFILLMENT</h2>\n            <p>The Fulfillment APIs support order management and fulfillment workflows based on the Shipment API and its\n                packages, including supporting needs such as pick waves and manifests. Once an order has been placed, it\n                generally\n                cannot be edited at the order-level. Instead, changes to the items, pricing, and other information must\n                be done at the\n                shipment level with the Shipment API. See the <a href=\"https://docs.kibocommerce.com/help/fulfillment\">Fulfillment user guides</a> for more information about fulfillment in UCP.</p>\n            <p>When using the Shipment API to transition a shipment through each stage of its fulfillment process, it\n                can be\n                difficult to remember how to format the next step's endpoint and the expected parameters on-the-fly.\n                Additionally,\n                if a call such as cancellation, adding tracking information, or marking the shipment as fulfilled needs\n                to be performed\n                outside of the usual fulfillment flow, it may be confusing to determine how to perform the action\n                without referring to the\n                documentation. To assist with this, the Shipment API provides guidelines within the response body. This\n                response\n                includes two objects, workflowState and _links, that detail the shipment's next step in the workflow as\n                well as all\n                possible actions currently available to the shipment. Use \n                <a href=\"https://docs.kibocommerce.com/help/fulfillment-api-overview\">this walkthrough</a> to better \n                understand how to work with this response data.</p>\n                <p>Use the <strong>Customer Survey</strong> resource to create surveys and gather data from your customers.</p>\n                <p>Use the <strong>Manifests</strong> resource to create shipping manifests for fulfillment partners such as Canada Post that require manifests for groups of shipments.</p>\n                <p>Use the <strong>Pick Wave</strong> resource to generate and process pick waves for picking groups of items at a fulfillment locations.</p>\n                <p>Use the <strong>Shipment</strong>, <strong>Shipment Attributes</strong>, <strong>Shipment Data</strong>, and <strong>Shipment Notification</strong> resources to manage the actual shipments being fulfilled and perform actions on them.</p>\n                <p>Use the <strong>Shipment Packages</strong> resource to create, update, and delete the individual packages within a shipment.</p>\n                <p>Use the <strong>Storefront</strong> resource to retrieve shipment information for the storefront.</p>\n                <p>Use the <strong>Workflow Process</strong> resource to retrieve BPM configurations and the fulfillment steps based on shipment type.</p>\n        </div>",
+    "description": "<div id=\"overview_FULFILLMENT\">\r\n            <h2>FULFILLMENT</h2>\r\n            <p>The Fulfillment APIs support order management and fulfillment workflows based on the Shipment API and its\r\n                packages, including supporting needs such as pick waves and manifests. Once an order has been placed, it\r\n                generally\r\n                cannot be edited at the order-level. Instead, changes to the items, pricing, and other information must\r\n                be done at the\r\n                shipment level with the Shipment API. See the <a href=\"https://docs.kibocommerce.com/help/fulfillment\">Fulfillment user guides</a> for more information about fulfillment in UCP.</p>\r\n            <p>When using the Shipment API to transition a shipment through each stage of its fulfillment process, it\r\n                can be\r\n                difficult to remember how to format the next step's endpoint and the expected parameters on-the-fly.\r\n                Additionally,\r\n                if a call such as cancellation, adding tracking information, or marking the shipment as fulfilled needs\r\n                to be performed\r\n                outside of the usual fulfillment flow, it may be confusing to determine how to perform the action\r\n                without referring to the\r\n                documentation. To assist with this, the Shipment API provides guidelines within the response body. This\r\n                response\r\n                includes two objects, workflowState and _links, that detail the shipment's next step in the workflow as\r\n                well as all\r\n                possible actions currently available to the shipment. Use \r\n                <a href=\"https://docs.kibocommerce.com/help/fulfillment-api-overview\">this walkthrough</a> to better \r\n                understand how to work with this response data.</p>\r\n                <p>Use the <strong>Customer Survey</strong> resource to create surveys and gather data from your customers.</p>\r\n                <p>Use the <strong>Manifests</strong> resource to create shipping manifests for fulfillment partners such as Canada Post that require manifests for groups of shipments.</p>\r\n                <p>Use the <strong>Pick Wave</strong> resource to generate and process pick waves for picking groups of items at a fulfillment locations.</p>\r\n                <p>Use the <strong>Shipment</strong>, <strong>Shipment Attributes</strong>, <strong>Shipment Data</strong>, and <strong>Shipment Notification</strong> resources to manage the actual shipments being fulfilled and perform actions on them.</p>\r\n                <p>Use the <strong>Shipment Packages</strong> resource to create, update, and delete the individual packages within a shipment.</p>\r\n                <p>Use the <strong>Storefront</strong> resource to retrieve shipment information for the storefront.</p>\r\n                <p>Use the <strong>Workflow Process</strong> resource to retrieve BPM configurations and the fulfillment steps based on shipment type.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "tags": [
@@ -85,7 +85,7 @@
         "tags": [
           "Fulfillment"
         ],
-        "summary": "getFeatures",
+        "summary": "Get Features",
         "parameters": [],
         "responses": {
           "200": {
@@ -134,7 +134,7 @@
           }
         },
         "deprecated": false,
-        "description": "getFeatures"
+        "description": "Retrieve fulfillment features."
       }
     },
     "/commerce/fulfillment/orders/{orderId}/summary/html": {
@@ -142,7 +142,7 @@
         "tags": [
           "Rendition"
         ],
-        "summary": "renderOrderSummary",
+        "summary": "Render Order Summary",
         "parameters": [
           {
             "name": "orderId",
@@ -179,7 +179,7 @@
           }
         },
         "deprecated": false,
-        "description": "renderOrderSummary"
+        "description": "Render an order summary in HTML."
       }
     },
     "/commerce/fulfillment/returns/{returnId}/receipt/html": {
@@ -187,7 +187,7 @@
         "tags": [
           "Rendition"
         ],
-        "summary": "renderReturnReceipt",
+        "summary": "Render Return Receipt",
         "parameters": [
           {
             "name": "returnId",
@@ -224,7 +224,7 @@
           }
         },
         "deprecated": false,
-        "description": "renderReturnReceipt"
+        "description": "Render a return receipt in HTML."
       }
     },
     "/commerce/fulfillment/settings": {
@@ -232,7 +232,7 @@
         "tags": [
           "Fulfillment"
         ],
-        "summary": "getPublicSettings",
+        "summary": "Get Public Settings",
         "parameters": [],
         "responses": {
           "200": {
@@ -281,7 +281,7 @@
           }
         },
         "deprecated": false,
-        "description": "getPublicSettings"
+        "description": "Retrive the public fulfillment settings."
       }
     },
     "/commerce/fulfillment/shipping/manifests": {
@@ -289,7 +289,7 @@
         "tags": [
           "Manifest"
         ],
-        "summary": "getManifests",
+        "summary": "Get Manifests",
         "parameters": [
           {
             "name": "fromDays",
@@ -345,13 +345,13 @@
           }
         },
         "deprecated": false,
-        "description": "getManifests"
+        "description": "Retrieve shipping manifests."
       },
       "post": {
         "tags": [
           "Manifest"
         ],
-        "summary": "createManifest",
+        "summary": "Create Manifest",
         "parameters": [],
         "requestBody": {
           "description": "manifestRequestDto",
@@ -404,7 +404,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "manifestRequestDto",
-        "description": "createManifest"
+        "description": "Generate a shipping manifest."
       }
     },
     "/commerce/fulfillment/shipping/manifests/eligibleShipments": {
@@ -412,7 +412,7 @@
         "tags": [
           "Manifest"
         ],
-        "summary": "getEligibleShipments",
+        "summary": "Get Eligible Shipments",
         "parameters": [
           {
             "name": "carrier",
@@ -477,7 +477,7 @@
           }
         },
         "deprecated": false,
-        "description": "getEligibleShipments"
+        "description": "Retrieve a list of shipments eligible for shipping manifests."
       }
     },
     "/commerce/fulfillment/shipping/manifests/{manifestId}": {
@@ -485,7 +485,7 @@
         "tags": [
           "Manifest"
         ],
-        "summary": "getManifest",
+        "summary": "Get Manifest",
         "parameters": [
           {
             "name": "manifestId",
@@ -532,7 +532,7 @@
           }
         },
         "deprecated": false,
-        "description": "getManifest"
+        "description": "Retrieve a shipping manifest by ID."
       }
     },
     "/commerce/fulfillment/shipping/notifications/{carrier}": {
@@ -540,7 +540,7 @@
         "tags": [
           "ShippingNotification"
         ],
-        "summary": "handleCarrierNotification",
+        "summary": "Handle Carrier Notifications",
         "parameters": [
           {
             "name": "carrier",
@@ -604,7 +604,7 @@
           }
         },
         "deprecated": false,
-        "description": "handleCarrierNotification"
+        "description": "Handle carrier notifications."
       }
     },
     "/commerce/fulfillment/storefront/shipments": {
@@ -612,7 +612,7 @@
         "tags": [
           "Storefront"
         ],
-        "summary": "getShipments",
+        "summary": "Get Storefront Shipments",
         "parameters": [
           {
             "name": "bypassSearchIndex",
@@ -703,7 +703,7 @@
           }
         },
         "deprecated": false,
-        "description": "getShipments"
+        "description": "Retrieve all storefront shipments."
       }
     },
     "/commerce/fulfillment/storefront/shipments/{shipmentNumber}": {
@@ -711,7 +711,7 @@
         "tags": [
           "Storefront"
         ],
-        "summary": "getShipment",
+        "summary": "Get Storefront Shipment",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -754,7 +754,7 @@
           }
         },
         "deprecated": false,
-        "description": "getShipment"
+        "description": "Retrieve a storefront shipment by number."
       }
     },
     "/commerce/fulfillment/tenantAttributes": {
@@ -762,7 +762,7 @@
         "tags": [
           "Fulfillment"
         ],
-        "summary": "getTenantAttributes",
+        "summary": "Get Tenant Attributes",
         "parameters": [],
         "responses": {
           "200": {
@@ -811,7 +811,7 @@
           }
         },
         "deprecated": false,
-        "description": "getTenantAttributes"
+        "description": "Retrieve tenant attributes."
       }
     },
     "/commerce/pickwaves": {
@@ -819,7 +819,7 @@
         "tags": [
           "PickWave"
         ],
-        "summary": "createPickWave",
+        "summary": "Create Pick Wave",
         "parameters": [],
         "requestBody": {
           "description": "createPickWaveDto",
@@ -872,7 +872,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "createPickWaveDto",
-        "description": "createPickWave"
+        "description": "Create a new pick wave."
       }
     },
     "/commerce/pickwaves/open/{fulfillmentLocationCode}": {
@@ -880,7 +880,7 @@
         "tags": [
           "PickWave"
         ],
-        "summary": "getOpenPickWaves",
+        "summary": "Get Open Pick Waves",
         "parameters": [
           {
             "name": "fulfillmentLocationCode",
@@ -951,7 +951,7 @@
           }
         },
         "deprecated": false,
-        "description": "getOpenPickWaves"
+        "description": "Get a list of open pick waves at a specific location."
       }
     },
     "/commerce/pickwaves/{pickWaveNumber}": {
@@ -959,7 +959,7 @@
         "tags": [
           "PickWave"
         ],
-        "summary": "getPickWave",
+        "summary": "Get Pick Wave",
         "parameters": [
           {
             "name": "pickWaveNumber",
@@ -1014,7 +1014,7 @@
           }
         },
         "deprecated": false,
-        "description": "getPickWave"
+        "description": "Retrieve pick wave details by its ID number."
       }
     },
     "/commerce/pickwaves/{pickWaveNumber}/closed": {
@@ -1022,7 +1022,7 @@
         "tags": [
           "PickWave"
         ],
-        "summary": "closePickWave",
+        "summary": "Close Pick Wave",
         "parameters": [
           {
             "name": "pickWaveNumber",
@@ -1086,7 +1086,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "closePickWaveDto",
-        "description": "closePickWave"
+        "description": "Close an existing pick wave."
       }
     },
     "/commerce/pickwaves/{pickWaveNumber}/order-pick-sheets/html": {
@@ -1094,7 +1094,7 @@
         "tags": [
           "PickWave"
         ],
-        "summary": "renderOrderPickSheets",
+        "summary": "Render Order Pick Sheets",
         "parameters": [
           {
             "name": "pickWaveNumber",
@@ -1142,7 +1142,7 @@
           }
         },
         "deprecated": false,
-        "description": "renderOrderPickSheets"
+        "description": "Render order pick sheets in HTML."
       }
     },
     "/commerce/pickwaves/{pickWaveNumber}/pickWaveDetails": {
@@ -1150,7 +1150,7 @@
         "tags": [
           "PickWave"
         ],
-        "summary": "getPickWaveDetails",
+        "summary": "Get Pick Wave Details",
         "parameters": [
           {
             "name": "pickWaveNumber",
@@ -1206,7 +1206,7 @@
           }
         },
         "deprecated": false,
-        "description": "getPickWaveDetails"
+        "description": "Get pick wave details for a specific wave."
       }
     },
     "/commerce/pickwaves/{pickWaveNumber}/rendition/html": {
@@ -1214,7 +1214,7 @@
         "tags": [
           "PickWave"
         ],
-        "summary": "renderPickWave",
+        "summary": "Render Pick Wave",
         "parameters": [
           {
             "name": "pickWaveNumber",
@@ -1286,7 +1286,7 @@
           }
         },
         "deprecated": false,
-        "description": "renderPickWave"
+        "description": "Render pick wave information in HTML."
       }
     },
     "/commerce/pickwaves/{pickWaveNumber}/shipments": {
@@ -1294,7 +1294,7 @@
         "tags": [
           "PickWave"
         ],
-        "summary": "getShipmentsInPickWave",
+        "summary": "Get Shipments in Pick Wave",
         "parameters": [
           {
             "name": "pickWaveNumber",
@@ -1342,7 +1342,7 @@
           }
         },
         "deprecated": false,
-        "description": "getShipmentsInPickWave"
+        "description": "Get a list of shipments included in a pick wave."
       }
     },
     "/commerce/processes/definitionImage/{containerIdOrAlias}/{processId}": {
@@ -1350,7 +1350,7 @@
         "tags": [
           "WorkflowProcess"
         ],
-        "summary": "getDefinitionImage",
+        "summary": "Get Process Definition Image",
         "parameters": [
           {
             "name": "containerIdOrAlias",
@@ -1401,7 +1401,7 @@
           }
         },
         "deprecated": false,
-        "description": "getDefinitionImage"
+        "description": "Get a process definition image."
       }
     },
     "/commerce/processes/definitions": {
@@ -1409,7 +1409,7 @@
         "tags": [
           "WorkflowProcess"
         ],
-        "summary": "getWorkflowProcesses",
+        "summary": "Get Process Definitions",
         "parameters": [
           {
             "name": "page",
@@ -1470,7 +1470,7 @@
           }
         },
         "deprecated": false,
-        "description": "getWorkflowProcesses"
+        "description": "Get a list of process definitions."
       }
     },
     "/commerce/processes/definitions/{containerIdOrAlias}/{processId}": {
@@ -1478,7 +1478,7 @@
         "tags": [
           "WorkflowProcess"
         ],
-        "summary": "getWorkflowProcess",
+        "summary": "Get Process Definition",
         "parameters": [
           {
             "name": "containerIdOrAlias",
@@ -1534,7 +1534,7 @@
           }
         },
         "deprecated": false,
-        "description": "getWorkflowProcess"
+        "description": "Get a specific process definition by ID."
       }
     },
     "/commerce/processes/shipmentType/{shipmentType}": {
@@ -1542,7 +1542,7 @@
         "tags": [
           "WorkflowProcess"
         ],
-        "summary": "getWorkflowProcessByShipmentType",
+        "summary": "Get Workflow Process by Shipment Type",
         "parameters": [
           {
             "name": "shipmentType",
@@ -1589,7 +1589,7 @@
           }
         },
         "deprecated": true,
-        "description": "getWorkflowProcessByShipmentType"
+        "description": "Get workflow process details by shipment type."
       }
     },
     "/commerce/processes/shipmentType/{shipmentType}/location/{locationCode}": {
@@ -1597,7 +1597,7 @@
         "tags": [
           "WorkflowProcess"
         ],
-        "summary": "getWorkflowProcessByShipmentTypeLocationCode",
+        "summary": "Get Workflow Process by Shipment Type and Location Code",
         "parameters": [
           {
             "name": "locationCode",
@@ -1653,7 +1653,7 @@
           }
         },
         "deprecated": false,
-        "description": "getWorkflowProcessByShipmentTypeLocationCode"
+        "description": "Get workflow process details by shipment type and location code."
       }
     },
     "/commerce/processes/shipmentType/{shipmentType}/locationGroup/{locationGroupCode}": {
@@ -1661,7 +1661,7 @@
         "tags": [
           "WorkflowProcess"
         ],
-        "summary": "getWorkflowProcessByShipmentTypeLocationGroupCode",
+        "summary": "Get Workflow Process by Shipment Type and Location Group Code",
         "parameters": [
           {
             "name": "locationGroupCode",
@@ -1717,7 +1717,7 @@
           }
         },
         "deprecated": false,
-        "description": "getWorkflowProcessByShipmentTypeLocationGroupCode"
+        "description": "Get workflow process details by shipment type and location group code."
       }
     },
     "/commerce/shipments": {
@@ -1827,7 +1827,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "newShipment",
+        "summary": "Create Shipment",
         "parameters": [],
         "requestBody": {
           "description": "newShipment",
@@ -1880,7 +1880,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "newShipment",
-        "description": "newShipment"
+        "description": "Create a new shipment."
       }
     },
     "/commerce/shipments/bulk": {
@@ -1888,7 +1888,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "newShipments",
+        "summary": "Create Shipments",
         "parameters": [],
         "requestBody": {
           "description": "newShipments",
@@ -1944,7 +1944,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "newShipments",
-        "description": "newShipments"
+        "description": "Create new shipments in bulk."
       }
     },
     "/commerce/shipments/countsByStep": {
@@ -1952,7 +1952,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "getShipmentStepCountByShipmentType",
+        "summary": "Get Shipment Step Count by Shipment Type",
         "parameters": [
           {
             "name": "assignedLocations",
@@ -2012,7 +2012,7 @@
           }
         },
         "deprecated": false,
-        "description": "getShipmentStepCountByShipmentType"
+        "description": "Get the step counts of shipment types."
       }
     },
     "/commerce/shipments/locationSummaryReport": {
@@ -2020,7 +2020,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "getLocationSummaryReport",
+        "summary": "Get Location Summary Report",
         "parameters": [
           {
             "name": "bypassSearchIndex",
@@ -2090,7 +2090,7 @@
           }
         },
         "deprecated": false,
-        "description": "getLocationSummaryReport"
+        "description": "Get a location summary report."
       }
     },
     "/commerce/shipments/order/{orderId}": {
@@ -2098,7 +2098,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "deleteShipmentsOfOrder",
+        "summary": "Delete Order Shipments",
         "parameters": [
           {
             "name": "orderId",
@@ -2125,7 +2125,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentsOfOrder"
+        "description": "Delete the shipments of an order."
       }
     },
     "/commerce/shipments/order/{orderId}/canceled": {
@@ -2133,7 +2133,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "cancelShipments",
+        "summary": "Cancel Order Shipments",
         "parameters": [
           {
             "name": "orderId",
@@ -2196,7 +2196,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "cancelShipmentRequestDto",
-        "description": "cancelShipments"
+        "description": "Cancel an order's shipments."
       }
     },
     "/commerce/shipments/receivable/{search}": {
@@ -2204,7 +2204,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "searchReceivableShipment",
+        "summary": "Get Receivable Shipment",
         "parameters": [
           {
             "name": "search",
@@ -2251,7 +2251,7 @@
           }
         },
         "deprecated": false,
-        "description": "searchReceivableShipment"
+        "description": "Search for a receivable shipment."
       }
     },
     "/commerce/shipments/received/{search}": {
@@ -2259,7 +2259,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "searchAndReceiveTransfer",
+        "summary": "Search and Receive Transfer",
         "parameters": [
           {
             "name": "If-Match",
@@ -2318,7 +2318,7 @@
           }
         },
         "deprecated": false,
-        "description": "searchAndReceiveTransfer"
+        "description": "Search for and receive a transfer shipment."
       }
     },
     "/commerce/shipments/surveys/{id}": {
@@ -2326,7 +2326,7 @@
         "tags": [
           "CustomerSurvey"
         ],
-        "summary": "getSurvey",
+        "summary": "Get Customer Survey",
         "parameters": [
           {
             "name": "id",
@@ -2373,7 +2373,7 @@
           }
         },
         "deprecated": false,
-        "description": "getSurvey"
+        "description": "Get a specific customer survey by ID."
       }
     },
     "/commerce/shipments/{orderId}/shipmentGiftReceipt": {
@@ -2381,7 +2381,7 @@
         "tags": [
           "GiftReceipt"
         ],
-        "summary": "shipmentGiftReceiptUpdate",
+        "summary": "Update Gift Receipt",
         "parameters": [
           {
             "name": "orderId",
@@ -2444,7 +2444,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "shipmentGiftReceiptRequestDto",
-        "description": "shipmentGiftReceiptUpdate"
+        "description": "Update a gift receipt on a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}": {
@@ -2452,7 +2452,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "getShipment",
+        "summary": "Get Shipment",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -2500,13 +2500,13 @@
           }
         },
         "deprecated": false,
-        "description": "getShipment"
+        "description": "Get a specific shipment by its number."
       },
       "put": {
         "tags": [
           "Shipment"
         ],
-        "summary": "replaceShipment",
+        "summary": "Replace Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -2591,13 +2591,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "newShipment",
-        "description": "replaceShipment"
+        "description": "Update and replace an existing shipment."
       },
       "delete": {
         "tags": [
           "Shipment"
         ],
-        "summary": "deleteShipment",
+        "summary": "Delete Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -2633,7 +2633,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipment"
+        "description": "Delete a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/alternateContact": {
@@ -2641,7 +2641,7 @@
         "tags": [
           "ShipmentContact"
         ],
-        "summary": "getAlternateContact",
+        "summary": "Get Alternate Contact",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -2689,13 +2689,13 @@
           }
         },
         "deprecated": false,
-        "description": "getAlternateContact"
+        "description": "Get the designated alternate contact for a shipment."
       },
       "put": {
         "tags": [
           "ShipmentContact"
         ],
-        "summary": "updateAlternateContact",
+        "summary": "Update Alternate Contact",
         "parameters": [
           {
             "name": "If-Match",
@@ -2767,13 +2767,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "updateContactRequest",
-        "description": "updateAlternateContact"
+        "description": "Update the designated alternate contact of a shipment."
       },
       "delete": {
         "tags": [
           "ShipmentContact"
         ],
-        "summary": "deleteAlternateContact",
+        "summary": "Delete Alternate Contact",
         "parameters": [
           {
             "name": "If-Match",
@@ -2809,7 +2809,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteAlternateContact"
+        "description": "Delete a shipment's alternate contact details."
       }
     },
     "/commerce/shipments/{shipmentNumber}/attributes": {
@@ -2817,7 +2817,7 @@
         "tags": [
           "ShipmentAttributes"
         ],
-        "summary": "getShipmentAttributes",
+        "summary": "Get Shipment Attributes",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -2874,13 +2874,13 @@
           }
         },
         "deprecated": false,
-        "description": "getShipmentAttributes"
+        "description": "Get a shipment's attributes."
       },
       "put": {
         "tags": [
           "ShipmentAttributes"
         ],
-        "summary": "setShipmentAttributes",
+        "summary": "Set Shipment Attributes",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -2956,7 +2956,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "attributes",
-        "description": "setShipmentAttributes"
+        "description": "Set a shipment's attributes."
       }
     },
     "/commerce/shipments/{shipmentNumber}/attributes/{key}": {
@@ -2964,7 +2964,7 @@
         "tags": [
           "ShipmentAttributes"
         ],
-        "summary": "getShipmentAttribute",
+        "summary": "Get Shipment Attribute",
         "parameters": [
           {
             "name": "key",
@@ -3021,13 +3021,13 @@
           }
         },
         "deprecated": false,
-        "description": "getShipmentAttribute"
+        "description": "Get a shipment attribute by its key."
       },
       "put": {
         "tags": [
           "ShipmentAttributes"
         ],
-        "summary": "setShipmentAttribute",
+        "summary": "Set Shipment Attribute",
         "parameters": [
           {
             "name": "key",
@@ -3100,13 +3100,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "attribute",
-        "description": "setShipmentAttribute"
+        "description": "Set a shipment's attribute value."
       },
       "delete": {
         "tags": [
           "ShipmentAttributes"
         ],
-        "summary": "deleteShipmentAttribute",
+        "summary": "Delete Shipment Attribute",
         "parameters": [
           {
             "name": "key",
@@ -3143,7 +3143,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentAttribute"
+        "description": "Delete a shipment attribute."
       }
     },
     "/commerce/shipments/{shipmentNumber}/backordered": {
@@ -3151,7 +3151,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "backorderShipment",
+        "summary": "Backorder Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -3223,7 +3223,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "backorderShipmentRequestDto",
-        "description": "backorderShipment"
+        "description": "Backorder a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/backorderedItems": {
@@ -3231,7 +3231,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "backorderItemsUpdate",
+        "summary": "Update Backorder Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -3303,13 +3303,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "backorderItemsUpdateRequestDto",
-        "description": "backorderItemsUpdate"
+        "description": "Update a shipment's backordered items."
       },
       "post": {
         "tags": [
           "Shipment"
         ],
-        "summary": "backorderItems",
+        "summary": "Backorder Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -3381,7 +3381,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "backorderItemsRequestDto",
-        "description": "backorderItems"
+        "description": "Backorder items from a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/canceled": {
@@ -3389,7 +3389,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "cancelShipment",
+        "summary": "Cancel Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -3461,7 +3461,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "cancelShipmentRequestDto",
-        "description": "cancelShipment"
+        "description": "Cancel a specific shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/canceledItems": {
@@ -3469,7 +3469,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "cancelItems",
+        "summary": "Cancel Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -3541,7 +3541,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "cancelItemsRequestDto",
-        "description": "cancelItems"
+        "description": "Cancel items from a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/customerAtCurbside": {
@@ -3549,7 +3549,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "customerAtCurbside",
+        "summary": "Customer At Curbside",
         "parameters": [
           {
             "name": "If-Match",
@@ -3625,7 +3625,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "pickupInfo",
-        "description": "customerAtCurbside"
+        "description": "Indicates that the customer is ready for curbside pickup."
       }
     },
     "/commerce/shipments/{shipmentNumber}/customerAtStore": {
@@ -3633,7 +3633,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "customerAtStore",
+        "summary": "Customer At Store",
         "parameters": [
           {
             "name": "If-Match",
@@ -3693,7 +3693,7 @@
           }
         },
         "deprecated": false,
-        "description": "customerAtStore"
+        "description": "Indicates that a customer is ready for in-store pickup."
       }
     },
     "/commerce/shipments/{shipmentNumber}/customerCared": {
@@ -3701,7 +3701,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "customerCareShipment",
+        "summary": "Customer Care Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -3773,7 +3773,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "rejectShipmentRequestDto",
-        "description": "customerCareShipment"
+        "description": "Places a shipment into Customer Care."
       }
     },
     "/commerce/shipments/{shipmentNumber}/customerCaredItems": {
@@ -3781,7 +3781,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "customerCareItems",
+        "summary": "Customer Care Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -3853,7 +3853,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "rejectItemsRequestDto",
-        "description": "customerCareItems"
+        "description": "Places shipment items into Customer Care."
       }
     },
     "/commerce/shipments/{shipmentNumber}/customerContact": {
@@ -3861,7 +3861,7 @@
         "tags": [
           "ShipmentContact"
         ],
-        "summary": "getCustomerContact",
+        "summary": "Get Customer Contact",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -3909,13 +3909,13 @@
           }
         },
         "deprecated": false,
-        "description": "getCustomerContact"
+        "description": "Get the customer contact information of a shipment."
       },
       "put": {
         "tags": [
           "ShipmentContact"
         ],
-        "summary": "updateCustomerContact",
+        "summary": "Update Customer Contact",
         "parameters": [
           {
             "name": "If-Match",
@@ -3987,7 +3987,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "updateContactRequest",
-        "description": "updateCustomerContact"
+        "description": "Update the customer contact information of a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/customerInTransit": {
@@ -3995,7 +3995,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "customerInTransit",
+        "summary": "Customer in Transit",
         "parameters": [
           {
             "name": "If-Match",
@@ -4055,7 +4055,7 @@
           }
         },
         "deprecated": false,
-        "description": "customerInTransit"
+        "description": "Indicates that the customer is in transit for pickup."
       }
     },
     "/commerce/shipments/{shipmentNumber}/data": {
@@ -4063,7 +4063,7 @@
         "tags": [
           "ShipmentData"
         ],
-        "summary": "getShipmentData",
+        "summary": "Get Shipment Data",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -4123,13 +4123,13 @@
           }
         },
         "deprecated": false,
-        "description": "getShipmentData"
+        "description": "Get the data of a shipment."
       },
       "put": {
         "tags": [
           "ShipmentData"
         ],
-        "summary": "replaceShipmentData",
+        "summary": "Replace Shipment Data",
         "parameters": [
           {
             "name": "merge",
@@ -4218,13 +4218,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "data",
-        "description": "replaceShipmentData"
+        "description": "Update and replace a shipment's data."
       },
       "delete": {
         "tags": [
           "ShipmentData"
         ],
-        "summary": "deleteShipmentData",
+        "summary": "Delete Shipment Data",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -4252,7 +4252,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentData"
+        "description": "Delete a shipment's data."
       }
     },
     "/commerce/shipments/{shipmentNumber}/data/{key}": {
@@ -4260,7 +4260,7 @@
         "tags": [
           "ShipmentData"
         ],
-        "summary": "deleteShipmentDataByKey",
+        "summary": "Delete Shipment Data by Key",
         "parameters": [
           {
             "name": "key",
@@ -4297,7 +4297,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentDataByKey"
+        "description": "Delete a shipment data entry by its key."
       }
     },
     "/commerce/shipments/{shipmentNumber}/destination": {
@@ -4305,7 +4305,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "destinationUpdate",
+        "summary": "Destination Update",
         "parameters": [
           {
             "name": "If-Match",
@@ -4377,7 +4377,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "destinationDto",
-        "description": "destinationUpdate"
+        "description": "Update a shipment's destination."
       }
     },
     "/commerce/shipments/{shipmentNumber}/destinationContact": {
@@ -4385,7 +4385,7 @@
         "tags": [
           "ShipmentContact"
         ],
-        "summary": "getDestinationContact",
+        "summary": "Get Destination Contact",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -4433,13 +4433,13 @@
           }
         },
         "deprecated": false,
-        "description": "getDestinationContact"
+        "description": "Get the destination contact for a shipment."
       },
       "put": {
         "tags": [
           "ShipmentContact"
         ],
-        "summary": "updateDestinationContact",
+        "summary": "Update Destination Contact",
         "parameters": [
           {
             "name": "If-Match",
@@ -4511,7 +4511,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "updateContactRequest",
-        "description": "updateDestinationContact"
+        "description": "Update the destination contact of a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/email/resend": {
@@ -4519,7 +4519,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "resendShipmentEmail",
+        "summary": "Resend Shipment Email",
         "parameters": [
           {
             "name": "If-Match",
@@ -4563,7 +4563,7 @@
           }
         },
         "deprecated": false,
-        "description": "resendShipmentEmail"
+        "description": "Resend a shipment confirmation email."
       }
     },
     "/commerce/shipments/{shipmentNumber}/fulfilled": {
@@ -4571,7 +4571,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "fulfillShipment",
+        "summary": "Fulfill Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -4631,7 +4631,7 @@
           }
         },
         "deprecated": false,
-        "description": "fulfillShipment"
+        "description": "Mark a shipment as fulfilled."
       }
     },
     "/commerce/shipments/{shipmentNumber}/fulfillmentFields": {
@@ -4639,7 +4639,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "updateFulfillmentFields",
+        "summary": "Update Fulfillment Fields",
         "parameters": [
           {
             "name": "If-Match",
@@ -4714,7 +4714,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "items",
-        "description": "updateFulfillmentFields"
+        "description": "Update a shipment's fulfillment fields."
       }
     },
     "/commerce/shipments/{shipmentNumber}/futureAllocatableItems": {
@@ -4722,7 +4722,7 @@
         "tags": [
           "FutureShipment"
         ],
-        "summary": "createFutureShipmentsForFutureAllocatableItems",
+        "summary": "Create Future Shipments for Future Allocatable Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -4789,7 +4789,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "futureItemsRequestDto",
-        "description": "createFutureShipmentsForFutureAllocatableItems"
+        "description": "Create a future shipment for future allocatable items."
       }
     },
     "/commerce/shipments/{shipmentNumber}/futureItems": {
@@ -4797,7 +4797,7 @@
         "tags": [
           "FutureShipment"
         ],
-        "summary": "createFutureShipmentsForItems",
+        "summary": "Create Future Shipment for Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -4864,7 +4864,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "futureItemsRequestDto",
-        "description": "createFutureShipmentsForItems"
+        "description": "Create a future shipment for future items."
       }
     },
     "/commerce/shipments/{shipmentNumber}/futureToReady": {
@@ -4872,7 +4872,7 @@
         "tags": [
           "FutureShipment"
         ],
-        "summary": "futureShipmentToReady",
+        "summary": "Future Shipment to Ready",
         "parameters": [
           {
             "name": "If-Match",
@@ -4927,7 +4927,7 @@
           }
         },
         "deprecated": false,
-        "description": "futureShipmentToReady"
+        "description": "Move a Future shipment to Ready."
       }
     },
     "/commerce/shipments/{shipmentNumber}/futureUpdateDate": {
@@ -4935,7 +4935,7 @@
         "tags": [
           "FutureShipment"
         ],
-        "summary": "updateFutureShipmentDate",
+        "summary": "Update Future Shipment Date",
         "parameters": [
           {
             "name": "If-Match",
@@ -5002,7 +5002,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "futureShipmentUpdateDateRequestDto",
-        "description": "updateFutureShipmentDate"
+        "description": "Update a future shipment's expected date."
       }
     },
     "/commerce/shipments/{shipmentNumber}/giftCardInfo": {
@@ -5010,7 +5010,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "updateGiftCardInfo",
+        "summary": "Update Gift Card Info",
         "parameters": [
           {
             "name": "If-Match",
@@ -5082,7 +5082,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "giftCardInfoRequestDto",
-        "description": "updateGiftCardInfo"
+        "description": "Update the gift card information of a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/itemGiftReceipt": {
@@ -5090,7 +5090,7 @@
         "tags": [
           "GiftReceipt"
         ],
-        "summary": "itemGiftReceiptUpdate",
+        "summary": "Item Gift Receipt Update",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -5154,7 +5154,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "itemGiftReceiptRequestDto",
-        "description": "itemGiftReceiptUpdate"
+        "description": "Update an item's gift receipt information."
       }
     },
     "/commerce/shipments/{shipmentNumber}/items/{lineId}/data": {
@@ -5162,7 +5162,7 @@
         "tags": [
           "ShipmentData"
         ],
-        "summary": "getShipmentItemData",
+        "summary": "Get Shipment Item Data",
         "parameters": [
           {
             "name": "lineId",
@@ -5232,13 +5232,13 @@
           }
         },
         "deprecated": false,
-        "description": "getShipmentItemData"
+        "description": "Get the data of a shipment line item."
       },
       "put": {
         "tags": [
           "ShipmentData"
         ],
-        "summary": "replaceShipmentItemData",
+        "summary": "Replace Shipment Item Data",
         "parameters": [
           {
             "name": "lineId",
@@ -5337,13 +5337,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "data",
-        "description": "replaceShipmentItemData"
+        "description": "Replace shipment item data."
       },
       "delete": {
         "tags": [
           "ShipmentData"
         ],
-        "summary": "deleteShipmentItemData",
+        "summary": "Delete Shipment Item Data",
         "parameters": [
           {
             "name": "lineId",
@@ -5381,7 +5381,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentItemData"
+        "description": "Delete shipment item data."
       }
     },
     "/commerce/shipments/{shipmentNumber}/items/{lineId}/data/{key}": {
@@ -5389,7 +5389,7 @@
         "tags": [
           "ShipmentData"
         ],
-        "summary": "deleteShipmentItemDataByKey",
+        "summary": "Delete Shipment Item Data by Key",
         "parameters": [
           {
             "name": "key",
@@ -5436,7 +5436,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentItemDataByKey"
+        "description": "Delete a shipment item data record by its key."
       }
     },
     "/commerce/shipments/{shipmentNumber}/items/{lineId}/email/resend": {
@@ -5444,7 +5444,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "resendItemEmail",
+        "summary": "Resend Item Email",
         "parameters": [
           {
             "name": "If-Match",
@@ -5498,7 +5498,7 @@
           }
         },
         "deprecated": false,
-        "description": "resendItemEmail"
+        "description": "Resend an item email notification."
       }
     },
     "/commerce/shipments/{shipmentNumber}/itemsReadyForPrep": {
@@ -5506,7 +5506,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "itemsReadyForPrep",
+        "summary": "Items Ready for Preparation",
         "parameters": [
           {
             "name": "If-Match",
@@ -5578,7 +5578,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "readyForPrepItemsRequestDto",
-        "description": "itemsReadyForPrep"
+        "description": "Indicate that shipment items are ready for preparation."
       }
     },
     "/commerce/shipments/{shipmentNumber}/notes": {
@@ -5586,7 +5586,7 @@
         "tags": [
           "ShipmentNotes"
         ],
-        "summary": "newShipmentNote",
+        "summary": "New Shipment Note",
         "parameters": [
           {
             "name": "If-Match",
@@ -5658,7 +5658,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "shipmentNoteDto",
-        "description": "newShipmentNote"
+        "description": "Add a new note to a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/notes/{noteId}": {
@@ -5666,7 +5666,7 @@
         "tags": [
           "ShipmentNotes"
         ],
-        "summary": "updateShipmentNote",
+        "summary": "Update Shipment Note",
         "parameters": [
           {
             "name": "If-Match",
@@ -5747,13 +5747,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "shipmentNoteDto",
-        "description": "updateShipmentNote"
+        "description": "Update an existing shipment note."
       },
       "delete": {
         "tags": [
           "ShipmentNotes"
         ],
-        "summary": "deleteShipmentNote",
+        "summary": "Delete Shipment Note",
         "parameters": [
           {
             "name": "If-Match",
@@ -5798,7 +5798,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentNote"
+        "description": "Delete an existing shipment note."
       }
     },
     "/commerce/shipments/{shipmentNumber}/order-summary/html": {
@@ -5806,7 +5806,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "renderOrderSummary",
+        "summary": "Render Order Summary",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -5854,7 +5854,7 @@
           }
         },
         "deprecated": false,
-        "description": "renderOrderSummary"
+        "description": "Render an order summary in HTML."
       }
     },
     "/commerce/shipments/{shipmentNumber}/packages": {
@@ -5862,7 +5862,7 @@
         "tags": [
           "ShipmentPackages"
         ],
-        "summary": "newPackage",
+        "summary": "New Package",
         "parameters": [
           {
             "name": "If-Match",
@@ -5934,7 +5934,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "packageDto",
-        "description": "newPackage"
+        "description": "Create a new shipment package."
       }
     },
     "/commerce/shipments/{shipmentNumber}/packages/bulk": {
@@ -5942,7 +5942,7 @@
         "tags": [
           "ShipmentPackages"
         ],
-        "summary": "newPackages",
+        "summary": "Create New Packages",
         "parameters": [
           {
             "name": "If-Match",
@@ -6017,13 +6017,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "packageDtoList",
-        "description": "newPackages"
+        "description": "Create new shipment packages in bulk."
       },
       "delete": {
         "tags": [
           "ShipmentPackages"
         ],
-        "summary": "deleteShipmentPackages",
+        "summary": "Delete Shipment Packages",
         "parameters": [
           {
             "name": "If-Match",
@@ -6079,7 +6079,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentPackages"
+        "description": "Delete shipment packages in bulk."
       }
     },
     "/commerce/shipments/{shipmentNumber}/packages/bulk/shipping": {
@@ -6087,7 +6087,7 @@
         "tags": [
           "ShipmentPackages"
         ],
-        "summary": "removeShippingInformation",
+        "summary": "Remove Shipping Information",
         "parameters": [
           {
             "name": "If-Match",
@@ -6143,7 +6143,7 @@
           }
         },
         "deprecated": false,
-        "description": "removeShippingInformation"
+        "description": "Remove the shipping information of a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/packages/mps": {
@@ -6151,7 +6151,7 @@
         "tags": [
           "ShipmentPackages"
         ],
-        "summary": "saveMultiPieceShipmentPackages",
+        "summary": "Save Multi Piece Shipment Packages",
         "parameters": [
           {
             "name": "If-Match",
@@ -6223,7 +6223,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "saveMpsPackagesRequestDto",
-        "description": "saveMultiPieceShipmentPackages"
+        "description": "Save <a href=\"https://docs.kibocommerce.com/help/multi-piece-shipments\">multi piece shipment</a> packages."
       }
     },
     "/commerce/shipments/{shipmentNumber}/packages/{packageId}": {
@@ -6231,7 +6231,7 @@
         "tags": [
           "ShipmentPackages"
         ],
-        "summary": "updatePackage",
+        "summary": "Update Package",
         "parameters": [
           {
             "name": "If-Match",
@@ -6312,13 +6312,13 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "packageDto",
-        "description": "updatePackage"
+        "description": "Update an existing shipment package."
       },
       "delete": {
         "tags": [
           "ShipmentPackages"
         ],
-        "summary": "deleteShipmentPackage",
+        "summary": "Delete Shipment Package",
         "parameters": [
           {
             "name": "If-Match",
@@ -6363,7 +6363,7 @@
           }
         },
         "deprecated": false,
-        "description": "deleteShipmentPackage"
+        "description": "Delete an existing shipment package."
       }
     },
     "/commerce/shipments/{shipmentNumber}/pickedUpItems": {
@@ -6371,7 +6371,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "pickupItems",
+        "summary": "Picked Up Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -6443,7 +6443,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "pickupItemsRequestDto",
-        "description": "pickupItems"
+        "description": "Mark shipment items as picked up."
       }
     },
     "/commerce/shipments/{shipmentNumber}/reassigned": {
@@ -6451,7 +6451,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "reassignShipment",
+        "summary": "Reassign Shipments",
         "parameters": [
           {
             "name": "If-Match",
@@ -6523,7 +6523,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "reassignShipmentRequestDto",
-        "description": "reassignShipment"
+        "description": "Reassign a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/reassignedItems": {
@@ -6531,7 +6531,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "reassignItems",
+        "summary": "Reassign Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -6603,7 +6603,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "reassignItemsRequestDto",
-        "description": "reassignItems"
+        "description": "Reassign shipment items."
       }
     },
     "/commerce/shipments/{shipmentNumber}/received": {
@@ -6611,7 +6611,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "receiveTransfer",
+        "summary": "Receive Transfer",
         "parameters": [
           {
             "name": "If-Match",
@@ -6671,7 +6671,7 @@
           }
         },
         "deprecated": false,
-        "description": "receiveTransfer"
+        "description": "Mark a transfer shipment as received."
       }
     },
     "/commerce/shipments/{shipmentNumber}/refresh": {
@@ -6679,7 +6679,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "refreshShipment",
+        "summary": "Refresh Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -6747,7 +6747,7 @@
           }
         },
         "deprecated": false,
-        "description": "refreshShipment"
+        "description": "Refresh a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/rejected": {
@@ -6755,7 +6755,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "rejectShipment",
+        "summary": "Reject Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -6827,7 +6827,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "rejectShipmentRequestDto",
-        "description": "rejectShipment"
+        "description": "Reject a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/rejectedItems": {
@@ -6835,7 +6835,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "rejectItems",
+        "summary": "Reject Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -6907,7 +6907,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "rejectItemsRequestDto",
-        "description": "rejectItems"
+        "description": "Reject shipment items."
       }
     },
     "/commerce/shipments/{shipmentNumber}/rendition/html": {
@@ -6915,7 +6915,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "renderPackingSlip",
+        "summary": "Render Packing Slip",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -6963,7 +6963,7 @@
           }
         },
         "deprecated": false,
-        "description": "renderPackingSlip"
+        "description": "Render a packing slip in HTML."
       }
     },
     "/commerce/shipments/{shipmentNumber}/resendCanceledEmail": {
@@ -6971,7 +6971,7 @@
         "tags": [
           "ShipmentResendEmail"
         ],
-        "summary": "resendShipmentCancelEmail",
+        "summary": "Resend Shipment Cancel Email",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -7007,7 +7007,7 @@
           }
         },
         "deprecated": false,
-        "description": "resendShipmentCancelEmail"
+        "description": "Resend a shipment cancellation email notification."
       }
     },
     "/commerce/shipments/{shipmentNumber}/resendFulfilledEmail": {
@@ -7015,7 +7015,7 @@
         "tags": [
           "ShipmentResendEmail"
         ],
-        "summary": "resendShipmentFulfillEmail",
+        "summary": "Resend Shipment Fulfilled Email",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -7051,7 +7051,7 @@
           }
         },
         "deprecated": false,
-        "description": "resendShipmentFulfillEmail"
+        "description": "Resend a shipment fulfillment email notification."
       }
     },
     "/commerce/shipments/{shipmentNumber}/retried": {
@@ -7059,7 +7059,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "retryFulfillingShipment",
+        "summary": "Retry Fulfilling Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -7119,7 +7119,7 @@
           }
         },
         "deprecated": false,
-        "description": "retryFulfillingShipment"
+        "description": "Attempt to fulfill a shipment again."
       }
     },
     "/commerce/shipments/{shipmentNumber}/substituteItems": {
@@ -7127,7 +7127,7 @@
         "tags": [
           "Substitutions"
         ],
-        "summary": "getSubstituteItems",
+        "summary": "Get Substitute Items",
         "parameters": [
           {
             "name": "originalLineId",
@@ -7185,13 +7185,13 @@
           }
         },
         "deprecated": false,
-        "description": "getSubstituteItems"
+        "description": "Get the substitute items of a shipment."
       },
       "put": {
         "tags": [
           "Substitutions"
         ],
-        "summary": "addSubstituteItems",
+        "summary": "Add Substitute Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -7258,7 +7258,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "substituteItemsRequestDto",
-        "description": "addSubstituteItems"
+        "description": "Add substitute items to a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/substituteItems/remove": {
@@ -7266,7 +7266,7 @@
         "tags": [
           "Substitutions"
         ],
-        "summary": "removeSubstituteItems",
+        "summary": "Remove Substitute Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -7333,7 +7333,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "substituteItemsRequestDto",
-        "description": "removeSubstituteItems"
+        "description": "Remove substitute items from a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/surveys": {
@@ -7341,7 +7341,7 @@
         "tags": [
           "CustomerSurvey"
         ],
-        "summary": "getSurveys",
+        "summary": "Get Surveys",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -7389,13 +7389,13 @@
           }
         },
         "deprecated": false,
-        "description": "getSurveys"
+        "description": "Get the customer surveys of a shipment."
       },
       "post": {
         "tags": [
           "CustomerSurvey"
         ],
-        "summary": "createSurvey",
+        "summary": "Create Survey",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -7459,7 +7459,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "customerSurveyDto",
-        "description": "createSurvey"
+        "description": "Create a customer survey for a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/tasks": {
@@ -7467,7 +7467,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "getTasks",
+        "summary": "Get Tasks",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -7515,7 +7515,7 @@
           }
         },
         "deprecated": false,
-        "description": "getTasks"
+        "description": "Get all shipment tasks."
       }
     },
     "/commerce/shipments/{shipmentNumber}/tasks/{taskName}/completed": {
@@ -7523,7 +7523,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "execute",
+        "summary": "Execute Task",
         "parameters": [
           {
             "name": "If-Match",
@@ -7604,7 +7604,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "taskCompleteDto",
-        "description": "execute"
+        "description": "Complete a shipment task."
       }
     },
     "/commerce/shipments/{shipmentNumber}/tasks/{taskName}/reverted": {
@@ -7612,7 +7612,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "revert",
+        "summary": "Revert Task",
         "parameters": [
           {
             "name": "If-Match",
@@ -7681,7 +7681,7 @@
           }
         },
         "deprecated": false,
-        "description": "revert"
+        "description": "Revert a shipment task."
       }
     },
     "/commerce/shipments/{shipmentNumber}/tasks/{taskName}/skipped": {
@@ -7689,7 +7689,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "skipTask",
+        "summary": "Skip Task",
         "parameters": [
           {
             "name": "If-Match",
@@ -7758,7 +7758,7 @@
           }
         },
         "deprecated": false,
-        "description": "skipTask"
+        "description": "Skip a shipment task."
       }
     },
     "/commerce/shipments/{shipmentNumber}/transferred": {
@@ -7766,7 +7766,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "transferShipment",
+        "summary": "Transfer Shipment",
         "parameters": [
           {
             "name": "If-Match",
@@ -7838,7 +7838,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "transferShipmentRequestDto",
-        "description": "transferShipment"
+        "description": "Transfer a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/transferredItems": {
@@ -7846,7 +7846,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "transferItems",
+        "summary": "Transfer Items",
         "parameters": [
           {
             "name": "If-Match",
@@ -7918,7 +7918,7 @@
         },
         "deprecated": false,
         "x-codegen-request-body-name": "transferItemsRequestDto",
-        "description": "transferItems"
+        "description": "Transfer items from a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/workflow-definition-image": {
@@ -7926,7 +7926,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "workflowDefinitionImage",
+        "summary": "Workflow Definition Image",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -7964,7 +7964,7 @@
           }
         },
         "deprecated": false,
-        "description": "workflowDefinitionImage"
+        "description": "Get the workflow definition image of a shipment."
       }
     },
     "/commerce/shipments/{shipmentNumber}/workflow-instance-image": {
@@ -7972,7 +7972,7 @@
         "tags": [
           "Shipment"
         ],
-        "summary": "workflowInstanceImage",
+        "summary": "Get Workflow Instance Image",
         "parameters": [
           {
             "name": "shipmentNumber",
@@ -8010,7 +8010,7 @@
           }
         },
         "deprecated": false,
-        "description": "workflowInstanceImage"
+        "description": "Get a workflow instance image for a shipment."
       }
     }
   },

@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Subscriptions",
-    "description": "<div id=\"overview_SUBSCRIPTION\">\n            <h2>SUBSCRIPTIONS</h2>\n            <p>The Subscription APIs are used to create and manage subscriptions in either an eCommerce+OMS implementation or a standalone \n                Subscriptions solution. This includes updating items and quantities, subscription frequency, coupons, and performing actions \n                on a subscription in addition to turning a subscription into an order. For more information, see the <a href=\"https://docs.kibocommerce.com/help/product-subscriptions\">Subscriptions feature guide</a>.\n            </p>\n        </div>",
+    "description": "<div id=\"overview_SUBSCRIPTION\">\r\n            <h2>SUBSCRIPTIONS</h2>\r\n            <p>The Subscription APIs are used to create and manage subscriptions in either an eCommerce+OMS implementation or a standalone \r\n                Subscriptions solution. This includes updating items and quantities, subscription frequency, coupons, and performing actions \r\n                on a subscription in addition to turning a subscription into an order. For more information, see the <a href=\"https://docs.kibocommerce.com/help/product-subscriptions\">Subscriptions feature guide</a>.\r\n            </p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -5691,6 +5691,11 @@
           "excluded": {
             "type": "boolean",
             "description": "Determines whether or not this discount is set up to be ignored by the pricing runtime.",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "description": "Stores any custom data sent from external discounts.",
             "nullable": true
           }
         },

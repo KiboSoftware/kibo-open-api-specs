@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Catalog Storefront",
-    "description": "<div id=\"overview_CATALOG_STOREFRONT\">\n            <h2>CATALOG STOREFRONT</h2>\n            <p>The Catalog Storefront APIs are a collection of resources for managing storefront categories, currencies, price lists, products, and\n                product search. This controls how the products in your catalog are organized and displayed on the\n                storefront. See the\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Currencies</strong> resource to retrieve exchange rates for displaying prices on your storefront.</p>\n            <p>Use the <strong>Storefront Categories</strong> resource to view the product category hierarchy as it appears to shoppers\n                who are browsing the storefront. The hierarchy can be returned as a flat list or as a category tree.</p>\n            <p>Use the <strong>Pricelists</strong> resource to retrieve the details of a price list. The details may contain a hierarchy\n                of ancestor and/or descendant price lists dependening on your configuration.</p>\n            <p>Use the <strong>Storefront Products</strong> resource to manage the shopper product selection process during a visit to\n                the web storefront. You can update product options as shoppers pick and choose their product choices. A\n                shopper cannot add a product to a cart until all of its required options have been selected.</p>\n            <p>Use the <strong>Product Search</strong> resource to provide dynamic search results to shoppers as they browse and search\n                for products on the web storefront, and to suggest possible search terms as the shopper enters text. The related <strong>Search Redirect</strong>\n                resource allows you to retrieve any search redirect items.</p>\n        </div>",
+    "description": "<div id=\"overview_CATALOG_STOREFRONT\">\r\n            <h2>CATALOG STOREFRONT</h2>\r\n            <p>The Catalog Storefront APIs are a collection of resources for managing storefront categories, currencies, price lists, products, and\r\n                product search. This controls how the products in your catalog are organized and displayed on the\r\n                storefront. See the\r\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\r\n                for information about the related features in the Unified Commerce Admin.</p>\r\n            <p>Use the <strong>Currencies</strong> resource to retrieve exchange rates for displaying prices on your storefront.</p>\r\n            <p>Use the <strong>Storefront Categories</strong> resource to view the product category hierarchy as it appears to shoppers\r\n                who are browsing the storefront. The hierarchy can be returned as a flat list or as a category tree.</p>\r\n            <p>Use the <strong>Pricelists</strong> resource to retrieve the details of a price list. The details may contain a hierarchy\r\n                of ancestor and/or descendant price lists dependening on your configuration.</p>\r\n            <p>Use the <strong>Storefront Products</strong> resource to manage the shopper product selection process during a visit to\r\n                the web storefront. You can update product options as shoppers pick and choose their product choices. A\r\n                shopper cannot add a product to a cart until all of its required options have been selected.</p>\r\n            <p>Use the <strong>Product Search</strong> resource to provide dynamic search results to shoppers as they browse and search\r\n                for products on the web storefront, and to suggest possible search terms as the shopper enters text. The related <strong>Search Redirect</strong>\r\n                resource allows you to retrieve any search redirect items.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -603,6 +603,14 @@
           },
           {
             "name": "includeProductDetailsOnlyProperty",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "collapse",
             "in": "query",
             "schema": {
               "type": "boolean",
@@ -1832,6 +1840,14 @@
             }
           },
           {
+            "name": "collapse",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
             "name": "filter",
             "in": "query",
             "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
@@ -2123,6 +2139,14 @@
             "description": "The terms to search on.",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "collapse",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
             }
           },
           {
@@ -2732,6 +2756,14 @@
             "description": "optional alternative to query for debugging tools",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "collapse",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
             }
           }
         ],
@@ -4892,6 +4924,10 @@
           },
           "searchMerchandizingRule": {
             "$ref": "#/components/schemas/CatalogRuntimesSearchMerchandizingRule"
+          },
+          "collapse": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false

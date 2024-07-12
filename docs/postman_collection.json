@@ -15390,6 +15390,10 @@
                "disabled": true
               },
               {
+               "key": "collapse",
+               "disabled": true
+              },
+              {
                "key": "responseFields",
                "disabled": true
               }
@@ -15514,6 +15518,10 @@
                "query": [
                 {
                  "key": "query",
+                 "disabled": true
+                },
+                {
+                 "key": "collapse",
                  "disabled": true
                 },
                 {
@@ -15827,6 +15835,10 @@
                 {
                  "key": "q",
                  "disabled": true
+                },
+                {
+                 "key": "collapse",
+                 "disabled": true
                 }
                ]
               }
@@ -15862,6 +15874,10 @@
                "query": [
                 {
                  "key": "query",
+                 "disabled": true
+                },
+                {
+                 "key": "collapse",
                  "disabled": true
                 },
                 {
@@ -20869,6 +20885,41 @@
          ]
         },
         {
+         "name": "impersonatecart",
+         "item": [
+          {
+           "name": "Impersonate Cart",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/customer/authtickets/impersonatecart",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "customer",
+              "authtickets",
+              "impersonatecart"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
          "name": "refresh",
          "item": [
           {
@@ -22855,7 +22906,7 @@
        "name": "features",
        "item": [
         {
-         "name": "getFeatures",
+         "name": "Get Features",
          "request": {
           "method": "GET",
           "header": [
@@ -22988,7 +23039,7 @@
        "name": "settings",
        "item": [
         {
-         "name": "getPublicSettings",
+         "name": "Get Public Settings",
          "request": {
           "method": "GET",
           "header": [
@@ -23307,7 +23358,7 @@
        "name": "tenantAttributes",
        "item": [
         {
-         "name": "getTenantAttributes",
+         "name": "Get Tenant Attributes",
          "request": {
           "method": "GET",
           "header": [
@@ -30273,6 +30324,126 @@
          ]
         },
         {
+         "name": "data",
+         "item": [
+          {
+           "name": "{orderDataId}",
+           "item": [
+            {
+             "name": "Update Order Data",
+             "request": {
+              "method": "PUT",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/orders/:orderId/data/:orderDataId",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "orders",
+                ":orderId",
+                "data",
+                ":orderDataId"
+               ],
+               "variable": [
+                {
+                 "key": "orderId",
+                 "value": "orderId"
+                },
+                {
+                 "key": "orderDataId",
+                 "value": "orderDataId"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            },
+            {
+             "name": "Delete Order Data",
+             "request": {
+              "method": "DELETE",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/orders/:orderId/data/:orderDataId",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "orders",
+                ":orderId",
+                "data",
+                ":orderDataId"
+               ],
+               "variable": [
+                {
+                 "key": "orderId",
+                 "value": "orderId"
+                },
+                {
+                 "key": "orderDataId",
+                 "value": "orderDataId"
+                }
+               ],
+               "query": []
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "Get Order Data",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/orders/:orderId/data",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "orders",
+              ":orderId",
+              "data"
+             ],
+             "variable": [
+              {
+               "key": "orderId",
+               "value": "orderId"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
          "name": "digitalWallet",
          "item": [
           {
@@ -31209,6 +31380,154 @@
                   {
                    "key": "giftcardId",
                    "value": "giftcardId"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "item",
+         "item": [
+          {
+           "name": "{orderItemId}",
+           "item": [
+            {
+             "name": "data",
+             "item": [
+              {
+               "name": "{orderItemDataId}",
+               "item": [
+                {
+                 "name": "Update Order Item Data",
+                 "request": {
+                  "method": "PUT",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/orders/:orderId/item/:orderItemId/data/:orderItemDataId",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "orders",
+                    ":orderId",
+                    "item",
+                    ":orderItemId",
+                    "data",
+                    ":orderItemDataId"
+                   ],
+                   "variable": [
+                    {
+                     "key": "orderId",
+                     "value": "orderId"
+                    },
+                    {
+                     "key": "orderItemId",
+                     "value": "orderItemId"
+                    },
+                    {
+                     "key": "orderItemDataId",
+                     "value": "orderItemDataId"
+                    }
+                   ],
+                   "query": [
+                    {
+                     "key": "responseFields",
+                     "disabled": true
+                    }
+                   ]
+                  }
+                 }
+                },
+                {
+                 "name": "Delete Order Item Data",
+                 "request": {
+                  "method": "DELETE",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/orders/:orderId/item/:orderItemId/data/:orderItemDataId",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "orders",
+                    ":orderId",
+                    "item",
+                    ":orderItemId",
+                    "data",
+                    ":orderItemDataId"
+                   ],
+                   "variable": [
+                    {
+                     "key": "orderId",
+                     "value": "orderId"
+                    },
+                    {
+                     "key": "orderItemId",
+                     "value": "orderItemId"
+                    },
+                    {
+                     "key": "orderItemDataId",
+                     "value": "orderItemDataId"
+                    }
+                   ],
+                   "query": []
+                  }
+                 }
+                }
+               ]
+              },
+              {
+               "name": "Get Order Item Data",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/orders/:orderId/item/:orderItemId/data",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "orders",
+                  ":orderId",
+                  "item",
+                  ":orderItemId",
+                  "data"
+                 ],
+                 "variable": [
+                  {
+                   "key": "orderId",
+                   "value": "orderId"
+                  },
+                  {
+                   "key": "orderItemId",
+                   "value": "orderItemId"
                   }
                  ],
                  "query": [
@@ -33330,6 +33649,53 @@
              "name": "adjustments",
              "item": [
               {
+               "name": "bulk",
+               "item": [
+                {
+                 "name": "Update Shipment and Multiple Shipment Items Adjustment",
+                 "request": {
+                  "method": "POST",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/orders/:orderId/shipments/:shipmentNumber/adjustments/bulk",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "orders",
+                    ":orderId",
+                    "shipments",
+                    ":shipmentNumber",
+                    "adjustments",
+                    "bulk"
+                   ],
+                   "variable": [
+                    {
+                     "key": "orderId",
+                     "value": "orderId"
+                    },
+                    {
+                     "key": "shipmentNumber",
+                     "value": "shipmentNumber"
+                    }
+                   ],
+                   "query": [
+                    {
+                     "key": "responseFields",
+                     "disabled": true
+                    }
+                   ]
+                  }
+                 }
+                }
+               ]
+              },
+              {
                "name": "Update Shipment Adjustments",
                "request": {
                 "method": "POST",
@@ -34189,7 +34555,7 @@
          "name": "pickWaveDetails",
          "item": [
           {
-           "name": "getPickWaveDetails",
+           "name": "Get Pick Wave Details",
            "request": {
             "method": "GET",
             "header": [
@@ -36514,7 +36880,7 @@
        "name": "actions",
        "item": [
         {
-         "name": "Delete Return",
+         "name": "Perform Return Action",
          "request": {
           "method": "POST",
           "header": [
@@ -37744,7 +38110,7 @@
          ]
         },
         {
-         "name": "Get Reasons",
+         "name": "Update Return",
          "request": {
           "method": "PUT",
           "header": [
@@ -39201,7 +39567,7 @@
            ]
           },
           {
-           "name": "deleteShipmentsOfOrder",
+           "name": "Delete Order Shipments",
            "request": {
             "method": "DELETE",
             "header": [
@@ -39241,7 +39607,7 @@
          "name": "{search}",
          "item": [
           {
-           "name": "searchReceivableShipment",
+           "name": "Get Receivable Shipment",
            "request": {
             "method": "GET",
             "header": [
@@ -39361,7 +39727,7 @@
          "name": "shipmentGiftReceipt",
          "item": [
           {
-           "name": "shipmentGiftReceiptUpdate",
+           "name": "Update Gift Receipt",
            "request": {
             "method": "PUT",
             "header": [
@@ -39401,7 +39767,7 @@
          "name": "alternateContact",
          "item": [
           {
-           "name": "getAlternateContact",
+           "name": "Get Alternate Contact",
            "request": {
             "method": "GET",
             "header": [
@@ -39431,7 +39797,7 @@
            }
           },
           {
-           "name": "updateAlternateContact",
+           "name": "Update Alternate Contact",
            "request": {
             "method": "PUT",
             "header": [
@@ -39466,7 +39832,7 @@
            }
           },
           {
-           "name": "deleteAlternateContact",
+           "name": "Delete Alternate Contact",
            "request": {
             "method": "DELETE",
             "header": [
@@ -39991,7 +40357,7 @@
          "name": "customerContact",
          "item": [
           {
-           "name": "getCustomerContact",
+           "name": "Get Customer Contact",
            "request": {
             "method": "GET",
             "header": [
@@ -40021,7 +40387,7 @@
            }
           },
           {
-           "name": "updateCustomerContact",
+           "name": "Update Customer Contact",
            "request": {
             "method": "PUT",
             "header": [
@@ -40271,7 +40637,7 @@
          "name": "destinationContact",
          "item": [
           {
-           "name": "getDestinationContact",
+           "name": "Get Destination Contact",
            "request": {
             "method": "GET",
             "header": [
@@ -40301,7 +40667,7 @@
            }
           },
           {
-           "name": "updateDestinationContact",
+           "name": "Update Destination Contact",
            "request": {
             "method": "PUT",
             "header": [
@@ -40452,7 +40818,7 @@
          "name": "futureAllocatableItems",
          "item": [
           {
-           "name": "createFutureShipmentsForFutureAllocatableItems",
+           "name": "Create Future Shipments for Future Allocatable Items",
            "request": {
             "method": "POST",
             "header": [
@@ -40492,7 +40858,7 @@
          "name": "futureItems",
          "item": [
           {
-           "name": "createFutureShipmentsForItems",
+           "name": "Create Future Shipment for Items",
            "request": {
             "method": "POST",
             "header": [
@@ -40532,7 +40898,7 @@
          "name": "futureToReady",
          "item": [
           {
-           "name": "futureShipmentToReady",
+           "name": "Future Shipment to Ready",
            "request": {
             "method": "PUT",
             "header": [
@@ -40572,7 +40938,7 @@
          "name": "futureUpdateDate",
          "item": [
           {
-           "name": "updateFutureShipmentDate",
+           "name": "Update Future Shipment Date",
            "request": {
             "method": "PUT",
             "header": [
@@ -40647,7 +41013,7 @@
          "name": "itemGiftReceipt",
          "item": [
           {
-           "name": "itemGiftReceiptUpdate",
+           "name": "Item Gift Receipt Update",
            "request": {
             "method": "PUT",
             "header": [
@@ -40903,7 +41269,7 @@
          "name": "itemsReadyForPrep",
          "item": [
           {
-           "name": "itemsReadyForPrep",
+           "name": "Items Ready for Preparation",
            "request": {
             "method": "POST",
             "header": [
@@ -40946,7 +41312,7 @@
            "name": "{noteId}",
            "item": [
             {
-             "name": "updateShipmentNote",
+             "name": "Update Shipment Note",
              "request": {
               "method": "PUT",
               "header": [
@@ -40986,7 +41352,7 @@
              }
             },
             {
-             "name": "deleteShipmentNote",
+             "name": "Delete Shipment Note",
              "request": {
               "method": "DELETE",
               "header": [
@@ -41028,7 +41394,7 @@
            ]
           },
           {
-           "name": "newShipmentNote",
+           "name": "New Shipment Note",
            "request": {
             "method": "POST",
             "header": [
@@ -41115,7 +41481,7 @@
              "name": "shipping",
              "item": [
               {
-               "name": "removeShippingInformation",
+               "name": "Remove Shipping Information",
                "request": {
                 "method": "DELETE",
                 "header": [
@@ -41185,7 +41551,7 @@
              }
             },
             {
-             "name": "deleteShipmentPackages",
+             "name": "Delete Shipment Packages",
              "request": {
               "method": "DELETE",
               "header": [
@@ -41226,7 +41592,7 @@
            "name": "mps",
            "item": [
             {
-             "name": "saveMultiPieceShipmentPackages",
+             "name": "Save Multi Piece Shipment Packages",
              "request": {
               "method": "PUT",
               "header": [
@@ -41665,7 +42031,7 @@
          "name": "resendCanceledEmail",
          "item": [
           {
-           "name": "resendShipmentCancelEmail",
+           "name": "Resend Shipment Cancel Email",
            "request": {
             "method": "PUT",
             "header": [
@@ -41700,7 +42066,7 @@
          "name": "resendFulfilledEmail",
          "item": [
           {
-           "name": "resendShipmentFulfillEmail",
+           "name": "Resend Shipment Fulfilled Email",
            "request": {
             "method": "PUT",
             "header": [
@@ -41773,7 +42139,7 @@
            "name": "remove",
            "item": [
             {
-             "name": "removeSubstituteItems",
+             "name": "Remove Substitute Items",
              "request": {
               "method": "PUT",
               "header": [
@@ -41811,7 +42177,7 @@
            ]
           },
           {
-           "name": "getSubstituteItems",
+           "name": "Get Substitute Items",
            "request": {
             "method": "GET",
             "header": [
@@ -41850,7 +42216,7 @@
            }
           },
           {
-           "name": "addSubstituteItems",
+           "name": "Add Substitute Items",
            "request": {
             "method": "PUT",
             "header": [
@@ -43971,6 +44337,42 @@
                }
               }
              ]
+            }
+           ]
+          },
+          {
+           "name": "signatureOptions",
+           "item": [
+            {
+             "name": "Gets all the Signature Options",
+             "request": {
+              "method": "GET",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/shipping/global/carriers/signatureOptions",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "shipping",
+                "global",
+                "carriers",
+                "signatureOptions"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
             }
            ]
           },
@@ -49939,6 +50341,264 @@
      "name": "appdev",
      "item": [
       {
+       "name": "appinstall",
+       "item": [
+        {
+         "name": "application",
+         "item": [
+          {
+           "name": "entitlement",
+           "item": [
+            {
+             "name": "{applicationEntitlementId}",
+             "item": [
+              {
+               "name": "Get Application",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/platform/appdev/appinstall/application/entitlement/:applicationEntitlementId",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "platform",
+                  "appdev",
+                  "appinstall",
+                  "application",
+                  "entitlement",
+                  ":applicationEntitlementId"
+                 ],
+                 "variable": [
+                  {
+                   "key": "applicationEntitlementId",
+                   "value": "applicationEntitlementId"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
+             "name": "Install Application",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/platform/appdev/appinstall/application/entitlement",
+               "host": "{{baseUrl}}",
+               "path": [
+                "platform",
+                "appdev",
+                "appinstall",
+                "application",
+                "entitlement"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            },
+            {
+             "name": "Get Applications",
+             "request": {
+              "method": "GET",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/platform/appdev/appinstall/application/entitlement",
+               "host": "{{baseUrl}}",
+               "path": [
+                "platform",
+                "appdev",
+                "appinstall",
+                "application",
+                "entitlement"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "applicationversion",
+         "item": [
+          {
+           "name": "{applicationId}",
+           "item": [
+            {
+             "name": "entitlements",
+             "item": [
+              {
+               "name": "Get Entitlements By Application",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/platform/appdev/appinstall/applicationversion/:applicationId/entitlements",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "platform",
+                  "appdev",
+                  "appinstall",
+                  "applicationversion",
+                  ":applicationId",
+                  "entitlements"
+                 ],
+                 "variable": [
+                  {
+                   "key": "applicationId",
+                   "value": "applicationId"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "tenant",
+         "item": [
+          {
+           "name": "{tenantId}",
+           "item": [
+            {
+             "name": "entitlements",
+             "item": [
+              {
+               "name": "Get Entitlements By Tenant",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/platform/appdev/appinstall/tenant/:tenantId/entitlements",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "platform",
+                  "appdev",
+                  "appinstall",
+                  "tenant",
+                  ":tenantId",
+                  "entitlements"
+                 ],
+                 "variable": [
+                  {
+                   "key": "tenantId",
+                   "value": "tenantId"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "toproductiontenant",
+         "item": [
+          {
+           "name": "Install App To Production Tenant",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/platform/appdev/appinstall/toproductiontenant",
+             "host": "{{baseUrl}}",
+             "path": [
+              "platform",
+              "appdev",
+              "appinstall",
+              "toproductiontenant"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
        "name": "apppackages",
        "item": [
         {
@@ -50345,6 +51005,88 @@
          ]
         },
         {
+         "name": "{packageId}",
+         "item": [
+          {
+           "name": "behaviors",
+           "item": [
+            {
+             "name": "Get Package Behaviors",
+             "request": {
+              "method": "GET",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/platform/appdev/apppackages/:packageId/behaviors",
+               "host": "{{baseUrl}}",
+               "path": [
+                "platform",
+                "appdev",
+                "apppackages",
+                ":packageId",
+                "behaviors"
+               ],
+               "variable": [
+                {
+                 "key": "packageId",
+                 "value": "packageId"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            },
+            {
+             "name": "Update Package Behaviors",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/platform/appdev/apppackages/:packageId/behaviors",
+               "host": "{{baseUrl}}",
+               "path": [
+                "platform",
+                "appdev",
+                "apppackages",
+                ":packageId",
+                "behaviors"
+               ],
+               "variable": [
+                {
+                 "key": "packageId",
+                 "value": "packageId"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
          "name": "Get All Packages",
          "request": {
           "method": "GET",
@@ -50380,14 +51122,156 @@
             {
              "key": "filter",
              "disabled": true
-            },
-            {
-             "key": "responseFields",
-             "disabled": true
             }
            ]
           }
          }
+        }
+       ]
+      },
+      {
+       "name": "appsubscriptions",
+       "item": [
+        {
+         "name": "events",
+         "item": [
+          {
+           "name": "{applicationSubscriptionId}",
+           "item": [
+            {
+             "name": "Delete Application Subscription",
+             "request": {
+              "method": "DELETE",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/platform/appdev/appsubscriptions/events/:applicationSubscriptionId",
+               "host": "{{baseUrl}}",
+               "path": [
+                "platform",
+                "appdev",
+                "appsubscriptions",
+                "events",
+                ":applicationSubscriptionId"
+               ],
+               "variable": [
+                {
+                 "key": "applicationSubscriptionId",
+                 "value": "applicationSubscriptionId"
+                }
+               ],
+               "query": []
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "Create Application Subscription",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/platform/appdev/appsubscriptions/events",
+             "host": "{{baseUrl}}",
+             "path": [
+              "platform",
+              "appdev",
+              "appsubscriptions",
+              "events"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Update Application Subscription",
+           "request": {
+            "method": "PUT",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/platform/appdev/appsubscriptions/events",
+             "host": "{{baseUrl}}",
+             "path": [
+              "platform",
+              "appdev",
+              "appsubscriptions",
+              "events"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "{subscriptionId}",
+         "item": [
+          {
+           "name": "Get Application Subscription",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/platform/appdev/appsubscriptions/:subscriptionId",
+             "host": "{{baseUrl}}",
+             "path": [
+              "platform",
+              "appdev",
+              "appsubscriptions",
+              ":subscriptionId"
+             ],
+             "variable": [
+              {
+               "key": "subscriptionId",
+               "value": "subscriptionId"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
         }
        ]
       },
