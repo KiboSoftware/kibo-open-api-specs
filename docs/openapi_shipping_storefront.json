@@ -748,9 +748,9 @@
             "description": "Selected Shipment Request Type.",
             "nullable": true
           },
-          "requiresSignature": {
-            "type": "boolean",
-            "description": "Designates that the shipment requires a signature for delivery\r\nNot fully implemented...",
+          "signatureOption": {
+            "type": "string",
+            "description": "Specify an optional signature option for this shipment.\r\nAll packages will inherit this option value automatically.\r\nSet this option on the package level to override this value.",
             "nullable": true
           },
           "labelFormat": {
@@ -938,9 +938,9 @@
             },
             "nullable": true
           },
-          "requiresSignature": {
-            "type": "boolean",
-            "description": "Package delivery requires a signature when true.",
+          "signatureOption": {
+            "type": "string",
+            "description": "Specify an optional signature option for this package.\r\nIf not specified, will inherit the option value from the shipment.",
             "nullable": true
           },
           "packagingType": {

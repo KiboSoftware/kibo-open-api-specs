@@ -19765,6 +19765,41 @@
         },
         "additionalProperties": false
       },
+      "CollapseSettings": {
+        "type": "object",
+        "properties": {
+          "collapseSiteSearch": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "collapseListing": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "collapseFieldName": {
+            "type": "string",
+            "nullable": true
+          },
+          "boostFieldName": {
+            "type": "string",
+            "nullable": true
+          },
+          "boostRankSiteSearch": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "boostRankListing": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "useFieldCache": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Settings to control product search and indexing behavior"
+      },
       "SearchSettings": {
         "type": "object",
         "properties": {
@@ -19790,6 +19825,9 @@
           },
           "listingSettings": {
             "$ref": "#/components/schemas/ListingSettings"
+          },
+          "collapseSettings": {
+            "$ref": "#/components/schemas/CollapseSettings"
           },
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"

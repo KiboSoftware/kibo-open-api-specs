@@ -11,6 +11,24 @@
         "tags": [
           "Reservation"
         ],
+        "parameters": [
+          {
+            "name": "runSynchronous",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -43,17 +61,7 @@
           }
         },
         "summary": "Create Reservation",
-        "description": "Creates a new reservation.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
+        "description": "Creates a new reservation. Set runSynchronous to \"true\" to perform this call synchronously with better performance time."
       },
       "get": {
         "tags": [
@@ -211,6 +219,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "runSynchronous",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
           }
         ],
         "responses": {
@@ -219,7 +235,7 @@
           }
         },
         "summary": "Delete Reservation",
-        "description": "Delete a reservation."
+        "description": "Delete a reservation. Set runSynchronous to \"true\" to perform this call synchronously with better performance time."
       }
     },
     "/commerce/reservation/cart/{cartId}": {
@@ -339,6 +355,14 @@
             }
           },
           {
+            "name": "runSynchronous",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -382,7 +406,7 @@
           }
         },
         "summary": "Update Zip Code",
-        "description": "Update the zip code of a reservation."
+        "description": "Update the zip code of a reservation. Set runSynchronous to \"true\" to perform this call synchronously with better performance time."
       }
     },
     "/commerce/reservation/{reservationId}/updatetimer": {
@@ -670,6 +694,14 @@
             }
           },
           {
+            "name": "runSynchronous",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -710,7 +742,7 @@
           }
         },
         "summary": "Add Item",
-        "description": "Add an item to a reservation."
+        "description": "Add an item to a reservation. Set runSynchronous to \"true\" to perform this call synchronously with better performance time."
       }
     },
     "/commerce/reservation/{reservationId}/items/{reservationItemId}": {
@@ -790,6 +822,14 @@
             }
           },
           {
+            "name": "runSynchronous",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -830,7 +870,7 @@
           }
         },
         "summary": "Update Reservation Item",
-        "description": "Update Reservation Item"
+        "description": "Updates a reservation item. Set runSynchronous to \"true\" to perform this call synchronously with better performance time."
       }
     },
     "/commerce/reservation/{reservationId}/items/{reservationItemId}/quantity/{quantity}": {
@@ -865,6 +905,14 @@
             }
           },
           {
+            "name": "runSynchronous",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -896,7 +944,7 @@
           }
         },
         "summary": "Update Item Quantity",
-        "description": "Update a reservation item's quantity."
+        "description": "Update a reservation item's quantity. Set runSynchronous to \"true\" to perform this call synchronously with better performance time."
       }
     }
   },
