@@ -610,6 +610,14 @@
             }
           },
           {
+            "name": "collapse",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -1832,6 +1840,14 @@
             }
           },
           {
+            "name": "collapse",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
             "name": "filter",
             "in": "query",
             "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
@@ -2123,6 +2139,14 @@
             "description": "The terms to search on.",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "collapse",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
             }
           },
           {
@@ -2732,6 +2756,14 @@
             "description": "optional alternative to query for debugging tools",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "collapse",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
             }
           }
         ],
@@ -4892,6 +4924,10 @@
           },
           "searchMerchandizingRule": {
             "$ref": "#/components/schemas/CatalogRuntimesSearchMerchandizingRule"
+          },
+          "collapse": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false

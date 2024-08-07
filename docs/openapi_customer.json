@@ -67,17 +67,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               }
             }
@@ -430,6 +430,15 @@
             }
           },
           {
+            "name": "accountId",
+            "in": "query",
+            "description": "Account Id specifies the account for which the user requests an authentication token.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -469,6 +478,57 @@
         ],
         "summary": "Create Anonymous Shopper Auth Ticket",
         "description": "Authenticates anonymous shopper for the site.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerAuthTicket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerAuthTicket"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerAuthTicket"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/customer/authtickets/impersonatecart": {
+      "post": {
+        "tags": [
+          "StorefrontAuthTicket"
+        ],
+        "summary": "Impersonate Cart",
+        "description": "Impersonates a cart.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartAuthTicketRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -1031,7 +1091,7 @@
           "B2BAccount"
         ],
         "summary": "Update Account",
-        "description": "Modifies an existing B2B account.",
+        "description": "Modifies an existing B2B account. If you want to update the users on an account, call the user-specific endpoints (such as <a href=\"https://api-docs.kibocommerce.com/reference/post_commerce-customer-b2baccounts-accountid-user\">Add User</a> and <a href=\"https://api-docs.kibocommerce.com/reference/put_commerce-customer-b2baccounts-accountid-user-userid-remove\">Remove User</a>) instead.",
         "parameters": [
           {
             "name": "accountId",
@@ -1262,7 +1322,7 @@
             }
           }
         },
-        "description": "Add Sales Rep To B2B Account"
+        "description": "Adds a sales rep to a B2B account."
       },
       "delete": {
         "tags": [
@@ -1618,6 +1678,80 @@
             }
           }
         ]
+      }
+    },
+    "/commerce/customer/b2baccounts/accountsbyuser": {
+      "get": {
+        "tags": [
+          "B2BAccount"
+        ],
+        "summary": "Get Accounts by User",
+        "description": "Retrieves account IDs of all active accounts that a user belongs to by username or email. If emailAddress and userName are both provided, the email address will be used. When getAllAccounts is set to true, all accounts will be returned regardless of the AccountStatus.",
+        "parameters": [
+          {
+            "name": "emailAddress",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "getAllAccounts",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/commerce/customer/b2baccounts/{accountId}/user": {
@@ -5829,17 +5963,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
                 }
               }
             }
@@ -7029,6 +7163,12 @@
           "password": {
             "type": "string",
             "nullable": true
+          },
+          "accountId": {
+            "type": "integer",
+            "description": "Account Id specifies the account for which the user requests an authentication token.",
+            "format": "int32",
+            "nullable": true
           }
         }
       },
@@ -7366,6 +7506,27 @@
             "nullable": true
           }
         }
+      },
+      "CartAuthTicketRequest": {
+        "type": "object",
+        "properties": {
+          "cartId": {
+            "type": "string",
+            "description": "Cart Id of the user",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "integer",
+            "description": "Account Id of the user.",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User Id of the user.",
+            "nullable": true
+          }
+        },
+        "description": ""
       },
       "CustomerAttributeCollection": {
         "type": "object",
@@ -9064,6 +9225,9 @@
           },
           "availableForOrderRouting": {
             "type": "boolean"
+          },
+          "availableForDiscounts": {
+            "type": "boolean"
           }
         }
       },
@@ -9287,34 +9451,6 @@
           }
         }
       },
-      "CommerceRuntimeAttributeCollection": {
-        "type": "object",
-        "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
-            },
-            "nullable": true
-          }
-        }
-      },
       "CustomerCustomerSegment": {
         "type": "object",
         "properties": {
@@ -9343,6 +9479,34 @@
           }
         },
         "description": "A customer segment."
+      },
+      "CommerceRuntimeCommerceRuntimeAttributeCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+            },
+            "nullable": true
+          }
+        }
       }
     },
     "securitySchemes": {

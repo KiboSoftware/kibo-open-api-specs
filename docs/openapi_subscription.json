@@ -5692,6 +5692,11 @@
             "type": "boolean",
             "description": "Determines whether or not this discount is set up to be ignored by the pricing runtime.",
             "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "description": "Stores any custom data sent from external discounts.",
+            "nullable": true
           }
         },
         "additionalProperties": false,

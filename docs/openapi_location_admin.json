@@ -301,17 +301,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/LocationCommerceRuntimeAttributeCollection"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/LocationCommerceRuntimeAttributeCollection"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/LocationCommerceRuntimeAttributeCollection"
                 }
               }
             }
@@ -328,7 +328,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                "$ref": "#/components/schemas/LocationAttribute"
               }
             }
           }
@@ -339,17 +339,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               }
             }
@@ -470,17 +470,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               }
             }
@@ -515,7 +515,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                "$ref": "#/components/schemas/LocationAttribute"
               }
             }
           }
@@ -526,17 +526,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+                  "$ref": "#/components/schemas/LocationAttribute"
                 }
               }
             }
@@ -1544,27 +1544,99 @@
         "additionalProperties": false
       },
       "LocationAttribute": {
+        "required": [
+          "attributeCode",
+          "displayGroup",
+          "valueType"
+        ],
         "type": "object",
         "properties": {
-          "attributeDefinition": {
-            "$ref": "#/components/schemas/CommerceRuntimeAttribute"
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          },
-          "fullyQualifiedName": {
-            "type": "string",
-            "nullable": true
-          },
-          "attributeDefinitionId": {
+          "id": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "values": {
-            "type": "array",
-            "items": {},
+          "adminName": {
+            "maxLength": 50,
+            "type": "string",
             "nullable": true
+          },
+          "namespace": {
+            "maxLength": 200,
+            "type": "string",
+            "nullable": true
+          },
+          "attributeCode": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "inputType": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueType": {
+            "type": "string"
+          },
+          "dataType": {
+            "type": "string",
+            "nullable": true
+          },
+          "attributeMetadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttributeMetadataItem"
+            },
+            "nullable": true
+          },
+          "attributeFQN": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/CommerceRuntimeAttributeLocalizedContent"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/CommerceRuntimeAttributeValidation"
+          },
+          "vocabularyValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttributeVocabularyValue"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isRequired": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isReadOnly": {
+            "type": "boolean"
+          },
+          "isMultiValued": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isVisible": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "displayGroup": {
+            "type": "string"
+          },
+          "availableForOrderRouting": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -1843,6 +1915,10 @@
           "requireSignatureAmount": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "signatureOption": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2173,104 +2249,6 @@
         },
         "additionalProperties": false
       },
-      "CommerceRuntimeAttribute": {
-        "required": [
-          "attributeCode",
-          "displayGroup",
-          "valueType"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "adminName": {
-            "maxLength": 50,
-            "type": "string",
-            "nullable": true
-          },
-          "namespace": {
-            "maxLength": 200,
-            "type": "string",
-            "nullable": true
-          },
-          "attributeCode": {
-            "maxLength": 50,
-            "type": "string"
-          },
-          "inputType": {
-            "type": "string",
-            "nullable": true
-          },
-          "valueType": {
-            "type": "string"
-          },
-          "dataType": {
-            "type": "string",
-            "nullable": true
-          },
-          "attributeMetadata": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAttributeMetadataItem"
-            },
-            "nullable": true
-          },
-          "attributeFQN": {
-            "type": "string",
-            "nullable": true
-          },
-          "content": {
-            "$ref": "#/components/schemas/CommerceRuntimeAttributeLocalizedContent"
-          },
-          "validation": {
-            "$ref": "#/components/schemas/CommerceRuntimeAttributeValidation"
-          },
-          "vocabularyValues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAttributeVocabularyValue"
-            },
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          },
-          "isActive": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isRequired": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isReadOnly": {
-            "type": "boolean"
-          },
-          "isMultiValued": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isVisible": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "order": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "displayGroup": {
-            "type": "string"
-          },
-          "availableForOrderRouting": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
       "CommerceRuntimeAddress": {
         "type": "object",
         "properties": {
@@ -2416,35 +2394,6 @@
         },
         "additionalProperties": false
       },
-      "CommerceRuntimeAttributeCollection": {
-        "type": "object",
-        "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "LocationLocationGroup": {
         "type": "object",
         "properties": {
@@ -2496,6 +2445,35 @@
           },
           "enableMultiPieceShipment": {
             "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationCommerceRuntimeAttributeCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationAttribute"
+            },
             "nullable": true
           }
         },

@@ -2869,6 +2869,10 @@
           "substitutionPaymentRequired": {
             "type": "boolean",
             "nullable": true
+          },
+          "digitalItemFulfilled": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false

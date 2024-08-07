@@ -399,6 +399,56 @@
         "description": "Retrieves the available service types for the Default Application carriers"
       }
     },
+    "/commerce/shipping/global/carriers/signatureOptions": {
+      "get": {
+        "tags": [
+          "CarrierConfigurationGlobal"
+        ],
+        "summary": "Gets all the Signature Options",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignatureOption"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignatureOption"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignatureOption"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets all the Signature Options",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/commerce/shipping/admin/carriers/credentials/{carrierId}": {
       "post": {
         "tags": [
@@ -2534,6 +2584,52 @@
         },
         "additionalProperties": false,
         "description": "Service Type aka Shipping Method"
+      },
+      "Option": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "description": "User readable value to be shown to the user",
+            "nullable": true
+          },
+          "carrierValue": {
+            "type": "string",
+            "description": "Value required by the actual carrier in carrier request",
+            "nullable": true
+          },
+          "alternateCarrierValue": {
+            "type": "string",
+            "description": "Value required by other carrier or carrier aggragator like Easypost",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Option class for signature option"
+      },
+      "SignatureOption": {
+        "type": "object",
+        "properties": {
+          "isEnabled": {
+            "type": "boolean",
+            "description": "If carrier is enabled for signature option."
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Option"
+            },
+            "description": "Supported signature options",
+            "nullable": true
+          },
+          "carrierId": {
+            "type": "string",
+            "description": "Carrier Id",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Signature options against a carrier"
       },
       "CarrierCredentialSetValue": {
         "type": "object",
