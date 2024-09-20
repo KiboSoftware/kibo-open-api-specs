@@ -13,15 +13,35 @@
     "samples-enabled": false,
     "code-samples": [],
     "headers": [
-      {
-        "key": "X-Static-Header-One",
-        "value": "owlbert"
-      },
-      {
-        "key": "X-Static-Header-Two",
-        "value": "owlivia"
-      }
-    ]
+    {
+        "key": "x-vol-tenant",
+        "value": ""
+    },
+    {
+        "key": "x-vol-site",
+        "value": ""
+    },
+    {
+        "key": "x-vol-locale",
+        "value": "en-US"
+    },
+    {
+        "key": "x-vol-currency",
+        "value": "USD"
+    },
+    {
+        "key": "x-vol-master-catalog",
+        "value": "1"
+    },
+    {
+        "key": "x-vol-catalog",
+        "value": "1"
+    },
+    {
+        "key": "x-vol-correlation",
+        "value": ""
+    }
+]
   },
   "paths": {
     "/ApplicationEvents/ApplicationDisabled": {
