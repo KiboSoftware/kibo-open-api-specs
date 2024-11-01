@@ -6569,6 +6569,48 @@
          "name": "discounts",
          "item": [
           {
+           "name": "expressions",
+           "item": [
+            {
+             "name": "validate",
+             "item": [
+              {
+               "name": "Validates a discount expression",
+               "request": {
+                "method": "POST",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/admin/discounts/expressions/validate",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "admin",
+                  "discounts",
+                  "expressions",
+                  "validate"
+                 ],
+                 "variable": [],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
            "name": "generate-random-coupon",
            "item": [
             {
@@ -15105,6 +15147,14 @@
                    "disabled": true
                   },
                   {
+                   "key": "serialNumber",
+                   "disabled": true
+                  },
+                  {
+                   "key": "condition",
+                   "disabled": true
+                  },
+                  {
                    "key": "responseFields",
                    "disabled": true
                   }
@@ -15118,7 +15168,7 @@
              "name": "substitutions",
              "item": [
               {
-               "name": "Get product substitutions",
+               "name": "Get Product Substitutions",
                "request": {
                 "method": "GET",
                 "header": [
@@ -15146,6 +15196,10 @@
                   }
                  ],
                  "query": [
+                  {
+                   "key": "preferredProductCode",
+                   "disabled": true
+                  },
                   {
                    "key": "responseFields",
                    "disabled": true
@@ -18030,6 +18084,52 @@
                   "items",
                   ":itemId",
                   "upsert-inventory-tags"
+                 ],
+                 "variable": [
+                  {
+                   "key": "checkoutId",
+                   "value": "checkoutId"
+                  },
+                  {
+                   "key": "itemId",
+                   "value": "itemId"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
+             "name": "upsertSubstituteInfo",
+             "item": [
+              {
+               "name": "Update SubstituteInfo on CheckoutItem",
+               "request": {
+                "method": "PUT",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/checkouts/:checkoutId/items/:itemId/upsertSubstituteInfo",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "checkouts",
+                  ":checkoutId",
+                  "items",
+                  ":itemId",
+                  "upsertSubstituteInfo"
                  ],
                  "variable": [
                   {
@@ -26924,6 +27024,37 @@
            ]
           },
           {
+           "name": "getOrderItemInformation",
+           "item": [
+            {
+             "name": "Get Order Item Information",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/inventory/v5/inventory/getOrderItemInformation",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "inventory",
+                "v5",
+                "inventory",
+                "getOrderItemInformation"
+               ],
+               "variable": [],
+               "query": []
+              }
+             }
+            }
+           ]
+          },
+          {
            "name": "redistribute",
            "item": [
             {
@@ -30281,6 +30412,46 @@
          ]
         },
         {
+         "name": "converttoship",
+         "item": [
+          {
+           "name": "Split Order Into Shipment",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/orders/:orderId/converttoship",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "orders",
+              ":orderId",
+              "converttoship"
+             ],
+             "variable": [
+              {
+               "key": "orderId",
+               "value": "orderId"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
          "name": "coupons",
          "item": [
           {
@@ -32225,6 +32396,60 @@
              ]
             },
             {
+             "name": "upsertSubstituteInfo",
+             "item": [
+              {
+               "name": "Updates SubstituteInfo on OrderItem",
+               "request": {
+                "method": "PUT",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/orders/:orderId/items/:orderItemId/upsertSubstituteInfo",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "orders",
+                  ":orderId",
+                  "items",
+                  ":orderItemId",
+                  "upsertSubstituteInfo"
+                 ],
+                 "variable": [
+                  {
+                   "key": "orderId",
+                   "value": "orderId"
+                  },
+                  {
+                   "key": "orderItemId",
+                   "value": "orderItemId"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "updateMode",
+                   "disabled": true
+                  },
+                  {
+                   "key": "version",
+                   "disabled": true
+                  },
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
              "name": "Get Order Item",
              "request": {
               "method": "GET",
@@ -32413,6 +32638,46 @@
            "name": "{noteId}",
            "item": [
             {
+             "name": "Get Order Note",
+             "request": {
+              "method": "GET",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/orders/:orderId/notes/:noteId",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "orders",
+                ":orderId",
+                "notes",
+                ":noteId"
+               ],
+               "variable": [
+                {
+                 "key": "orderId",
+                 "value": "orderId"
+                },
+                {
+                 "key": "noteId",
+                 "value": "noteId"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            },
+            {
              "name": "Update Order Note",
              "request": {
               "method": "PUT",
@@ -32486,53 +32751,13 @@
                "query": []
               }
              }
-            },
-            {
-             "name": "Get Order Note",
-             "request": {
-              "method": "GET",
-              "header": [
-               {
-                "key": "x-vol-site",
-                "value": "{{siteId}}",
-                "disabled": false
-               }
-              ],
-              "url": {
-               "raw": "{{baseUrl}}/commerce/orders/:orderId/notes/:noteId",
-               "host": "{{baseUrl}}",
-               "path": [
-                "commerce",
-                "orders",
-                ":orderId",
-                "notes",
-                ":noteId"
-               ],
-               "variable": [
-                {
-                 "key": "orderId",
-                 "value": "orderId"
-                },
-                {
-                 "key": "noteId",
-                 "value": "noteId"
-                }
-               ],
-               "query": [
-                {
-                 "key": "responseFields",
-                 "disabled": true
-                }
-               ]
-              }
-             }
             }
            ]
           },
           {
-           "name": "Create Order Note",
+           "name": "Get Order Notes",
            "request": {
-            "method": "POST",
+            "method": "GET",
             "header": [
              {
               "key": "x-vol-site",
@@ -32565,9 +32790,9 @@
            }
           },
           {
-           "name": "Get Order Notes",
+           "name": "Create Order Note",
            "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [
              {
               "key": "x-vol-site",
@@ -43462,7 +43687,7 @@
            "name": "{carrierId}",
            "item": [
             {
-             "name": "Get Carrier Configuration",
+             "name": "Get carrier configuration information",
              "request": {
               "method": "GET",
               "header": [
@@ -49407,6 +49632,232 @@
        ]
       }
      ]
+    }
+   ]
+  },
+  {
+   "name": "history",
+   "item": [
+    {
+     "name": "{historyId}",
+     "item": [
+      {
+       "name": "diff",
+       "item": [
+        {
+         "name": "Get History Diff",
+         "request": {
+          "method": "GET",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/history/:historyId/diff",
+           "host": "{{baseUrl}}",
+           "path": [
+            "history",
+            ":historyId",
+            "diff"
+           ],
+           "variable": [
+            {
+             "key": "historyId",
+             "value": "historyId"
+            }
+           ],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
+      },
+      {
+       "name": "download",
+       "item": [
+        {
+         "name": "Download History",
+         "request": {
+          "method": "GET",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/history/:historyId/download",
+           "host": "{{baseUrl}}",
+           "path": [
+            "history",
+            ":historyId",
+            "download"
+           ],
+           "variable": [
+            {
+             "key": "historyId",
+             "value": "historyId"
+            }
+           ],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
+      },
+      {
+       "name": "Get History by ID",
+       "request": {
+        "method": "GET",
+        "header": [
+         {
+          "key": "x-vol-site",
+          "value": "{{siteId}}",
+          "disabled": false
+         }
+        ],
+        "url": {
+         "raw": "{{baseUrl}}/history/:historyId",
+         "host": "{{baseUrl}}",
+         "path": [
+          "history",
+          ":historyId"
+         ],
+         "variable": [
+          {
+           "key": "historyId",
+           "value": "historyId"
+          }
+         ],
+         "query": [
+          {
+           "key": "responseFields",
+           "disabled": true
+          }
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "{rightHistoryId}",
+     "item": [
+      {
+       "name": "{leftHistoryId}",
+       "item": [
+        {
+         "name": "download",
+         "item": [
+          {
+           "name": "Download Histories",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/history/:rightHistoryId/:leftHistoryId/download",
+             "host": "{{baseUrl}}",
+             "path": [
+              "history",
+              ":rightHistoryId",
+              ":leftHistoryId",
+              "download"
+             ],
+             "variable": [
+              {
+               "key": "rightHistoryId",
+               "value": "rightHistoryId"
+              },
+              {
+               "key": "leftHistoryId",
+               "value": "leftHistoryId"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Get History",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "x-vol-site",
+        "value": "{{siteId}}",
+        "disabled": false
+       }
+      ],
+      "url": {
+       "raw": "{{baseUrl}}/history",
+       "host": "{{baseUrl}}",
+       "path": [
+        "history"
+       ],
+       "variable": [],
+       "query": [
+        {
+         "key": "StartIndex",
+         "disabled": true
+        },
+        {
+         "key": "PageSize",
+         "disabled": true
+        },
+        {
+         "key": "SortBy",
+         "disabled": true
+        },
+        {
+         "key": "Filter",
+         "disabled": true
+        },
+        {
+         "key": "Q",
+         "disabled": true
+        },
+        {
+         "key": "QLimit",
+         "disabled": true
+        },
+        {
+         "key": "responseFields",
+         "disabled": true
+        }
+       ]
+      }
+     }
     }
    ]
   },

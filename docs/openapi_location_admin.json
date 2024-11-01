@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Location Admin",
-    "description": "<div id=\"overview_LOCATION_ADMIN\">\n            <h2>LOCATION ADMINISTRATION</h2>\n            <p>The Location and Location Groups APIs enable tenants to associate a physical address with product inventory,\n                provide a store finder for in-store pickup, or both and manage these locations at individual and group levels. See the\n                <a href=\"https://docs.kibocommerce.com/help/locations\">Location user guides</a>\n                for information about the related feature in the Unified Commerce Admin.</p>\n            <p>The <strong>Location Admin</strong>\n                resource\n                allows information about the individual locations to be accessed and edited, including creating new\n                locations.</p>\n            <p>Use the <strong>Location Group</strong> and <strong>Location Group Configuration</strong> resources to manage groups, or sets of similar fulfillment locations that are bundled together\n                to improve efficiency of managing configurations based on catalogs, custom fulfillment flows,\n                available carrier options, and so forth.</p>\n            <p>Use the <strong>Location Types</strong> resource to manage the types of locations your tenant maintains, such as\n                warehouses,\n                physical storefronts, and kiosks.</p>\n            <p>Use the <strong>Location Settings</strong> resource to to define the available usages; or the locations and\n                    location types that interact\n                    with a specified site.</p>\n        </div>",
+    "description": "<div id=\"overview_LOCATION_ADMIN\">\r\n            <h2>LOCATION ADMINISTRATION</h2>\r\n            <p>The Location and Location Groups APIs enable tenants to associate a physical address with product inventory,\r\n                provide a store finder for in-store pickup, or both and manage these locations at individual and group levels. See the\r\n                <a href=\"https://docs.kibocommerce.com/help/locations\">Location user guides</a>\r\n                for information about the related feature in the Unified Commerce Admin.</p>\r\n            <p>The <strong>Location Admin</strong>\r\n                resource\r\n                allows information about the individual locations to be accessed and edited, including creating new\r\n                locations.</p>\r\n            <p>Use the <strong>Location Group</strong> and <strong>Location Group Configuration</strong> resources to manage groups, or sets of similar fulfillment locations that are bundled together\r\n                to improve efficiency of managing configurations based on catalogs, custom fulfillment flows,\r\n                available carrier options, and so forth.</p>\r\n            <p>Use the <strong>Location Types</strong> resource to manage the types of locations your tenant maintains, such as\r\n                warehouses,\r\n                physical storefronts, and kiosks.</p>\r\n            <p>Use the <strong>Location Settings</strong> resource to to define the available usages; or the locations and\r\n                    location types that interact\r\n                    with a specified site.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -301,17 +301,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationCommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationCommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationCommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
                 }
               }
             }
@@ -328,7 +328,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LocationAttribute"
+                "$ref": "#/components/schemas/CommerceRuntimeAttribute"
               }
             }
           }
@@ -339,17 +339,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               }
             }
@@ -470,17 +470,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               }
             }
@@ -515,7 +515,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LocationAttribute"
+                "$ref": "#/components/schemas/CommerceRuntimeAttribute"
               }
             }
           }
@@ -526,17 +526,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocationAttribute"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttribute"
                 }
               }
             }
@@ -1544,99 +1544,27 @@
         "additionalProperties": false
       },
       "LocationAttribute": {
-        "required": [
-          "attributeCode",
-          "displayGroup",
-          "valueType"
-        ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "adminName": {
-            "maxLength": 50,
-            "type": "string",
-            "nullable": true
-          },
-          "namespace": {
-            "maxLength": 200,
-            "type": "string",
-            "nullable": true
-          },
-          "attributeCode": {
-            "maxLength": 50,
-            "type": "string"
-          },
-          "inputType": {
-            "type": "string",
-            "nullable": true
-          },
-          "valueType": {
-            "type": "string"
-          },
-          "dataType": {
-            "type": "string",
-            "nullable": true
-          },
-          "attributeMetadata": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAttributeMetadataItem"
-            },
-            "nullable": true
-          },
-          "attributeFQN": {
-            "type": "string",
-            "nullable": true
-          },
-          "content": {
-            "$ref": "#/components/schemas/CommerceRuntimeAttributeLocalizedContent"
-          },
-          "validation": {
-            "$ref": "#/components/schemas/CommerceRuntimeAttributeValidation"
-          },
-          "vocabularyValues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAttributeVocabularyValue"
-            },
-            "nullable": true
+          "attributeDefinition": {
+            "$ref": "#/components/schemas/CommerceRuntimeAttribute"
           },
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           },
-          "isActive": {
-            "type": "boolean",
+          "fullyQualifiedName": {
+            "type": "string",
             "nullable": true
           },
-          "isRequired": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isReadOnly": {
-            "type": "boolean"
-          },
-          "isMultiValued": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isVisible": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "order": {
+          "attributeDefinitionId": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "displayGroup": {
-            "type": "string"
-          },
-          "availableForOrderRouting": {
-            "type": "boolean"
+          "values": {
+            "type": "array",
+            "items": {},
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1702,6 +1630,23 @@
           },
           "receive": {
             "$ref": "#/components/schemas/ReceiveProcessingTime"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SlaConfiguration": {
+        "type": "object",
+        "properties": {
+          "slaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "targetServiceLevelPercentage": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1808,6 +1753,13 @@
           },
           "processingTimes": {
             "$ref": "#/components/schemas/ProcessingTimes"
+          },
+          "slaConfigurations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SlaConfiguration"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2084,6 +2036,10 @@
             "type": "boolean",
             "nullable": true
           },
+          "defaultReturnCarrier": {
+            "type": "string",
+            "nullable": true
+          },
           "defaultPrinterType": {
             "type": "string",
             "nullable": true
@@ -2147,6 +2103,13 @@
           "maxNumberOfPackingSlipsByGroup": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "slaConfigurations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SlaConfiguration"
+            },
             "nullable": true
           }
         },
@@ -2245,6 +2208,107 @@
           "createBy": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommerceRuntimeAttribute": {
+        "required": [
+          "attributeCode",
+          "displayGroup",
+          "valueType"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "adminName": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "namespace": {
+            "maxLength": 200,
+            "type": "string",
+            "nullable": true
+          },
+          "attributeCode": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "inputType": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueType": {
+            "type": "string"
+          },
+          "dataType": {
+            "type": "string",
+            "nullable": true
+          },
+          "attributeMetadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttributeMetadataItem"
+            },
+            "nullable": true
+          },
+          "attributeFQN": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/CommerceRuntimeAttributeLocalizedContent"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/CommerceRuntimeAttributeValidation"
+          },
+          "vocabularyValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttributeVocabularyValue"
+            },
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isRequired": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isReadOnly": {
+            "type": "boolean"
+          },
+          "isMultiValued": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isVisible": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "displayGroup": {
+            "type": "string"
+          },
+          "availableForOrderRouting": {
+            "type": "boolean"
+          },
+          "availableForDiscounts": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -2394,6 +2458,35 @@
         },
         "additionalProperties": false
       },
+      "CommerceRuntimeAttributeCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LocationLocationGroup": {
         "type": "object",
         "properties": {
@@ -2445,35 +2538,6 @@
           },
           "enableMultiPieceShipment": {
             "type": "boolean",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "LocationCommerceRuntimeAttributeCollection": {
-        "type": "object",
-        "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LocationAttribute"
-            },
             "nullable": true
           }
         },

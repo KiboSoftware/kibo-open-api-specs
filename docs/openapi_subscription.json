@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Subscriptions",
-    "description": "<div id=\"overview_SUBSCRIPTION\">\n            <h2>SUBSCRIPTIONS</h2>\n            <p>The Subscription APIs are used to create and manage subscriptions in either an eCommerce+OMS implementation or a standalone \n                Subscriptions solution. This includes updating items and quantities, subscription frequency, coupons, and performing actions \n                on a subscription in addition to turning a subscription into an order. For more information, see the <a href=\"https://docs.kibocommerce.com/help/product-subscriptions\">Subscriptions feature guide</a>.\n            </p>\n        </div>",
+    "description": "<div id=\"overview_SUBSCRIPTION\">\r\n            <h2>SUBSCRIPTIONS</h2>\r\n            <p>The Subscription APIs are used to create and manage subscriptions in either an eCommerce+OMS implementation or a standalone \r\n                Subscriptions solution. This includes updating items and quantities, subscription frequency, coupons, and performing actions \r\n                on a subscription in addition to turning a subscription into an order. For more information, see the <a href=\"https://docs.kibocommerce.com/help/product-subscriptions\">Subscriptions feature guide</a>.\r\n            </p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -2470,6 +2470,27 @@
         },
         "additionalProperties": false
       },
+      "SubstituteInfo": {
+        "type": "object",
+        "properties": {
+          "optIn": {
+            "type": "string",
+            "description": "Determines if and when substitution is allowed. Allowed values are `None`, `Yes`, `No`, or `OnlyAtFulfillment`. Default is `None`.",
+            "nullable": true
+          },
+          "substituteProductCode": {
+            "type": "string",
+            "description": "Allows user to provide a specific product that should be substituted if substitution occurs.",
+            "nullable": true
+          },
+          "substituteVariantCode": {
+            "type": "string",
+            "description": "Allows user to provide a specific variant that should be substituted if substitution occurs.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CommerceItem": {
         "type": "object",
         "properties": {
@@ -2744,6 +2765,9 @@
             "description": "Indicate Duty Amount for this item.",
             "format": "double",
             "nullable": true
+          },
+          "substituteInfo": {
+            "$ref": "#/components/schemas/SubstituteInfo"
           }
         },
         "additionalProperties": false,
@@ -3123,6 +3147,10 @@
           "isManual": {
             "type": "boolean",
             "description": "If the payment is a manual payment, this is set to true"
+          },
+          "isPending": {
+            "type": "boolean",
+            "description": "If true, indicates payment action is still pending and not yet confirmed."
           },
           "gatewayTransactionId": {
             "type": "string",
@@ -4620,6 +4648,14 @@
             "type": "string",
             "description": "Determines if the item is using external or internal(catalog) pricing",
             "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4770,6 +4806,55 @@
           "initialBalance": {
             "type": "number",
             "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FulfillmentServiceInventoryAllocation": {
+        "type": "object",
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fulfilledDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "inventoryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lotCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -6234,6 +6319,16 @@
             "description": "Usage of the product, primarily used to indicate a bundle in this context",
             "nullable": true
           },
+          "serialNumber": {
+            "type": "string",
+            "description": "Serial Number",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "description": "Condition",
+            "nullable": true
+          },
           "bundledProducts": {
             "type": "array",
             "items": {
@@ -6905,6 +7000,10 @@
             },
             "nullable": true
           },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
           "creditCurrencyCode": {
             "type": "string",
             "nullable": true
@@ -6973,6 +7072,13 @@
           },
           "imageUrl": {
             "type": "string",
+            "nullable": true
+          },
+          "inventoryAllocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceInventoryAllocation"
+            },
             "nullable": true
           },
           "inventoryTags": {
@@ -7102,6 +7208,10 @@
           "readyForPickupQuantity": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
             "nullable": true
           },
           "shipping": {
