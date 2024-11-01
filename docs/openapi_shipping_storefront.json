@@ -716,6 +716,26 @@
         },
         "additionalProperties": false
       },
+      "ConsolidationReference": {
+        "type": "object",
+        "properties": {
+          "relatedOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedOrderNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "relatedShipmentNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ShipmentRequest": {
         "type": "object",
         "properties": {
@@ -780,6 +800,14 @@
             "type": "integer",
             "description": "The related Shipment Number for this shipment request.\r\nInformational only.",
             "format": "int32",
+            "nullable": true
+          },
+          "consolidationReferences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConsolidationReference"
+            },
+            "description": "Consolidation references for Order Number, Shipment Number and Order Id",
             "nullable": true
           }
         },

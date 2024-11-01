@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Catalog Admin",
-    "description": "<div id=\"overview_CATALOG_ADMIN\">\n            <h2>CATALOG ADMINISTRATION</h2>\n            <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including\n                discounts and coupon sets, faceting, price lists, and different types or variations of products. See the\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\n                you can still access attribute data that has not yet been rewritten to the new model by providing\n                an x-api-version header set to \"1\". </p>\n            <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create\n                and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\n                you can still access category data that has not yet been rewritten to the new model by providing\n                an x-api-version header set to \"1\". </p>\n            <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple\n                coupon codes together and associate them with one or more discounts.</p>\n            <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the\n                currencies that are supported for placing orders in.</p>\n            <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or\n                orders. This current version of the Discounts API includes localizedContent to\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\n                you can still access discount data that has not yet been rewritten to the new model by providing\n                an x-api-version header set to \"1\". </p>\n            <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a\n                storefront. Facets can include categories, product attributes, or prices, and use either a range of\n                values or discrete values.</p>\n            <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to\n                manage the product publishing mode for each master catalog.</p>\n            <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the\n                catalog pricing of products for specific customer segments and/or sites.</p>\n            <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which\n                catalogs will feature products. This current version of the Products API includes localizedContent to\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\n                you can still access product data that has not yet been rewritten to the new model by providing\n                an x-api-version header set to \"1\".</p>\n            <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>\n            <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as\n                well as search tuning rules.</p>\n        </div>",
+    "description": "<div id=\"overview_CATALOG_ADMIN\">\r\n            <h2>CATALOG ADMINISTRATION</h2>\r\n            <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including\r\n                discounts and coupon sets, faceting, price lists, and different types or variations of products. See the\r\n                <a href=\"https://docs.kibocommerce.com/help/catalog\">Catalog user guides</a>\r\n                for information about the related features in the Unified Commerce Admin.</p>\r\n            <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to\r\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If\r\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\r\n                you can still access attribute data that has not yet been rewritten to the new model by providing\r\n                an x-api-version header set to \"1\". </p>\r\n            <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create\r\n                and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to\r\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If\r\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\r\n                you can still access category data that has not yet been rewritten to the new model by providing\r\n                an x-api-version header set to \"1\". </p>\r\n            <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple\r\n                coupon codes together and associate them with one or more discounts.</p>\r\n            <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the\r\n                currencies that are supported for placing orders in.</p>\r\n            <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or\r\n                orders. This current version of the Discounts API includes localizedContent to\r\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If\r\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\r\n                you can still access discount data that has not yet been rewritten to the new model by providing\r\n                an x-api-version header set to \"1\". </p>\r\n            <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a\r\n                storefront. Facets can include categories, product attributes, or prices, and use either a range of\r\n                values or discrete values.</p>\r\n            <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to\r\n                manage the product publishing mode for each master catalog.</p>\r\n            <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the\r\n                catalog pricing of products for specific customer segments and/or sites.</p>\r\n            <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which\r\n                catalogs will feature products. This current version of the Products API includes localizedContent to\r\n                support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If\r\n                you were a client prior to May 2024 and have upgraded your implementation to support this feature,\r\n                you can still access product data that has not yet been rewritten to the new model by providing\r\n                an x-api-version header set to \"1\".</p>\r\n            <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>\r\n            <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as\r\n                well as search tuning rules.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -4025,6 +4025,7 @@
           {
             "name": "responseGroups",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -4044,17 +4045,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DiscountCollection"
+                  "$ref": "#/components/schemas/CatalogAdminsDiscountCollection"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DiscountCollection"
+                  "$ref": "#/components/schemas/CatalogAdminsDiscountCollection"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/DiscountCollection"
+                  "$ref": "#/components/schemas/CatalogAdminsDiscountCollection"
                 }
               }
             }
@@ -4071,6 +4072,7 @@
           {
             "name": "tagCode",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -4575,6 +4577,57 @@
             }
           }
         }
+      }
+    },
+    "/commerce/catalog/admin/discounts/expressions/validate": {
+      "post": {
+        "tags": [
+          "Discount"
+        ],
+        "summary": "Validates a discount expression",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogAdminsDiscount"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpressionValidationResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpressionValidationResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpressionValidationResult"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/catalog/admin/discountsettings/{catalogId}": {
@@ -15290,7 +15343,7 @@
             "description": "Success"
           }
         },
-        "description": "Downloads the stopwords file for the language"
+        "description": "Downloads the stopwords file for the language. This is a .txt file, not a JSON response."
       },
       "put": {
         "tags": [
@@ -15347,7 +15400,7 @@
             }
           }
         },
-        "description": "Upload a stopwords file for a language as a list of strings"
+        "description": "Upload a stopwords file for a language as a list of strings. This should be a .txt file, not JSON."
       }
     },
     "/commerce/catalog/admin/searchSchema/suggest/{language}": {
@@ -15683,6 +15736,10 @@
       "x-displayName": "Discounts"
     },
     {
+      "name": "Discount",
+      "x-displayName": "Discount"
+    },
+    {
       "name": "DiscountSettings",
       "x-displayName": "DiscountSettings"
     },
@@ -15810,6 +15867,7 @@
         "CouponSets",
         "Currency",
         "Discounts",
+        "Discount",
         "DiscountSettings",
         "Facets",
         "MasterCatalogPublishSettings",
@@ -16355,6 +16413,9 @@
           },
           "availableForOrderRouting": {
             "type": "boolean"
+          },
+          "availableForDiscounts": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -16829,36 +16890,6 @@
         },
         "additionalProperties": false
       },
-      "DiscountCollection": {
-        "type": "object",
-        "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CatalogAdminsDiscount"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Collection of discounts returned as a whole. A collection is not paged."
-      },
       "DiscountTag": {
         "type": "object",
         "properties": {
@@ -16935,6 +16966,37 @@
         },
         "additionalProperties": false,
         "description": "Collection of Tags returned as a whole. A collection is not paged."
+      },
+      "ExpressionValidationError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "expression": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExpressionValidationResult": {
+        "type": "object",
+        "properties": {
+          "hasErrors": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExpressionValidationError"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "StackingConfiguration": {
         "type": "object",
@@ -20483,6 +20545,24 @@
             "type": "boolean",
             "description": "Determines how discounts will be evaluated for subscription items and during continuity orders.",
             "nullable": true
+          },
+          "isPublic": {
+            "type": "boolean",
+            "description": "Determines whether the discount is available for every shopper.",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "description": "Indicates unique code for the discount, if not present Discount Id is used as a code.",
+            "nullable": true
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Indicates unique discount labels.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -20614,6 +20694,10 @@
             "items": {
               "$ref": "#/components/schemas/CatalogAdminsProductPropertyValue"
             },
+            "nullable": true
+          },
+          "forceOrder": {
+            "type": "boolean",
             "nullable": true
           }
         },
@@ -21292,6 +21376,36 @@
         "additionalProperties": false,
         "description": "A generic tag that can be used for any purpose."
       },
+      "CatalogAdminsDiscountCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsDiscount"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection of discounts returned as a whole. A collection is not paged."
+      },
       "CatalogAdminsDiscountTarget": {
         "required": [
           "type"
@@ -21571,6 +21685,34 @@
           },
           "continuityRecurrenceSettings": {
             "$ref": "#/components/schemas/ContinuityRecurrenceSettings"
+          },
+          "validFulfillmentMethods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The discount condition for fulfillment methods, if present the discount will be applied only to these fulfillment methods.\r\nThis must be a value defined in FulfillmentMethodConst below.",
+            "nullable": true
+          },
+          "exclusiveSiteIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "The discount condition for site Ids, if present the discount will be applied only to these sites.\r\nIf not present discount will work for all sites in a catalog.",
+            "nullable": true
+          },
+          "expression": {
+            "$ref": "#/components/schemas/DynamicExpression"
+          },
+          "exclusiveLocationCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of locations where the item/order should be fulfilled for the discount to be valid.",
+            "nullable": true
           }
         },
         "additionalProperties": false,

@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Shipping Admin",
-    "description": "<div id=\"overview_SHIPPING\">\n            <h2>SHIPPING</h2>\n            <p>The Shipping APIs are a collection of resources for administrating shipping settings such as carrier configurations and\n                shipping profiles. For more information about site settings and the associated configurations in the Unified Commerce Admin\n                interface, see the <a href=\"https://docs.kibocommerce.com/help/shipping-settings\">Shipping Settings\n                    documentation</a>.</p>\n            <p>Use the <strong>Carrier Configuration</strong> (specific and global) resources to manage your settings for fulfillment carriers.</p>\n            <p>Use the <strong>Carrier Credential</strong> and <strong>Credential Set</strong> resources to manage the authentication for your carrier configurations.</p>\n            <p>Use the <strong>Shipping</strong> and <strong>Shipping Profile</strong> resources to set rules for shipping fees, profiles, and inclusion.</p>\n            <p>Use the <strong>Target Rules</strong> resource to manage your target rules for products and zones. For example, you can set specific rules that dictate shipping options for specific products.</p>\n        </div>",
+    "description": "<div id=\"overview_SHIPPING\">\r\n            <h2>SHIPPING</h2>\r\n            <p>The Shipping APIs are a collection of resources for administrating shipping settings such as carrier configurations and\r\n                shipping profiles. For more information about site settings and the associated configurations in the Unified Commerce Admin\r\n                interface, see the <a href=\"https://docs.kibocommerce.com/help/shipping-settings\">Shipping Settings\r\n                    documentation</a>.</p>\r\n            <p>Use the <strong>Carrier Configuration</strong> (specific and global) resources to manage your settings for fulfillment carriers.</p>\r\n            <p>Use the <strong>Carrier Credential</strong> and <strong>Credential Set</strong> resources to manage the authentication for your carrier configurations.</p>\r\n            <p>Use the <strong>Shipping</strong> and <strong>Shipping Profile</strong> resources to set rules for shipping fees, profiles, and inclusion.</p>\r\n            <p>Use the <strong>Target Rules</strong> resource to manage your target rules for products and zones. For example, you can set specific rules that dictate shipping options for specific products.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -88,7 +88,7 @@
         "tags": [
           "CarrierConfiguration"
         ],
-        "summary": "Get Carrier Configuration",
+        "summary": "Get carrier configuration information",
         "parameters": [
           {
             "name": "carrierId",
@@ -188,7 +188,7 @@
             }
           }
         },
-        "description": "Create Carrier Configuration"
+        "description": "Create a new carrier configuration. The settings[] field is deprecated and no longer needs to be provided when working with credential sets."
       },
       "put": {
         "tags": [
@@ -246,7 +246,7 @@
             }
           }
         },
-        "description": "Update an existing Carrier Configuration"
+        "description": "Update an existing carrier configuration. The settings[] field is deprecated and no longer needs to be provided when working with credential sets."
       },
       "delete": {
         "tags": [
@@ -506,7 +506,7 @@
             }
           }
         },
-        "description": "Creates new carrier credentials"
+        "description": "Creates new carrier credentials. See <a href=\"https://docs.kibocommerce.com/help/shipping-carriers-api-overview\">this guide</a> for details about the fields that are required for each carrier."
       },
       "get": {
         "tags": [
@@ -662,7 +662,7 @@
             }
           }
         },
-        "description": "Updates existing carrier credentials"
+        "description": "Updates existing carrier credentials. See <a href=\"https://docs.kibocommerce.com/help/shipping-carriers-api-overview\">this guide</a> for details about the fields that are required for each carrier."
       },
       "delete": {
         "tags": [
@@ -845,7 +845,7 @@
             }
           }
         },
-        "description": "Creates a new carrier credential set"
+        "description": "Creates a new carrier credential set. See <a href=\"https://docs.kibocommerce.com/help/shipping-carriers-api-overview\">this guide</a> for details about the fields that are required for each carrier."
       }
     },
     "/commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}": {
@@ -971,7 +971,7 @@
             }
           }
         },
-        "description": "Update an existing carrier credential set"
+        "description": "Update an existing carrier credential set. See <a href=\"https://docs.kibocommerce.com/help/shipping-carriers-api-overview\">this guide</a> for details about the fields that are required for each carrier."
       },
       "delete": {
         "tags": [
@@ -4148,6 +4148,26 @@
         },
         "additionalProperties": false
       },
+      "ConsolidationReference": {
+        "type": "object",
+        "properties": {
+          "relatedOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedOrderNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "relatedShipmentNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ShipmentRequest": {
         "type": "object",
         "properties": {
@@ -4212,6 +4232,14 @@
             "type": "integer",
             "description": "The related Shipment Number for this shipment request.\r\nInformational only.",
             "format": "int32",
+            "nullable": true
+          },
+          "consolidationReferences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConsolidationReference"
+            },
+            "description": "Consolidation references for Order Number, Shipment Number and Order Id",
             "nullable": true
           }
         },

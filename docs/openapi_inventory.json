@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Inventory",
-    "description": "<div id=\"overview_INVENTORY\">\n            <h2>INVENTORY</h2>\n            <p>Use the Inventory API to retrieve the inventory levels of requested products, refresh and adjust current\n                stock levels at fulfillment locations, and tag segmented inventory for different channels. When using tags for inventory segmentation, inventory records are separated into categories to identify\n                which portions of its\n                total quantity are intended for different channels, customer groups, fulfillment methods, or other\n                needs.\n                This allows for setting a percentage of the quantity that would be available for each category and\n                setting discrete units at the location level as available for each category. For example, tags could\n                define how much of each\n                inventory record is set aside for a certain sales channel: the Kibo storefront, Walmart, or Amazon. The\n                percentages of the\n                inventory allotted for each channel would add up to 100% - the Kibo storefront could have 80% of the\n                inventory, Amazon 10%, and Walmart 10%. For more information, see the <a href=\"https://docs.kibocommerce.com/help/inventory\">Inventory guides</a>.</p>\n            <p>Use the <strong>Inventory</strong>, <strong>Inventory Allocation</strong>, and <strong>Modify Inventory</strong> resources to retrieve and update inventory levels.</p>  \n            <p>Use the <strong>Inventory Job</strong> resource to retrieve information about your pending inventory update processing jobs.</p> \n            <p>Use the <strong>Inventory Tag</strong> and <strong>Tag Category</strong> resources to segment your inventory records.</p> \n        </div>",
+    "description": "<div id=\"overview_INVENTORY\">\r\n            <h2>INVENTORY</h2>\r\n            <p>Use the Inventory API to retrieve the inventory levels of requested products, refresh and adjust current\r\n                stock levels at fulfillment locations, and tag segmented inventory for different channels. When using tags for inventory segmentation, inventory records are separated into categories to identify\r\n                which portions of its\r\n                total quantity are intended for different channels, customer groups, fulfillment methods, or other\r\n                needs.\r\n                This allows for setting a percentage of the quantity that would be available for each category and\r\n                setting discrete units at the location level as available for each category. For example, tags could\r\n                define how much of each\r\n                inventory record is set aside for a certain sales channel: the Kibo storefront, Walmart, or Amazon. The\r\n                percentages of the\r\n                inventory allotted for each channel would add up to 100% - the Kibo storefront could have 80% of the\r\n                inventory, Amazon 10%, and Walmart 10%. For more information, see the <a href=\"https://docs.kibocommerce.com/help/inventory\">Inventory guides</a>.</p>\r\n            <p>Use the <strong>Inventory</strong>, <strong>Inventory Allocation</strong>, and <strong>Modify Inventory</strong> resources to retrieve and update inventory levels.</p>  \r\n            <p>Use the <strong>Inventory Job</strong> resource to retrieve information about your pending inventory update processing jobs.</p> \r\n            <p>Use the <strong>Inventory Tag</strong> and <strong>Tag Category</strong> resources to segment your inventory records.</p> \r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -2087,6 +2087,37 @@
         },
         "summary": "Delete Items"
       }
+    },
+    "/commerce/inventory/v5/inventory/getOrderItemInformation": {
+      "post": {
+        "tags": [
+          "InventoryOrderItem"
+        ],
+        "description": "Retrieves the information for a specific order item",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/OrderItemInformationRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderItemInformation"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Get Order Item Information"
+      }
     }
   },
   "components": {
@@ -3311,6 +3342,10 @@
               },
               "autoAssign": {
                 "description": "flag to determine whether the allocation was due to auto assignment",
+                "type": "boolean"
+              },
+              "runSynchronous": {
+                "description": "flag to determine whether the allocation should run synchronously, defaults to false",
                 "type": "boolean"
               }
             }
@@ -5134,6 +5169,166 @@
         },
         "type": "object"
       },
+      "OrderItemInformationRequest": {
+        "title": "Order Item Information Request",
+        "description": "Request for getting order item information",
+        "allOf": [
+          {
+            "properties": {
+              "orderID": {
+                "description": "Order Identifier",
+                "type": "integer"
+              },
+              "items": {
+                "description": "List of Items to search on",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InventoryItem"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "OrderItemInformationEvent": {
+        "title": "Order Item Information Event",
+        "description": "Order Item Information Event",
+        "allOf": [
+          {
+            "properties": {
+              "date": {
+                "description": "Date of the event",
+                "type": "string"
+              },
+              "eventType": {
+                "description": "Type of event",
+                "type": "string",
+                "enum": [
+                  "ALLOCATED",
+                  "DEALLOCATED",
+                  "FULFILLED",
+                  "PICKED",
+                  "DEALLOCATE_FULFILL"
+                ]
+              },
+              "quantity": {
+                "description": "Quantity",
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
+          }
+        ]
+      },
+      "OrderItemInformation": {
+        "title": "Order Item Information",
+        "description": "Order Item Information",
+        "allOf": [
+          {
+            "properties": {
+              "orderID": {
+                "description": "Order Identifier",
+                "type": "integer"
+              },
+              "orderItemID": {
+                "description": "Order Item Identifier",
+                "type": "integer"
+              },
+              "locationID": {
+                "description": "Location Identifier",
+                "type": "integer"
+              },
+              "locationActive": {
+                "description": "Flag for whether the location is active",
+                "type": "boolean"
+              },
+              "locationCode": {
+                "description": "External Store Identifier",
+                "type": "integer"
+              },
+              "locationName": {
+                "description": "Location Name",
+                "type": "string"
+              },
+              "binID": {
+                "description": "Bin Identifier",
+                "type": "integer"
+              },
+              "partNumber": {
+                "description": "Part/Product Number",
+                "type": "string"
+              },
+              "upc": {
+                "description": "Universal Product Code",
+                "type": "string"
+              },
+              "sku": {
+                "description": "Stock Keeping Unit",
+                "type": "string"
+              },
+              "ltd": {
+                "description": "Custom field used for store prioritization",
+                "type": "string"
+              },
+              "floor": {
+                "description": "Absolute minimum quantity of this item that should be in stock at any time",
+                "type": "integer"
+              },
+              "safetyStock": {
+                "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
+                "type": "integer"
+              },
+              "onHand": {
+                "description": "The quantity the location has in its possession",
+                "type": "integer"
+              },
+              "available": {
+                "description": "The quantity the location has that are available for purchase",
+                "type": "integer"
+              },
+              "allocated": {
+                "description": "The quantity the location has that are allocated",
+                "type": "integer"
+              },
+              "allocates": {
+                "description": "Total number of allocations",
+                "type": "integer"
+              },
+              "deallocates": {
+                "description": "Total number of deallocations",
+                "type": "integer"
+              },
+              "fulfills": {
+                "description": "Total number of fulfillments. Should never be greater than 1.",
+                "type": "integer"
+              },
+              "picks": {
+                "description": "Total number of picks (WMS only)",
+                "type": "integer"
+              },
+              "pendingQuantity": {
+                "description": "Pending quantity (WMS only)",
+                "type": "integer"
+              },
+              "events": {
+                "description": "Order Identifier",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OrderItemInformationEvent"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
+          }
+        ]
+      },
       "InventoryFutureInventory": {
         "title": "Future Inventory",
         "description": "Future Inventory Model",
@@ -5711,6 +5906,17 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/DeleteItemsRequest"
+            }
+          }
+        }
+      },
+      "OrderItemInformationRequest": {
+        "description": "Request to retrieve order item information",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/OrderItemInformationRequest"
             }
           }
         }

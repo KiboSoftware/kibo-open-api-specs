@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Cart/Checkout/Quote",
-    "description": "<div id=\"overview_COMMERCE\">\n            <h2>COMMERCE</h2>\n            <p>The Commerce API interacts with the commerce entities of your tenant, including shoppers's active shopping\n                carts, checkouts, submitted orders, wishlists, and returns as well as B2B quotes.</p>\n            <p>Use the <strong>Carts</strong> resource to manage storefront shopping carts as shoppers add and remove items for purchase.\n                Each time a shopper's cart is modified, the Carts resource updates the estimated total with any\n                applicable\n                discounts.</p>\n            <p>Use the <strong>Channels</strong> and <strong>Channel Groups</strong> resources to manage the channels a company uses to create logical\n                commercial business divisions based on region or types of sales, such as \"US Online,\" \"Amazon,\" or \"EMEA\n                Retail.\"\n                All orders include a channel association that enables the company to perform financial reporting for\n                each defined channel.\n                Because channels are managed at the tenant level, you must associate all the tenant's sites with a\n                channel. Sites that do not\n                have a defined channel association cannot successfully submit orders.</p>\n            <p>Use the <strong>Checkouts</strong> resource to track a shopper's order items and their intended destinations on sites that\n                have the multiple shipment feature enabled.</p>\n            <p>Use the <strong>Orders</strong> resource to manage all components of order processing, payment, and order-level\n                fulfillment.</p>\n            <p>Use the <strong>Quotes</strong> resource to support B2B functionality by managing order quotes, similar to wishlists.</p>\n            <p>Use the <strong>Returns</strong> resource to manage returned items that were previously fufilled. Returns can include any\n                number of items associated with an original\n                order. Each return must either be associated with an original order or a product definition to represent\n                each returned item.</p>\n            <p>Use the <strong>Wish Lists</strong> resource to manage the shopper wish lists of products associated with a customer\n                account. Although customer accounts are managed at the tenant\n                level, the system stores shopper wish lists at the site level. This enables the same customer to have\n                wish lists for each of a merchant's sites. The <strong>Wish List Items</strong>\n                resource allows you to manage the individual items in a wish list.</p>\n        </div>",
+    "description": "<div id=\"overview_COMMERCE\">\r\n            <h2>COMMERCE</h2>\r\n            <p>The Commerce API interacts with the commerce entities of your tenant, including shoppers's active shopping\r\n                carts, checkouts, submitted orders, wishlists, and returns as well as B2B quotes.</p>\r\n            <p>Use the <strong>Carts</strong> resource to manage storefront shopping carts as shoppers add and remove items for purchase.\r\n                Each time a shopper's cart is modified, the Carts resource updates the estimated total with any\r\n                applicable\r\n                discounts.</p>\r\n            <p>Use the <strong>Channels</strong> and <strong>Channel Groups</strong> resources to manage the channels a company uses to create logical\r\n                commercial business divisions based on region or types of sales, such as \"US Online,\" \"Amazon,\" or \"EMEA\r\n                Retail.\"\r\n                All orders include a channel association that enables the company to perform financial reporting for\r\n                each defined channel.\r\n                Because channels are managed at the tenant level, you must associate all the tenant's sites with a\r\n                channel. Sites that do not\r\n                have a defined channel association cannot successfully submit orders.</p>\r\n            <p>Use the <strong>Checkouts</strong> resource to track a shopper's order items and their intended destinations on sites that\r\n                have the multiple shipment feature enabled.</p>\r\n            <p>Use the <strong>Orders</strong> resource to manage all components of order processing, payment, and order-level\r\n                fulfillment.</p>\r\n            <p>Use the <strong>Quotes</strong> resource to support B2B functionality by managing order quotes, similar to wishlists.</p>\r\n            <p>Use the <strong>Returns</strong> resource to manage returned items that were previously fufilled. Returns can include any\r\n                number of items associated with an original\r\n                order. Each return must either be associated with an original order or a product definition to represent\r\n                each returned item.</p>\r\n            <p>Use the <strong>Wish Lists</strong> resource to manage the shopper wish lists of products associated with a customer\r\n                account. Although customer accounts are managed at the tenant\r\n                level, the system stores shopper wish lists at the site level. This enables the same customer to have\r\n                wish lists for each of a merchant's sites. The <strong>Wish List Items</strong>\r\n                resource allows you to manage the individual items in a wish list.</p>\r\n        </div>",
     "version": "1.0.1"
   },
   "paths": {
@@ -2036,7 +2036,7 @@
           {
             "name": "startIndex",
             "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "description": "Indicates the number in the result set where the returned entities begin. For example, if your PageSize is 15 then you can use startIndex=51 to get the 51st through 75th result. The default value is 0. Optional.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2291,7 +2291,7 @@
           {
             "name": "startIndex",
             "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "description": "Indicates the number in the result set where the returned entities begin. For example, if your PageSize is 15 then you can use startIndex=51 to get the 51st through 75th result. The default value is 0. Optional.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2862,7 +2862,7 @@
           {
             "name": "startIndex",
             "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "description": "Indicates the number in the result set where the returned entities begin. For example, if your PageSize is 15 then you can use startIndex=51 to get the 51st through 75th result. The default value is 0. Optional.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -4465,13 +4465,82 @@
         "description": "Updates the gift information on a checkout item"
       }
     },
+    "/commerce/checkouts/{checkoutId}/items/{itemId}/upsertSubstituteInfo": {
+      "put": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "Update SubstituteInfo on CheckoutItem",
+        "parameters": [
+          {
+            "name": "checkoutId",
+            "in": "path",
+            "description": "Unique identifier of the checkout.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "Unique identifier of the checkout item.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Mozu.CommerceRuntime.Contracts.Commerce.SubstituteInfo to use as the update source",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubstituteInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Checkout"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Checkout"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Checkout"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update SubstituteInfo on CheckoutItem"
+      }
+    },
     "/commerce/checkouts/{checkoutId}/payments/actions": {
       "post": {
         "tags": [
           "Checkout"
         ],
         "summary": "Create Payment Action",
-        "description": "Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.",
+        "description": "Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction. If in doubt, get a list of available <a href=\"https://docs.kibocommerce.com/help/payment-states#payment-actions\">payment actions</a> first. ",
         "parameters": [
           {
             "name": "checkoutId",
@@ -4531,7 +4600,7 @@
           "Checkout"
         ],
         "summary": "Perform Payment Action",
-        "description": "Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction. \\r\\nIf in doubt, get a list of available payment actions first (such as AuthAndCapture, AuthorizePayment, CapturePayment, VoidPayment, CreditPayment, RequestCheck, ApplyCheck, or DeclineCheck). Note that for order management-only systems that use No-Operation payment gateways, such as due to the payments being processed by an external storefront or service instead of UCP, these actions will not actually be performed by UCP and instead will be automatically marked as a success.",
+        "description": "Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction. \\r\\nIf in doubt, get a list of available <a href=\"https://docs.kibocommerce.com/help/payment-states#payment-actions\">payment actions</a> first. Note that for order management-only systems that use No-Operation payment gateways, such as due to the payments being processed by an external storefront or service instead of UCP, these actions will not actually be performed by UCP and instead will be automatically marked as a success.",
         "parameters": [
           {
             "name": "checkoutId",
@@ -4594,7 +4663,181 @@
         }
       }
     },
+    "/commerce/orders/{orderId}/notes": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Order Notes",
+        "description": "Retrieves a list of all notes for an order.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique identifier of the order whose notes you want to get.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderNote"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderNote"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderNote"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Create Order Note",
+        "description": "Adds a note to the order. This is an internal note that the merchant might want to add to an order.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique identifier of the order to which you want to add a note.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Text of the note. Maximum 256 characters.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderNote"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderNote"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderNote"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderNote"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/commerce/orders/{orderId}/notes/{noteId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Order Note",
+        "description": "Retrieves a specific order note from an order.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Unique identifier of the order whose note you want to get.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "noteId",
+            "in": "path",
+            "description": "Unique identifier of the note whose text you want to get.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderNote"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderNote"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderNote"
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "tags": [
           "Order"
@@ -4691,63 +4934,6 @@
         "responses": {
           "200": {
             "description": "Success"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "Get Order Note",
-        "description": "Retrieves a specific order note from an order.",
-        "parameters": [
-          {
-            "name": "orderId",
-            "in": "path",
-            "description": "Unique identifier of the order whose note you want to get.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "noteId",
-            "in": "path",
-            "description": "Unique identifier of the note whose text you want to get.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderNote"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderNote"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderNote"
-                }
-              }
-            }
           }
         }
       }
@@ -5146,7 +5332,7 @@
           "Order"
         ],
         "summary": "Perform Payment Action",
-        "description": "Performs a specific payment action. Available actions depend on the current status of the payment transaction. \r\nIf in doubt, get a list of available payment actions first.",
+        "description": "Performs a specific payment action. Available actions depend on the current status of the payment transaction. If in doubt, get a list of available <a href=\"https://docs.kibocommerce.com/help/payment-states#payment-actions\">payment actions</a> first.",
         "parameters": [
           {
             "name": "orderId",
@@ -6840,7 +7026,7 @@
           {
             "name": "startIndex",
             "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "description": "Indicates the number in the result set where the returned entities begin. For example, if your PageSize is 15 then you can use startIndex=51 to get the 51st through 75th result. The default value is 0. Optional.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -6924,7 +7110,7 @@
           {
             "name": "startIndex",
             "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "description": "Indicates the number in the result set where the returned entities begin. For example, if your PageSize is 15 then you can use startIndex=51 to get the 51st through 75th result. The default value is 0. Optional.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -7951,7 +8137,7 @@
           {
             "name": "startIndex",
             "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "description": "Indicates the number in the result set where the returned entities begin. For example, if your PageSize is 15 then you can use startIndex=51 to get the 51st through 75th result. The default value is 0. Optional.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -9125,6 +9311,65 @@
         },
         "summary": "Update Order Restrictions",
         "description": "Updates the flags for restricting edits and/or cancellations by users without override user behaviors."
+      }
+    },
+    "/commerce/orders/{orderId}/converttoship": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Split Order Into Shipment",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommerceRuntimeShipment"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommerceRuntimeShipment"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommerceRuntimeShipment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Split Order Into Shipment"
       }
     },
     "/commerce/orders/{orderId}/coupons/{couponCode}": {
@@ -11830,19 +12075,43 @@
         "description": "Updates the gift information on an order item"
       }
     },
-    "/commerce/orders/{orderId}/notes": {
-      "post": {
+    "/commerce/orders/{orderId}/items/{orderItemId}/upsertSubstituteInfo": {
+      "put": {
         "tags": [
           "Order"
         ],
-        "summary": "Create Order Note",
-        "description": "Adds a note to the order. This is an internal note that the merchant might want to add to an order.",
+        "summary": "Updates SubstituteInfo on OrderItem",
         "parameters": [
           {
             "name": "orderId",
             "in": "path",
-            "description": "Unique identifier of the order to which you want to add a note.",
+            "description": "Unique identifier of the order.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderItemId",
+            "in": "path",
+            "description": "Unique identifier of the order item.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateMode",
+            "in": "query",
+            "description": "Determines the update strategy for this update (ApplyAndCommit, ApplyToOriginal, ApplyToDraft)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Determines whether or not to check versioning of items for concurrency purposes.",
             "schema": {
               "type": "string"
             }
@@ -11857,11 +12126,11 @@
           }
         ],
         "requestBody": {
-          "description": "Text of the note. Maximum 256 characters.",
+          "description": "Mozu.CommerceRuntime.Contracts.Commerce.SubstituteInfo to use as the update source",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OrderNote"
+                "$ref": "#/components/schemas/SubstituteInfo"
               }
             }
           }
@@ -11872,79 +12141,23 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderNote"
+                  "$ref": "#/components/schemas/Order"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderNote"
+                  "$ref": "#/components/schemas/Order"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/OrderNote"
+                  "$ref": "#/components/schemas/Order"
                 }
               }
             }
           }
-        }
-      },
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "Get Order Notes",
-        "description": "Retrieves a list of all notes for an order.",
-        "parameters": [
-          {
-            "name": "orderId",
-            "in": "path",
-            "description": "Unique identifier of the order whose notes you want to get.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/OrderNote"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/OrderNote"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/OrderNote"
-                  }
-                }
-              }
-            }
-          }
-        }
+        },
+        "description": "Updates SubstituteInfo on OrderItem"
       }
     },
     "/commerce/orders/attributedefinition/attributes": {
@@ -12008,17 +12221,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommerceRuntimeCommerceRuntimeAttributeCollection"
+                  "$ref": "#/components/schemas/CommerceRuntimeAttributeCollection"
                 }
               }
             }
@@ -12601,7 +12814,7 @@
           {
             "name": "startIndex",
             "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \r\n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "description": "Indicates the number in the result set where the returned entities begin. For example, if your PageSize is 15 then you can use startIndex=51 to get the 51st through 75th result. The default value is 0. Optional.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -17206,6 +17419,26 @@
           }
         }
       },
+      "SubstituteInfo": {
+        "type": "object",
+        "properties": {
+          "optIn": {
+            "type": "string",
+            "description": "Determines if and when substitution is allowed. Allowed values are `None`, `Yes`, `No`, or `OnlyAtFulfillment`. Default is `None`.",
+            "nullable": true
+          },
+          "substituteProductCode": {
+            "type": "string",
+            "description": "Allows user to provide a specific product that should be substituted if substitution occurs.",
+            "nullable": true
+          },
+          "substituteVariantCode": {
+            "type": "string",
+            "description": "Allows user to provide a specific variant that should be substituted if substitution occurs.",
+            "nullable": true
+          }
+        }
+      },
       "CommerceItem": {
         "type": "object",
         "properties": {
@@ -17480,6 +17713,9 @@
             "description": "Indicate Duty Amount for this item.",
             "format": "double",
             "nullable": true
+          },
+          "substituteInfo": {
+            "$ref": "#/components/schemas/SubstituteInfo"
           }
         },
         "description": "Base class for cart and order items"
@@ -18379,6 +18615,10 @@
             "type": "boolean",
             "description": "If the payment is a manual payment, this is set to true"
           },
+          "isPending": {
+            "type": "boolean",
+            "description": "If true, indicates payment action is still pending and not yet confirmed."
+          },
           "gatewayTransactionId": {
             "type": "string",
             "description": "Unique identifier of the transaction supplied by PCIaaS.",
@@ -19110,6 +19350,10 @@
             "type": "string",
             "description": "Gateway response text. Supplied by PCIaaS.",
             "nullable": true
+          },
+          "isOrderRefund": {
+            "type": "boolean",
+            "description": "Indicates the manual interaction is for a refund on an order."
           }
         },
         "description": "Represents a manually entered payment gateway interaction."
@@ -19929,6 +20173,14 @@
             "type": "string",
             "description": "Determines if the item is using external or internal(catalog) pricing",
             "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -20073,6 +20325,54 @@
           "initialBalance": {
             "type": "number",
             "format": "double",
+            "nullable": true
+          }
+        }
+      },
+      "FulfillmentServiceInventoryAllocation": {
+        "type": "object",
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fulfilledDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "inventoryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lotCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
             "nullable": true
           }
         }
@@ -24005,6 +24305,16 @@
             "description": "Usage of the product, primarily used to indicate a bundle in this context",
             "nullable": true
           },
+          "serialNumber": {
+            "type": "string",
+            "description": "Serial Number",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "description": "Condition",
+            "nullable": true
+          },
           "bundledProducts": {
             "type": "array",
             "items": {
@@ -24654,6 +24964,10 @@
             },
             "nullable": true
           },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
           "creditCurrencyCode": {
             "type": "string",
             "nullable": true
@@ -24722,6 +25036,13 @@
           },
           "imageUrl": {
             "type": "string",
+            "nullable": true
+          },
+          "inventoryAllocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentServiceInventoryAllocation"
+            },
             "nullable": true
           },
           "inventoryTags": {
@@ -24851,6 +25172,10 @@
           "readyForPickupQuantity": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
             "nullable": true
           },
           "shipping": {
@@ -25394,6 +25719,34 @@
           }
         }
       },
+      "CommerceRuntimeAttributeCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
+            },
+            "nullable": true
+          }
+        }
+      },
       "CommerceRuntimePackageResponse": {
         "type": "object",
         "properties": {
@@ -25454,34 +25807,6 @@
           },
           "isSuccessful": {
             "type": "boolean"
-          }
-        }
-      },
-      "CommerceRuntimeCommerceRuntimeAttributeCollection": {
-        "type": "object",
-        "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAttribute"
-            },
-            "nullable": true
           }
         }
       }
