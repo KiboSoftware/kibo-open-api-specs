@@ -18,4 +18,5 @@ rdme openapi docs/openapi_shipping_admin.json --key=$README_API_KEY --id=6498d39
 rdme openapi docs/openapi_shipping_storefront.json --key=$README_API_KEY --id=6498d3b20542100049917af8
 rdme openapi docs/openapi_subscription.json --key=$README_API_KEY --id=6491b4e56ae2c10983af7bd6
 rdme openapi docs/openapi_tenant.json --key=$README_API_KEY --id=6491b4f9eec691132e5251b5
-rdme openapi docs/openapi_user.json --key=$README_API_KEY --id=6491b501759bde000b03b082
+rdme openapi docs/openapi_user.json --key=$README_API_KEY --id=6491b501759bde000b03b082g
+rdme openapi docs/webhooks.json --key=$README_API_KEY --id=649742a8c917450cce39fcd9

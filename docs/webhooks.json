@@ -6,47 +6,50 @@
   },
   "x-explorer-enabled": false,
   "x-samples-enabled": false,
-  "x-samples-languages":[],
+  "x-samples-languages": [],
   "x-code-samples": [],
   "x-readme": {
     "explorer-enabled": false,
     "samples-enabled": false,
     "code-samples": [],
+    "proxy-enabled": true,
     "headers": [
-    {
+      {
         "key": "x-vol-tenant",
         "value": ""
-    },
-    {
+      },
+      {
         "key": "x-vol-site",
         "value": ""
-    },
-    {
+      },
+      {
         "key": "x-vol-locale",
         "value": "en-US"
-    },
-    {
+      },
+      {
         "key": "x-vol-currency",
         "value": "USD"
-    },
-    {
+      },
+      {
         "key": "x-vol-master-catalog",
         "value": "1"
-    },
-    {
+      },
+      {
         "key": "x-vol-catalog",
         "value": "1"
-    },
-    {
+      },
+      {
         "key": "x-vol-correlation",
         "value": ""
-    }
-]
+      }
+    ]
   },
   "paths": {
     "/ApplicationEvents/ApplicationDisabled": {
       "post": {
-        "tags": ["ApplicationEvents"],
+        "tags": [
+          "ApplicationEvents"
+        ],
         "summary": "Application Disabled",
         "operationId": "ApplicationDisabled",
         "requestBody": {
@@ -61,7 +64,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["application.disabled"],
+                    "enum": [
+                      "application.disabled"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "application.disabled"
@@ -99,7 +104,9 @@
     },
     "/ApplicationEvents/ApplicationEnabled": {
       "post": {
-        "tags": ["ApplicationEvents"],
+        "tags": [
+          "ApplicationEvents"
+        ],
         "summary": "Application Enabled",
         "operationId": "ApplicationEnabled",
         "requestBody": {
@@ -114,7 +121,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["application.enabled"],
+                    "enum": [
+                      "application.enabled"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "application.enabled"
@@ -152,7 +161,9 @@
     },
     "/ApplicationEvents/ApplicationInstalled": {
       "post": {
-        "tags": ["ApplicationEvents"],
+        "tags": [
+          "ApplicationEvents"
+        ],
         "summary": "Application Installed",
         "operationId": "ApplicationInstalled",
         "requestBody": {
@@ -167,7 +178,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["application.installed"],
+                    "enum": [
+                      "application.installed"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "application.installed"
@@ -205,7 +218,9 @@
     },
     "/ApplicationEvents/ApplicationUninstalled": {
       "post": {
-        "tags": ["ApplicationEvents"],
+        "tags": [
+          "ApplicationEvents"
+        ],
         "summary": "Application Uninstalled",
         "operationId": "ApplicationUninstalled",
         "requestBody": {
@@ -220,7 +235,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["application.uninstalled"],
+                    "enum": [
+                      "application.uninstalled"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "application.uninstalled"
@@ -258,7 +275,9 @@
     },
     "/ApplicationEvents/ApplicationUpgraded": {
       "post": {
-        "tags": ["ApplicationEvents"],
+        "tags": [
+          "ApplicationEvents"
+        ],
         "summary": "Application Upgraded",
         "operationId": "ApplicationUpgraded",
         "requestBody": {
@@ -273,7 +292,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["application.upgraded"],
+                    "enum": [
+                      "application.upgraded"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "application.upgraded"
@@ -311,7 +332,9 @@
     },
     "/B2bAccountEvents/B2BAccountStatusChanged": {
       "post": {
-        "tags": ["B2bAccountEvents"],
+        "tags": [
+          "B2bAccountEvents"
+        ],
         "summary": "B2 B Account Status Changed",
         "operationId": "B2BAccountStatusChanged",
         "requestBody": {
@@ -326,7 +349,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["b2baccount.statuschanged"],
+                    "enum": [
+                      "b2baccount.statuschanged"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "b2baccount.statuschanged"
@@ -397,7 +422,9 @@
     },
     "/CartEvents/CartCreated": {
       "post": {
-        "tags": ["CartEvents"],
+        "tags": [
+          "CartEvents"
+        ],
         "summary": "Cart Created",
         "operationId": "CartCreated",
         "requestBody": {
@@ -412,7 +439,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["cart.created"],
+                    "enum": [
+                      "cart.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "cart.created"
@@ -450,7 +479,9 @@
     },
     "/CartEvents/CartDeleted": {
       "post": {
-        "tags": ["CartEvents"],
+        "tags": [
+          "CartEvents"
+        ],
         "summary": "Cart Deleted",
         "operationId": "CartDeleted",
         "requestBody": {
@@ -465,7 +496,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["cart.deleted"],
+                    "enum": [
+                      "cart.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "cart.deleted"
@@ -503,7 +536,9 @@
     },
     "/CartEvents/CartUpdated": {
       "post": {
-        "tags": ["CartEvents"],
+        "tags": [
+          "CartEvents"
+        ],
         "summary": "Cart Updated",
         "operationId": "CartUpdated",
         "requestBody": {
@@ -518,7 +553,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["cart.updated"],
+                    "enum": [
+                      "cart.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "cart.updated"
@@ -556,7 +593,9 @@
     },
     "/CreditEvents/CreditCreated": {
       "post": {
-        "tags": ["CreditEvents"],
+        "tags": [
+          "CreditEvents"
+        ],
         "summary": "Credit Created",
         "operationId": "CreditCreated",
         "requestBody": {
@@ -571,7 +610,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["credit.created"],
+                    "enum": [
+                      "credit.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "credit.created"
@@ -609,7 +650,9 @@
     },
     "/CreditEvents/CreditDeleted": {
       "post": {
-        "tags": ["CreditEvents"],
+        "tags": [
+          "CreditEvents"
+        ],
         "summary": "Credit Deleted",
         "operationId": "CreditDeleted",
         "requestBody": {
@@ -624,7 +667,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["credit.deleted"],
+                    "enum": [
+                      "credit.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "credit.deleted"
@@ -662,7 +707,9 @@
     },
     "/CreditEvents/CreditUpdated": {
       "post": {
-        "tags": ["CreditEvents"],
+        "tags": [
+          "CreditEvents"
+        ],
         "summary": "Credit Updated",
         "operationId": "CreditUpdated",
         "requestBody": {
@@ -677,7 +724,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["credit.updated"],
+                    "enum": [
+                      "credit.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "credit.updated"
@@ -715,7 +764,9 @@
     },
     "/CustomerEvents/CustomerAccountCreated": {
       "post": {
-        "tags": ["CustomerEvents"],
+        "tags": [
+          "CustomerEvents"
+        ],
         "summary": "Customer Account Created",
         "operationId": "CustomerAccountCreated",
         "requestBody": {
@@ -730,7 +781,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customeraccount.created"],
+                    "enum": [
+                      "customeraccount.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customeraccount.created"
@@ -768,7 +821,9 @@
     },
     "/CustomerEvents/CustomerAccountDeleted": {
       "post": {
-        "tags": ["CustomerEvents"],
+        "tags": [
+          "CustomerEvents"
+        ],
         "summary": "Customer Account Deleted",
         "operationId": "CustomerAccountDeleted",
         "requestBody": {
@@ -783,7 +838,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customeraccount.deleted"],
+                    "enum": [
+                      "customeraccount.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customeraccount.deleted"
@@ -821,7 +878,9 @@
     },
     "/CustomerEvents/CustomerAccountUpdated": {
       "post": {
-        "tags": ["CustomerEvents"],
+        "tags": [
+          "CustomerEvents"
+        ],
         "summary": "Customer Account Updated",
         "operationId": "CustomerAccountUpdated",
         "requestBody": {
@@ -836,7 +895,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customeraccount.updated"],
+                    "enum": [
+                      "customeraccount.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customeraccount.updated"
@@ -874,7 +935,9 @@
     },
     "/CustomerEvents/CustomerInSegmentAdded": {
       "post": {
-        "tags": ["CustomerEvents"],
+        "tags": [
+          "CustomerEvents"
+        ],
         "summary": "Customer In Segment Added",
         "operationId": "CustomerInSegmentAdded",
         "requestBody": {
@@ -889,7 +952,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customersegment.customeradded"],
+                    "enum": [
+                      "customersegment.customeradded"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customersegment.customeradded"
@@ -948,7 +1013,9 @@
     },
     "/CustomerEvents/CustomerInSegmentRemoved": {
       "post": {
-        "tags": ["CustomerEvents"],
+        "tags": [
+          "CustomerEvents"
+        ],
         "summary": "Customer In Segment Removed",
         "operationId": "CustomerInSegmentRemoved",
         "requestBody": {
@@ -963,7 +1030,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customersegment.customerremoved"],
+                    "enum": [
+                      "customersegment.customerremoved"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customersegment.customerremoved"
@@ -1022,7 +1091,9 @@
     },
     "/CustomerEvents/CustomerSegmentCreated": {
       "post": {
-        "tags": ["CustomerEvents"],
+        "tags": [
+          "CustomerEvents"
+        ],
         "summary": "Customer Segment Created",
         "operationId": "CustomerSegmentCreated",
         "requestBody": {
@@ -1037,7 +1108,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customersegment.created"],
+                    "enum": [
+                      "customersegment.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customersegment.created"
@@ -1075,7 +1148,9 @@
     },
     "/CustomerEvents/CustomerSegmentDeleted": {
       "post": {
-        "tags": ["CustomerEvents"],
+        "tags": [
+          "CustomerEvents"
+        ],
         "summary": "Customer Segment Deleted",
         "operationId": "CustomerSegmentDeleted",
         "requestBody": {
@@ -1090,7 +1165,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customersegment.deleted"],
+                    "enum": [
+                      "customersegment.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customersegment.deleted"
@@ -1128,7 +1205,9 @@
     },
     "/CustomerEvents/CustomerSegmentUpdated": {
       "post": {
-        "tags": ["CustomerEvents"],
+        "tags": [
+          "CustomerEvents"
+        ],
         "summary": "Customer Segment Updated",
         "operationId": "CustomerSegmentUpdated",
         "requestBody": {
@@ -1143,7 +1222,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customersegment.updated"],
+                    "enum": [
+                      "customersegment.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customersegment.updated"
@@ -1181,7 +1262,9 @@
     },
     "/EventsEvents/CategoryAttributeCreated": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Category Attribute Created",
         "operationId": "CategoryAttributeCreated",
         "requestBody": {
@@ -1196,7 +1279,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["categoryattribute.created"],
+                    "enum": [
+                      "categoryattribute.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "categoryattribute.created"
@@ -1234,7 +1319,9 @@
     },
     "/EventsEvents/CategoryAttributeDeleted": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Category Attribute Deleted",
         "operationId": "CategoryAttributeDeleted",
         "requestBody": {
@@ -1249,7 +1336,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["categoryattribute.deleted"],
+                    "enum": [
+                      "categoryattribute.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "categoryattribute.deleted"
@@ -1287,7 +1376,9 @@
     },
     "/EventsEvents/CategoryAttributeUpdated": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Category Attribute Updated",
         "operationId": "CategoryAttributeUpdated",
         "requestBody": {
@@ -1302,7 +1393,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["categoryattribute.updated"],
+                    "enum": [
+                      "categoryattribute.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "categoryattribute.updated"
@@ -1340,7 +1433,9 @@
     },
     "/EventsEvents/CustomerAttributeCreated": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Customer Attribute Created",
         "operationId": "CustomerAttributeCreated",
         "requestBody": {
@@ -1355,7 +1450,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customerattribute.created"],
+                    "enum": [
+                      "customerattribute.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customerattribute.created"
@@ -1393,7 +1490,9 @@
     },
     "/EventsEvents/CustomerAttributeDeleted": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Customer Attribute Deleted",
         "operationId": "CustomerAttributeDeleted",
         "requestBody": {
@@ -1408,7 +1507,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customerattribute.deleted"],
+                    "enum": [
+                      "customerattribute.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customerattribute.deleted"
@@ -1446,7 +1547,9 @@
     },
     "/EventsEvents/CustomerAttributeUpdated": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Customer Attribute Updated",
         "operationId": "CustomerAttributeUpdated",
         "requestBody": {
@@ -1461,7 +1564,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["customerattribute.updated"],
+                    "enum": [
+                      "customerattribute.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "customerattribute.updated"
@@ -1499,7 +1604,9 @@
     },
     "/EventsEvents/LocationAttributeCreated": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Location Attribute Created",
         "operationId": "LocationAttributeCreated",
         "requestBody": {
@@ -1514,7 +1621,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["locationattribute.created"],
+                    "enum": [
+                      "locationattribute.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "locationattribute.created"
@@ -1552,7 +1661,9 @@
     },
     "/EventsEvents/LocationAttributeDeleted": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Location Attribute Deleted",
         "operationId": "LocationAttributeDeleted",
         "requestBody": {
@@ -1567,7 +1678,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["locationattribute.deleted"],
+                    "enum": [
+                      "locationattribute.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "locationattribute.deleted"
@@ -1605,7 +1718,9 @@
     },
     "/EventsEvents/LocationAttributeUpdated": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Location Attribute Updated",
         "operationId": "LocationAttributeUpdated",
         "requestBody": {
@@ -1620,7 +1735,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["locationattribute.updated"],
+                    "enum": [
+                      "locationattribute.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "locationattribute.updated"
@@ -1658,7 +1775,9 @@
     },
     "/EventsEvents/OrderAttributeCreated": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Order Attribute Created",
         "operationId": "OrderAttributeCreated",
         "requestBody": {
@@ -1673,7 +1792,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["orderattribute.created"],
+                    "enum": [
+                      "orderattribute.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "orderattribute.created"
@@ -1711,7 +1832,9 @@
     },
     "/EventsEvents/OrderAttributeDeleted": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Order Attribute Deleted",
         "operationId": "OrderAttributeDeleted",
         "requestBody": {
@@ -1726,7 +1849,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["orderattribute.deleted"],
+                    "enum": [
+                      "orderattribute.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "orderattribute.deleted"
@@ -1764,7 +1889,9 @@
     },
     "/EventsEvents/OrderAttributeUpdated": {
       "post": {
-        "tags": ["EventsEvents"],
+        "tags": [
+          "EventsEvents"
+        ],
         "summary": "Order Attribute Updated",
         "operationId": "OrderAttributeUpdated",
         "requestBody": {
@@ -1779,7 +1906,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["orderattribute.updated"],
+                    "enum": [
+                      "orderattribute.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "orderattribute.updated"
@@ -1817,7 +1946,9 @@
     },
     "/FulfillmentEvents/ShipmentAdjusted": {
       "post": {
-        "tags": ["FulfillmentEvents"],
+        "tags": [
+          "FulfillmentEvents"
+        ],
         "summary": "Shipment Adjusted",
         "operationId": "ShipmentAdjusted",
         "requestBody": {
@@ -1832,7 +1963,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["shipment.adjusted"],
+                    "enum": [
+                      "shipment.adjusted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "shipment.adjusted"
@@ -1891,7 +2024,9 @@
     },
     "/FulfillmentEvents/ShipmentItemAdjusted": {
       "post": {
-        "tags": ["FulfillmentEvents"],
+        "tags": [
+          "FulfillmentEvents"
+        ],
         "summary": "Shipment Item Adjusted",
         "operationId": "ShipmentItemAdjusted",
         "requestBody": {
@@ -1906,7 +2041,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["shipment.itemadjusted"],
+                    "enum": [
+                      "shipment.itemadjusted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "shipment.itemadjusted"
@@ -1969,7 +2106,9 @@
     },
     "/FulfillmentEvents/ShipmentItemsCanceled": {
       "post": {
-        "tags": ["FulfillmentEvents"],
+        "tags": [
+          "FulfillmentEvents"
+        ],
         "summary": "Shipment Items Canceled",
         "operationId": "ShipmentItemsCanceled",
         "requestBody": {
@@ -1984,7 +2123,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["shipment.itemscanceled"],
+                    "enum": [
+                      "shipment.itemscanceled"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "shipment.itemscanceled"
@@ -2043,7 +2184,9 @@
     },
     "/FulfillmentEvents/ShipmentItemsDeclined": {
       "post": {
-        "tags": ["FulfillmentEvents"],
+        "tags": [
+          "FulfillmentEvents"
+        ],
         "summary": "Shipment Items Declined",
         "operationId": "ShipmentItemsDeclined",
         "requestBody": {
@@ -2058,7 +2201,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["shipment.itemsdeclined"],
+                    "enum": [
+                      "shipment.itemsdeclined"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "shipment.itemsdeclined"
@@ -2117,7 +2262,9 @@
     },
     "/FulfillmentEvents/ShipmentItemsRejected": {
       "post": {
-        "tags": ["FulfillmentEvents"],
+        "tags": [
+          "FulfillmentEvents"
+        ],
         "summary": "Shipment Items Rejected",
         "operationId": "ShipmentItemsRejected",
         "requestBody": {
@@ -2132,7 +2279,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["shipment.itemsrejected"],
+                    "enum": [
+                      "shipment.itemsrejected"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "shipment.itemsrejected"
@@ -2191,7 +2340,9 @@
     },
     "/FulfillmentEvents/ShipmentStatusChanged": {
       "post": {
-        "tags": ["FulfillmentEvents"],
+        "tags": [
+          "FulfillmentEvents"
+        ],
         "summary": "Shipment Status Changed",
         "operationId": "ShipmentStatusChanged",
         "requestBody": {
@@ -2206,7 +2357,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["shipment.statuschanged"],
+                    "enum": [
+                      "shipment.statuschanged"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "shipment.statuschanged"
@@ -2281,7 +2434,9 @@
     },
     "/FulfillmentEvents/ShipmentWorkflowStateChanged": {
       "post": {
-        "tags": ["FulfillmentEvents"],
+        "tags": [
+          "FulfillmentEvents"
+        ],
         "summary": "Shipment Workflow State Changed",
         "operationId": "ShipmentWorkflowStateChanged",
         "requestBody": {
@@ -2296,7 +2451,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["shipment.workflowstatechanged"],
+                    "enum": [
+                      "shipment.workflowstatechanged"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "shipment.workflowstatechanged"
@@ -2363,7 +2520,9 @@
     },
     "/LocationEvents/LocationTypeCreated": {
       "post": {
-        "tags": ["LocationEvents"],
+        "tags": [
+          "LocationEvents"
+        ],
         "summary": "Location Type Created",
         "operationId": "LocationTypeCreated",
         "requestBody": {
@@ -2378,7 +2537,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["locationtype.created"],
+                    "enum": [
+                      "locationtype.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "locationtype.created"
@@ -2416,7 +2577,9 @@
     },
     "/LocationEvents/LocationTypeDeleted": {
       "post": {
-        "tags": ["LocationEvents"],
+        "tags": [
+          "LocationEvents"
+        ],
         "summary": "Location Type Deleted",
         "operationId": "LocationTypeDeleted",
         "requestBody": {
@@ -2431,7 +2594,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["locationtype.deleted"],
+                    "enum": [
+                      "locationtype.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "locationtype.deleted"
@@ -2469,7 +2634,9 @@
     },
     "/LocationEvents/LocationTypeUpdated": {
       "post": {
-        "tags": ["LocationEvents"],
+        "tags": [
+          "LocationEvents"
+        ],
         "summary": "Location Type Updated",
         "operationId": "LocationTypeUpdated",
         "requestBody": {
@@ -2484,7 +2651,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["locationtype.updated"],
+                    "enum": [
+                      "locationtype.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "locationtype.updated"
@@ -2522,7 +2691,9 @@
     },
     "/NotificationEvents/EmailRequested": {
       "post": {
-        "tags": ["NotificationEvents"],
+        "tags": [
+          "NotificationEvents"
+        ],
         "summary": "Email Requested",
         "operationId": "EmailRequested",
         "requestBody": {
@@ -2537,7 +2708,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["email.requested"],
+                    "enum": [
+                      "email.requested"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "email.requested"
@@ -2589,7 +2762,9 @@
     },
     "/OrderEvents/CreateSubscription": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Create Subscription",
         "operationId": "CreateSubscription",
         "requestBody": {
@@ -2604,7 +2779,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.subscriptioncreated"],
+                    "enum": [
+                      "order.subscriptioncreated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.subscriptioncreated"
@@ -2642,7 +2819,9 @@
     },
     "/OrderEvents/OrderAbandoned": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Abandoned",
         "operationId": "OrderAbandoned",
         "requestBody": {
@@ -2657,7 +2836,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.abandoned"],
+                    "enum": [
+                      "order.abandoned"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.abandoned"
@@ -2695,7 +2876,9 @@
     },
     "/OrderEvents/OrderAddressChanged": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Address Changed",
         "operationId": "OrderAddressChanged",
         "requestBody": {
@@ -2710,7 +2893,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.addresschanged"],
+                    "enum": [
+                      "order.addresschanged"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.addresschanged"
@@ -2748,7 +2933,9 @@
     },
     "/OrderEvents/OrderCancelled": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Cancelled",
         "operationId": "OrderCancelled",
         "requestBody": {
@@ -2763,7 +2950,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.cancelled"],
+                    "enum": [
+                      "order.cancelled"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.cancelled"
@@ -2801,7 +2990,9 @@
     },
     "/OrderEvents/OrderClosed": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Closed",
         "operationId": "OrderClosed",
         "requestBody": {
@@ -2816,7 +3007,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.closed"],
+                    "enum": [
+                      "order.closed"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.closed"
@@ -2854,7 +3047,9 @@
     },
     "/OrderEvents/OrderErrored": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Errored",
         "operationId": "OrderErrored",
         "requestBody": {
@@ -2869,7 +3064,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.errored"],
+                    "enum": [
+                      "order.errored"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.errored"
@@ -2907,7 +3104,9 @@
     },
     "/OrderEvents/OrderFulfilled": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Fulfilled",
         "operationId": "OrderFulfilled",
         "requestBody": {
@@ -2922,7 +3121,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.fulfilled"],
+                    "enum": [
+                      "order.fulfilled"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.fulfilled"
@@ -2960,7 +3161,9 @@
     },
     "/OrderEvents/OrderImported": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Imported",
         "operationId": "OrderImported",
         "requestBody": {
@@ -2975,7 +3178,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.imported"],
+                    "enum": [
+                      "order.imported"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.imported"
@@ -3013,7 +3218,9 @@
     },
     "/OrderEvents/OrderOpened": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Opened",
         "operationId": "OrderOpened",
         "requestBody": {
@@ -3028,7 +3235,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.opened"],
+                    "enum": [
+                      "order.opened"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.opened"
@@ -3066,7 +3275,9 @@
     },
     "/OrderEvents/OrderPendingReview": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Pending Review",
         "operationId": "OrderPendingReview",
         "requestBody": {
@@ -3081,7 +3292,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.pendingreview"],
+                    "enum": [
+                      "order.pendingreview"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.pendingreview"
@@ -3119,7 +3332,9 @@
     },
     "/OrderEvents/OrderSaved": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Saved",
         "operationId": "OrderSaved",
         "requestBody": {
@@ -3134,7 +3349,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.saved"],
+                    "enum": [
+                      "order.saved"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.saved"
@@ -3172,7 +3389,9 @@
     },
     "/OrderEvents/OrderUpdated": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Order Updated",
         "operationId": "OrderUpdated",
         "requestBody": {
@@ -3187,7 +3406,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["order.updated"],
+                    "enum": [
+                      "order.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "order.updated"
@@ -3225,7 +3446,9 @@
     },
     "/OrderEvents/PaymentRefunded": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Payment Refunded",
         "operationId": "PaymentRefunded",
         "requestBody": {
@@ -3240,7 +3463,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["payment.refunded"],
+                    "enum": [
+                      "payment.refunded"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "payment.refunded"
@@ -3315,7 +3540,9 @@
     },
     "/OrderEvents/PaymentTransactionError": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Payment Transaction Error",
         "operationId": "PaymentTransactionError",
         "requestBody": {
@@ -3330,7 +3557,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["payment.transactionerror"],
+                    "enum": [
+                      "payment.transactionerror"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "payment.transactionerror"
@@ -3405,7 +3634,9 @@
     },
     "/OrderEvents/ReturnAuthorized": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Return Authorized",
         "operationId": "ReturnAuthorized",
         "requestBody": {
@@ -3420,7 +3651,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["return.authorized"],
+                    "enum": [
+                      "return.authorized"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "return.authorized"
@@ -3458,7 +3691,9 @@
     },
     "/OrderEvents/ReturnCancelled": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Return Cancelled",
         "operationId": "ReturnCancelled",
         "requestBody": {
@@ -3473,7 +3708,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["return.cancelled"],
+                    "enum": [
+                      "return.cancelled"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "return.cancelled"
@@ -3511,7 +3748,9 @@
     },
     "/OrderEvents/ReturnClosed": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Return Closed",
         "operationId": "ReturnClosed",
         "requestBody": {
@@ -3526,7 +3765,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["return.closed"],
+                    "enum": [
+                      "return.closed"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "return.closed"
@@ -3564,7 +3805,9 @@
     },
     "/OrderEvents/ReturnOpened": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Return Opened",
         "operationId": "ReturnOpened",
         "requestBody": {
@@ -3579,7 +3822,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["return.opened"],
+                    "enum": [
+                      "return.opened"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "return.opened"
@@ -3617,7 +3862,9 @@
     },
     "/OrderEvents/ReturnRejected": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Return Rejected",
         "operationId": "ReturnRejected",
         "requestBody": {
@@ -3632,7 +3879,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["return.rejected"],
+                    "enum": [
+                      "return.rejected"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "return.rejected"
@@ -3670,7 +3919,9 @@
     },
     "/OrderEvents/ReturnUpdated": {
       "post": {
-        "tags": ["OrderEvents"],
+        "tags": [
+          "OrderEvents"
+        ],
         "summary": "Return Updated",
         "operationId": "ReturnUpdated",
         "requestBody": {
@@ -3685,7 +3936,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["return.updated"],
+                    "enum": [
+                      "return.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "return.updated"
@@ -3723,7 +3976,9 @@
     },
     "/ProductEvents/AttributeCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Attribute Created",
         "operationId": "AttributeCreated",
         "requestBody": {
@@ -3738,7 +3993,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["attribute.created"],
+                    "enum": [
+                      "attribute.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "attribute.created"
@@ -3776,7 +4033,9 @@
     },
     "/ProductEvents/AttributeDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Attribute Deleted",
         "operationId": "AttributeDeleted",
         "requestBody": {
@@ -3791,7 +4050,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["attribute.deleted"],
+                    "enum": [
+                      "attribute.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "attribute.deleted"
@@ -3829,7 +4090,9 @@
     },
     "/ProductEvents/AttributeUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Attribute Updated",
         "operationId": "AttributeUpdated",
         "requestBody": {
@@ -3844,7 +4107,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["attribute.updated"],
+                    "enum": [
+                      "attribute.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "attribute.updated"
@@ -3882,7 +4147,9 @@
     },
     "/ProductEvents/CategoryCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Category Created",
         "operationId": "CategoryCreated",
         "requestBody": {
@@ -3897,7 +4164,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["category.created"],
+                    "enum": [
+                      "category.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "category.created"
@@ -3935,7 +4204,9 @@
     },
     "/ProductEvents/CategoryDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Category Deleted",
         "operationId": "CategoryDeleted",
         "requestBody": {
@@ -3950,7 +4221,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["category.deleted"],
+                    "enum": [
+                      "category.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "category.deleted"
@@ -3988,7 +4261,9 @@
     },
     "/ProductEvents/CategoryStatusChanged": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Category Status Changed",
         "operationId": "CategoryStatusChanged",
         "requestBody": {
@@ -4003,7 +4278,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["category.statuschanged"],
+                    "enum": [
+                      "category.statuschanged"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "category.statuschanged"
@@ -4041,7 +4318,9 @@
     },
     "/ProductEvents/CategoryUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Category Updated",
         "operationId": "CategoryUpdated",
         "requestBody": {
@@ -4056,7 +4335,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["category.updated"],
+                    "enum": [
+                      "category.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "category.updated"
@@ -4094,7 +4375,9 @@
     },
     "/ProductEvents/DiscountCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Discount Created",
         "operationId": "DiscountCreated",
         "requestBody": {
@@ -4109,7 +4392,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["discount.created"],
+                    "enum": [
+                      "discount.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "discount.created"
@@ -4147,7 +4432,9 @@
     },
     "/ProductEvents/DiscountDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Discount Deleted",
         "operationId": "DiscountDeleted",
         "requestBody": {
@@ -4162,7 +4449,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["discount.deleted"],
+                    "enum": [
+                      "discount.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "discount.deleted"
@@ -4200,7 +4489,9 @@
     },
     "/ProductEvents/DiscountExpired": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Discount Expired",
         "operationId": "DiscountExpired",
         "requestBody": {
@@ -4215,7 +4506,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["discount.expired"],
+                    "enum": [
+                      "discount.expired"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "discount.expired"
@@ -4253,7 +4546,9 @@
     },
     "/ProductEvents/DiscountUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Discount Updated",
         "operationId": "DiscountUpdated",
         "requestBody": {
@@ -4268,7 +4563,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["discount.updated"],
+                    "enum": [
+                      "discount.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "discount.updated"
@@ -4306,7 +4603,9 @@
     },
     "/ProductEvents/FacetCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Facet Created",
         "operationId": "FacetCreated",
         "requestBody": {
@@ -4321,7 +4620,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["facet.created"],
+                    "enum": [
+                      "facet.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "facet.created"
@@ -4359,7 +4660,9 @@
     },
     "/ProductEvents/FacetDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Facet Deleted",
         "operationId": "FacetDeleted",
         "requestBody": {
@@ -4374,7 +4677,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["facet.deleted"],
+                    "enum": [
+                      "facet.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "facet.deleted"
@@ -4412,7 +4717,9 @@
     },
     "/ProductEvents/FacetUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Facet Updated",
         "operationId": "FacetUpdated",
         "requestBody": {
@@ -4427,7 +4734,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["facet.updated"],
+                    "enum": [
+                      "facet.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "facet.updated"
@@ -4465,7 +4774,9 @@
     },
     "/ProductEvents/PriceListCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Price List Created",
         "operationId": "PriceListCreated",
         "requestBody": {
@@ -4480,7 +4791,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["pricelist.created"],
+                    "enum": [
+                      "pricelist.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "pricelist.created"
@@ -4518,7 +4831,9 @@
     },
     "/ProductEvents/PriceListDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Price List Deleted",
         "operationId": "PriceListDeleted",
         "requestBody": {
@@ -4533,7 +4848,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["pricelist.deleted"],
+                    "enum": [
+                      "pricelist.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "pricelist.deleted"
@@ -4571,7 +4888,9 @@
     },
     "/ProductEvents/PriceListEntryCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Price List Entry Created",
         "operationId": "PriceListEntryCreated",
         "requestBody": {
@@ -4586,7 +4905,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["pricelistentry.created"],
+                    "enum": [
+                      "pricelistentry.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "pricelistentry.created"
@@ -4624,7 +4945,9 @@
     },
     "/ProductEvents/PriceListEntryDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Price List Entry Deleted",
         "operationId": "PriceListEntryDeleted",
         "requestBody": {
@@ -4639,7 +4962,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["pricelistentry.deleted"],
+                    "enum": [
+                      "pricelistentry.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "pricelistentry.deleted"
@@ -4677,7 +5002,9 @@
     },
     "/ProductEvents/PriceListEntryStatusChanged": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Price List Entry Status Changed",
         "operationId": "PriceListEntryStatusChanged",
         "requestBody": {
@@ -4692,7 +5019,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["pricelistentry.statuschanged"],
+                    "enum": [
+                      "pricelistentry.statuschanged"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "pricelistentry.statuschanged"
@@ -4730,7 +5059,9 @@
     },
     "/ProductEvents/PriceListEntryUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Price List Entry Updated",
         "operationId": "PriceListEntryUpdated",
         "requestBody": {
@@ -4745,7 +5076,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["pricelistentry.updated"],
+                    "enum": [
+                      "pricelistentry.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "pricelistentry.updated"
@@ -4783,7 +5116,9 @@
     },
     "/ProductEvents/PriceListUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Price List Updated",
         "operationId": "PriceListUpdated",
         "requestBody": {
@@ -4798,7 +5133,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["pricelist.updated"],
+                    "enum": [
+                      "pricelist.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "pricelist.updated"
@@ -4836,7 +5173,9 @@
     },
     "/ProductEvents/ProductCodeRenamed": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Code Renamed",
         "operationId": "ProductCodeRenamed",
         "requestBody": {
@@ -4851,7 +5190,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["product.coderenamed"],
+                    "enum": [
+                      "product.coderenamed"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "product.coderenamed"
@@ -4910,7 +5251,9 @@
     },
     "/ProductEvents/ProductCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Created",
         "operationId": "ProductCreated",
         "requestBody": {
@@ -4925,7 +5268,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["product.created"],
+                    "enum": [
+                      "product.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "product.created"
@@ -4963,7 +5308,9 @@
     },
     "/ProductEvents/ProductDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Deleted",
         "operationId": "ProductDeleted",
         "requestBody": {
@@ -4978,7 +5325,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["product.deleted"],
+                    "enum": [
+                      "product.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "product.deleted"
@@ -5016,7 +5365,9 @@
     },
     "/ProductEvents/ProductDraftCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Draft Created",
         "operationId": "ProductDraftCreated",
         "requestBody": {
@@ -5031,7 +5382,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["productdraft.created"],
+                    "enum": [
+                      "productdraft.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "productdraft.created"
@@ -5069,7 +5422,9 @@
     },
     "/ProductEvents/ProductDraftDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Draft Deleted",
         "operationId": "ProductDraftDeleted",
         "requestBody": {
@@ -5084,7 +5439,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["productdraft.deleted"],
+                    "enum": [
+                      "productdraft.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "productdraft.deleted"
@@ -5122,7 +5479,9 @@
     },
     "/ProductEvents/ProductDraftDiscarded": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Draft Discarded",
         "operationId": "ProductDraftDiscarded",
         "requestBody": {
@@ -5137,7 +5496,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["productdraft.discarded"],
+                    "enum": [
+                      "productdraft.discarded"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "productdraft.discarded"
@@ -5175,7 +5536,9 @@
     },
     "/ProductEvents/ProductDraftPublished": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Draft Published",
         "operationId": "ProductDraftPublished",
         "requestBody": {
@@ -5190,7 +5553,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["productdraft.published"],
+                    "enum": [
+                      "productdraft.published"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "productdraft.published"
@@ -5228,7 +5593,9 @@
     },
     "/ProductEvents/ProductDraftUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Draft Updated",
         "operationId": "ProductDraftUpdated",
         "requestBody": {
@@ -5243,7 +5610,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["productdraft.updated"],
+                    "enum": [
+                      "productdraft.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "productdraft.updated"
@@ -5281,7 +5650,9 @@
     },
     "/ProductEvents/ProductInventoryInStock": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Inventory In Stock",
         "operationId": "ProductInventoryInStock",
         "requestBody": {
@@ -5296,7 +5667,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["productinventory.instock"],
+                    "enum": [
+                      "productinventory.instock"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "productinventory.instock"
@@ -5355,7 +5728,9 @@
     },
     "/ProductEvents/ProductInventoryOutOfStock": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Inventory Out Of Stock",
         "operationId": "ProductInventoryOutOfStock",
         "requestBody": {
@@ -5370,7 +5745,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["productinventory.outofstock"],
+                    "enum": [
+                      "productinventory.outofstock"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "productinventory.outofstock"
@@ -5427,83 +5804,11 @@
         }
       }
     },
-    "/ProductEvents/ProductInventoryUpdated": {
-      "post": {
-        "tags": ["ProductEvents"],
-        "summary": "Product Inventory Updated",
-        "operationId": "ProductInventoryUpdated",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "eventId": {
-                    "type": "string",
-                    "description": "The unique identifier for the event.",
-                    "format": "uuid"
-                  },
-                  "topic": {
-                    "enum": ["productinventory.updated"],
-                    "type": "string",
-                    "description": "The Event Type.",
-                    "example": "productinventory.updated"
-                  },
-                  "entityId": {
-                    "type": "string",
-                    "description": "The id of the entity."
-                  },
-                  "timestamp": {
-                    "type": "string",
-                    "description": "The time stamp of the event.",
-                    "format": "date-time"
-                  },
-                  "correlationId": {
-                    "type": "string",
-                    "description": "The Correlation Id the api that triggered the event.",
-                    "format": "date-time"
-                  },
-                  "isTest": {
-                    "type": "boolean",
-                    "description": "True if the event is test only event.",
-                    "example": false
-                  },
-                  "extendedProperties": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "key": {
-                          "type": "string"
-                        },
-                        "value": {
-                          "type": "object"
-                        }
-                      }
-                    },
-                    "description": "May contain additional properties such as locationCode",
-                    "example": [
-                      {
-                        "key": "locationCode",
-                        "value": {}
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/ProductEvents/ProductTypeCreated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Type Created",
         "operationId": "ProductTypeCreated",
         "requestBody": {
@@ -5518,7 +5823,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["producttype.created"],
+                    "enum": [
+                      "producttype.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "producttype.created"
@@ -5556,7 +5863,9 @@
     },
     "/ProductEvents/ProductTypeDeleted": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Type Deleted",
         "operationId": "ProductTypeDeleted",
         "requestBody": {
@@ -5571,7 +5880,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["producttype.deleted"],
+                    "enum": [
+                      "producttype.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "producttype.deleted"
@@ -5609,7 +5920,9 @@
     },
     "/ProductEvents/ProductTypeUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Type Updated",
         "operationId": "ProductTypeUpdated",
         "requestBody": {
@@ -5624,7 +5937,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["producttype.updated"],
+                    "enum": [
+                      "producttype.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "producttype.updated"
@@ -5662,7 +5977,9 @@
     },
     "/ProductEvents/ProductUpdated": {
       "post": {
-        "tags": ["ProductEvents"],
+        "tags": [
+          "ProductEvents"
+        ],
         "summary": "Product Updated",
         "operationId": "ProductUpdated",
         "requestBody": {
@@ -5677,7 +5994,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["product.updated"],
+                    "enum": [
+                      "product.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "product.updated"
@@ -5715,7 +6034,9 @@
     },
     "/ReservationEvents/ReservationDeallocated": {
       "post": {
-        "tags": ["ReservationEvents"],
+        "tags": [
+          "ReservationEvents"
+        ],
         "summary": "Reservation Deallocated",
         "operationId": "ReservationDeallocated",
         "requestBody": {
@@ -5730,7 +6051,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["reservation.deallocate"],
+                    "enum": [
+                      "reservation.deallocate"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "reservation.deallocate"
@@ -5789,7 +6112,9 @@
     },
     "/ReservationEvents/ReservationExpired": {
       "post": {
-        "tags": ["ReservationEvents"],
+        "tags": [
+          "ReservationEvents"
+        ],
         "summary": "Reservation Expired",
         "operationId": "ReservationExpired",
         "requestBody": {
@@ -5804,7 +6129,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["reservation.expired"],
+                    "enum": [
+                      "reservation.expired"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "reservation.expired"
@@ -5871,7 +6198,9 @@
     },
     "/SearchEvents/SearchSettingsUpdated": {
       "post": {
-        "tags": ["SearchEvents"],
+        "tags": [
+          "SearchEvents"
+        ],
         "summary": "Search Settings Updated",
         "operationId": "SearchSettingsUpdated",
         "requestBody": {
@@ -5886,7 +6215,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["searchsettings.updated"],
+                    "enum": [
+                      "searchsettings.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "searchsettings.updated"
@@ -5924,7 +6255,9 @@
     },
     "/SiteEvents/SiteCloned": {
       "post": {
-        "tags": ["SiteEvents"],
+        "tags": [
+          "SiteEvents"
+        ],
         "summary": "Site Cloned",
         "operationId": "SiteCloned",
         "requestBody": {
@@ -5939,7 +6272,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["site.cloned"],
+                    "enum": [
+                      "site.cloned"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "site.cloned"
@@ -5977,7 +6312,9 @@
     },
     "/SiteEvents/SiteCreated": {
       "post": {
-        "tags": ["SiteEvents"],
+        "tags": [
+          "SiteEvents"
+        ],
         "summary": "Site Created",
         "operationId": "SiteCreated",
         "requestBody": {
@@ -5992,7 +6329,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["site.created"],
+                    "enum": [
+                      "site.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "site.created"
@@ -6030,7 +6369,9 @@
     },
     "/SiteEvents/SiteDeleted": {
       "post": {
-        "tags": ["SiteEvents"],
+        "tags": [
+          "SiteEvents"
+        ],
         "summary": "Site Deleted",
         "operationId": "SiteDeleted",
         "requestBody": {
@@ -6045,7 +6386,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["site.deleted"],
+                    "enum": [
+                      "site.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "site.deleted"
@@ -6083,7 +6426,9 @@
     },
     "/SiteEvents/SiteUpdated": {
       "post": {
-        "tags": ["SiteEvents"],
+        "tags": [
+          "SiteEvents"
+        ],
         "summary": "Site Updated",
         "operationId": "SiteUpdated",
         "requestBody": {
@@ -6098,7 +6443,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["site.updated"],
+                    "enum": [
+                      "site.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "site.updated"
@@ -6136,7 +6483,9 @@
     },
     "/SubscriptionEvents/SubscriptionActivated": {
       "post": {
-        "tags": ["SubscriptionEvents"],
+        "tags": [
+          "SubscriptionEvents"
+        ],
         "summary": "Subscription Activated",
         "operationId": "SubscriptionActivated",
         "requestBody": {
@@ -6151,7 +6500,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["subscription.activated"],
+                    "enum": [
+                      "subscription.activated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "subscription.activated"
@@ -6210,7 +6561,9 @@
     },
     "/SubscriptionEvents/SubscriptionCancelled": {
       "post": {
-        "tags": ["SubscriptionEvents"],
+        "tags": [
+          "SubscriptionEvents"
+        ],
         "summary": "Subscription Cancelled",
         "operationId": "SubscriptionCancelled",
         "requestBody": {
@@ -6225,7 +6578,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["subscription.cancelled"],
+                    "enum": [
+                      "subscription.cancelled"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "subscription.cancelled"
@@ -6284,7 +6639,9 @@
     },
     "/SubscriptionEvents/SubscriptionErrored": {
       "post": {
-        "tags": ["SubscriptionEvents"],
+        "tags": [
+          "SubscriptionEvents"
+        ],
         "summary": "Subscription Errored",
         "operationId": "SubscriptionErrored",
         "requestBody": {
@@ -6299,7 +6656,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["subscription.errored"],
+                    "enum": [
+                      "subscription.errored"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "subscription.errored"
@@ -6358,7 +6717,9 @@
     },
     "/SubscriptionEvents/SubscriptionPaused": {
       "post": {
-        "tags": ["SubscriptionEvents"],
+        "tags": [
+          "SubscriptionEvents"
+        ],
         "summary": "Subscription Paused",
         "operationId": "SubscriptionPaused",
         "requestBody": {
@@ -6373,7 +6734,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["subscription.paused"],
+                    "enum": [
+                      "subscription.paused"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "subscription.paused"
@@ -6432,7 +6795,9 @@
     },
     "/SubscriptionEvents/SubscriptionPaymentUpdated": {
       "post": {
-        "tags": ["SubscriptionEvents"],
+        "tags": [
+          "SubscriptionEvents"
+        ],
         "summary": "Subscription Payment Updated",
         "operationId": "SubscriptionPaymentUpdated",
         "requestBody": {
@@ -6447,7 +6812,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["subscription.paymentupdated"],
+                    "enum": [
+                      "subscription.paymentupdated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "subscription.paymentupdated"
@@ -6514,7 +6881,9 @@
     },
     "/SubscriptionEvents/SubscriptionStatusChanged": {
       "post": {
-        "tags": ["SubscriptionEvents"],
+        "tags": [
+          "SubscriptionEvents"
+        ],
         "summary": "Subscription Status Changed",
         "operationId": "SubscriptionStatusChanged",
         "requestBody": {
@@ -6529,7 +6898,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["subscription.statuschanged"],
+                    "enum": [
+                      "subscription.statuschanged"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "subscription.statuschanged"
@@ -6596,7 +6967,9 @@
     },
     "/TenantEvents/TenantCreated": {
       "post": {
-        "tags": ["TenantEvents"],
+        "tags": [
+          "TenantEvents"
+        ],
         "summary": "Tenant Created",
         "operationId": "TenantCreated",
         "requestBody": {
@@ -6611,7 +6984,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["tenant.created"],
+                    "enum": [
+                      "tenant.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "tenant.created"
@@ -6649,7 +7024,9 @@
     },
     "/TenantEvents/TenantDeleted": {
       "post": {
-        "tags": ["TenantEvents"],
+        "tags": [
+          "TenantEvents"
+        ],
         "summary": "Tenant Deleted",
         "operationId": "TenantDeleted",
         "requestBody": {
@@ -6664,7 +7041,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["tenant.deleted"],
+                    "enum": [
+                      "tenant.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "tenant.deleted"
@@ -6702,7 +7081,9 @@
     },
     "/TenantEvents/TenantExpiring": {
       "post": {
-        "tags": ["TenantEvents"],
+        "tags": [
+          "TenantEvents"
+        ],
         "summary": "Tenant Expiring",
         "operationId": "TenantExpiring",
         "requestBody": {
@@ -6717,7 +7098,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["tenant.expiring"],
+                    "enum": [
+                      "tenant.expiring"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "tenant.expiring"
@@ -6755,7 +7138,9 @@
     },
     "/TenantEvents/TenantHardDeleted": {
       "post": {
-        "tags": ["TenantEvents"],
+        "tags": [
+          "TenantEvents"
+        ],
         "summary": "Tenant Hard Deleted",
         "operationId": "TenantHardDeleted",
         "requestBody": {
@@ -6770,7 +7155,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["tenant.hard_deleted"],
+                    "enum": [
+                      "tenant.hard_deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "tenant.hard_deleted"
@@ -6808,7 +7195,9 @@
     },
     "/TenantEvents/TenantUpdated": {
       "post": {
-        "tags": ["TenantEvents"],
+        "tags": [
+          "TenantEvents"
+        ],
         "summary": "Tenant Updated",
         "operationId": "TenantUpdated",
         "requestBody": {
@@ -6823,7 +7212,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["tenant.updated"],
+                    "enum": [
+                      "tenant.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "tenant.updated"
@@ -6861,7 +7252,9 @@
     },
     "/TenantEvents/TenantUserLogin": {
       "post": {
-        "tags": ["TenantEvents"],
+        "tags": [
+          "TenantEvents"
+        ],
         "summary": "Tenant User Login",
         "operationId": "TenantUserLogin",
         "requestBody": {
@@ -6876,7 +7269,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["tenant.userlogin"],
+                    "enum": [
+                      "tenant.userlogin"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "tenant.userlogin"
@@ -6914,7 +7309,9 @@
     },
     "/WishlistEvents/WishlistCreated": {
       "post": {
-        "tags": ["WishlistEvents"],
+        "tags": [
+          "WishlistEvents"
+        ],
         "summary": "Wishlist Created",
         "operationId": "WishlistCreated",
         "requestBody": {
@@ -6929,7 +7326,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["wishlist.created"],
+                    "enum": [
+                      "wishlist.created"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "wishlist.created"
@@ -6967,7 +7366,9 @@
     },
     "/WishlistEvents/WishlistDeleted": {
       "post": {
-        "tags": ["WishlistEvents"],
+        "tags": [
+          "WishlistEvents"
+        ],
         "summary": "Wishlist Deleted",
         "operationId": "WishlistDeleted",
         "requestBody": {
@@ -6982,7 +7383,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["wishlist.deleted"],
+                    "enum": [
+                      "wishlist.deleted"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "wishlist.deleted"
@@ -7020,7 +7423,9 @@
     },
     "/WishlistEvents/WishlistUpdated": {
       "post": {
-        "tags": ["WishlistEvents"],
+        "tags": [
+          "WishlistEvents"
+        ],
         "summary": "Wishlist Updated",
         "operationId": "WishlistUpdated",
         "requestBody": {
@@ -7035,7 +7440,9 @@
                     "format": "uuid"
                   },
                   "topic": {
-                    "enum": ["wishlist.updated"],
+                    "enum": [
+                      "wishlist.updated"
+                    ],
                     "type": "string",
                     "description": "The Event Type.",
                     "example": "wishlist.updated"
