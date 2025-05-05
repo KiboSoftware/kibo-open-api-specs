@@ -1883,7 +1883,7 @@
     "/commerce/catalog/admin/categories/searchCategoryAttributes": {
       "get": {
         "tags": [
-          "searchCategoryAttributes"
+          "Categories"
         ],
         "summary": "Search Category Attributes",
         "description": "Retrieves a list of categories according to any specified filter criteria and sort options for attributes. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". ",
@@ -2213,7 +2213,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DynamicExpression"
+                "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
               }
             }
           }
@@ -2224,17 +2224,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DynamicExpression"
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DynamicExpression"
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/DynamicExpression"
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
                 }
               }
             }
@@ -2263,7 +2263,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DynamicExpression"
+                "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
               }
             }
           }
@@ -2274,17 +2274,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DynamicExpression"
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DynamicExpression"
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/DynamicExpression"
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
                 }
               }
             }
@@ -4419,7 +4419,7 @@
           "Discounts"
         ],
         "summary": "Update Discount Target",
-        "description": "Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.",
+        "description": "Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.",
         "parameters": [
           {
             "name": "discountId",
@@ -4582,9 +4582,10 @@
     "/commerce/catalog/admin/discounts/expressions/validate": {
       "post": {
         "tags": [
-          "Discount"
+          "Discounts"
         ],
-        "summary": "Validates a discount expression",
+        "summary": "Validate Discount Expression",
+        "description": "Validate a discount expression.",
         "requestBody": {
           "description": "",
           "content": {
@@ -4617,7 +4618,6 @@
             }
           }
         },
-        "description": "",
         "parameters": [
           {
             "name": "responseFields",
@@ -10488,6 +10488,433 @@
         ]
       }
     },
+    "/commerce/rules/product": {
+      "get": {
+        "tags": [
+          "ProductRules"
+        ],
+        "summary": "Get Product Rules",
+        "description": "Retrieves a list of product rules according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "The start index.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The sort by.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "The response groups.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductRuleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductRuleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductRuleCollection"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductRules"
+        ],
+        "summary": "Create Product Rule",
+        "description": "Creates a new product rule.",
+        "requestBody": {
+          "description": "The product rule to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogAdminsProductRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/product/{code}": {
+      "get": {
+        "tags": [
+          "ProductRules"
+        ],
+        "summary": "Get Product Rule by Code",
+        "description": "Retrieves the details of a single product rule.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the rule.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProductRules"
+        ],
+        "summary": "Update Product Rule",
+        "description": "Update an existing product rules.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the rule to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The updated product rule.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogAdminsProductRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsProductRule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductRules"
+        ],
+        "summary": "Delete Product Rules",
+        "description": "Delete a product rules.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the rule to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/rules/product/validate": {
+      "post": {
+        "tags": [
+          "ProductRules"
+        ],
+        "summary": "Validate Expression",
+        "description": "Validate the expression for a product rules",
+        "requestBody": {
+          "description": "The expression to validate.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/product/product-rule-fields": {
+      "get": {
+        "tags": [
+          "ProductRules"
+        ],
+        "summary": "Get Expression Field Definition",
+        "description": "Get expression field definition",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpressionFieldDefinitionCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpressionFieldDefinitionCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpressionFieldDefinitionCollection"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/product/{code}/usages": {
+      "get": {
+        "tags": [
+          "ProductRuleUsages"
+        ],
+        "summary": "Get Product Rule Usages",
+        "description": "Retrieves the usages of a product rule across rule types.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The product rule code.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "The start index.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductRuleUsageCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductRuleUsageCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductRuleUsageCollection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/commerce/catalog/admin/productsortdefinitions": {
       "get": {
         "tags": [
@@ -12476,6 +12903,924 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/rules/purchaselimit": {
+      "get": {
+        "tags": [
+          "PurchaseLimitRules"
+        ],
+        "summary": "Get Purchase Limit Rules",
+        "description": "Gets a collection of <a href=\"https://docs.kibocommerce.com/help/purchase-limit-rules\">purchase limit rules</a> according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "The start index for pagination.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for pagination.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The sort by parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "The response groups parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRuleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRuleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRuleCollection"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PurchaseLimitRules"
+        ],
+        "summary": "Create Purchase Limit Rule",
+        "description": "Creates a new <a href=\"https://docs.kibocommerce.com/help/purchase-limit-rules\">purchase limit rule</a>.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseLimitRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/purchaselimit/{code}": {
+      "get": {
+        "tags": [
+          "PurchaseLimitRules"
+        ],
+        "summary": "Get Purchase Limit Rule by Code",
+        "description": "Gets <a href=\"https://docs.kibocommerce.com/help/purchase-limit-rules\">purchase limit rule</a> details by code.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the purchase limit rule.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PurchaseLimitRules"
+        ],
+        "summary": "Update Purchase Limit Rule",
+        "description": "Updates an existing <a href=\"https://docs.kibocommerce.com/help/purchase-limit-rules\">purchase limit rule</a>.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the purchase limit rule to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The updated purchase limit rule.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseLimitRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitRule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PurchaseLimitRules"
+        ],
+        "summary": "Delete Purchase Limit Rule",
+        "description": "Deletes a <a href=\"https://docs.kibocommerce.com/help/purchase-limit-rules\">purchase limit rule</a> by code.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the purchase limit rule to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/rules/purchaselimit/{code}/rank": {
+      "put": {
+        "tags": [
+          "PurchaseLimitRules"
+        ],
+        "summary": "Update Purchase Limit Rule Rank",
+        "description": "Updates the rank for a <a href=\"https://docs.kibocommerce.com/help/purchase-limit-rules\">purchase limit rule</a> and rearranges the ranks of all other rules accordingly.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRankRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/rules/return": {
+      "get": {
+        "tags": [
+          "ReturnRules"
+        ],
+        "summary": "Get Return Rules",
+        "description": "Gets a collection of <a href=\"https://docs.kibocommerce.com/help/return-rules\">return rules</a> according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "The start index for pagination.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for pagination.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The sort by parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "The response groups parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRuleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRuleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRuleCollection"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ReturnRules"
+        ],
+        "summary": "Create Return Rule",
+        "description": "Creates a new <a href=\"https://docs.kibocommerce.com/help/return-rules\">return rule</a>.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReturnRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/return/{code}": {
+      "get": {
+        "tags": [
+          "ReturnRules"
+        ],
+        "summary": "Get Return Rule by Code",
+        "description": "Gets <a href=\"https://docs.kibocommerce.com/help/return-rules\">return rule details</a> by code.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the Return rule.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ReturnRules"
+        ],
+        "summary": "Update Return Rule",
+        "description": "Updates an existing <a href=\"https://docs.kibocommerce.com/help/return-rules\">return rule</a>.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the Return rule to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReturnRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnRule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ReturnRules"
+        ],
+        "summary": "Delete Return Rule",
+        "description": "Deletes a <a href=\"https://docs.kibocommerce.com/help/return-rules\">return rule</a> by code.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the Return rule to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/rules/return/{code}/rank": {
+      "put": {
+        "tags": [
+          "ReturnRules"
+        ],
+        "summary": "Update Return Rule Rank",
+        "description": "Updates the rank for a <a href=\"https://docs.kibocommerce.com/help/return-rules\">return rule</a> and rearranges the ranks of all other rules accordingly.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRankRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/rules/safetystock": {
+      "get": {
+        "tags": [
+          "SafetyStockRules"
+        ],
+        "summary": "Get Safety Stock Rules",
+        "description": "Gets a collection of <a href=\"https://docs.kibocommerce.com/help/safety-stock-rules\">safety stock rules</a> according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "The start index for pagination.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for pagination.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The sort by parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseGroups",
+            "in": "query",
+            "description": "The response groups parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRuleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRuleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRuleCollection"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SafetyStockRules"
+        ],
+        "summary": "Create Safety Stock Rule",
+        "description": "Creates a new <a href=\"https://docs.kibocommerce.com/help/safety-stock-rules\">safety stock rule</a>.",
+        "requestBody": {
+          "description": "The safety stock rule to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SafetyStockRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/safetystock/{code}": {
+      "get": {
+        "tags": [
+          "SafetyStockRules"
+        ],
+        "summary": "Get Safety Stock Rule by Code",
+        "description": "Gets <a href=\"https://docs.kibocommerce.com/help/safety-stock-rules\">safety stock rule details</a> by code.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the safety stock rule.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SafetyStockRules"
+        ],
+        "summary": "Update Safety Stock Rule",
+        "description": "Updates an existing <a href=\"https://docs.kibocommerce.com/help/safety-stock-rules\">safety stock rule</a>.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the safety stock rule to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The updated safety stock rule.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SafetyStockRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyStockRule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SafetyStockRules"
+        ],
+        "summary": "Delete Safety Stock Rule",
+        "description": "Deletes a <a href=\"https://docs.kibocommerce.com/help/safety-stock-rules\">safety stock rule</a> by code.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of the safety stock rule to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commerce/rules/safetystock/{code}/rank": {
+      "put": {
+        "tags": [
+          "SafetyStockRules"
+        ],
+        "summary": "Update Safety Stock Rule Rank",
+        "description": "Updates the rank for a <a href=\"https://docs.kibocommerce.com/help/safety-stock-rules\">safety stock rule</a> and rearranges the ranks of all other rules accordingly.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRankRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -15716,10 +17061,6 @@
       "x-displayName": "Categories"
     },
     {
-      "name": "searchCategoryAttributes",
-      "x-displayName": "searchCategoryAttributes"
-    },
-    {
       "name": "CategoryAttributeDefinition",
       "x-displayName": "CategoryAttributeDefinition"
     },
@@ -15734,10 +17075,6 @@
     {
       "name": "Discounts",
       "x-displayName": "Discounts"
-    },
-    {
-      "name": "Discount",
-      "x-displayName": "Discount"
     },
     {
       "name": "DiscountSettings",
@@ -15784,6 +17121,14 @@
       "x-displayName": "ProductQuickEdit"
     },
     {
+      "name": "ProductRules",
+      "x-displayName": "ProductRules"
+    },
+    {
+      "name": "ProductRuleUsages",
+      "x-displayName": "ProductRuleUsages"
+    },
+    {
       "name": "ProductSortDefinitions",
       "x-displayName": "ProductSortDefinitions"
     },
@@ -15798,6 +17143,18 @@
     {
       "name": "Publishing",
       "x-displayName": "Publishing"
+    },
+    {
+      "name": "PurchaseLimitRules",
+      "x-displayName": "PurchaseLimitRules"
+    },
+    {
+      "name": "ReturnRules",
+      "x-displayName": "ReturnRules"
+    },
+    {
+      "name": "SafetyStockRules",
+      "x-displayName": "SafetyStockRules"
     },
     {
       "name": "SearchSynonyms",
@@ -15862,12 +17219,10 @@
       "tags": [
         "ProductAttributes",
         "Categories",
-        "searchCategoryAttributes",
         "CategoryAttributeDefinition",
         "CouponSets",
         "Currency",
         "Discounts",
-        "Discount",
         "DiscountSettings",
         "Facets",
         "MasterCatalogPublishSettings",
@@ -15879,10 +17234,15 @@
         "ProductOptions",
         "ProductProperties",
         "ProductQuickEdit",
+        "ProductRules",
+        "ProductRuleUsages",
         "ProductSortDefinitions",
         "ProductTypes",
         "ProductPublishing",
         "Publishing",
+        "PurchaseLimitRules",
+        "ReturnRules",
+        "SafetyStockRules",
         "SearchSynonyms",
         "SearchTuningRules",
         "SearchCategorySuggestSettings",
@@ -16152,57 +17512,6 @@
         },
         "additionalProperties": false,
         "description": "Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display a category in multiple languages yet manage it as a single category internally."
-      },
-      "Expression": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Container or Predicate",
-            "nullable": true
-          },
-          "logicalOperator": {
-            "type": "string",
-            "description": "And or Or (if Container with More than one Node)",
-            "nullable": true
-          },
-          "nodes": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            },
-            "nullable": true
-          },
-          "left": {
-            "type": "string",
-            "description": "The field target of a predicate",
-            "nullable": true
-          },
-          "operator": {
-            "type": "string",
-            "description": "The operator of a predicate",
-            "nullable": true
-          },
-          "right": {
-            "description": "The literal values of a predicate",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DynamicExpression": {
-        "type": "object",
-        "properties": {
-          "text": {
-            "type": "string",
-            "nullable": true
-          },
-          "tree": {
-            "$ref": "#/components/schemas/Expression"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Category"
       },
       "ExtensibleAttributeMetadataItem": {
         "required": [
@@ -16726,6 +18035,52 @@
         "additionalProperties": false,
         "description": "Non-pages collection of currency-exchange-rates."
       },
+      "CustomPropertyValues": {
+        "type": "object",
+        "properties": {
+          "value1": {
+            "type": "string",
+            "nullable": true
+          },
+          "value2": {
+            "type": "string",
+            "nullable": true
+          },
+          "value3": {
+            "type": "string",
+            "nullable": true
+          },
+          "value4": {
+            "type": "string",
+            "nullable": true
+          },
+          "value5": {
+            "type": "string",
+            "nullable": true
+          },
+          "value6": {
+            "type": "string",
+            "nullable": true
+          },
+          "value7": {
+            "type": "string",
+            "nullable": true
+          },
+          "value8": {
+            "type": "string",
+            "nullable": true
+          },
+          "value9": {
+            "type": "string",
+            "nullable": true
+          },
+          "value10": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DiscountLocalizedContent": {
         "required": [
           "name"
@@ -16749,6 +18104,9 @@
             "type": "string",
             "description": "Promotional text or HTML that can be utilized as friendly content like \"Buy this product now and get X!\"",
             "nullable": true
+          },
+          "customPropertyValues": {
+            "$ref": "#/components/schemas/CustomPropertyValues"
           },
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"
@@ -16805,19 +18163,6 @@
         },
         "additionalProperties": false
       },
-      "TargetedCategory": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Unique identifier of the category to which the discount applies.",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Category to discount. When a discount applies to a category, all products in the category are discounted."
-      },
       "TargetedProduct": {
         "type": "object",
         "properties": {
@@ -16829,43 +18174,6 @@
         },
         "additionalProperties": false,
         "description": "Product to discount."
-      },
-      "TargetedShippingMethod": {
-        "required": [
-          "code"
-        ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "maxLength": 64,
-            "minLength": 0,
-            "type": "string",
-            "description": "Unique identifier of the shipping method as it appears in the SiteShippingMethod property of the Shipping Settings\r\nresource."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the shipping method as it appears in SiteShippingMethodLocalizedContent of the Shipping Settings resource.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping\r\nSettings resource."
-      },
-      "TargetedShippingZone": {
-        "required": [
-          "zone"
-        ],
-        "type": "object",
-        "properties": {
-          "zone": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string",
-            "description": "Indicates the shipping zone that this discount is valid for.  If zone is provided the\r\nmethod selected must be valid for the zone and both populated in the order for the discount\r\nto be valid."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping\r\nSettings resource."
       },
       "ThresholdMessageLocalizedContent": {
         "required": [
@@ -17018,6 +18326,28 @@
         },
         "additionalProperties": false
       },
+      "CustomProperty": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DiscountSettings": {
         "type": "object",
         "properties": {
@@ -17032,6 +18362,14 @@
           "doNotApplyToHandlingFees": {
             "type": "boolean",
             "description": "Prevents discounts from applying to handling fees",
+            "nullable": true
+          },
+          "customProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomProperty"
+            },
+            "description": "Discount settings additional custom properties for storing property codes and names.",
             "nullable": true
           }
         },
@@ -18840,6 +20178,84 @@
         "additionalProperties": false,
         "description": "Aggregates the individual results of update actions per product update"
       },
+      "ProductRuleCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsProductRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExpressionFieldDefinitionCollection": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ProductRuleUsage": {
+        "type": "object",
+        "properties": {
+          "ruleType": {
+            "type": "string",
+            "description": "The type of rule this ProductRule belongs to.",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "description": "Unique identifier of the ProductRule. System-supplied and read-only.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductRuleUsageCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductRuleUsage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ProductSortExpression": {
         "required": [
           "field"
@@ -19253,6 +20669,363 @@
         },
         "additionalProperties": false,
         "description": "Non-paged collection of PublishSets."
+      },
+      "PurchaseLimitRule": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Unique identifier of the PurchaseLimit.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "PurchaseLimit name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "PurchaseLimit description",
+            "nullable": true
+          },
+          "maxQty": {
+            "type": "integer",
+            "description": "Maximum quantity of the PurchaseLimit",
+            "format": "int32"
+          },
+          "productRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of product rule codes that apply to the PurchaseLimit",
+            "nullable": true
+          },
+          "customerRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of customer rule codes that apply to the PurchaseLimit",
+            "nullable": true
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Rank of the PurchaseLimit",
+            "format": "int32"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates if the PurchaseLimit is enabled",
+            "nullable": true
+          },
+          "validForAllSites": {
+            "type": "boolean",
+            "description": "Indicates if the PurchaseLimit is valid for all sites",
+            "nullable": true
+          },
+          "validSites": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "List of site IDs that the PurchaseLimit is valid for",
+            "nullable": true
+          },
+          "metaData": {
+            "description": "Metadata for the PurchaseLimit which is a json format, used to store additional information",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Purchase Limit Rule contract"
+      },
+      "PurchaseLimitRuleCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseLimitRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Purchase Limit collection contract"
+      },
+      "UpdateRankRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Gets or sets the code of the rule to be updated.\r\nIt can be SafetyStock Code , PurchaseLimit Code or Return Rule Code",
+            "nullable": true
+          },
+          "oldRank": {
+            "type": "integer",
+            "description": "Gets or sets the old rank of the rule.",
+            "format": "int32"
+          },
+          "newRank": {
+            "type": "integer",
+            "description": "Gets or sets the new rank of the rule.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a request to update the rank of a SafetyStock, PurchaseLimit and Return Rule."
+      },
+      "ReturnRule": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Unique identifier of the Return.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Return name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Return description",
+            "nullable": true
+          },
+          "maxQty": {
+            "type": "integer",
+            "description": "Maximum quantity of the Return",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxDays": {
+            "type": "integer",
+            "description": "Maximum Days of the Return",
+            "format": "int32",
+            "nullable": true
+          },
+          "productRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of product rule codes that apply to the Return",
+            "nullable": true
+          },
+          "customerRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of customer rule codes that apply to the Return",
+            "nullable": true
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Rank of the Return",
+            "format": "int32"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates if the Return is enabled",
+            "nullable": true
+          },
+          "isReturnable": {
+            "type": "boolean",
+            "description": "Indicates if the Return is IsReturnable",
+            "nullable": true
+          },
+          "validForAllSites": {
+            "type": "boolean",
+            "description": "Indicates if the ReturnRule is valid for all sites",
+            "nullable": true
+          },
+          "validSites": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "List of site IDs that the ReturnRule is valid for",
+            "nullable": true
+          },
+          "metaData": {
+            "description": "Metadata for the ReturnRule which is a json format, used to store additional information",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Return Rule contract"
+      },
+      "ReturnRuleCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReturnRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Return Rule collection contract"
+      },
+      "ProductRuleCode": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Unique identifier of the ProductRule. System-supplied and read-only.",
+            "nullable": true
+          },
+          "masterCatalogId": {
+            "type": "integer",
+            "description": "Master Catalog Id of the ProductRule.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SafetyStockRule": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Gets or sets the unique identifier of the SafetyStockRule.\r\nIf not given provided on create one will be assigned. Read-only after creation.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Gets or sets the name of the SafetyStockRule.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Gets or sets the description of the SafetyStockRule.",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Gets or sets whether the SafetyStockRule is enabled.",
+            "nullable": true
+          },
+          "productRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductRuleCode"
+            },
+            "description": "Gets or sets the list of product rules associated with the SafetyStockRule.",
+            "nullable": true
+          },
+          "locationCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Gets or sets the list of location codes where the SafetyStockRule applies.",
+            "nullable": true
+          },
+          "locationGroups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Gets or sets the list of location groups where the SafetyStockRule applies.",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Gets or sets the quantity defined by the SafetyStockRule.",
+            "format": "int32",
+            "nullable": true
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Gets or sets the rank of the SafetyStockRule.\r\nWhen not given or zero, a value will be assigned.",
+            "format": "int32"
+          },
+          "metaData": {
+            "description": "Metadata for the Safety stock rule which is a json format, used to store additional information",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a rule for safety stock in the product administration system."
+      },
+      "SafetyStockRuleCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SafetyStockRule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a collection of SafetyStockRule objects with pagination information."
       },
       "SynonymDefinition": {
         "type": "object",
@@ -20775,7 +22548,7 @@
             "nullable": true
           },
           "dynamicExpression": {
-            "$ref": "#/components/schemas/DynamicExpression"
+            "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
           },
           "productCount": {
             "type": "integer",
@@ -21002,6 +22775,7 @@
             "items": {
               "$ref": "#/components/schemas/ProductLocalizedSEOContent"
             },
+            "description": "The default content SEO content of a product. This content is always in the default language of the MasterCatalog",
             "nullable": true
           },
           "options": {
@@ -21338,7 +23112,44 @@
         "additionalProperties": false,
         "description": "Active Effectivity Dates"
       },
-      "CatalogAdminsCustomerSegment": {
+      "CatalogAdminsExpression": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Container or Predicate",
+            "nullable": true
+          },
+          "logicalOperator": {
+            "type": "string",
+            "description": "And or Or (if Container with More than one Node)",
+            "nullable": true
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogAdminsExpression"
+            },
+            "nullable": true
+          },
+          "left": {
+            "type": "string",
+            "description": "The field target of a predicate",
+            "nullable": true
+          },
+          "operator": {
+            "type": "string",
+            "description": "The operator of a predicate",
+            "nullable": true
+          },
+          "right": {
+            "description": "The literal values of a predicate",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingRuntimeCustomerSegment": {
         "type": "object",
         "properties": {
           "id": {
@@ -21375,6 +23186,56 @@
         },
         "additionalProperties": false,
         "description": "A generic tag that can be used for any purpose."
+      },
+      "CatalogAdminsTargetedCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the category to which the discount applies.",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Category to discount. When a discount applies to a category, all products in the category are discounted."
+      },
+      "CatalogAdminsTargetedShippingMethod": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "maxLength": 64,
+            "minLength": 0,
+            "type": "string",
+            "description": "Unique identifier of the shipping method as it appears in the SiteShippingMethod property of the Shipping Settings\r\nresource."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the shipping method as it appears in SiteShippingMethodLocalizedContent of the Shipping Settings resource.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping\r\nSettings resource."
+      },
+      "CatalogAdminsTargetedShippingZone": {
+        "required": [
+          "zone"
+        ],
+        "type": "object",
+        "properties": {
+          "zone": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "description": "Indicates the shipping zone that this discount is valid for.  If zone is provided the\r\nmethod selected must be valid for the zone and both populated in the order for the discount\r\nto be valid."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping\r\nSettings resource."
       },
       "CatalogAdminsDiscountCollection": {
         "type": "object",
@@ -21429,7 +23290,7 @@
           "categories": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TargetedCategory"
+              "$ref": "#/components/schemas/CatalogAdminsTargetedCategory"
             },
             "description": "List of categories to discount. When a discount applies to a category, all products in the category are discounted.",
             "nullable": true
@@ -21442,7 +23303,7 @@
           "excludedCategories": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TargetedCategory"
+              "$ref": "#/components/schemas/CatalogAdminsTargetedCategory"
             },
             "description": "List of categories to exclude from the discount. Useful to exclude specific child categories.",
             "nullable": true
@@ -21476,7 +23337,7 @@
           "shippingMethods": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TargetedShippingMethod"
+              "$ref": "#/components/schemas/CatalogAdminsTargetedShippingMethod"
             },
             "description": "Shipping method that is eligible for shipping discounts. This is a shipping method defined in Shipping Settings.",
             "nullable": true
@@ -21484,7 +23345,7 @@
           "shippingZones": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TargetedShippingZone"
+              "$ref": "#/components/schemas/CatalogAdminsTargetedShippingZone"
             },
             "description": "Shipping Zones that are applicable for this discount",
             "nullable": true
@@ -21574,7 +23435,7 @@
           "customerSegments": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CatalogAdminsCustomerSegment"
+              "$ref": "#/components/schemas/PricingRuntimeCustomerSegment"
             },
             "description": "List of customer groups for which the discount applies",
             "nullable": true
@@ -21704,7 +23565,7 @@
             "nullable": true
           },
           "expression": {
-            "$ref": "#/components/schemas/DynamicExpression"
+            "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
           },
           "exclusiveLocationCodes": {
             "type": "array",
@@ -22100,6 +23961,48 @@
         "additionalProperties": false,
         "description": "Collection of products returned as a whole. A collection is not paged."
       },
+      "CatalogAdminsProductRule": {
+        "required": [
+          "ruleType"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Unique identifier of the ProductRule. System-supplied and read-only.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "ProductRule name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "ProductRule description",
+            "nullable": true
+          },
+          "scope": {
+            "type": "string",
+            "description": "Scope to which the ProductRule applies, valid values are: Product, Variant",
+            "nullable": true
+          },
+          "expression": {
+            "$ref": "#/components/schemas/CatalogAdminsCustomerDynamicExpression"
+          },
+          "metaData": {
+            "nullable": true
+          },
+          "ruleType": {
+            "type": "string",
+            "description": "The type of rule this ProductRule belongs to."
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
       "CatalogAdminsAttributeVocabularyValueDisplayInfo": {
         "type": "object",
         "properties": {
@@ -22200,6 +24103,20 @@
         },
         "additionalProperties": false,
         "description": "Search Merchandizing Rule"
+      },
+      "CatalogAdminsCustomerDynamicExpression": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "tree": {
+            "$ref": "#/components/schemas/CatalogAdminsExpression"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Category"
       },
       "CatalogAdminsCategoryPagedCollection": {
         "type": "object",

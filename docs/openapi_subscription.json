@@ -789,7 +789,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CommerceRuntimeShippingRate"
+                    "$ref": "#/components/schemas/SubscriptionRuntimeShippingRate"
                   }
                 }
               },
@@ -797,7 +797,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CommerceRuntimeShippingRate"
+                    "$ref": "#/components/schemas/SubscriptionRuntimeShippingRate"
                   }
                 }
               },
@@ -805,7 +805,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CommerceRuntimeShippingRate"
+                    "$ref": "#/components/schemas/SubscriptionRuntimeShippingRate"
                   }
                 }
               }
@@ -846,17 +846,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/SubscriptionRuntimeOrder"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/SubscriptionRuntimeOrder"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/SubscriptionRuntimeOrder"
                 }
               }
             }
@@ -2410,52 +2410,6 @@
         "additionalProperties": false,
         "description": "Pricing details for the product listed on a cart item, including the original price, discount amount, and final price."
       },
-      "AppliedProductDiscount": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommerceRuntimeAppliedDiscount"
-          }
-        ],
-        "properties": {
-          "productQuantity": {
-            "type": "integer",
-            "description": "Quantity of products priced. This is always one unless calculating pricing on the order or cart.",
-            "format": "int32",
-            "nullable": true,
-            "deprecated": true
-          },
-          "impactPerUnit": {
-            "type": "number",
-            "description": "Impact for a quantity of one product; that is, the value of the discount for one product.",
-            "format": "double",
-            "nullable": true,
-            "deprecated": true
-          },
-          "appliesToSalePrice": {
-            "type": "boolean",
-            "description": "Determines if the discount applies to the sale price of the order",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Details of the discount applied to a product."
-      },
-      "ShippingDiscount": {
-        "type": "object",
-        "properties": {
-          "methodCode": {
-            "type": "string",
-            "description": "Unique identifier of the shipping method discount.",
-            "nullable": true
-          },
-          "discount": {
-            "$ref": "#/components/schemas/CommerceRuntimeAppliedDiscount"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Value of the shipping discount."
-      },
       "InventoryTags": {
         "type": "object",
         "properties": {
@@ -2491,293 +2445,11 @@
         },
         "additionalProperties": false
       },
-      "CommerceItem": {
-        "type": "object",
-        "properties": {
-          "localeCode": {
-            "type": "string",
-            "description": "Locale code for language that appears in text and descriptions on the site, for example, en_US. \r\nThis is not the currency code. Currently only en_US is supported.",
-            "nullable": true
-          },
-          "purchaseLocation": {
-            "type": "string",
-            "description": "The location where the product is being purchased.. default is null. Products can have different prices\r\nby purchaseLocation via custom priceListResolution...",
-            "nullable": true
-          },
-          "lineId": {
-            "type": "integer",
-            "description": "The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or\r\nin CommerceRuntime when a cart is converted to an order.",
-            "format": "int32",
-            "nullable": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/CommerceRuntimeProduct"
-          },
-          "quantity": {
-            "type": "integer",
-            "description": "Number of products ordered.",
-            "format": "int32"
-          },
-          "isRecurring": {
-            "type": "boolean",
-            "description": "If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.",
-            "nullable": true
-          },
-          "isTaxable": {
-            "type": "boolean",
-            "description": "Not implemented. If true, the cart item is eligible for tax.",
-            "nullable": true
-          },
-          "subtotal": {
-            "type": "number",
-            "description": "Line item subtotal (quantity multiplied by price) before discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "extendedTotal": {
-            "type": "number",
-            "description": "Line item extended total (quantity multiplied by unit extended price) before discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "taxableTotal": {
-            "type": "number",
-            "description": "Line item subtotal (quantity multiplied by price) before discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountTotal": {
-            "type": "number",
-            "description": "How much the shopper saves with the applied discount or sale price. This is a negative number.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountedTotal": {
-            "type": "number",
-            "description": "Subtotal minus any discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "itemTaxTotal": {
-            "type": "number",
-            "description": "Total price of taxes that apply to products in this item.",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingTaxTotal": {
-            "type": "number",
-            "description": "Total price of taxes that apply to the shipping of this item.",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingTotal": {
-            "type": "number",
-            "description": "Total price of shipping that apply to this item.",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingAmount": {
-            "type": "number",
-            "description": "Handling Amount for this item",
-            "format": "double",
-            "nullable": true
-          },
-          "feeTotal": {
-            "type": "number",
-            "description": "Not implemented. Total cost of fees that apply to this item.",
-            "format": "double",
-            "nullable": true
-          },
-          "total": {
-            "type": "number",
-            "description": "Total price of this cart item taking into account any discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "unitPrice": {
-            "$ref": "#/components/schemas/CommerceUnitPrice"
-          },
-          "productDiscount": {
-            "$ref": "#/components/schemas/CommerceRuntimeAppliedLineItemProductDiscount"
-          },
-          "productDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAppliedLineItemProductDiscount"
-            },
-            "description": "A list of discounts applied to the product",
-            "nullable": true
-          },
-          "shippingDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAppliedLineItemShippingDiscount"
-            },
-            "description": "A discount applied to the shipping",
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "description": "Custom data for a given vendor set within the commerce process.",
-            "nullable": true
-          },
-          "taxData": {
-            "type": "object",
-            "description": "Storage for any additional/custom tax data.",
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          },
-          "shippingAmountBeforeDiscountsAndAdjustments": {
-            "type": "number",
-            "description": "Shipping amount before Discounts and adjustments",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderAdjustment": {
-            "type": "number",
-            "description": "Order Level Manual Adjustment applied to this Item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderDiscount": {
-            "type": "number",
-            "description": "Order Level Discount applied to this Item",
-            "format": "double",
-            "nullable": true
-          },
-          "adjustedLineItemSubtotal": {
-            "type": "number",
-            "description": "Order Level taxable sub total",
-            "format": "double",
-            "nullable": true
-          },
-          "totalWithoutWeightedShippingAndHandling": {
-            "type": "number",
-            "description": "Taxable Subtotal including Weighted Order amounts",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderTax": {
-            "type": "number",
-            "description": "Order Level tax applied to this Item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderShipping": {
-            "type": "number",
-            "description": "Order Level Shipping applied to this Item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderShippingDiscount": {
-            "type": "number",
-            "description": "Order Level Shipping discount applied to this Item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderShippingManualAdjustment": {
-            "type": "number",
-            "description": "Order Level Shipping Manual Adjustment applied to this Item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderShippingTax": {
-            "type": "number",
-            "description": "Order Level Shipping Tax applied to this Item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderHandlingFee": {
-            "type": "number",
-            "description": "Order Level handling fee applied to this item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderHandlingFeeTax": {
-            "type": "number",
-            "description": "Order Level handling fee tax applied to this item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderHandlingFeeDiscount": {
-            "type": "number",
-            "description": "Order Level handling fee discount applied to this item",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderDuty": {
-            "type": "number",
-            "description": "Order Level Duty applied to this Item",
-            "format": "double",
-            "nullable": true
-          },
-          "totalWithWeightedShippingAndHandling": {
-            "type": "number",
-            "description": "Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs",
-            "format": "double",
-            "nullable": true
-          },
-          "weightedOrderHandlingAdjustment": {
-            "type": "number",
-            "description": "Order level handling adjusment that applies to this item.",
-            "format": "double",
-            "nullable": true
-          },
-          "autoAddDiscountId": {
-            "type": "integer",
-            "description": "Track the discoutid from which the item was auto added",
-            "format": "int32",
-            "nullable": true
-          },
-          "isAssemblyRequired": {
-            "type": "boolean",
-            "description": "Assembly Required for this order item"
-          },
-          "childItemIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "List of Child Item Ids for this order item",
-            "nullable": true
-          },
-          "parentItemId": {
-            "type": "string",
-            "description": "Indicates Parent Item Id for this order item",
-            "nullable": true
-          },
-          "inventoryTags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InventoryTags"
-            },
-            "nullable": true
-          },
-          "lineItemAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "dutyAmount": {
-            "type": "number",
-            "description": "Indicate Duty Amount for this item.",
-            "format": "double",
-            "nullable": true
-          },
-          "substituteInfo": {
-            "$ref": "#/components/schemas/SubstituteInfo"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Base class for cart and order items"
-      },
       "SubscriptionItem": {
         "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/CommerceItem"
+            "$ref": "#/components/schemas/SubscriptionRuntimeCommerceItem"
           }
         ],
         "properties": {
@@ -3658,218 +3330,6 @@
         },
         "additionalProperties": false
       },
-      "CommerceAggregate": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "description": "Unique identifier of the shopper who created the cart.",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "description": "Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).",
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "integer",
-            "description": "Unique identifier of the Tenant.",
-            "format": "int32",
-            "nullable": true
-          },
-          "siteId": {
-            "type": "integer",
-            "description": "Unique identifier of the Site.",
-            "format": "int32",
-            "nullable": true
-          },
-          "channelCode": {
-            "type": "string",
-            "description": "Unique identifier of the channel for this item.",
-            "nullable": true
-          },
-          "currencyCode": {
-            "type": "string",
-            "description": "ISO Currency Code. Currently, only USD is supported.",
-            "nullable": true
-          },
-          "visitId": {
-            "type": "string",
-            "description": "Identifies the Visit ID that was current when the order was placed or when the cart was last updated.",
-            "nullable": true
-          },
-          "webSessionId": {
-            "type": "string",
-            "description": "Identifies the web session used to place the order or last update the cart.",
-            "nullable": true
-          },
-          "customerInteractionType": {
-            "type": "string",
-            "description": "Determines the interaction type that a customer will use to create this object.\r\nValid values are: Website, Store, Call, Unknown",
-            "nullable": true
-          },
-          "fulfillmentInfo": {
-            "$ref": "#/components/schemas/FulfillmentInfo"
-          },
-          "orderDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAppliedDiscount"
-            },
-            "description": "The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.",
-            "nullable": true
-          },
-          "suggestedDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SuggestedDiscount"
-            },
-            "nullable": true
-          },
-          "rejectedDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SuggestedDiscount"
-            },
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "description": "Custom data for a given vendor set within the commerce process.",
-            "nullable": true
-          },
-          "taxData": {
-            "type": "object",
-            "description": "Storage for any additional/custom tax data.",
-            "nullable": true
-          },
-          "subtotal": {
-            "type": "number",
-            "description": "Combined price for all cart items, including all selected options but excluding any discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountedSubtotal": {
-            "type": "number",
-            "description": "Combined price for all cart items, including all selected options as well as any discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountTotal": {
-            "type": "number",
-            "description": "Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountedTotal": {
-            "type": "number",
-            "description": "Subtotal minus the discounted total",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingTotal": {
-            "type": "number",
-            "description": "Shipping does not appear on cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingSubTotal": {
-            "type": "number",
-            "description": "Shipping total without discounts applied.",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingTaxTotal": {
-            "type": "number",
-            "description": "Not implemented. Tax does not appear on cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingTaxTotal": {
-            "type": "number",
-            "description": "Total tax on handling",
-            "format": "double",
-            "nullable": true
-          },
-          "itemTaxTotal": {
-            "type": "number",
-            "description": "Not implemented. Tax does not appear on cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "taxTotal": {
-            "type": "number",
-            "description": "Tax does not appear on cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "feeTotal": {
-            "type": "number",
-            "description": "Not implemented. Total cost of fees for all items in the cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "total": {
-            "type": "number",
-            "description": "Final total amount of the order including all discounts, shipping, and tax.",
-            "format": "double",
-            "nullable": true
-          },
-          "lineItemSubtotalWithOrderAdjustments": {
-            "type": "number",
-            "description": "Line Item Subtotals with Order Adjustments",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingAmountBeforeDiscountsAndAdjustments": {
-            "type": "number",
-            "description": "Shipping Amount before discount and adjustments",
-            "format": "double",
-            "nullable": true
-          },
-          "lastValidationDate": {
-            "type": "string",
-            "description": "Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. \r\nIf changed, it updates LastValidationDate.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "expirationDate": {
-            "type": "string",
-            "description": "When the order will no longer be active. That is, the order is considered abandoned. \r\nOrders of anonymous shoppers expire after 14 days of inactivity. \r\nAn order never expires for shoppers who are logged into their account. \r\nDate in UTC Date/Time.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "changeMessages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeChangeMessage"
-            },
-            "description": "List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.",
-            "nullable": true
-          },
-          "extendedProperties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExtendedProperty"
-            },
-            "description": "Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.",
-            "nullable": true
-          },
-          "discountThresholdMessages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeThresholdMessage"
-            },
-            "description": "List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.",
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Base class for cart and order"
-      },
       "AlternateContact": {
         "type": "object",
         "properties": {
@@ -3924,6 +3384,34 @@
           "giftMessage": {
             "type": "string",
             "description": "Item level gift message",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReturnRuleInfo": {
+        "type": "object",
+        "properties": {
+          "isReturnable": {
+            "type": "boolean",
+            "description": "Indicate product is returnable or not",
+            "nullable": true
+          },
+          "maxQty": {
+            "type": "integer",
+            "description": "Maximum quantity that can be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxDays": {
+            "type": "integer",
+            "description": "Return window within which an item can be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "ruleCode": {
+            "type": "string",
+            "description": "Return rule code which is applied",
             "nullable": true
           }
         },
@@ -4373,293 +3861,6 @@
         },
         "additionalProperties": false
       },
-      "ShipmentItem": {
-        "type": "object",
-        "properties": {
-          "lineId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "originalOrderItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "parentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "productCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "variationProductCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "optionAttributeFQN": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          },
-          "fulfillmentLocationCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "imageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "isTaxable": {
-            "type": "boolean"
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "unitPrice": {
-            "type": "number",
-            "format": "double"
-          },
-          "actualPrice": {
-            "type": "number",
-            "format": "double"
-          },
-          "overridePrice": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "itemDiscount": {
-            "type": "number",
-            "format": "double"
-          },
-          "lineItemCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "itemTax": {
-            "type": "number",
-            "format": "double"
-          },
-          "shipping": {
-            "type": "number",
-            "format": "double"
-          },
-          "shippingDiscount": {
-            "type": "number",
-            "format": "double"
-          },
-          "shippingTax": {
-            "type": "number",
-            "format": "double"
-          },
-          "handling": {
-            "type": "number",
-            "format": "double"
-          },
-          "handlingDiscount": {
-            "type": "number",
-            "format": "double"
-          },
-          "handlingTax": {
-            "type": "number",
-            "format": "double"
-          },
-          "duty": {
-            "type": "number",
-            "format": "double"
-          },
-          "isPackagedStandAlone": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "readyForPickupQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "backorderReleaseDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "measurements": {
-            "$ref": "#/components/schemas/CommerceRuntimePackageMeasurements"
-          },
-          "options": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeProductOption"
-            },
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "nullable": true
-          },
-          "taxData": {
-            "type": "object",
-            "nullable": true
-          },
-          "weightedShipmentAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "weightedLineItemTaxAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "weightedShippingAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "weightedShippingTaxAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "weightedHandlingAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "weightedHandlingTaxAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "weightedDutyAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "taxableShipping": {
-            "type": "number",
-            "format": "double"
-          },
-          "taxableLineItemCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "taxableHandling": {
-            "type": "number",
-            "format": "double"
-          },
-          "fulfillmentFields": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeFulfillmentField"
-            },
-            "nullable": true
-          },
-          "isAssemblyRequired": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "parentItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "childItemIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "giftCards": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeGiftCard"
-            },
-            "nullable": true
-          },
-          "locatorName": {
-            "type": "string",
-            "nullable": true
-          },
-          "inventoryTags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InventoryTags"
-            },
-            "nullable": true
-          },
-          "lineItemAdjustment": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "isReservedInventory": {
-            "type": "boolean"
-          },
-          "cartItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "sku": {
-            "type": "string",
-            "nullable": true
-          },
-          "partNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "upc": {
-            "type": "string",
-            "nullable": true
-          },
-          "isSubstitutable": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "originalLineId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "originalQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "substituteQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "purchaseLocation": {
-            "type": "string",
-            "nullable": true
-          },
-          "isGift": {
-            "type": "boolean",
-            "description": "Indicate item is gift or not",
-            "nullable": true
-          },
-          "giftMessage": {
-            "type": "string",
-            "description": "Gift message for item",
-            "nullable": true
-          },
-          "priceMode": {
-            "type": "string",
-            "description": "Determines if the item is using external or internal(catalog) pricing",
-            "nullable": true
-          },
-          "serialNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "condition": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "FulfillmentShopperNotes": {
         "type": "object",
         "properties": {
@@ -4811,55 +4012,6 @@
         },
         "additionalProperties": false
       },
-      "FulfillmentServiceInventoryAllocation": {
-        "type": "object",
-        "properties": {
-          "auditInfo": {
-            "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
-          },
-          "condition": {
-            "type": "string",
-            "nullable": true
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "fulfilledDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "inventoryId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "lotCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "serialNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "sku": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "FulfillmentServiceInventoryTag": {
         "type": "object",
         "properties": {
@@ -4907,6 +4059,53 @@
         },
         "additionalProperties": false
       },
+      "FulfillmentServiceReturnRuleInfo": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true
+          },
+          "isReturnable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "maxDays": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxQty": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ruleCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FulfillmentServiceSubstituteInfo": {
+        "type": "object",
+        "properties": {
+          "optIn": {
+            "type": "string",
+            "nullable": true
+          },
+          "substituteProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "substituteVariantCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "FulfillmentServiceSubstituteReason": {
         "type": "object",
         "properties": {
@@ -4920,480 +4119,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "Order": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommerceAggregate"
-          }
-        ],
-        "properties": {
-          "orderNumber": {
-            "type": "integer",
-            "description": "Order Number. This is an integer that is only assigned after an order is placed and enters the open state.",
-            "format": "int32",
-            "nullable": true
-          },
-          "locationCode": {
-            "type": "string",
-            "description": "Identifies the location at which the order was placed if the order was placed externally.",
-            "nullable": true
-          },
-          "version": {
-            "type": "string",
-            "description": "Version for concurrency purposes",
-            "nullable": true
-          },
-          "parentOrderId": {
-            "type": "string",
-            "description": "If this Order has a parent order, this should be the parent's ID.",
-            "nullable": true
-          },
-          "parentOrderNumber": {
-            "type": "integer",
-            "description": "If this order has a parent order, this should be the parent's Mozu.CommerceRuntime.Contracts.Orders.Order.OrderNumber.",
-            "format": "int32",
-            "nullable": true
-          },
-          "parentCheckoutId": {
-            "type": "string",
-            "description": "If this order originated from a multi-ship enabled site, this is the identifier of the originating checkout.",
-            "nullable": true
-          },
-          "parentCheckoutNumber": {
-            "type": "integer",
-            "description": "If this order originated from a multi-ship enabled site, this is the number of the originating checkout.",
-            "format": "int32",
-            "nullable": true
-          },
-          "partialOrderNumber": {
-            "type": "integer",
-            "description": "If this order originated from a checkout, this is a sequence number out of the total orders created from that checkout.",
-            "format": "int32",
-            "nullable": true
-          },
-          "partialOrderCount": {
-            "type": "integer",
-            "description": "If this order originated from a checkout, this is the total number of orders created from that checkout.",
-            "format": "int32",
-            "nullable": true
-          },
-          "isPartialOrder": {
-            "type": "boolean",
-            "description": "Returns {true} if this order originated from a checkout and has sibling partial orders, otherwise {false}."
-          },
-          "parentReturnId": {
-            "type": "string",
-            "description": "If this order was created as part of a return, this should be the return's ID.",
-            "nullable": true
-          },
-          "parentReturnNumber": {
-            "type": "integer",
-            "description": "If this order was created as part of a return, this should be the return's ReturnNumber.",
-            "format": "int32",
-            "nullable": true
-          },
-          "originalCartId": {
-            "type": "string",
-            "description": "Unique identifier for the cart that was converted to order.",
-            "nullable": true
-          },
-          "originalQuoteId": {
-            "type": "string",
-            "description": "If this order originated from a quote, this is the identifier of the originating quote.",
-            "nullable": true
-          },
-          "originalQuoteNumber": {
-            "type": "integer",
-            "description": "If this order originated from a quote, this is the number of the originating quote.",
-            "format": "int32",
-            "nullable": true
-          },
-          "priceListCode": {
-            "type": "string",
-            "description": "Pricelist code for the order",
-            "nullable": true
-          },
-          "availableActions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Actions available to the payment",
-            "nullable": true
-          },
-          "shopperNotes": {
-            "$ref": "#/components/schemas/CommerceRuntimeShopperNotes"
-          },
-          "customerAccountId": {
-            "type": "integer",
-            "description": "Unique identifier of the customer account.",
-            "format": "int32",
-            "nullable": true
-          },
-          "customerTaxId": {
-            "type": "string",
-            "description": "The customers tax ID.  If Customer Account ID exists in the system, will set this.",
-            "nullable": true
-          },
-          "isTaxExempt": {
-            "type": "boolean",
-            "description": "Unique identifier of the customer account.",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "description": "Email address of the customer at the time the order is placed.",
-            "nullable": true
-          },
-          "alternateContact": {
-            "$ref": "#/components/schemas/AlternateContact"
-          },
-          "ipAddress": {
-            "type": "string",
-            "description": "IP address of the user placing the order. (User or customer?)",
-            "nullable": true
-          },
-          "sourceDevice": {
-            "type": "string",
-            "description": "Source device of the user placing the order. (User or customer?)",
-            "nullable": true
-          },
-          "acceptsMarketing": {
-            "type": "boolean",
-            "description": "Does the customer accept marketing",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "description": "Current status of the order, which can be viewed in OrderStatusConst. System-supplied and read-only.",
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "description": "Is this Order Online or Offline? Online means shopper entered at checkout, offline means a phone order.",
-            "nullable": true
-          },
-          "paymentStatus": {
-            "type": "string",
-            "description": "Current status of payment, which can be \"Null,\" \"AwaitingCheck,\" \"AwaitingPayment,\" \"Paid,\" \"Authorized,\" or \"Void.\" \r\nSystem-supplied and read-only.",
-            "nullable": true
-          },
-          "returnStatus": {
-            "type": "string",
-            "description": "System-supplied and read-only.",
-            "nullable": true
-          },
-          "isEligibleForReturns": {
-            "type": "boolean",
-            "description": "Marker for determining if the order is a) complete or b) has some items that are shipped and not part of any other return"
-          },
-          "totalCollected": {
-            "type": "number",
-            "description": "Total amount of money collected on the order via payments.",
-            "format": "double"
-          },
-          "attributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeOrderAttribute"
-            },
-            "nullable": true
-          },
-          "adjustment": {
-            "$ref": "#/components/schemas/Adjustment"
-          },
-          "shippingAdjustment": {
-            "$ref": "#/components/schemas/Adjustment"
-          },
-          "handlingAdjustment": {
-            "$ref": "#/components/schemas/Adjustment"
-          },
-          "shippingDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingDiscount"
-            },
-            "nullable": true
-          },
-          "handlingDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAppliedDiscount"
-            },
-            "description": "The list of historically-applied handling discounts.  The active one will have IsExcluded == false",
-            "nullable": true
-          },
-          "handlingAmount": {
-            "type": "number",
-            "description": "Order level handling fees excluding any discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingSubTotal": {
-            "type": "number",
-            "description": "Handling fees for the Order as well as OrderItems (e.g. if the Order has a $5 handling fee and an OrderItem has a $2 handling fee per item quantity and the quantity of items is 2 then the value in this property would be $9)",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingTotal": {
-            "type": "number",
-            "description": "Handling fees including any discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "dutyAmount": {
-            "type": "number",
-            "description": "Order level duty or tariff amount. Does not take into account duties or tariffs specifically on items on the order",
-            "format": "double",
-            "nullable": true
-          },
-          "dutyTotal": {
-            "type": "number",
-            "description": "Duties or tariffs for the Order as well as OrderItems (e.g. if the Order has a $5 duty or tariff for any reason and an OrderItem has a $2 duty or tariff then the value in this property would be $7)",
-            "format": "double",
-            "nullable": true
-          },
-          "fulfillmentStatus": {
-            "type": "string",
-            "description": "Current fulfillment status, which can be \"NotFulfilled,\", \"PartiallyFulfilled\", or \"Fufilled.\" \r\nSystem-supplied and read-only.  Values are available in FulfillmentStatusConst of this class.",
-            "nullable": true
-          },
-          "isFulfillable": {
-            "type": "boolean",
-            "description": "Flag to indicate whether it is safe to proceed with fulfillment on shipments on the order."
-          },
-          "submittedDate": {
-            "type": "string",
-            "description": "When the customer placed (submitted) the order.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "shipmentCreationOffset": {
-            "type": "integer",
-            "description": "Release Shipment After(in minutes) (Order Submitted Date).",
-            "format": "int32",
-            "nullable": true
-          },
-          "releaseShipmentDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "cancelledDate": {
-            "type": "string",
-            "description": "Date the order was cancelled.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "closedDate": {
-            "type": "string",
-            "description": "Date the order was closed. A closed order means that the order has been processed and items shipped.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "acceptedDate": {
-            "type": "string",
-            "description": "When the order was accepted by the merchant",
-            "format": "date-time",
-            "nullable": true
-          },
-          "notes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OrderNote"
-            },
-            "description": "Internal notes that a merchant may add to the order. Maximum 250 characters.",
-            "nullable": true
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeOrderItem"
-            },
-            "description": "List of items in the order.",
-            "nullable": true
-          },
-          "validationResults": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OrderValidationResult"
-            },
-            "description": "Validation results for the order when processes against validation capabilities.",
-            "nullable": true
-          },
-          "billingInfo": {
-            "$ref": "#/components/schemas/BillingInfo"
-          },
-          "payments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Payment"
-            },
-            "description": "Payment transaction associated with this order. It is the entire payment interchange between the merchant \r\nwho is forwarding the customer's payment information and the payment service who is authorizing and \r\ncapturing payment. Payment can be either by credit card, check, or PayPal.",
-            "nullable": true
-          },
-          "refunds": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Refund"
-            },
-            "description": "Refunds associated with this order. A refund is a single exchange of money from merchant to customer\r\nthat either encapsulates a refund to a credit card or an issuance of a store credit.\r\nRefunds does not reduce the 'amount collected' on an order and it is possible for refunds to exceed the total order amount.",
-            "nullable": true
-          },
-          "credits": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeCredit"
-            },
-            "nullable": true
-          },
-          "packages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimePackage"
-            },
-            "description": "Shipping package associated with this order.",
-            "nullable": true
-          },
-          "pickups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Pickup"
-            },
-            "description": "Fulfillment pickups associated with this order.",
-            "nullable": true
-          },
-          "digitalPackages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DigitalPackage"
-            },
-            "description": "Fulfillment digital packages associated with this order.",
-            "nullable": true
-          },
-          "shipments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeShipment"
-            },
-            "description": "Package shipments associated with this order.",
-            "nullable": true
-          },
-          "isDraft": {
-            "type": "boolean",
-            "description": "Is this order a draft version",
-            "nullable": true
-          },
-          "hasDraft": {
-            "type": "boolean",
-            "description": "Does this order have a draft version.",
-            "nullable": true
-          },
-          "isImport": {
-            "type": "boolean",
-            "description": "Was this order initiated from an external system",
-            "nullable": true
-          },
-          "isHistoricalImport": {
-            "type": "boolean",
-            "description": "Indicates this was an order in a terminal state (completed/canceled) that was imported into the system for historical purposes.",
-            "nullable": true
-          },
-          "importDate": {
-            "type": "string",
-            "description": "Date this item was imported",
-            "format": "date-time",
-            "nullable": true
-          },
-          "isUnified": {
-            "type": "boolean",
-            "description": "Was this order created by the Unified platform."
-          },
-          "externalId": {
-            "type": "string",
-            "description": "An order number to link this order to an external system",
-            "nullable": true
-          },
-          "couponCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Coupon codes associated with this order.  Only set on order import.",
-            "nullable": true
-          },
-          "invalidCoupons": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvalidCoupon"
-            },
-            "description": "A list of invalid coupons that were attempted on the order",
-            "nullable": true
-          },
-          "amountAvailableForRefund": {
-            "type": "number",
-            "description": "This property represents AmountCaptured - AmountRefunded via returns.\r\nIt is read only.",
-            "format": "double"
-          },
-          "amountRemainingForPayment": {
-            "type": "number",
-            "description": "A counter for how much of the order total has not been claimed by payments.\r\nThis is computed by Order.Total-(sum of Order.Payments where State is not voided/declined)",
-            "format": "double"
-          },
-          "amountRefunded": {
-            "type": "number",
-            "description": "A counter for how much money has been issued in refunds.\r\nThis calculated field does NOT include refunds issued in returns.",
-            "format": "double"
-          },
-          "readyToCapture": {
-            "type": "boolean"
-          },
-          "isOptInForSms": {
-            "type": "boolean",
-            "description": "Whether the shopper opts in to curbside text notifications."
-          },
-          "forceSTHConsolidationOnSplitShipments": {
-            "type": "boolean",
-            "description": "Overrides the Fulfillment SiteSetting value for `ForceSTHConsolidationOnSplitShipments`.\r\nTODO autogen instead of manual addition",
-            "nullable": true
-          },
-          "subscriptionIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "All the subscriptions associated with the current order.",
-            "nullable": true
-          },
-          "continuityOrderOrdinal": {
-            "type": "integer",
-            "description": "The ordinal to track the Continuity order.",
-            "format": "int32"
-          },
-          "reservationId": {
-            "type": "string",
-            "description": "Inventory Reservation id for order.",
-            "nullable": true
-          },
-          "restrictEdit": {
-            "type": "boolean",
-            "description": "Setting this flag on the order will restrict user from editing the order",
-            "nullable": true
-          },
-          "restrictCancellation": {
-            "type": "boolean",
-            "description": "Settings this flag on the order will restrict user from Cancelling the order",
-            "nullable": true
-          },
-          "isContinuityOrder": {
-            "type": "boolean",
-            "description": "Flag to check if the order is continuityOrder."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Order form."
       },
       "SubscriptionNextOrderDate": {
         "type": "object",
@@ -5756,7 +4481,7 @@
         "additionalProperties": false,
         "description": "Discounts that apply to the order, if any. For example, when the \r\nsubtotal of the order exceeds a certain amount, or for free shipping."
       },
-      "CommerceRuntimeAppliedDiscount": {
+      "SubscriptionRuntimeAppliedDiscount": {
         "type": "object",
         "properties": {
           "impact": {
@@ -6349,56 +5074,6 @@
         "additionalProperties": false,
         "description": "The product as it appears on the order item."
       },
-      "CommerceRuntimeAppliedLineItemProductDiscount": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/AppliedProductDiscount"
-          }
-        ],
-        "properties": {
-          "appliesToSalePrice": {
-            "type": "boolean",
-            "description": "Determines if the discount applies to the sale price of the order",
-            "nullable": true
-          },
-          "discountQuantity": {
-            "type": "integer",
-            "description": "The number of the line item that can be used for this particular discount.",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommerceRuntimeAppliedLineItemShippingDiscount": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ShippingDiscount"
-          }
-        ],
-        "properties": {
-          "methodCode": {
-            "type": "string",
-            "description": "Unique identifier of the shipping method discount.",
-            "nullable": true
-          },
-          "discount": {
-            "$ref": "#/components/schemas/CommerceRuntimeAppliedDiscount"
-          },
-          "discountQuantity": {
-            "type": "integer",
-            "description": "The number of the line item that can be used for this particular discount.",
-            "format": "int32"
-          },
-          "impactPerUnit": {
-            "type": "number",
-            "description": "The impact of this discount pur discount quantity.",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
       "CommerceRuntimeOrderAttribute": {
         "type": "object",
         "properties": {
@@ -6422,11 +5097,11 @@
         },
         "additionalProperties": false
       },
-      "CommerceRuntimeOrderItem": {
+      "SubscriptionRuntimeOrderItem": {
         "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/CommerceItem"
+            "$ref": "#/components/schemas/SubscriptionRuntimeCommerceItem"
           }
         ],
         "properties": {
@@ -6481,6 +5156,9 @@
             "type": "string",
             "description": "Determines if the item is using external or internal(catalog) pricing",
             "nullable": true
+          },
+          "returnRuleInfo": {
+            "$ref": "#/components/schemas/ReturnRuleInfo"
           }
         },
         "additionalProperties": false,
@@ -6564,7 +5242,7 @@
         "additionalProperties": false,
         "description": "Notes that the shopper has added to this order, for example, a gift message or other comments."
       },
-      "CommerceRuntimeShippingRate": {
+      "SubscriptionRuntimeShippingRate": {
         "type": "object",
         "allOf": [
           {
@@ -6860,6 +5538,303 @@
         },
         "additionalProperties": false
       },
+      "SubscriptionRuntimeShipmentItem": {
+        "type": "object",
+        "properties": {
+          "lineId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "originalOrderItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "optionAttributeFQN": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "fulfillmentLocationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "isTaxable": {
+            "type": "boolean"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "actualPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "overridePrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "itemDiscount": {
+            "type": "number",
+            "format": "double"
+          },
+          "lineItemCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "itemTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "shipping": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingDiscount": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "handling": {
+            "type": "number",
+            "format": "double"
+          },
+          "handlingDiscount": {
+            "type": "number",
+            "format": "double"
+          },
+          "handlingTax": {
+            "type": "number",
+            "format": "double"
+          },
+          "duty": {
+            "type": "number",
+            "format": "double"
+          },
+          "isPackagedStandAlone": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "readyForPickupQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "backorderReleaseDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "measurements": {
+            "$ref": "#/components/schemas/CommerceRuntimePackageMeasurements"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeProductOption"
+            },
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
+          "taxData": {
+            "type": "object",
+            "nullable": true
+          },
+          "weightedShipmentAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "weightedLineItemTaxAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "weightedShippingAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "weightedShippingTaxAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "weightedHandlingAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "weightedHandlingTaxAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "weightedDutyAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "taxableShipping": {
+            "type": "number",
+            "format": "double"
+          },
+          "taxableLineItemCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "taxableHandling": {
+            "type": "number",
+            "format": "double"
+          },
+          "fulfillmentFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeFulfillmentField"
+            },
+            "nullable": true
+          },
+          "isAssemblyRequired": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "parentItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "childItemIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "giftCards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeGiftCard"
+            },
+            "nullable": true
+          },
+          "locatorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "inventoryTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InventoryTags"
+            },
+            "nullable": true
+          },
+          "lineItemAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "isReservedInventory": {
+            "type": "boolean"
+          },
+          "cartItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "partNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "upc": {
+            "type": "string",
+            "nullable": true
+          },
+          "isSubstitutable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "originalLineId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "originalQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "substituteQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "purchaseLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "isGift": {
+            "type": "boolean",
+            "description": "Indicate item is gift or not",
+            "nullable": true
+          },
+          "giftMessage": {
+            "type": "string",
+            "description": "Gift message for item",
+            "nullable": true
+          },
+          "priceMode": {
+            "type": "string",
+            "description": "Determines if the item is using external or internal(catalog) pricing",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "substituteInfo": {
+            "$ref": "#/components/schemas/SubstituteInfo"
+          },
+          "allowsSubstitution": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "returnRuleInfo": {
+            "$ref": "#/components/schemas/ReturnRuleInfo"
+          }
+        },
+        "additionalProperties": false
+      },
       "CommerceRuntimeCanceledReason": {
         "type": "object",
         "properties": {
@@ -6874,28 +5849,6 @@
           "moreInfo": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommerceRuntimeCanceledItem": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ShipmentItem"
-          }
-        ],
-        "properties": {
-          "originalQuantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "canceledReason": {
-            "$ref": "#/components/schemas/CommerceRuntimeCanceledReason"
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
         },
         "additionalProperties": false
@@ -6948,7 +5901,56 @@
         },
         "additionalProperties": false
       },
-      "CommerceRuntimeSubstitutedItem": {
+      "SubscriptionRuntimeFulfillmentServiceInventoryAllocation": {
+        "type": "object",
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fulfilledDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "inventoryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lotCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionRuntimeSubstitutedItem": {
         "type": "object",
         "properties": {
           "actualPrice": {
@@ -6983,6 +5985,10 @@
           },
           "auditInfo": {
             "$ref": "#/components/schemas/FulfillmentServiceAuditInfo"
+          },
+          "autoSubstitution": {
+            "type": "boolean",
+            "nullable": true
           },
           "backorderReleaseDate": {
             "type": "string",
@@ -7077,7 +6083,7 @@
           "inventoryAllocations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FulfillmentServiceInventoryAllocation"
+              "$ref": "#/components/schemas/SubscriptionRuntimeFulfillmentServiceInventoryAllocation"
             },
             "nullable": true
           },
@@ -7210,6 +6216,9 @@
             "format": "int32",
             "nullable": true
           },
+          "returnRuleInfo": {
+            "$ref": "#/components/schemas/FulfillmentServiceReturnRuleInfo"
+          },
           "serialNumber": {
             "type": "string",
             "nullable": true
@@ -7232,6 +6241,9 @@
           "sku": {
             "type": "string",
             "nullable": true
+          },
+          "substituteInfo": {
+            "$ref": "#/components/schemas/FulfillmentServiceSubstituteInfo"
           },
           "substituteItemLineIds": {
             "type": "array",
@@ -7342,152 +6354,331 @@
         },
         "additionalProperties": false
       },
-      "CommerceRuntimeShipment": {
+      "SubscriptionRuntimeOrder": {
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SubscriptionRuntimeCommerceAggregate"
+          }
+        ],
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "ID of the shipment",
-            "nullable": true
-          },
-          "externalShipmentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "number": {
+          "orderNumber": {
             "type": "integer",
+            "description": "Order Number. This is an integer that is only assigned after an order is placed and enters the open state.",
             "format": "int32",
             "nullable": true
           },
-          "orderId": {
+          "locationCode": {
             "type": "string",
+            "description": "Identifies the location at which the order was placed if the order was placed externally.",
             "nullable": true
           },
-          "orderNumber": {
+          "version": {
+            "type": "string",
+            "description": "Version for concurrency purposes",
+            "nullable": true
+          },
+          "parentOrderId": {
+            "type": "string",
+            "description": "If this Order has a parent order, this should be the parent's ID.",
+            "nullable": true
+          },
+          "parentOrderNumber": {
             "type": "integer",
-            "format": "int32"
-          },
-          "email": {
-            "type": "string",
+            "description": "If this order has a parent order, this should be the parent's Mozu.CommerceRuntime.Contracts.Orders.Order.OrderNumber.",
+            "format": "int32",
             "nullable": true
           },
-          "currencyCode": {
+          "parentCheckoutId": {
             "type": "string",
+            "description": "If this order originated from a multi-ship enabled site, this is the identifier of the originating checkout.",
             "nullable": true
+          },
+          "parentCheckoutNumber": {
+            "type": "integer",
+            "description": "If this order originated from a multi-ship enabled site, this is the number of the originating checkout.",
+            "format": "int32",
+            "nullable": true
+          },
+          "partialOrderNumber": {
+            "type": "integer",
+            "description": "If this order originated from a checkout, this is a sequence number out of the total orders created from that checkout.",
+            "format": "int32",
+            "nullable": true
+          },
+          "partialOrderCount": {
+            "type": "integer",
+            "description": "If this order originated from a checkout, this is the total number of orders created from that checkout.",
+            "format": "int32",
+            "nullable": true
+          },
+          "isPartialOrder": {
+            "type": "boolean",
+            "description": "Returns {true} if this order originated from a checkout and has sibling partial orders, otherwise {false}."
+          },
+          "parentReturnId": {
+            "type": "string",
+            "description": "If this order was created as part of a return, this should be the return's ID.",
+            "nullable": true
+          },
+          "parentReturnNumber": {
+            "type": "integer",
+            "description": "If this order was created as part of a return, this should be the return's ReturnNumber.",
+            "format": "int32",
+            "nullable": true
+          },
+          "originalCartId": {
+            "type": "string",
+            "description": "Unique identifier for the cart that was converted to order.",
+            "nullable": true
+          },
+          "originalQuoteId": {
+            "type": "string",
+            "description": "If this order originated from a quote, this is the identifier of the originating quote.",
+            "nullable": true
+          },
+          "originalQuoteNumber": {
+            "type": "integer",
+            "description": "If this order originated from a quote, this is the number of the originating quote.",
+            "format": "int32",
+            "nullable": true
+          },
+          "priceListCode": {
+            "type": "string",
+            "description": "Pricelist code for the order",
+            "nullable": true
+          },
+          "availableActions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Actions available to the payment",
+            "nullable": true
+          },
+          "shopperNotes": {
+            "$ref": "#/components/schemas/CommerceRuntimeShopperNotes"
           },
           "customerAccountId": {
             "type": "integer",
+            "description": "Unique identifier of the customer account.",
             "format": "int32",
             "nullable": true
           },
           "customerTaxId": {
             "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "shipmentType": {
-            "type": "string",
+            "description": "The customers tax ID.  If Customer Account ID exists in the system, will set this.",
             "nullable": true
           },
-          "shippingMethodCode": {
-            "type": "string",
+          "isTaxExempt": {
+            "type": "boolean",
+            "description": "Unique identifier of the customer account.",
             "nullable": true
           },
-          "shippingMethodName": {
+          "email": {
             "type": "string",
+            "description": "Email address of the customer at the time the order is placed.",
             "nullable": true
           },
-          "fulfillmentLocationCode": {
+          "alternateContact": {
+            "$ref": "#/components/schemas/AlternateContact"
+          },
+          "ipAddress": {
             "type": "string",
+            "description": "IP address of the user placing the order. (User or customer?)",
             "nullable": true
           },
-          "origin": {
-            "$ref": "#/components/schemas/CommerceRuntimeContact"
-          },
-          "destination": {
-            "$ref": "#/components/schemas/CommerceRuntimeDestination"
-          },
-          "shipmentStatus": {
+          "sourceDevice": {
             "type": "string",
+            "description": "Source device of the user placing the order. (User or customer?)",
             "nullable": true
           },
-          "shipmentStatusReason": {
-            "$ref": "#/components/schemas/CommerceRuntimeShipmentStatusReason"
+          "acceptsMarketing": {
+            "type": "boolean",
+            "description": "Does the customer accept marketing",
+            "nullable": true
           },
-          "transferShipmentNumbers": {
+          "status": {
+            "type": "string",
+            "description": "Current status of the order, which can be viewed in OrderStatusConst. System-supplied and read-only.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Is this Order Online or Offline? Online means shopper entered at checkout, offline means a phone order.",
+            "nullable": true
+          },
+          "paymentStatus": {
+            "type": "string",
+            "description": "Current status of payment, which can be \"Null,\" \"AwaitingCheck,\" \"AwaitingPayment,\" \"Paid,\" \"Authorized,\" or \"Void.\" \r\nSystem-supplied and read-only.",
+            "nullable": true
+          },
+          "returnStatus": {
+            "type": "string",
+            "description": "System-supplied and read-only.",
+            "nullable": true
+          },
+          "isEligibleForReturns": {
+            "type": "boolean",
+            "description": "Marker for determining if the order is a) complete or b) has some items that are shipped and not part of any other return"
+          },
+          "totalCollected": {
+            "type": "number",
+            "description": "Total amount of money collected on the order via payments.",
+            "format": "double"
+          },
+          "attributes": {
             "type": "array",
             "items": {
-              "type": "integer",
-              "format": "int32"
+              "$ref": "#/components/schemas/CommerceRuntimeOrderAttribute"
             },
             "nullable": true
           },
-          "isTransfer": {
-            "type": "boolean",
+          "adjustment": {
+            "$ref": "#/components/schemas/Adjustment"
+          },
+          "shippingAdjustment": {
+            "$ref": "#/components/schemas/Adjustment"
+          },
+          "handlingAdjustment": {
+            "$ref": "#/components/schemas/Adjustment"
+          },
+          "shippingDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeShippingDiscount"
+            },
             "nullable": true
           },
-          "originalShipmentNumber": {
-            "type": "integer",
-            "format": "int32",
+          "handlingDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
+            },
+            "description": "The list of historically-applied handling discounts.  The active one will have IsExcluded == false",
             "nullable": true
           },
-          "parentCheckoutNumber": {
-            "type": "integer",
-            "format": "int32",
+          "handlingAmount": {
+            "type": "number",
+            "description": "Order level handling fees excluding any discounts.",
+            "format": "double",
             "nullable": true
           },
-          "parentShipmentNumber": {
-            "type": "integer",
-            "format": "int32",
+          "handlingSubTotal": {
+            "type": "number",
+            "description": "Handling fees for the Order as well as OrderItems (e.g. if the Order has a $5 handling fee and an OrderItem has a $2 handling fee per item quantity and the quantity of items is 2 then the value in this property would be $9)",
+            "format": "double",
+            "nullable": true
+          },
+          "handlingTotal": {
+            "type": "number",
+            "description": "Handling fees including any discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "dutyAmount": {
+            "type": "number",
+            "description": "Order level duty or tariff amount. Does not take into account duties or tariffs specifically on items on the order",
+            "format": "double",
+            "nullable": true
+          },
+          "dutyTotal": {
+            "type": "number",
+            "description": "Duties or tariffs for the Order as well as OrderItems (e.g. if the Order has a $5 duty or tariff for any reason and an OrderItem has a $2 duty or tariff then the value in this property would be $7)",
+            "format": "double",
             "nullable": true
           },
           "fulfillmentStatus": {
             "type": "string",
+            "description": "Current fulfillment status, which can be \"NotFulfilled,\", \"PartiallyFulfilled\", or \"Fufilled.\" \r\nSystem-supplied and read-only.  Values are available in FulfillmentStatusConst of this class.",
             "nullable": true
           },
-          "workflowProcessId": {
+          "isFulfillable": {
+            "type": "boolean",
+            "description": "Flag to indicate whether it is safe to proceed with fulfillment on shipments on the order."
+          },
+          "submittedDate": {
             "type": "string",
+            "description": "When the customer placed (submitted) the order.",
+            "format": "date-time",
             "nullable": true
           },
-          "workflowProcessContainerId": {
-            "type": "string",
-            "nullable": true
-          },
-          "workflowState": {
-            "$ref": "#/components/schemas/CommerceRuntimeWorkflowState"
-          },
-          "backorderCreatedDate": {
+          "shipmentCreationOffset": {
             "type": "integer",
+            "description": "Release Shipment After(in minutes) (Order Submitted Date).",
             "format": "int32",
             "nullable": true
           },
-          "fulfillmentDate": {
+          "releaseShipmentDate": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "futureDate": {
+          "cancelledDate": {
             "type": "string",
+            "description": "Date the order was cancelled.",
             "format": "date-time",
             "nullable": true
           },
-          "orderSubmitDate": {
+          "closedDate": {
             "type": "string",
+            "description": "Date the order was closed. A closed order means that the order has been processed and items shipped.",
             "format": "date-time",
             "nullable": true
           },
-          "pickStatus": {
+          "acceptedDate": {
             "type": "string",
+            "description": "When the order was accepted by the merchant",
+            "format": "date-time",
             "nullable": true
           },
-          "pickType": {
-            "type": "string",
-            "nullable": true
-          },
-          "changeMessages": {
+          "notes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeChangeMessage"
+              "$ref": "#/components/schemas/OrderNote"
+            },
+            "description": "Internal notes that a merchant may add to the order. Maximum 250 characters.",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeOrderItem"
+            },
+            "description": "List of items in the order.",
+            "nullable": true
+          },
+          "validationResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderValidationResult"
+            },
+            "description": "Validation results for the order when processes against validation capabilities.",
+            "nullable": true
+          },
+          "billingInfo": {
+            "$ref": "#/components/schemas/BillingInfo"
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "description": "Payment transaction associated with this order. It is the entire payment interchange between the merchant \r\nwho is forwarding the customer's payment information and the payment service who is authorizing and \r\ncapturing payment. Payment can be either by credit card, check, or PayPal.",
+            "nullable": true
+          },
+          "refunds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Refund"
+            },
+            "description": "Refunds associated with this order. A refund is a single exchange of money from merchant to customer\r\nthat either encapsulates a refund to a credit card or an issuance of a store credit.\r\nRefunds does not reduce the 'amount collected' on an order and it is possible for refunds to exceed the total order amount.",
+            "nullable": true
+          },
+          "credits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeCredit"
             },
             "nullable": true
           },
@@ -7496,154 +6687,146 @@
             "items": {
               "$ref": "#/components/schemas/CommerceRuntimePackage"
             },
+            "description": "Shipping package associated with this order.",
             "nullable": true
           },
-          "items": {
+          "pickups": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShipmentItem"
+              "$ref": "#/components/schemas/Pickup"
             },
+            "description": "Fulfillment pickups associated with this order.",
             "nullable": true
           },
-          "canceledItems": {
+          "digitalPackages": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeCanceledItem"
+              "$ref": "#/components/schemas/DigitalPackage"
             },
+            "description": "Fulfillment digital packages associated with this order.",
             "nullable": true
           },
-          "data": {
-            "type": "object",
+          "shipments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeCommerceRuntimeShipment"
+            },
+            "description": "Package shipments associated with this order.",
             "nullable": true
           },
-          "taxData": {
-            "type": "object",
+          "isDraft": {
+            "type": "boolean",
+            "description": "Is this order a draft version",
             "nullable": true
           },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          },
-          "shipmentAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "lineItemSubtotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "lineItemTaxAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "lineItemTaxTotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "lineItemTotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "shippingAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "shippingSubtotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "shippingTaxAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "shippingTaxTotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "shippingTotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "handlingAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "handlingSubtotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "handlingTaxAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "handlingTaxTotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "handlingTotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "dutyAdjustment": {
-            "type": "number",
-            "format": "double"
-          },
-          "dutyTotal": {
-            "type": "number",
-            "format": "double"
-          },
-          "total": {
-            "type": "number",
-            "format": "double"
-          },
-          "cost": {
-            "type": "number",
-            "format": "double",
+          "hasDraft": {
+            "type": "boolean",
+            "description": "Does this order have a draft version.",
             "nullable": true
           },
-          "externalOrderId": {
+          "isImport": {
+            "type": "boolean",
+            "description": "Was this order initiated from an external system",
+            "nullable": true
+          },
+          "isHistoricalImport": {
+            "type": "boolean",
+            "description": "Indicates this was an order in a terminal state (completed/canceled) that was imported into the system for historical purposes.",
+            "nullable": true
+          },
+          "importDate": {
             "type": "string",
+            "description": "Date this item was imported",
+            "format": "date-time",
             "nullable": true
           },
-          "isExpress": {
+          "isUnified": {
             "type": "boolean",
+            "description": "Was this order created by the Unified platform."
+          },
+          "externalId": {
+            "type": "string",
+            "description": "An order number to link this order to an external system",
             "nullable": true
           },
-          "isFlatRateShipping": {
-            "type": "boolean",
+          "couponCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Coupon codes associated with this order.  Only set on order import.",
             "nullable": true
+          },
+          "invalidCoupons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvalidCoupon"
+            },
+            "description": "A list of invalid coupons that were attempted on the order",
+            "nullable": true
+          },
+          "amountAvailableForRefund": {
+            "type": "number",
+            "description": "This property represents AmountCaptured - AmountRefunded via returns.\r\nIt is read only.",
+            "format": "double"
+          },
+          "amountRemainingForPayment": {
+            "type": "number",
+            "description": "A counter for how much of the order total has not been claimed by payments.\r\nThis is computed by Order.Total-(sum of Order.Payments where State is not voided/declined)",
+            "format": "double"
+          },
+          "amountRefunded": {
+            "type": "number",
+            "description": "A counter for how much money has been issued in refunds.\r\nThis calculated field does NOT include refunds issued in returns.",
+            "format": "double"
           },
           "readyToCapture": {
             "type": "boolean"
           },
-          "pickupInfo": {
-            "type": "object",
+          "isOptInForSms": {
+            "type": "boolean",
+            "description": "Whether the shopper opts in to curbside text notifications."
+          },
+          "forceSTHConsolidationOnSplitShipments": {
+            "type": "boolean",
+            "description": "Overrides the Fulfillment SiteSetting value for `ForceSTHConsolidationOnSplitShipments`.\r\nTODO autogen instead of manual addition",
             "nullable": true
           },
-          "shopperNotes": {
-            "$ref": "#/components/schemas/FulfillmentShopperNotes"
-          },
-          "customer": {
-            "$ref": "#/components/schemas/CommerceRuntimeCustomer"
-          },
-          "shipmentNotes": {
+          "subscriptionIds": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeShipmentNote"
+              "type": "string"
             },
+            "description": "All the subscriptions associated with the current order.",
             "nullable": true
           },
-          "alternateContact": {
-            "$ref": "#/components/schemas/FulfillmentAlternateContact"
+          "continuityOrderOrdinal": {
+            "type": "integer",
+            "description": "The ordinal to track the Continuity order.",
+            "format": "int32"
           },
-          "substitutedItems": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeSubstitutedItem"
-            },
+          "reservationId": {
+            "type": "string",
+            "description": "Inventory Reservation id for order.",
             "nullable": true
+          },
+          "restrictEdit": {
+            "type": "boolean",
+            "description": "Setting this flag on the order will restrict user from editing the order",
+            "nullable": true
+          },
+          "restrictCancellation": {
+            "type": "boolean",
+            "description": "Settings this flag on the order will restrict user from Cancelling the order",
+            "nullable": true
+          },
+          "isContinuityOrder": {
+            "type": "boolean",
+            "description": "Flag to check if the order is continuityOrder."
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Order form."
       },
       "SubscriptionRuntimeSubscription": {
         "type": "object",
@@ -7829,7 +7012,7 @@
           "orderDiscounts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAppliedDiscount"
+              "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
             },
             "nullable": true
           },
@@ -7874,7 +7057,7 @@
           "shippingDiscounts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShippingDiscount"
+              "$ref": "#/components/schemas/SubscriptionRuntimeShippingDiscount"
             },
             "nullable": true
           },
@@ -7913,7 +7096,7 @@
           "handlingDiscounts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeAppliedDiscount"
+              "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
             },
             "nullable": true
           },
@@ -8098,6 +7281,921 @@
               "$ref": "#/components/schemas/SubscriptionRuntimeSubscription"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionRuntimeCommerceAggregate": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier of the shopper who created the cart.",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "description": "Unique identifier of the Tenant.",
+            "format": "int32",
+            "nullable": true
+          },
+          "siteId": {
+            "type": "integer",
+            "description": "Unique identifier of the Site.",
+            "format": "int32",
+            "nullable": true
+          },
+          "channelCode": {
+            "type": "string",
+            "description": "Unique identifier of the channel for this item.",
+            "nullable": true
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "ISO Currency Code. Currently, only USD is supported.",
+            "nullable": true
+          },
+          "visitId": {
+            "type": "string",
+            "description": "Identifies the Visit ID that was current when the order was placed or when the cart was last updated.",
+            "nullable": true
+          },
+          "webSessionId": {
+            "type": "string",
+            "description": "Identifies the web session used to place the order or last update the cart.",
+            "nullable": true
+          },
+          "customerInteractionType": {
+            "type": "string",
+            "description": "Determines the interaction type that a customer will use to create this object.\r\nValid values are: Website, Store, Call, Unknown",
+            "nullable": true
+          },
+          "fulfillmentInfo": {
+            "$ref": "#/components/schemas/FulfillmentInfo"
+          },
+          "orderDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
+            },
+            "description": "The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.",
+            "nullable": true
+          },
+          "suggestedDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SuggestedDiscount"
+            },
+            "nullable": true
+          },
+          "rejectedDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SuggestedDiscount"
+            },
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "description": "Custom data for a given vendor set within the commerce process.",
+            "nullable": true
+          },
+          "taxData": {
+            "type": "object",
+            "description": "Storage for any additional/custom tax data.",
+            "nullable": true
+          },
+          "subtotal": {
+            "type": "number",
+            "description": "Combined price for all cart items, including all selected options but excluding any discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "discountedSubtotal": {
+            "type": "number",
+            "description": "Combined price for all cart items, including all selected options as well as any discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "discountTotal": {
+            "type": "number",
+            "description": "Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "discountedTotal": {
+            "type": "number",
+            "description": "Subtotal minus the discounted total",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingTotal": {
+            "type": "number",
+            "description": "Shipping does not appear on cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingSubTotal": {
+            "type": "number",
+            "description": "Shipping total without discounts applied.",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingTaxTotal": {
+            "type": "number",
+            "description": "Not implemented. Tax does not appear on cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "handlingTaxTotal": {
+            "type": "number",
+            "description": "Total tax on handling",
+            "format": "double",
+            "nullable": true
+          },
+          "itemTaxTotal": {
+            "type": "number",
+            "description": "Not implemented. Tax does not appear on cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "taxTotal": {
+            "type": "number",
+            "description": "Tax does not appear on cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "feeTotal": {
+            "type": "number",
+            "description": "Not implemented. Total cost of fees for all items in the cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "description": "Final total amount of the order including all discounts, shipping, and tax.",
+            "format": "double",
+            "nullable": true
+          },
+          "lineItemSubtotalWithOrderAdjustments": {
+            "type": "number",
+            "description": "Line Item Subtotals with Order Adjustments",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingAmountBeforeDiscountsAndAdjustments": {
+            "type": "number",
+            "description": "Shipping Amount before discount and adjustments",
+            "format": "double",
+            "nullable": true
+          },
+          "lastValidationDate": {
+            "type": "string",
+            "description": "Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. \r\nIf changed, it updates LastValidationDate.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "description": "When the order will no longer be active. That is, the order is considered abandoned. \r\nOrders of anonymous shoppers expire after 14 days of inactivity. \r\nAn order never expires for shoppers who are logged into their account. \r\nDate in UTC Date/Time.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "changeMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeChangeMessage"
+            },
+            "description": "List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.",
+            "nullable": true
+          },
+          "extendedProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtendedProperty"
+            },
+            "description": "Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.",
+            "nullable": true
+          },
+          "discountThresholdMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeThresholdMessage"
+            },
+            "description": "List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Base class for cart and order"
+      },
+      "SubscriptionRuntimeAppliedProductDiscount": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
+          }
+        ],
+        "properties": {
+          "productQuantity": {
+            "type": "integer",
+            "description": "Quantity of products priced. This is always one unless calculating pricing on the order or cart.",
+            "format": "int32",
+            "nullable": true,
+            "deprecated": true
+          },
+          "impactPerUnit": {
+            "type": "number",
+            "description": "Impact for a quantity of one product; that is, the value of the discount for one product.",
+            "format": "double",
+            "nullable": true,
+            "deprecated": true
+          },
+          "appliesToSalePrice": {
+            "type": "boolean",
+            "description": "Determines if the discount applies to the sale price of the order",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Details of the discount applied to a product."
+      },
+      "SubscriptionRuntimeShippingDiscount": {
+        "type": "object",
+        "properties": {
+          "methodCode": {
+            "type": "string",
+            "description": "Unique identifier of the shipping method discount.",
+            "nullable": true
+          },
+          "discount": {
+            "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Value of the shipping discount."
+      },
+      "SubscriptionRuntimeCommerceRuntimeAppliedLineItemShippingDiscount": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SubscriptionRuntimeShippingDiscount"
+          }
+        ],
+        "properties": {
+          "methodCode": {
+            "type": "string",
+            "description": "Unique identifier of the shipping method discount.",
+            "nullable": true
+          },
+          "discount": {
+            "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
+          },
+          "discountQuantity": {
+            "type": "integer",
+            "description": "The number of the line item that can be used for this particular discount.",
+            "format": "int32"
+          },
+          "impactPerUnit": {
+            "type": "number",
+            "description": "The impact of this discount pur discount quantity.",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionRuntimeCommerceRuntimeCanceledItem": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SubscriptionRuntimeShipmentItem"
+          }
+        ],
+        "properties": {
+          "originalQuantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "canceledReason": {
+            "$ref": "#/components/schemas/CommerceRuntimeCanceledReason"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionRuntimeCommerceRuntimeShipment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the shipment",
+            "nullable": true
+          },
+          "externalShipmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "currencyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerAccountId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "customerTaxId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "shipmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingMethodCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingMethodName": {
+            "type": "string",
+            "nullable": true
+          },
+          "fulfillmentLocationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "origin": {
+            "$ref": "#/components/schemas/CommerceRuntimeContact"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/CommerceRuntimeDestination"
+          },
+          "shipmentStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipmentStatusReason": {
+            "$ref": "#/components/schemas/CommerceRuntimeShipmentStatusReason"
+          },
+          "transferShipmentNumbers": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "isTransfer": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "originalShipmentNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "parentCheckoutNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "parentShipmentNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fulfillmentStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "workflowProcessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "workflowProcessContainerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "workflowState": {
+            "$ref": "#/components/schemas/CommerceRuntimeWorkflowState"
+          },
+          "backorderCreatedDate": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fulfillmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "futureDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "orderSubmitDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pickStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "pickType": {
+            "type": "string",
+            "nullable": true
+          },
+          "changeMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeChangeMessage"
+            },
+            "nullable": true
+          },
+          "packages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimePackage"
+            },
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeShipmentItem"
+            },
+            "nullable": true
+          },
+          "canceledItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeCommerceRuntimeCanceledItem"
+            },
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
+          "taxData": {
+            "type": "object",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "shipmentAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "lineItemSubtotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "lineItemTaxAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "lineItemTaxTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "lineItemTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingSubtotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingTaxAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingTaxTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "shippingTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "handlingAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "handlingSubtotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "handlingTaxAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "handlingTaxTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "handlingTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "dutyAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "dutyTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "cost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "externalOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isExpress": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isFlatRateShipping": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "readyToCapture": {
+            "type": "boolean"
+          },
+          "pickupInfo": {
+            "type": "object",
+            "nullable": true
+          },
+          "shopperNotes": {
+            "$ref": "#/components/schemas/FulfillmentShopperNotes"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/CommerceRuntimeCustomer"
+          },
+          "shipmentNotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeShipmentNote"
+            },
+            "nullable": true
+          },
+          "alternateContact": {
+            "$ref": "#/components/schemas/FulfillmentAlternateContact"
+          },
+          "substitutedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeSubstitutedItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionRuntimeCommerceItem": {
+        "type": "object",
+        "properties": {
+          "localeCode": {
+            "type": "string",
+            "description": "Locale code for language that appears in text and descriptions on the site, for example, en_US. \r\nThis is not the currency code. Currently only en_US is supported.",
+            "nullable": true
+          },
+          "purchaseLocation": {
+            "type": "string",
+            "description": "The location where the product is being purchased.. default is null. Products can have different prices\r\nby purchaseLocation via custom priceListResolution...",
+            "nullable": true
+          },
+          "lineId": {
+            "type": "integer",
+            "description": "The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or\r\nin CommerceRuntime when a cart is converted to an order.",
+            "format": "int32",
+            "nullable": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/CommerceRuntimeProduct"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Number of products ordered.",
+            "format": "int32"
+          },
+          "isRecurring": {
+            "type": "boolean",
+            "description": "If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.",
+            "nullable": true
+          },
+          "isTaxable": {
+            "type": "boolean",
+            "description": "Not implemented. If true, the cart item is eligible for tax.",
+            "nullable": true
+          },
+          "subtotal": {
+            "type": "number",
+            "description": "Line item subtotal (quantity multiplied by price) before discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "extendedTotal": {
+            "type": "number",
+            "description": "Line item extended total (quantity multiplied by unit extended price) before discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "taxableTotal": {
+            "type": "number",
+            "description": "Line item subtotal (quantity multiplied by price) before discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "discountTotal": {
+            "type": "number",
+            "description": "How much the shopper saves with the applied discount or sale price. This is a negative number.",
+            "format": "double",
+            "nullable": true
+          },
+          "discountedTotal": {
+            "type": "number",
+            "description": "Subtotal minus any discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "itemTaxTotal": {
+            "type": "number",
+            "description": "Total price of taxes that apply to products in this item.",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingTaxTotal": {
+            "type": "number",
+            "description": "Total price of taxes that apply to the shipping of this item.",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingTotal": {
+            "type": "number",
+            "description": "Total price of shipping that apply to this item.",
+            "format": "double",
+            "nullable": true
+          },
+          "handlingAmount": {
+            "type": "number",
+            "description": "Handling Amount for this item",
+            "format": "double",
+            "nullable": true
+          },
+          "feeTotal": {
+            "type": "number",
+            "description": "Not implemented. Total cost of fees that apply to this item.",
+            "format": "double",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "description": "Total price of this cart item taking into account any discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "unitPrice": {
+            "$ref": "#/components/schemas/CommerceUnitPrice"
+          },
+          "productDiscount": {
+            "$ref": "#/components/schemas/SubscriptionRuntimeCommerceRuntimeAppliedLineItemProductDiscount"
+          },
+          "productDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeCommerceRuntimeAppliedLineItemProductDiscount"
+            },
+            "description": "A list of discounts applied to the product",
+            "nullable": true
+          },
+          "shippingDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeCommerceRuntimeAppliedLineItemShippingDiscount"
+            },
+            "description": "A discount applied to the shipping",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "description": "Custom data for a given vendor set within the commerce process.",
+            "nullable": true
+          },
+          "taxData": {
+            "type": "object",
+            "description": "Storage for any additional/custom tax data.",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "shippingAmountBeforeDiscountsAndAdjustments": {
+            "type": "number",
+            "description": "Shipping amount before Discounts and adjustments",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderAdjustment": {
+            "type": "number",
+            "description": "Order Level Manual Adjustment applied to this Item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderDiscount": {
+            "type": "number",
+            "description": "Order Level Discount applied to this Item",
+            "format": "double",
+            "nullable": true
+          },
+          "adjustedLineItemSubtotal": {
+            "type": "number",
+            "description": "Order Level taxable sub total",
+            "format": "double",
+            "nullable": true
+          },
+          "totalWithoutWeightedShippingAndHandling": {
+            "type": "number",
+            "description": "Taxable Subtotal including Weighted Order amounts",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderTax": {
+            "type": "number",
+            "description": "Order Level tax applied to this Item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderShipping": {
+            "type": "number",
+            "description": "Order Level Shipping applied to this Item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderShippingDiscount": {
+            "type": "number",
+            "description": "Order Level Shipping discount applied to this Item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderShippingManualAdjustment": {
+            "type": "number",
+            "description": "Order Level Shipping Manual Adjustment applied to this Item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderShippingTax": {
+            "type": "number",
+            "description": "Order Level Shipping Tax applied to this Item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderHandlingFee": {
+            "type": "number",
+            "description": "Order Level handling fee applied to this item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderHandlingFeeTax": {
+            "type": "number",
+            "description": "Order Level handling fee tax applied to this item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderHandlingFeeDiscount": {
+            "type": "number",
+            "description": "Order Level handling fee discount applied to this item",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderDuty": {
+            "type": "number",
+            "description": "Order Level Duty applied to this Item",
+            "format": "double",
+            "nullable": true
+          },
+          "totalWithWeightedShippingAndHandling": {
+            "type": "number",
+            "description": "Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs",
+            "format": "double",
+            "nullable": true
+          },
+          "weightedOrderHandlingAdjustment": {
+            "type": "number",
+            "description": "Order level handling adjusment that applies to this item.",
+            "format": "double",
+            "nullable": true
+          },
+          "autoAddDiscountId": {
+            "type": "integer",
+            "description": "Track the discoutid from which the item was auto added",
+            "format": "int32",
+            "nullable": true
+          },
+          "isAssemblyRequired": {
+            "type": "boolean",
+            "description": "Assembly Required for this order item"
+          },
+          "childItemIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of Child Item Ids for this order item",
+            "nullable": true
+          },
+          "parentItemId": {
+            "type": "string",
+            "description": "Indicates Parent Item Id for this order item",
+            "nullable": true
+          },
+          "inventoryTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InventoryTags"
+            },
+            "nullable": true
+          },
+          "lineItemAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "dutyAmount": {
+            "type": "number",
+            "description": "Indicate Duty Amount for this item.",
+            "format": "double",
+            "nullable": true
+          },
+          "substituteInfo": {
+            "$ref": "#/components/schemas/SubstituteInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Base class for cart and order items"
+      },
+      "SubscriptionRuntimeCommerceRuntimeAppliedLineItemProductDiscount": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SubscriptionRuntimeAppliedProductDiscount"
+          }
+        ],
+        "properties": {
+          "appliesToSalePrice": {
+            "type": "boolean",
+            "description": "Determines if the discount applies to the sale price of the order",
+            "nullable": true
+          },
+          "discountQuantity": {
+            "type": "integer",
+            "description": "The number of the line item that can be used for this particular discount.",
+            "format": "int32"
           }
         },
         "additionalProperties": false

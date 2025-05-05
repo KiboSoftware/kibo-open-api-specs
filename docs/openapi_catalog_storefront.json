@@ -504,6 +504,87 @@
         }
       }
     },
+    "/commerce/rules/product/evaluate/preview": {
+      "post": {
+        "tags": [
+          "ProductRule"
+        ],
+        "summary": "Preview Product Rule",
+        "description": "Previews a new product rule by searching for products in the admin index that meet the rule criteria",
+        "parameters": [
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "fieldList",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogRuntimesProductRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchSimplifiedResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchSimplifiedResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchSimplifiedResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/commerce/catalog/storefront/products": {
       "get": {
         "tags": [
@@ -917,6 +998,7 @@
           {
             "name": "purchaseLocation",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -924,6 +1006,7 @@
           {
             "name": "variationProductCodeFilter",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -931,6 +1014,7 @@
           {
             "name": "useSubscriptionPricing",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "boolean",
               "default": false
@@ -939,6 +1023,7 @@
           {
             "name": "subscriptionFrequency",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -2987,6 +3072,171 @@
         ]
       }
     },
+    "/commerce/rules/purchaselimit/evaluate": {
+      "post": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Evaluate Purchase Limits",
+        "description": "Evaluate the purchase limits for given products and customer.",
+        "requestBody": {
+          "description": "The request containing the products and customer to evaluate",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseLimitEvalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitEvalResponseCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitEvalResponseCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseLimitEvalResponseCollection"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/return/evaluate": {
+      "post": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Evaluate Return Eligibility",
+        "description": "Evaluate the return eligibility for given products and customer",
+        "requestBody": {
+          "description": "The request containing the products and customer to evaluate",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReturnEvalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnEvalResponseCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnEvalResponseCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnEvalResponseCollection"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/safetystock/evaluate": {
+      "post": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Evaluate Safety Stock Rules",
+        "description": "Evaluate the safety stock for given products and locations",
+        "requestBody": {
+          "description": "The request containing the products and customer to evaluate",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SafetyStockEvalRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SafetyStockEvalResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SafetyStockEvalResponse"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SafetyStockEvalResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/commerce/catalog/storefront/searchmerchandizingrules/previewsearchmerchandizingrule": {
       "post": {
         "tags": [
@@ -3387,6 +3637,109 @@
         "additionalProperties": false,
         "description": "Name of the category and optionally, a description, page title, friendly URL, associated images, and any metadata."
       },
+      "FacetValue": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "isApplied": {
+            "type": "boolean",
+            "description": "True if this FacetValue was supplied as a facet value filter in the current search",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of occurrences of FacetValue in result set.",
+            "format": "int32"
+          },
+          "value": {
+            "type": "string",
+            "description": "String representation of Facet Value",
+            "nullable": true
+          },
+          "filterValue": {
+            "type": "string",
+            "description": "Submit this as a facet value filter",
+            "nullable": true
+          },
+          "rangeQueryValueStart": {
+            "type": "string",
+            "description": "When range query Facet",
+            "nullable": true
+          },
+          "rangeQueryValueEnd": {
+            "type": "string",
+            "description": "When range query Facet",
+            "nullable": true
+          },
+          "parentFacetValue": {
+            "type": "string",
+            "description": "When hierarchical Facet",
+            "nullable": true
+          },
+          "isDisplayed": {
+            "type": "boolean",
+            "description": "Indicates whether the FacetValue should be displayed"
+          },
+          "childrenFacetValues": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "When hierarchical Facet",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "ProductSearchSimplifiedResult": {
+        "type": "object",
+        "properties": {
+          "facets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesFacet"
+            },
+            "nullable": true
+          },
+          "searchRedirect": {
+            "type": "string",
+            "nullable": true
+          },
+          "nextCursorMark": {
+            "type": "string",
+            "nullable": true
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "BundledProductBase": {
         "type": "object",
         "properties": {
@@ -3763,6 +4116,13 @@
         ],
         "properties": {
           "slices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogRuntimesProduct"
+            },
+            "nullable": true
+          },
+          "variationProducts": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CatalogRuntimesProduct"
@@ -4522,64 +4882,6 @@
         "additionalProperties": false,
         "description": "A calculated set of cursor marks for a given query that can be accessed in any order, providing the ability to page through all results in random/paralellized order"
       },
-      "FacetValue": {
-        "type": "object",
-        "properties": {
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "isApplied": {
-            "type": "boolean",
-            "description": "True if this FacetValue was supplied as a facet value filter in the current search",
-            "nullable": true
-          },
-          "count": {
-            "type": "integer",
-            "description": "Number of occurrences of FacetValue in result set.",
-            "format": "int32"
-          },
-          "value": {
-            "type": "string",
-            "description": "String representation of Facet Value",
-            "nullable": true
-          },
-          "filterValue": {
-            "type": "string",
-            "description": "Submit this as a facet value filter",
-            "nullable": true
-          },
-          "rangeQueryValueStart": {
-            "type": "string",
-            "description": "When range query Facet",
-            "nullable": true
-          },
-          "rangeQueryValueEnd": {
-            "type": "string",
-            "description": "When range query Facet",
-            "nullable": true
-          },
-          "parentFacetValue": {
-            "type": "string",
-            "description": "When hierarchical Facet",
-            "nullable": true
-          },
-          "isDisplayed": {
-            "type": "boolean",
-            "description": "Indicates whether the FacetValue should be displayed"
-          },
-          "childrenFacetValues": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            },
-            "description": "When hierarchical Facet",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": ""
-      },
       "SolrDebugInfo": {
         "type": "object",
         "properties": {
@@ -4779,6 +5081,233 @@
         ],
         "additionalProperties": false,
         "description": "Products and search information returned for search preview query."
+      },
+      "PurchaseLimitEvalRequestItems": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Product code for evaluation",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "description": "Variation product code for evaluation",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Items for purchase limit rule evaluation request"
+      },
+      "PurchaseLimitEvalRequest": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "description": "Customer ID",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseLimitEvalRequestItems"
+            },
+            "description": "List of items to evaluate",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request parameters for evaluating purchase limit"
+      },
+      "PurchaseLimitEvalResponseItem": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Product code evaluated for purchase limit",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "description": "Variation product code evaluated for purchase limit",
+            "nullable": true
+          },
+          "ruleCode": {
+            "type": "string",
+            "description": "Rule code that affected the purchase limit for the product",
+            "nullable": true
+          },
+          "maxQty": {
+            "type": "integer",
+            "description": "Maximum quantity of the product that can be purchased",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Purchase limit evaluation response item"
+      },
+      "PurchaseLimitEvalResponseCollection": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseLimitEvalResponseItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection of purchase limit evaluation response items"
+      },
+      "ReturnEvalRequestItems": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Product code for evaluation",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "description": "Variation product code for evaluation",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Items for return rule evaluation request"
+      },
+      "ReturnEvalRequest": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "description": "Customer ID",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReturnEvalRequestItems"
+            },
+            "description": "List of items to evaluate",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request parameters for evaluating returns"
+      },
+      "ReturnEvalResponseItem": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Product code evaluated for return",
+            "nullable": true
+          },
+          "variationProductCode": {
+            "type": "string",
+            "description": "Variation product code for evaluation",
+            "nullable": true
+          },
+          "ruleCode": {
+            "type": "string",
+            "description": "Return rule code that affected the return for the product",
+            "nullable": true
+          },
+          "maxQty": {
+            "type": "integer",
+            "description": "Maximum quantity of the product that can be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxDays": {
+            "type": "integer",
+            "description": "Maximum number of days that the product can be returned",
+            "format": "int32",
+            "nullable": true
+          },
+          "isReturnable": {
+            "type": "boolean",
+            "description": "Flag indicating whether the product can be returned",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Return evaluation response item"
+      },
+      "ReturnEvalResponseCollection": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReturnEvalResponseItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Collection of return evaluation response items"
+      },
+      "SafetyStockEvalRequest": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Customer ID",
+            "nullable": true
+          },
+          "locationCode": {
+            "type": "string",
+            "description": "List of items to evaluate",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request parameters for evaluating purchase limit"
+      },
+      "SafetyStockEvalResponse": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "description": "Customer ID",
+            "nullable": true
+          },
+          "locationCode": {
+            "type": "string",
+            "description": "List of items to evaluate",
+            "nullable": true
+          },
+          "ruleCode": {
+            "type": "string",
+            "description": "List of items to evaluate",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "List of items to evaluate",
+            "format": "int32",
+            "nullable": true
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
       },
       "SearchType": {
         "enum": [
@@ -5605,6 +6134,13 @@
             "description": "List of categories to which this product belongs.",
             "nullable": true
           },
+          "productRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "measurements": {
             "$ref": "#/components/schemas/CatalogRuntimesPackageMeasurements"
           },
@@ -5758,6 +6294,17 @@
         },
         "additionalProperties": false,
         "description": "Used to validate attributes."
+      },
+      "CatalogRuntimesDynamicExpression": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Category"
       },
       "CatalogRuntimesInventoryTag": {
         "type": "object",
@@ -6132,6 +6679,34 @@
               "$ref": "#/components/schemas/CatalogRuntimesProduct"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CatalogRuntimesProductRule": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Unique identifier of the ProductRule. System-supplied and read-only.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "ProductRule name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "ProductRule description",
+            "nullable": true
+          },
+          "scope": {
+            "type": "string",
+            "nullable": true
+          },
+          "expression": {
+            "$ref": "#/components/schemas/CatalogRuntimesDynamicExpression"
           }
         },
         "additionalProperties": false

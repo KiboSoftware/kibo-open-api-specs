@@ -2857,6 +2857,13 @@
             "type": "string",
             "nullable": true
           },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "configFields": {
             "type": "array",
             "items": {
