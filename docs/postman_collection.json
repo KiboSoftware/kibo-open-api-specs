@@ -529,6 +529,236 @@
          ]
         },
         {
+         "name": "transfertimes",
+         "item": [
+          {
+           "name": "{id}",
+           "item": [
+            {
+             "name": "Update Transfer Time",
+             "request": {
+              "method": "PUT",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/admin/locations/transfertimes/:id",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "admin",
+                "locations",
+                "transfertimes",
+                ":id"
+               ],
+               "variable": [
+                {
+                 "key": "id",
+                 "value": "id"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            },
+            {
+             "name": "Delete Transfer Time",
+             "request": {
+              "method": "DELETE",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/admin/locations/transfertimes/:id",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "admin",
+                "locations",
+                "transfertimes",
+                ":id"
+               ],
+               "variable": [
+                {
+                 "key": "id",
+                 "value": "id"
+                }
+               ],
+               "query": []
+              }
+             }
+            },
+            {
+             "name": "Get Transfer Time by Id",
+             "request": {
+              "method": "GET",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/admin/locations/transfertimes/:id",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "admin",
+                "locations",
+                "transfertimes",
+                ":id"
+               ],
+               "variable": [
+                {
+                 "key": "id",
+                 "value": "id"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "{tolocationcode}",
+           "item": [
+            {
+             "name": "Get Transfer Times by Location",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/admin/locations/transfertimes/:tolocationcode",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "admin",
+                "locations",
+                "transfertimes",
+                ":tolocationcode"
+               ],
+               "variable": [
+                {
+                 "key": "tolocationcode",
+                 "value": "tolocationcode"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "Create Transfer Times",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/admin/locations/transfertimes",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "admin",
+              "locations",
+              "transfertimes"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Get Transfer Times",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/admin/locations/transfertimes",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "admin",
+              "locations",
+              "transfertimes"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "startIndex",
+               "disabled": true
+              },
+              {
+               "key": "pageSize",
+               "disabled": true
+              },
+              {
+               "key": "sortBy",
+               "disabled": true
+              },
+              {
+               "key": "filter",
+               "disabled": true
+              },
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
          "name": "{locationCode}",
          "item": [
           {
@@ -6575,7 +6805,7 @@
              "name": "validate",
              "item": [
               {
-               "name": "Validates a discount expression",
+               "name": "Validate Discount Expression",
                "request": {
                 "method": "POST",
                 "header": [
@@ -14779,6 +15009,686 @@
          ]
         },
         {
+         "name": "discounts",
+         "item": [
+          {
+           "name": "autoaddtarget",
+           "item": [
+            {
+             "name": "{discountId}",
+             "item": [
+              {
+               "name": "Get Auto Add Target",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/autoaddtarget/:discountId",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "storefront",
+                  "discounts",
+                  "autoaddtarget",
+                  ":discountId"
+                 ],
+                 "variable": [
+                  {
+                   "key": "discountId",
+                   "value": "discountId"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "name": "code",
+           "item": [
+            {
+             "name": "{code}",
+             "item": [
+              {
+               "name": "Get Discount by Code",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/code/:code",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "storefront",
+                  "discounts",
+                  "code",
+                  ":code"
+                 ],
+                 "variable": [
+                  {
+                   "key": "code",
+                   "value": "code"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "name": "couponCode",
+           "item": [
+            {
+             "name": "{couponCode}",
+             "item": [
+              {
+               "name": "Get Discount by Coupon Code",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/couponCode/:couponCode",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "storefront",
+                  "discounts",
+                  "couponCode",
+                  ":couponCode"
+                 ],
+                 "variable": [
+                  {
+                   "key": "couponCode",
+                   "value": "couponCode"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "name": "id",
+           "item": [
+            {
+             "name": "{id}",
+             "item": [
+              {
+               "name": "Get Discount by ID",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/id/:id",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "storefront",
+                  "discounts",
+                  "id",
+                  ":id"
+                 ],
+                 "variable": [
+                  {
+                   "key": "id",
+                   "value": "id"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "name": "label",
+           "item": [
+            {
+             "name": "{label}",
+             "item": [
+              {
+               "name": "Get Discounts by Label",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/label/:label",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "storefront",
+                  "discounts",
+                  "label",
+                  ":label"
+                 ],
+                 "variable": [
+                  {
+                   "key": "label",
+                   "value": "label"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "name": "orders",
+           "item": [
+            {
+             "name": "Get Order Level Discounts",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/orders",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "catalog",
+                "storefront",
+                "discounts",
+                "orders"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "products",
+           "item": [
+            {
+             "name": "{productCode}",
+             "item": [
+              {
+               "name": "Get Item Discounts by Product",
+               "request": {
+                "method": "GET",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/products/:productCode",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "storefront",
+                  "discounts",
+                  "products",
+                  ":productCode"
+                 ],
+                 "variable": [
+                  {
+                   "key": "productCode",
+                   "value": "productCode"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
+             "name": "Get Item Discounts",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/products",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "catalog",
+                "storefront",
+                "discounts",
+                "products"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "secure",
+           "item": [
+            {
+             "name": "code",
+             "item": [
+              {
+               "name": "{code}",
+               "item": [
+                {
+                 "name": "Get Secure Discount by Code",
+                 "request": {
+                  "method": "GET",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/secure/code/:code",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "catalog",
+                    "storefront",
+                    "discounts",
+                    "secure",
+                    "code",
+                    ":code"
+                   ],
+                   "variable": [
+                    {
+                     "key": "code",
+                     "value": "code"
+                    }
+                   ],
+                   "query": [
+                    {
+                     "key": "responseFields",
+                     "disabled": true
+                    }
+                   ]
+                  }
+                 }
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "name": "couponCode",
+             "item": [
+              {
+               "name": "{couponCode}",
+               "item": [
+                {
+                 "name": "Get Secure Discount by Coupon Code",
+                 "request": {
+                  "method": "GET",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/secure/couponCode/:couponCode",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "catalog",
+                    "storefront",
+                    "discounts",
+                    "secure",
+                    "couponCode",
+                    ":couponCode"
+                   ],
+                   "variable": [
+                    {
+                     "key": "couponCode",
+                     "value": "couponCode"
+                    }
+                   ],
+                   "query": [
+                    {
+                     "key": "responseFields",
+                     "disabled": true
+                    }
+                   ]
+                  }
+                 }
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "name": "id",
+             "item": [
+              {
+               "name": "{id}",
+               "item": [
+                {
+                 "name": "Get Secure Discount by ID",
+                 "request": {
+                  "method": "GET",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/secure/id/:id",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "catalog",
+                    "storefront",
+                    "discounts",
+                    "secure",
+                    "id",
+                    ":id"
+                   ],
+                   "variable": [
+                    {
+                     "key": "id",
+                     "value": "id"
+                    }
+                   ],
+                   "query": [
+                    {
+                     "key": "responseFields",
+                     "disabled": true
+                    }
+                   ]
+                  }
+                 }
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "name": "label",
+             "item": [
+              {
+               "name": "{label}",
+               "item": [
+                {
+                 "name": "Get Secure Discounts by Label",
+                 "request": {
+                  "method": "GET",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/secure/label/:label",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "catalog",
+                    "storefront",
+                    "discounts",
+                    "secure",
+                    "label",
+                    ":label"
+                   ],
+                   "variable": [
+                    {
+                     "key": "label",
+                     "value": "label"
+                    }
+                   ],
+                   "query": [
+                    {
+                     "key": "responseFields",
+                     "disabled": true
+                    }
+                   ]
+                  }
+                 }
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "name": "orders",
+             "item": [
+              {
+               "name": "Get Secure Order Discounts",
+               "request": {
+                "method": "POST",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/secure/orders",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "storefront",
+                  "discounts",
+                  "secure",
+                  "orders"
+                 ],
+                 "variable": [],
+                 "query": [
+                  {
+                   "key": "nonPublicOnly",
+                   "disabled": true
+                  },
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
+             "name": "products",
+             "item": [
+              {
+               "name": "{productCode}",
+               "item": [
+                {
+                 "name": "Get Secure Item Discounts by Product",
+                 "request": {
+                  "method": "GET",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/secure/products/:productCode",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "catalog",
+                    "storefront",
+                    "discounts",
+                    "secure",
+                    "products",
+                    ":productCode"
+                   ],
+                   "variable": [
+                    {
+                     "key": "productCode",
+                     "value": "productCode"
+                    }
+                   ],
+                   "query": [
+                    {
+                     "key": "nonPublicOnly",
+                     "disabled": true
+                    },
+                    {
+                     "key": "responseFields",
+                     "disabled": true
+                    }
+                   ]
+                  }
+                 }
+                }
+               ]
+              },
+              {
+               "name": "Get Secure Item Discounts",
+               "request": {
+                "method": "POST",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/catalog/storefront/discounts/secure/products",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "catalog",
+                  "storefront",
+                  "discounts",
+                  "secure",
+                  "products"
+                 ],
+                 "variable": [],
+                 "query": [
+                  {
+                   "key": "nonPublicOnly",
+                   "disabled": true
+                  },
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
          "name": "pricelists",
          "item": [
           {
@@ -16753,6 +17663,87 @@
                  "key": "includeRawResponse",
                  "disabled": true
                 },
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "transit-times",
+           "item": [
+            {
+             "name": "Get Transit Times",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/catalog/storefront/shipping/transit-times",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "catalog",
+                "storefront",
+                "shipping",
+                "transit-times"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "includeRawResponse",
+                 "disabled": true
+                },
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "tax",
+         "item": [
+          {
+           "name": "estimate-order",
+           "item": [
+            {
+             "name": "Estimate Order Tax",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/catalog/storefront/tax/estimate-order",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "catalog",
+                "storefront",
+                "tax",
+                "estimate-order"
+               ],
+               "variable": [],
+               "query": [
                 {
                  "key": "responseFields",
                  "disabled": true
@@ -21178,6 +22169,119 @@
              ]
             }
            }
+          }
+         ]
+        },
+        {
+         "name": "priority",
+         "item": [
+          {
+           "name": "delete",
+           "item": [
+            {
+             "name": "Delete Account Priorities",
+             "request": {
+              "method": "PUT",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/customer/b2baccounts/priority/delete",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "customer",
+                "b2baccounts",
+                "priority",
+                "delete"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "read",
+           "item": [
+            {
+             "name": "Get Account Priorities",
+             "request": {
+              "method": "GET",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/customer/b2baccounts/priority/read",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "customer",
+                "b2baccounts",
+                "priority",
+                "read"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "update",
+           "item": [
+            {
+             "name": "Update Account Priorities",
+             "request": {
+              "method": "PUT",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/customer/b2baccounts/priority/update",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "customer",
+                "b2baccounts",
+                "priority",
+                "update"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
           }
          ]
         },
@@ -27210,6 +28314,252 @@
      ]
     },
     {
+     "name": "jobs",
+     "item": [
+      {
+       "name": "b2bOrderRelease",
+       "item": [
+        {
+         "name": "B2B Order Release",
+         "request": {
+          "method": "POST",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/jobs/b2bOrderRelease",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "jobs",
+            "b2bOrderRelease"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "locations",
+     "item": [
+      {
+       "name": "cutoffoverrides",
+       "item": [
+        {
+         "name": "{overrideId}",
+         "item": [
+          {
+           "name": "Get Cut Off Time Override by Id",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/locations/cutoffoverrides/:overrideId",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "locations",
+              "cutoffoverrides",
+              ":overrideId"
+             ],
+             "variable": [
+              {
+               "key": "overrideId",
+               "value": "overrideId"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Delete Cut Off Time Override",
+           "request": {
+            "method": "DELETE",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/locations/cutoffoverrides/:overrideId",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "locations",
+              "cutoffoverrides",
+              ":overrideId"
+             ],
+             "variable": [
+              {
+               "key": "overrideId",
+               "value": "overrideId"
+              }
+             ],
+             "query": []
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "Create Cut Off Time Override",
+         "request": {
+          "method": "POST",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/locations/cutoffoverrides",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "locations",
+            "cutoffoverrides"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        },
+        {
+         "name": "Get Cutoff Time Overrides",
+         "request": {
+          "method": "GET",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/locations/cutoffoverrides",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "locations",
+            "cutoffoverrides"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "locationCode",
+             "disabled": true
+            },
+            {
+             "key": "fromDate",
+             "disabled": true
+            },
+            {
+             "key": "toDate",
+             "disabled": true
+            },
+            {
+             "key": "fulfillmentType",
+             "disabled": true
+            },
+            {
+             "key": "startIndex",
+             "disabled": true
+            },
+            {
+             "key": "pageSize",
+             "disabled": true
+            },
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
+      },
+      {
+       "name": "{locationCode}",
+       "item": [
+        {
+         "name": "cutofftime",
+         "item": [
+          {
+           "name": "Get Location Cut Off Time",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/locations/:locationCode/cutofftime",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "locations",
+              ":locationCode",
+              "cutofftime"
+             ],
+             "variable": [
+              {
+               "key": "locationCode",
+               "value": "locationCode"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
      "name": "orderrouting",
      "item": [
       {
@@ -28446,7 +29796,16 @@
                      "value": "dataListID"
                     }
                    ],
-                   "query": []
+                   "query": [
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 },
@@ -28479,7 +29838,16 @@
                      "value": "dataListID"
                     }
                    ],
-                   "query": []
+                   "query": [
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 },
@@ -28541,7 +29909,16 @@
                   "dataList"
                  ],
                  "variable": [],
-                 "query": []
+                 "query": [
+                  {
+                   "key": "x-vol-tenant",
+                   "disabled": true
+                  },
+                  {
+                   "key": "x-vol-site",
+                   "disabled": true
+                  }
+                 ]
                 }
                }
               }
@@ -28577,7 +29954,16 @@
                     "criteriaSet"
                    ],
                    "variable": [],
-                   "query": []
+                   "query": [
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 }
@@ -28685,7 +30071,16 @@
                        "value": "filterID"
                       }
                      ],
-                     "query": []
+                     "query": [
+                      {
+                       "key": "x-vol-tenant",
+                       "disabled": true
+                      },
+                      {
+                       "key": "x-vol-site",
+                       "disabled": true
+                      }
+                     ]
                     }
                    }
                   }
@@ -28791,7 +30186,16 @@
                      "value": "filterID"
                     }
                    ],
-                   "query": []
+                   "query": [
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 }
@@ -28802,50 +30206,6 @@
             {
              "name": "group",
              "item": [
-              {
-               "name": "delete",
-               "item": [
-                {
-                 "name": "{groupID}",
-                 "item": [
-                  {
-                   "name": "Delete Group",
-                   "request": {
-                    "method": "DELETE",
-                    "header": [
-                     {
-                      "key": "x-vol-site",
-                      "value": "{{siteId}}",
-                      "disabled": false
-                     }
-                    ],
-                    "url": {
-                     "raw": "{{baseUrl}}/commerce/orders/orderrouting/api/v1/group/delete/:groupID",
-                     "host": "{{baseUrl}}",
-                     "path": [
-                      "commerce",
-                      "orders",
-                      "orderrouting",
-                      "api",
-                      "v1",
-                      "group",
-                      "delete",
-                      ":groupID"
-                     ],
-                     "variable": [
-                      {
-                       "key": "groupID",
-                       "value": "groupID"
-                      }
-                     ],
-                     "query": []
-                    }
-                   }
-                  }
-                 ]
-                }
-               ]
-              },
               {
                "name": "test",
                "item": [
@@ -28915,7 +30275,16 @@
                        "value": "groupID"
                       }
                      ],
-                     "query": []
+                     "query": [
+                      {
+                       "key": "x-vol-tenant",
+                       "disabled": true
+                      },
+                      {
+                       "key": "x-vol-site",
+                       "disabled": true
+                      }
+                     ]
                     }
                    }
                   }
@@ -28954,7 +30323,16 @@
                        "value": "groupID"
                       }
                      ],
-                     "query": []
+                     "query": [
+                      {
+                       "key": "x-vol-tenant",
+                       "disabled": true
+                      },
+                      {
+                       "key": "x-vol-site",
+                       "disabled": true
+                      }
+                     ]
                     }
                    }
                   }
@@ -28989,7 +30367,16 @@
                      "value": "groupID"
                     }
                    ],
-                   "query": []
+                   "query": [
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 }
@@ -29059,7 +30446,16 @@
                      "value": "locationCode"
                     }
                    ],
-                   "query": []
+                   "query": [
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 }
@@ -29090,11 +30486,19 @@
                  "variable": [],
                  "query": [
                   {
+                   "key": "x-vol-tenant",
+                   "disabled": true
+                  },
+                  {
                    "key": "pageNum",
                    "disabled": true
                   },
                   {
                    "key": "pageSize",
+                   "disabled": true
+                  },
+                  {
+                   "key": "x-vol-site",
                    "disabled": true
                   }
                  ]
@@ -29134,6 +30538,104 @@
                    ],
                    "variable": [],
                    "query": []
+                  }
+                 }
+                }
+               ]
+              },
+              {
+               "name": "edd",
+               "item": [
+                {
+                 "name": "suggestion",
+                 "item": [
+                  {
+                   "name": "Suggest Routing With EDD",
+                   "request": {
+                    "method": "POST",
+                    "header": [
+                     {
+                      "key": "x-vol-site",
+                      "value": "{{siteId}}",
+                      "disabled": false
+                     }
+                    ],
+                    "url": {
+                     "raw": "{{baseUrl}}/commerce/orders/orderrouting/api/v1/routing/edd/suggestion",
+                     "host": "{{baseUrl}}",
+                     "path": [
+                      "commerce",
+                      "orders",
+                      "orderrouting",
+                      "api",
+                      "v1",
+                      "routing",
+                      "edd",
+                      "suggestion"
+                     ],
+                     "variable": [],
+                     "query": [
+                      {
+                       "key": "returnSuggestionLog",
+                       "disabled": true
+                      },
+                      {
+                       "key": "x-vol-tenant",
+                       "disabled": true
+                      },
+                      {
+                       "key": "x-vol-site",
+                       "disabled": true
+                      }
+                     ]
+                    }
+                   }
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "name": "reverseLogisticsSuggestion",
+               "item": [
+                {
+                 "name": "Reverse Logistics Suggestions",
+                 "request": {
+                  "method": "POST",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/orders/orderrouting/api/v1/routing/reverseLogisticsSuggestion",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "orders",
+                    "orderrouting",
+                    "api",
+                    "v1",
+                    "routing",
+                    "reverseLogisticsSuggestion"
+                   ],
+                   "variable": [],
+                   "query": [
+                    {
+                     "key": "returnSuggestionLog",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 }
@@ -29203,6 +30705,14 @@
                     {
                      "key": "returnSuggestionLog",
                      "disabled": true
+                    },
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
                     }
                    ]
                   }
@@ -29239,11 +30749,11 @@
                    "variable": [],
                    "query": [
                     {
-                     "key": "externalResponseID",
+                     "key": "orderID",
                      "disabled": true
                     },
                     {
-                     "key": "orderID",
+                     "key": "suggestionID",
                      "disabled": true
                     },
                     {
@@ -29251,7 +30761,23 @@
                      "disabled": true
                     },
                     {
-                     "key": "suggestionID",
+                     "key": "externalResponseID",
+                     "disabled": true
+                    },
+                    {
+                     "key": "returnID",
+                     "disabled": true
+                    },
+                    {
+                     "key": "includeReturnLogs",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
                      "disabled": true
                     }
                    ]
@@ -29290,6 +30816,14 @@
                    "query": [
                     {
                      "key": "returnSuggestionLog",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
                      "disabled": true
                     }
                    ]
@@ -29339,7 +30873,16 @@
                        "value": "attributeName"
                       }
                      ],
-                     "query": []
+                     "query": [
+                      {
+                       "key": "x-vol-tenant",
+                       "disabled": true
+                      },
+                      {
+                       "key": "x-vol-site",
+                       "disabled": true
+                      }
+                     ]
                     }
                    }
                   },
@@ -29373,7 +30916,16 @@
                        "value": "attributeName"
                       }
                      ],
-                     "query": []
+                     "query": [
+                      {
+                       "key": "x-vol-tenant",
+                       "disabled": true
+                      },
+                      {
+                       "key": "x-vol-site",
+                       "disabled": true
+                      }
+                     ]
                     }
                    }
                   }
@@ -29431,7 +30983,16 @@
                     "filterAttributes"
                    ],
                    "variable": [],
-                   "query": []
+                   "query": [
+                    {
+                     "key": "x-vol-tenant",
+                     "disabled": true
+                    },
+                    {
+                     "key": "x-vol-site",
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 }
@@ -29462,7 +31023,7 @@
                  "variable": [],
                  "query": [
                   {
-                   "key": "getDefaults",
+                   "key": "tenantID",
                    "disabled": true
                   },
                   {
@@ -29470,7 +31031,15 @@
                    "disabled": true
                   },
                   {
-                   "key": "tenantID",
+                   "key": "getDefaults",
+                   "disabled": true
+                  },
+                  {
+                   "key": "x-vol-tenant",
+                   "disabled": true
+                  },
+                  {
+                   "key": "x-vol-site",
                    "disabled": true
                   }
                  ]
@@ -29529,11 +31098,19 @@
                  "variable": [],
                  "query": [
                   {
+                   "key": "tenantID",
+                   "disabled": true
+                  },
+                  {
                    "key": "siteID",
                    "disabled": true
                   },
                   {
-                   "key": "tenantID",
+                   "key": "x-vol-tenant",
+                   "disabled": true
+                  },
+                  {
+                   "key": "x-vol-site",
                    "disabled": true
                   }
                  ]
@@ -31870,6 +33447,60 @@
            "name": "{orderItemId}",
            "item": [
             {
+             "name": "UpdateShippingAndSuggestions",
+             "item": [
+              {
+               "name": "Update Shipping and Suggestions",
+               "request": {
+                "method": "PUT",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/orders/:orderId/items/:orderItemId/UpdateShippingAndSuggestions",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "orders",
+                  ":orderId",
+                  "items",
+                  ":orderItemId",
+                  "UpdateShippingAndSuggestions"
+                 ],
+                 "variable": [
+                  {
+                   "key": "orderId",
+                   "value": "orderId"
+                  },
+                  {
+                   "key": "orderItemId",
+                   "value": "orderItemId"
+                  }
+                 ],
+                 "query": [
+                  {
+                   "key": "updateMode",
+                   "disabled": true
+                  },
+                  {
+                   "key": "version",
+                   "disabled": true
+                  },
+                  {
+                   "key": "responseFields",
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
              "name": "deliverydate",
              "item": [
               {
@@ -32755,9 +34386,9 @@
            ]
           },
           {
-           "name": "Get Order Notes",
+           "name": "Create Order Note",
            "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [
              {
               "key": "x-vol-site",
@@ -32790,9 +34421,9 @@
            }
           },
           {
-           "name": "Create Order Note",
+           "name": "Get Order Notes",
            "request": {
-            "method": "POST",
+            "method": "GET",
             "header": [
              {
               "key": "x-vol-site",
@@ -33580,6 +35211,46 @@
                "key": "version",
                "disabled": true
               },
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "processreturnrules",
+         "item": [
+          {
+           "name": "Applies the return rules to the shipment items and responds if items are eligible for return.",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/orders/:orderId/processreturnrules",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "orders",
+              ":orderId",
+              "processreturnrules"
+             ],
+             "variable": [
+              {
+               "key": "orderId",
+               "value": "orderId"
+              }
+             ],
+             "query": [
               {
                "key": "responseFields",
                "disabled": true
@@ -37333,6 +39004,46 @@
        ]
       },
       {
+       "name": "restock",
+       "item": [
+        {
+         "name": "conditions",
+         "item": [
+          {
+           "name": "Get Item Conditions",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/returns/restock/conditions",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "returns",
+              "restock",
+              "conditions"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
        "name": "{orderId}",
        "item": [
         {
@@ -37456,6 +39167,46 @@
               "returns",
               ":returnId",
               "autorefund"
+             ],
+             "variable": [
+              {
+               "key": "returnId",
+               "value": "returnId"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "disposition",
+         "item": [
+          {
+           "name": "Dispose Return Items",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/returns/:returnId/disposition",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "returns",
+              ":returnId",
+              "disposition"
              ],
              "variable": [
               {
@@ -38631,6 +40382,1397 @@
          ]
         }
        }
+      }
+     ]
+    },
+    {
+     "name": "rules",
+     "item": [
+      {
+       "name": "customer",
+       "item": [
+        {
+         "name": "evaluate",
+         "item": [
+          {
+           "name": "{customerAccountId}",
+           "item": [
+            {
+             "name": "Evaluate Customer Rules",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/rules/customer/evaluate/:customerAccountId",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "rules",
+                "customer",
+                "evaluate",
+                ":customerAccountId"
+               ],
+               "variable": [
+                {
+                 "key": "customerAccountId",
+                 "value": "customerAccountId"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "{code}",
+         "item": [
+          {
+           "name": "Get Customer Rule by Code",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/customer/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "customer",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Update Customer Rule",
+           "request": {
+            "method": "PUT",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/customer/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "customer",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Delete Customer Rule",
+           "request": {
+            "method": "DELETE",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/customer/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "customer",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": []
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "Get All Customer Rules",
+         "request": {
+          "method": "GET",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/customer",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "customer"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "startIndex",
+             "disabled": true
+            },
+            {
+             "key": "pageSize",
+             "disabled": true
+            },
+            {
+             "key": "sortBy",
+             "disabled": true
+            },
+            {
+             "key": "filter",
+             "disabled": true
+            },
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        },
+        {
+         "name": "Create Customer Rule",
+         "request": {
+          "method": "POST",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/customer",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "customer"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
+      },
+      {
+       "name": "product",
+       "item": [
+        {
+         "name": "evaluate",
+         "item": [
+          {
+           "name": "preview",
+           "item": [
+            {
+             "name": "Preview Product Rule",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/rules/product/evaluate/preview",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "rules",
+                "product",
+                "evaluate",
+                "preview"
+               ],
+               "variable": [],
+               "query": [
+                {
+                 "key": "sortBy",
+                 "disabled": true
+                },
+                {
+                 "key": "pageSize",
+                 "disabled": true
+                },
+                {
+                 "key": "startIndex",
+                 "disabled": true
+                },
+                {
+                 "key": "fieldList",
+                 "disabled": true
+                },
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "product-rule-fields",
+         "item": [
+          {
+           "name": "Get Expression Field Definition",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/product/product-rule-fields",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "product",
+              "product-rule-fields"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "validate",
+         "item": [
+          {
+           "name": "Validate Expression",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/product/validate",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "product",
+              "validate"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "{code}",
+         "item": [
+          {
+           "name": "usages",
+           "item": [
+            {
+             "name": "Get Product Rule Usages",
+             "request": {
+              "method": "GET",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/rules/product/:code/usages",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "rules",
+                "product",
+                ":code",
+                "usages"
+               ],
+               "variable": [
+                {
+                 "key": "code",
+                 "value": "code"
+                }
+               ],
+               "query": [
+                {
+                 "key": "startIndex",
+                 "disabled": true
+                },
+                {
+                 "key": "pageSize",
+                 "disabled": true
+                },
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "Get Product Rule by Code",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/product/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "product",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Update Product Rule",
+           "request": {
+            "method": "PUT",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/product/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "product",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Delete Product Rules",
+           "request": {
+            "method": "DELETE",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/product/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "product",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": []
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "Get Product Rules",
+         "request": {
+          "method": "GET",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/product",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "product"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "startIndex",
+             "disabled": true
+            },
+            {
+             "key": "pageSize",
+             "disabled": true
+            },
+            {
+             "key": "sortBy",
+             "disabled": true
+            },
+            {
+             "key": "filter",
+             "disabled": true
+            },
+            {
+             "key": "responseGroups",
+             "disabled": true
+            },
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        },
+        {
+         "name": "Create Product Rule",
+         "request": {
+          "method": "POST",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/product",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "product"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
+      },
+      {
+       "name": "purchaselimit",
+       "item": [
+        {
+         "name": "evaluate",
+         "item": [
+          {
+           "name": "Evaluate Purchase Limits",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/purchaselimit/evaluate",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "purchaselimit",
+              "evaluate"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "{code}",
+         "item": [
+          {
+           "name": "rank",
+           "item": [
+            {
+             "name": "Update Purchase Limit Rule Rank",
+             "request": {
+              "method": "PUT",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/rules/purchaselimit/:code/rank",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "rules",
+                "purchaselimit",
+                ":code",
+                "rank"
+               ],
+               "variable": [
+                {
+                 "key": "code",
+                 "value": "code"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "Get Purchase Limit Rule by Code",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/purchaselimit/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "purchaselimit",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Update Purchase Limit Rule",
+           "request": {
+            "method": "PUT",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/purchaselimit/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "purchaselimit",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Delete Purchase Limit Rule",
+           "request": {
+            "method": "DELETE",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/purchaselimit/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "purchaselimit",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": []
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "Get Purchase Limit Rules",
+         "request": {
+          "method": "GET",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/purchaselimit",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "purchaselimit"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "startIndex",
+             "disabled": true
+            },
+            {
+             "key": "pageSize",
+             "disabled": true
+            },
+            {
+             "key": "sortBy",
+             "disabled": true
+            },
+            {
+             "key": "filter",
+             "disabled": true
+            },
+            {
+             "key": "responseGroups",
+             "disabled": true
+            },
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        },
+        {
+         "name": "Create Purchase Limit Rule",
+         "request": {
+          "method": "POST",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/purchaselimit",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "purchaselimit"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
+      },
+      {
+       "name": "return",
+       "item": [
+        {
+         "name": "evaluate",
+         "item": [
+          {
+           "name": "Evaluate Return Eligibility",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/return/evaluate",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "return",
+              "evaluate"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "{code}",
+         "item": [
+          {
+           "name": "rank",
+           "item": [
+            {
+             "name": "Update Return Rule Rank",
+             "request": {
+              "method": "PUT",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/rules/return/:code/rank",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "rules",
+                "return",
+                ":code",
+                "rank"
+               ],
+               "variable": [
+                {
+                 "key": "code",
+                 "value": "code"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "Get Return Rule by Code",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/return/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "return",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Update Return Rule",
+           "request": {
+            "method": "PUT",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/return/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "return",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Delete Return Rule",
+           "request": {
+            "method": "DELETE",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/return/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "return",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": []
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "Get Return Rules",
+         "request": {
+          "method": "GET",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/return",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "return"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "startIndex",
+             "disabled": true
+            },
+            {
+             "key": "pageSize",
+             "disabled": true
+            },
+            {
+             "key": "sortBy",
+             "disabled": true
+            },
+            {
+             "key": "filter",
+             "disabled": true
+            },
+            {
+             "key": "responseGroups",
+             "disabled": true
+            },
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        },
+        {
+         "name": "Create Return Rule",
+         "request": {
+          "method": "POST",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/return",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "return"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
+      },
+      {
+       "name": "safetystock",
+       "item": [
+        {
+         "name": "evaluate",
+         "item": [
+          {
+           "name": "Evaluate Safety Stock Rules",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/safetystock/evaluate",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "safetystock",
+              "evaluate"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "{code}",
+         "item": [
+          {
+           "name": "rank",
+           "item": [
+            {
+             "name": "Update Safety Stock Rule Rank",
+             "request": {
+              "method": "PUT",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/rules/safetystock/:code/rank",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "rules",
+                "safetystock",
+                ":code",
+                "rank"
+               ],
+               "variable": [
+                {
+                 "key": "code",
+                 "value": "code"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "Get Safety Stock Rule by Code",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/safetystock/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "safetystock",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Update Safety Stock Rule",
+           "request": {
+            "method": "PUT",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/safetystock/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "safetystock",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Delete Safety Stock Rule",
+           "request": {
+            "method": "DELETE",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/rules/safetystock/:code",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "rules",
+              "safetystock",
+              ":code"
+             ],
+             "variable": [
+              {
+               "key": "code",
+               "value": "code"
+              }
+             ],
+             "query": []
+            }
+           }
+          }
+         ]
+        },
+        {
+         "name": "Get Safety Stock Rules",
+         "request": {
+          "method": "GET",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/safetystock",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "safetystock"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "startIndex",
+             "disabled": true
+            },
+            {
+             "key": "pageSize",
+             "disabled": true
+            },
+            {
+             "key": "sortBy",
+             "disabled": true
+            },
+            {
+             "key": "filter",
+             "disabled": true
+            },
+            {
+             "key": "responseGroups",
+             "disabled": true
+            },
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        },
+        {
+         "name": "Create Safety Stock Rule",
+         "request": {
+          "method": "POST",
+          "header": [
+           {
+            "key": "x-vol-site",
+            "value": "{{siteId}}",
+            "disabled": false
+           }
+          ],
+          "url": {
+           "raw": "{{baseUrl}}/commerce/rules/safetystock",
+           "host": "{{baseUrl}}",
+           "path": [
+            "commerce",
+            "rules",
+            "safetystock"
+           ],
+           "variable": [],
+           "query": [
+            {
+             "key": "responseFields",
+             "disabled": true
+            }
+           ]
+          }
+         }
+        }
+       ]
       }
      ]
     },

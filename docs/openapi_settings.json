@@ -2326,6 +2326,31 @@
         },
         "additionalProperties": false
       },
+      "DeliveryConsolidation": {
+        "type": "object",
+        "properties": {
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "shippingMethodDeliveryConsolidation": {
+            "$ref": "#/components/schemas/ShippingMethod"
+          },
+          "restrictedCancellationSteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "cancellationOnParentShipment": {
+            "type": "boolean"
+          },
+          "forceDeliveryConsolidation": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateShipmentsOnPendingReview": {
         "type": "object",
         "properties": {
@@ -2358,6 +2383,24 @@
         },
         "additionalProperties": false
       },
+      "B2BOrderRelease": {
+        "type": "object",
+        "properties": {
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "automaticReleaseOffset": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "releaseType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ConfigurableShipmentRelease": {
         "type": "object",
         "properties": {
@@ -2371,6 +2414,9 @@
           },
           "reserveInventoryOnOrderPendingShipment": {
             "type": "boolean"
+          },
+          "b2BOrderRelease": {
+            "$ref": "#/components/schemas/B2BOrderRelease"
           }
         },
         "additionalProperties": false
@@ -2414,6 +2460,9 @@
           },
           "shipToHomeConsolidation": {
             "$ref": "#/components/schemas/ShipToHomeConsolidation"
+          },
+          "deliveryConsolidation": {
+            "$ref": "#/components/schemas/DeliveryConsolidation"
           },
           "createShipmentsOnPendingReview": {
             "$ref": "#/components/schemas/CreateShipmentsOnPendingReview"
@@ -2877,6 +2926,10 @@
           "digitalItemFulfilled": {
             "type": "boolean",
             "nullable": true
+          },
+          "orderItemsCanceled": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3245,6 +3298,9 @@
             "type": "boolean"
           },
           "refundShippingAndHandling": {
+            "type": "boolean"
+          },
+          "updateInventoryOnRestock": {
             "type": "boolean"
           }
         },

@@ -1105,6 +1105,33 @@
         },
         "additionalProperties": false
       },
+      "Suggesti": {
+        "type": "object",
+        "properties": {
+          "locationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "suggestionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "futureDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ReservationItem": {
         "type": "object",
         "properties": {
@@ -1153,6 +1180,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/InventoryTags"
+            },
+            "nullable": true
+          },
+          "suggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Suggesti"
             },
             "nullable": true
           }

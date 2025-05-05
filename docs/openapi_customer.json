@@ -311,6 +311,335 @@
         "description": "Update a customer attribute."
       }
     },
+    "/commerce/rules/customer": {
+      "get": {
+        "tags": [
+          "AccountRankingRule"
+        ],
+        "summary": "Get All Customer Rules",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRuleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRuleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRuleCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get All Customer Rules"
+      },
+      "post": {
+        "tags": [
+          "AccountRankingRule"
+        ],
+        "summary": "Create Customer Rule",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountRankingRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create Customer Rule",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/rules/customer/{code}": {
+      "get": {
+        "tags": [
+          "AccountRankingRule"
+        ],
+        "summary": "Get Customer Rule by Code",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get Customer Rule by Code"
+      },
+      "put": {
+        "tags": [
+          "AccountRankingRule"
+        ],
+        "summary": "Update Customer Rule",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountRankingRule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRankingRule"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update Customer Rule"
+      },
+      "delete": {
+        "tags": [
+          "AccountRankingRule"
+        ],
+        "summary": "Delete Customer Rule",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Delete Customer Rule"
+      }
+    },
+    "/commerce/rules/customer/evaluate/{customerAccountId}": {
+      "post": {
+        "tags": [
+          "AccountRankingRule"
+        ],
+        "summary": "Evaluate Customer Rules",
+        "parameters": [
+          {
+            "name": "customerAccountId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateAccountRankingRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountRankingRule"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountRankingRule"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountRankingRule"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Evaluate Customer Rules"
+      }
+    },
     "/commerce/customer/addressvalidation": {
       "post": {
         "tags": [
@@ -1752,6 +2081,136 @@
             }
           }
         }
+      }
+    },
+    "/commerce/customer/b2baccounts/priority/update": {
+      "put": {
+        "tags": [
+          "B2BAccount"
+        ],
+        "summary": "Update Account Priorities",
+        "requestBody": {
+          "description": "The account priorities to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountPriorityModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountPriorityModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountPriorityModel"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountPriorityModel"
+                }
+              }
+            }
+          }
+        },
+        "description": "Updates the priorities of B2B accounts. The Priority for blacklisted accounts will be set as -1.",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/customer/b2baccounts/priority/read": {
+      "get": {
+        "tags": [
+          "B2BAccount"
+        ],
+        "summary": "Get Account Priorities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountPriorityModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountPriorityModel"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountPriorityModel"
+                }
+              }
+            }
+          }
+        },
+        "description": "Retrieves the priorities of B2B accounts",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/commerce/customer/b2baccounts/priority/delete": {
+      "put": {
+        "tags": [
+          "B2BAccount"
+        ],
+        "summary": "Delete Account Priorities",
+        "requestBody": {
+          "description": "The IDs of the accounts whose priorities are to be deleted.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Deletes the priorities of specified B2B accounts",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/commerce/customer/b2baccounts/{accountId}/user": {
@@ -7130,6 +7589,89 @@
           }
         }
       },
+      "AccountRankingRule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique id",
+            "format": "int32"
+          },
+          "code": {
+            "type": "string",
+            "description": "unique code.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Rule name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description for rule",
+            "nullable": true
+          },
+          "expression": {
+            "$ref": "#/components/schemas/CustomerCustomerDynamicExpression"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          },
+          "ruleType": {
+            "type": "string",
+            "description": "Scope id",
+            "nullable": true
+          }
+        },
+        "description": ""
+      },
+      "AccountRankingRuleCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountRankingRule"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "EvaluateAccountRankingRuleRequest": {
+        "type": "object",
+        "properties": {
+          "codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "",
+            "nullable": true
+          },
+          "ruleType": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        }
+      },
       "AddressValidationRequest": {
         "type": "object",
         "properties": {
@@ -7743,6 +8285,12 @@
             "type": "string",
             "description": "Status on B2B account.",
             "nullable": true
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Priority of the b2b account for order release",
+            "format": "int32",
+            "nullable": true
           }
         },
         "description": "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \r\nMerchants can edit accounts to add internal notes or assign them to segments."
@@ -7850,6 +8398,49 @@
           }
         },
         "description": "This class is used for sending custom response while upgrading the B2C accounts to B2B.\r\nThe custom response returns a list of success, skipped and error accountIDs while upgrade."
+      },
+      "AccountPriority": {
+        "type": "object",
+        "properties": {
+          "priority": {
+            "type": "integer",
+            "description": "The Priority or rank of accounts. Lowest value has highest priority.",
+            "format": "int32"
+          },
+          "accounts": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "List of accounts against the priority. One account will have only 1 priority assigned to it.",
+            "nullable": true
+          }
+        },
+        "description": "Represents an account priority."
+      },
+      "AccountPriorityModel": {
+        "type": "object",
+        "properties": {
+          "accountPriorities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountPriority"
+            },
+            "description": "List of account priorities.",
+            "nullable": true
+          },
+          "blackListedAccounts": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "List of blacklisted accounts which should not be considered for priority order release.",
+            "nullable": true
+          }
+        },
+        "description": "Model used for B2b account priority"
       },
       "B2BUserAndAuthInfo": {
         "type": "object",
@@ -9479,6 +10070,42 @@
           }
         }
       },
+      "CustomerExpression": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Container or Predicate",
+            "nullable": true
+          },
+          "logicalOperator": {
+            "type": "string",
+            "description": "And or Or (if Container with More than one Node)",
+            "nullable": true
+          },
+          "left": {
+            "type": "string",
+            "description": "The field target of a predicate",
+            "nullable": true
+          },
+          "right": {
+            "description": "The literal values of a predicate",
+            "nullable": true
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerExpression"
+            },
+            "nullable": true
+          },
+          "operator": {
+            "type": "string",
+            "description": "The operator of a predicate",
+            "nullable": true
+          }
+        }
+      },
       "CustomerCustomerSegment": {
         "type": "object",
         "properties": {
@@ -9507,6 +10134,19 @@
           }
         },
         "description": "A customer segment."
+      },
+      "CustomerCustomerDynamicExpression": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "tree": {
+            "$ref": "#/components/schemas/CustomerExpression"
+          }
+        },
+        "description": "Category"
       }
     },
     "securitySchemes": {

@@ -2692,6 +2692,64 @@
           }
         ]
       }
+    },
+    "/commerce/catalog/storefront/shipping/transit-times": {
+      "post": {
+        "tags": [
+          "Shipping"
+        ],
+        "parameters": [
+          {
+            "name": "includeRawResponse",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitTimesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransitTimesResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransitTimesResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransitTimesResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Transit Times",
+        "description": "Get Transit Times"
+      }
     }
   },
   "tags": [
@@ -3184,6 +3242,13 @@
           },
           "logoUrl": {
             "type": "string",
+            "nullable": true
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
           "configFields": {
@@ -3754,6 +3819,28 @@
         },
         "additionalProperties": false
       },
+      "RequestItem": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitMeasurements": {
+            "$ref": "#/components/schemas/ItemMeasurements"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ProductSummary": {
         "type": "object",
         "properties": {
@@ -3810,13 +3897,15 @@
       },
       "RateRequestItem": {
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/RequestItem"
+          }
+        ],
         "properties": {
-          "itemId": {
+          "fulfillmentMethod": {
             "type": "string",
-            "nullable": true
-          },
-          "shipsByItself": {
-            "type": "boolean",
+            "description": "The fulfillment method on item to fetch rates for. Supported values are Ship and Delivery. Will assume Ship if nothing is passed.",
             "nullable": true
           },
           "productSummaries": {
@@ -3827,20 +3916,19 @@
             "description": "If Product Summaries are populated, this information will be utilized in Product Rules (e.g. ProductCode eq \"ABC\" or (Weight.Unit eq \"lbs\" and Weight.Value ge 50)",
             "nullable": true
           },
-          "unitMeasurements": {
-            "$ref": "#/components/schemas/ItemMeasurements"
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32",
+          "shipsByItself": {
+            "type": "boolean",
             "nullable": true
           },
-          "data": {
-            "type": "object",
+          "itemTotal": {
+            "type": "integer",
+            "description": "Item total.",
+            "format": "int32",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents an item in a rate request, inheriting from RequestItem."
       },
       "RateRequestAttribute": {
         "type": "object",
@@ -3982,6 +4070,11 @@
           "data": {
             "type": "object",
             "nullable": true
+          },
+          "originLocationCode": {
+            "type": "string",
+            "description": "Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3999,27 +4092,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "ShippingItemRate": {
-        "type": "object",
-        "properties": {
-          "itemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "amount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The shipping rate for a particular line item"
       },
       "ShippingRateValidationMessage": {
         "type": "object",
@@ -4043,6 +4115,24 @@
         "additionalProperties": false,
         "description": "Shipping Rate Validation Message"
       },
+      "TimeWindow": {
+        "type": "object",
+        "properties": {
+          "startsAt": {
+            "type": "string",
+            "description": "Gets or sets the start time of the time window.",
+            "format": "date-time"
+          },
+          "endsAt": {
+            "type": "string",
+            "description": "Gets or sets the end time of the time window.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a time window with a start and end time."
+      },
       "CarrierRatesResponse": {
         "type": "object",
         "properties": {
@@ -4055,6 +4145,11 @@
             "items": {
               "$ref": "#/components/schemas/ShippingRuntimeShippingRate"
             },
+            "nullable": true
+          },
+          "fulfillmentMethod": {
+            "type": "string",
+            "description": "The fulfillment method for which this carrier rate is applicable to. Possible values are Ship and Delivery.",
             "nullable": true
           },
           "customAttributes": {
@@ -4073,11 +4168,11 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Resolved Shipping Zone Code.  This value can be null if the tenant/site does not have shipping zones defined or there are no matching \r\nshipping zones for the request (e.g. the only zone defined is \"UNITED-STATES\" and the destination address of the rate request is in Canada)",
             "nullable": true
           },
           "resolvedShippingZoneCode": {
             "type": "string",
+            "description": "Resolved Shipping Zone Code.  This value can be null if the tenant/site does not have shipping zones defined or there are no matching \r\nshipping zones for the request (e.g. the only zone defined is \"UNITED-STATES\" and the destination address of the rate request is in Canada)",
             "nullable": true
           },
           "shippingZoneCodes": {
@@ -4241,6 +4336,11 @@
             },
             "description": "Consolidation references for Order Number, Shipment Number and Order Id",
             "nullable": true
+          },
+          "fulfillmentMethod": {
+            "type": "string",
+            "description": "Fulfillment method for the shipment. STH / Delivery. Empty will be assumed as STH.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4343,6 +4443,123 @@
             "items": {
               "$ref": "#/components/schemas/PackageLabelResponse"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransitTimesItem": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/RequestItem"
+          }
+        ],
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransitTimesRequest": {
+        "type": "object",
+        "properties": {
+          "originLocationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "originAddress": {
+            "$ref": "#/components/schemas/CommerceRuntimeAddress"
+          },
+          "destinationAddress": {
+            "$ref": "#/components/schemas/CommerceRuntimeAddress"
+          },
+          "fulfillmentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "shippingServiceTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "shipDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransitTimesItem"
+            },
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "description": "Custom data for the request",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CarrierTransitTimes": {
+        "type": "object",
+        "properties": {
+          "carrierId": {
+            "type": "string",
+            "nullable": true
+          },
+          "estimatedDeliveryDates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeEstimatedDeliveryDate"
+            },
+            "nullable": true
+          },
+          "itemIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransitTimesResponse": {
+        "type": "object",
+        "properties": {
+          "originLocationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "destinationAddress": {
+            "$ref": "#/components/schemas/CommerceRuntimeAddress"
+          },
+          "shipDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransitTimesItem"
+            },
+            "nullable": true
+          },
+          "transitTimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CarrierTransitTimes"
+            },
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
             "nullable": true
           }
         },
@@ -4579,6 +4796,39 @@
         "additionalProperties": false,
         "description": "Categories to which the product belongs."
       },
+      "ShippingRuntimeDeliveryWindow": {
+        "type": "object",
+        "properties": {
+          "pickupTime": {
+            "$ref": "#/components/schemas/TimeWindow"
+          },
+          "dropoffTime": {
+            "$ref": "#/components/schemas/TimeWindow"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ShippingRuntimeShippingItemRate": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The shipping rate for a particular line item"
+      },
       "ShippingRuntimeShippingRate": {
         "type": "object",
         "properties": {
@@ -4602,7 +4852,7 @@
           "shippingItemRates": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ShippingItemRate"
+              "$ref": "#/components/schemas/ShippingRuntimeShippingItemRate"
             },
             "nullable": true
           },
@@ -4622,6 +4872,13 @@
           },
           "data": {
             "type": "object",
+            "nullable": true
+          },
+          "windows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeDeliveryWindow"
+            },
             "nullable": true
           }
         },
@@ -4729,12 +4986,55 @@
             "type": "string",
             "nullable": true
           },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "auditInfo": {
             "$ref": "#/components/schemas/AdminUserAuditInfo"
           }
         },
         "additionalProperties": false,
         "description": "A Carrier definition supported by Shipping Runtime."
+      },
+      "ShippingRuntimeEstimatedDeliveryDate": {
+        "type": "object",
+        "properties": {
+          "fulfillmentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "windows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeDeliveryWindow"
+            },
+            "nullable": true
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingRateValidationMessage"
+            },
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "ShippingRuntimeShipmentResponse": {
         "type": "object",

@@ -1660,7 +1660,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/InventoryInventoryResponse"
+                    "$ref": "#/components/schemas/InventoryResponse"
                   }
                 }
               }
@@ -3067,6 +3067,19 @@
             "type": "string",
             "format": "date-time"
           },
+          "lotCode": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
           "tags": {
             "$ref": "#/components/schemas/tags"
           }
@@ -3307,6 +3320,26 @@
             "description": "Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'",
             "type": "string",
             "format": "date-time"
+          },
+          "lotCode": {
+            "title": "Lot Code",
+            "description": "Extra Uniqueness Identifier used track which lot a product is manufactured in. Only used in Allocate calls.",
+            "type": "string"
+          },
+          "condition": {
+            "title": "Condition",
+            "description": "Descriptor for the state of the product. Only used in Allocate calls.",
+            "type": "string"
+          },
+          "serialNumber": {
+            "title": "Serial Number",
+            "description": "A serial number unique to a specific, physical unit of inventory. Limit of 30 characters. Only used in Allocate calls.",
+            "type": "string"
+          },
+          "date": {
+            "description": "Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management. Only used in Allocate calls.",
+            "type": "string",
+            "format": "date-time"
           }
         },
         "type": "object"
@@ -3377,6 +3410,11 @@
           "shipmentID": {
             "title": "shipment ID",
             "description": "shipment ID",
+            "type": "integer"
+          },
+          "transitionItemID": {
+            "title": "transition item ID",
+            "description": "If provided, overrides the order item ID (orderItemID) in the db records",
             "type": "integer"
           }
         },
@@ -4356,6 +4394,19 @@
             "description": "Stock Keeping Unit",
             "type": "string"
           },
+          "condition": {
+            "type": "string"
+          },
+          "lotCode": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
           "quantity": {
             "description": "Quantity",
             "type": "integer"
@@ -4565,6 +4616,116 @@
           },
           {
             "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "InventoryResponse": {
+        "title": "Inventory Response",
+        "description": "Inventory Response",
+        "allOf": [
+          {
+            "properties": {
+              "locationName": {
+                "description": "Location Name",
+                "type": "string"
+              },
+              "locationCode": {
+                "description": "Location Code",
+                "type": "string"
+              },
+              "tenantID": {
+                "description": "Tenant Identifier",
+                "type": "integer"
+              },
+              "onHand": {
+                "description": "The quantity the location has in its possession",
+                "type": "integer"
+              },
+              "available": {
+                "description": "The quantity the location has that are available for purchase",
+                "type": "integer"
+              },
+              "allocated": {
+                "description": "The quantity the location has that are already allocated.",
+                "type": "integer"
+              },
+              "pending": {
+                "description": "The quantity the location has that are pending.",
+                "type": "integer"
+              },
+              "partNumber": {
+                "description": "Part/Product Number",
+                "type": "string"
+              },
+              "upc": {
+                "description": "Universal Product Code",
+                "type": "string"
+              },
+              "sku": {
+                "description": "Stock Keeping Unit",
+                "type": "string"
+              },
+              "blockAssignment": {
+                "description": "Whether or not the product is blocked for assignment",
+                "type": "boolean"
+              },
+              "ltd": {
+                "description": "Custom field used for store prioritization",
+                "type": "number"
+              },
+              "floor": {
+                "description": "Absolute minimum quantity of this item that should be in stock at any time",
+                "type": "integer"
+              },
+              "safetyStock": {
+                "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
+                "type": "integer"
+              },
+              "distance": {
+                "description": "The distance in miles from this location to the item's destination",
+                "type": "number"
+              },
+              "directShip": {
+                "description": "Whether this location can ship to a consumer",
+                "type": "boolean"
+              },
+              "transferEnabled": {
+                "description": "Whether the location can ship to another location (store), thus restocking that location.",
+                "type": "boolean"
+              },
+              "pickup": {
+                "description": "Whether a consumer can pick up product at this location (store)",
+                "type": "boolean"
+              },
+              "countryCode": {
+                "description": "The country code of this location",
+                "type": "string"
+              },
+              "inventoryLocatorName": {
+                "description": "The inventory locator name of the individual item",
+                "type": "string"
+              },
+              "attributes": {
+                "description": "List of Inventory Attributes",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "taggedInventory": {
+                "$ref": "#/components/schemas/taggedInventoryMap"
+              },
+              "futureInventory": {
+                "$ref": "#/components/schemas/futureInventoryArray"
+              },
+              "externalID": {
+                "description": "External ID of the item",
+                "type": "string"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
           }
         ]
       },
@@ -4779,6 +4940,33 @@
             "description": "Bin Location Identifier",
             "type": "integer"
           },
+          "lotCode": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Track which lot a product is manufactured in"
+          },
+          "condition": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Describes the state of the product"
+          },
+          "serialNumber": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "A serial number unique to a specific, physical unit of inventory"
+          },
+          "date": {
+            "type": "string",
+            "description": "Date related to manufacturing, expiry, or use-by",
+            "format": "date-time"
+          },
+          "granularInventoryTrackingEnabled": {
+            "type": "boolean",
+            "readOnly": true
+          },
           "LTD": {
             "description": "Custom field used for store prioritization",
             "type": "number"
@@ -4793,14 +4981,6 @@
           },
           "quantity": {
             "description": "Current Quantity of Item",
-            "type": "integer"
-          },
-          "retailPrice": {
-            "description": "Stock Keeping Unit",
-            "type": "number"
-          },
-          "currencyID": {
-            "description": "The price of the item",
             "type": "integer"
           },
           "inventoryLocatorName": {
@@ -4875,6 +5055,33 @@
           "quantity": {
             "description": "Current Quantity of Item",
             "type": "integer"
+          },
+          "lotCode": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Track which lot a product is manufactured in"
+          },
+          "condition": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Describes the state of the product"
+          },
+          "serialNumber": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "A serial number unique to a specific, physical unit of inventory"
+          },
+          "date": {
+            "type": "string",
+            "description": "Date related to manufacturing, expiry, or use-by",
+            "format": "date-time"
+          },
+          "granularInventoryTrackingEnabled": {
+            "type": "boolean",
+            "readOnly": true
           },
           "tags": {
             "$ref": "#/components/schemas/tags"
@@ -5405,6 +5612,19 @@
             "description": "Stock Keeping Unit",
             "type": "string"
           },
+          "condition": {
+            "type": "string"
+          },
+          "lotCode": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
           "tags": {
             "$ref": "#/components/schemas/tags"
           }
@@ -5470,124 +5690,6 @@
           }
         },
         "type": "object"
-      },
-      "InventoryInventoryResponse": {
-        "title": "Inventory Response",
-        "description": "Inventory Response",
-        "allOf": [
-          {
-            "properties": {
-              "locationName": {
-                "description": "Location Name",
-                "type": "string"
-              },
-              "locationCode": {
-                "description": "Location Code",
-                "type": "string"
-              },
-              "tenantID": {
-                "description": "Tenant Identifier",
-                "type": "integer"
-              },
-              "onHand": {
-                "description": "The quantity the location has in its possession",
-                "type": "integer"
-              },
-              "available": {
-                "description": "The quantity the location has that are available for purchase",
-                "type": "integer"
-              },
-              "allocated": {
-                "description": "The quantity the location has that are already allocated.",
-                "type": "integer"
-              },
-              "pending": {
-                "description": "The quantity the location has that are pending.",
-                "type": "integer"
-              },
-              "partNumber": {
-                "description": "Part/Product Number",
-                "type": "string"
-              },
-              "upc": {
-                "description": "Universal Product Code",
-                "type": "string"
-              },
-              "sku": {
-                "description": "Stock Keeping Unit",
-                "type": "string"
-              },
-              "blockAssignment": {
-                "description": "Whether or not the product is blocked for assignment",
-                "type": "boolean"
-              },
-              "ltd": {
-                "description": "Custom field used for store prioritization",
-                "type": "number"
-              },
-              "floor": {
-                "description": "Absolute minimum quantity of this item that should be in stock at any time",
-                "type": "integer"
-              },
-              "safetyStock": {
-                "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
-                "type": "integer"
-              },
-              "distance": {
-                "description": "The distance in miles from this location to the item's destination",
-                "type": "number"
-              },
-              "directShip": {
-                "description": "Whether this location can ship to a consumer",
-                "type": "boolean"
-              },
-              "transferEnabled": {
-                "description": "Whether the location can ship to another location (store), thus restocking that location.",
-                "type": "boolean"
-              },
-              "pickup": {
-                "description": "Whether a consumer can pick up product at this location (store)",
-                "type": "boolean"
-              },
-              "countryCode": {
-                "description": "The country code of this location",
-                "type": "string"
-              },
-              "currencyID": {
-                "description": "The currency identifier for the retailPrice",
-                "type": "integer"
-              },
-              "retailPrice": {
-                "description": "The price of the product at this location",
-                "type": "number"
-              },
-              "inventoryLocatorName": {
-                "description": "The inventory locator name of the individual item",
-                "type": "string"
-              },
-              "attributes": {
-                "description": "List of Inventory Attributes",
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "taggedInventory": {
-                "$ref": "#/components/schemas/taggedInventoryMap"
-              },
-              "futureInventory": {
-                "$ref": "#/components/schemas/futureInventoryArray"
-              },
-              "externalID": {
-                "description": "External ID of the item",
-                "type": "string"
-              }
-            }
-          },
-          {
-            "$ref": "#/components/schemas/BaseResponse"
-          }
-        ]
       }
     },
     "requestBodies": {

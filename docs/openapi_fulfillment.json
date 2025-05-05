@@ -7,76 +7,58 @@
   },
   "tags": [
     {
-      "name": "CustomerSurvey",
-      "description": "Customer Survey Controller"
+      "name": "CustomerSurvey"
     },
     {
-      "name": "Fulfillment",
-      "description": "Fulfillment Controller"
+      "name": "Fulfillment"
     },
     {
-      "name": "FutureShipment",
-      "description": "Future Shipment Controller"
+      "name": "FutureShipment"
     },
     {
-      "name": "GiftReceipt",
-      "description": "Gift Receipt Controller"
+      "name": "GiftReceipt"
     },
     {
-      "name": "Manifest",
-      "description": "Manifest Controller"
+      "name": "Manifest"
     },
     {
-      "name": "PickWave",
-      "description": "Pick Wave Controller"
+      "name": "PickWave"
     },
     {
-      "name": "Rendition",
-      "description": "Rendition Controller"
+      "name": "Rendition"
     },
     {
-      "name": "ShipmentAttributes",
-      "description": "Shipment Attributes Controller"
+      "name": "ShipmentAttributes"
     },
     {
-      "name": "ShipmentContact",
-      "description": "Shipment Contact Controller"
+      "name": "ShipmentContact"
     },
     {
-      "name": "Shipment",
-      "description": "Shipment Controller"
+      "name": "Shipment"
     },
     {
-      "name": "ShipmentData",
-      "description": "Shipment Data Controller"
+      "name": "ShipmentData"
     },
     {
-      "name": "ShipmentNotes",
-      "description": "Shipment Notes Controller"
+      "name": "ShipmentNotes"
     },
     {
-      "name": "ShipmentPackages",
-      "description": "Shipment Packages Controller"
+      "name": "ShipmentPackages"
     },
     {
-      "name": "ShipmentResendEmail",
-      "description": "Shipment Resend Email Controller"
+      "name": "ShipmentResendEmail"
     },
     {
-      "name": "ShippingNotification",
-      "description": "Shipping Notification Controller"
+      "name": "ShippingNotification"
     },
     {
-      "name": "Storefront",
-      "description": "Storefront Controller"
+      "name": "Storefront"
     },
     {
-      "name": "Substitutions",
-      "description": "Substitutions Controller"
+      "name": "Substitutions"
     },
     {
-      "name": "WorkflowProcess",
-      "description": "Workflow Process Controller"
+      "name": "WorkflowProcess"
     }
   ],
   "paths": {

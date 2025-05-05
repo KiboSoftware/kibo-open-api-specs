@@ -6,6 +6,283 @@
     "version": "1.0.1"
   },
   "paths": {
+    "/commerce/locations/cutoffoverrides": {
+      "post": {
+        "tags": [
+          "CutoffTimeOverride"
+        ],
+        "summary": "Create Cut Off Time Override",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CutoffTimeOverride"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create a new Cut Off Time override.",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "CutoffTimeOverride"
+        ],
+        "summary": "Get Cut Off Time Overrides",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "fulfillmentType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets all Cut Off Time overrides. Location and/or Date Range and/or FulfillmentType can be used to filter the results. For a single date, pass only the fromDate parameter."
+      }
+    },
+    "/commerce/locations/cutoffoverrides/{overrideId}": {
+      "get": {
+        "tags": [
+          "CutoffTimeOverride"
+        ],
+        "summary": "Get Cutoff Time Override by Id",
+        "parameters": [
+          {
+            "name": "overrideId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              }
+            }
+          }
+        },
+        "description": "Retrieves a Cutoff Time override by Id"
+      },
+      "delete": {
+        "tags": [
+          "CutoffTimeOverride"
+        ],
+        "summary": "Delete Cut Off Time Override",
+        "parameters": [
+          {
+            "name": "overrideId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Deletes a specific Cut Off Time override"
+      }
+    },
+    "/commerce/locations/{locationCode}/cutofftime": {
+      "post": {
+        "tags": [
+          "CutoffTimeOverride"
+        ],
+        "summary": "Get Location Cut Off Time",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CutOffTimeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CutoffTimeResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CutoffTimeResponse"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CutoffTimeResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets an override if available, otherwise returns CutoffTime from Location"
+      }
+    },
     "/commerce/admin/locations": {
       "post": {
         "tags": [
@@ -1343,7 +1620,7 @@
         "tags": [
           "LocationType"
         ],
-        "summary": "Get Location Types\r\n<param name=\"pageSize\"></param><param name=\"sortBy\"></param>",
+        "summary": "Get Location Types",
         "description": "Get a collection of LocationTypes.",
         "parameters": [
           {
@@ -1396,10 +1673,469 @@
           }
         }
       }
+    },
+    "/commerce/admin/locations/transfertimes": {
+      "post": {
+        "tags": [
+          "TransferTimes"
+        ],
+        "summary": "Create Transfer Time",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationTransferTime"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create transfertime between locations or location types",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "TransferTimes"
+        ],
+        "summary": "Get Transfer Times",
+        "parameters": [
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferTimesCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferTimesCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferTimesCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets list of transfertimes by filter (FromId and ToId), sort and paging."
+      }
+    },
+    "/commerce/admin/locations/transfertimes/{id}": {
+      "put": {
+        "tags": [
+          "TransferTimes"
+        ],
+        "summary": "Update Transfer Time",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique Id of the transfertime",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Transfertime object with changes",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationTransferTime"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update a specific transfer time"
+      },
+      "delete": {
+        "tags": [
+          "TransferTimes"
+        ],
+        "summary": "Delete Transfer Time",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique Id of transfertime",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Deletes a specific transfer time"
+      },
+      "get": {
+        "tags": [
+          "TransferTimes"
+        ],
+        "summary": "Gets a specif transfertime by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique Id of transfertime",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationTransferTime"
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets a specific transfertime by Id"
+      }
+    },
+    "/commerce/admin/locations/transfertimes/{tolocationcode}": {
+      "post": {
+        "tags": [
+          "TransferTimes"
+        ],
+        "summary": "Get Transfer Times by Locations",
+        "parameters": [
+          {
+            "name": "tolocationcode",
+            "in": "path",
+            "description": "To LocationCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "List of FromLocationCodes",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationTransferTime"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationTransferTime"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationTransferTime"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets transfertimes between a specific ToLocation and a list of FromLocations"
+      }
     }
   },
   "components": {
     "schemas": {
+      "CutoffTimeOverride": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "fulfillmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "isClosed": {
+            "type": "boolean"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutoffTimeOverrideCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CutoffTimeOverride"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutOffTimeRequest": {
+        "type": "object",
+        "properties": {
+          "fulfillmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "dates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutoffTimeResponse": {
+        "type": "object",
+        "properties": {
+          "fulfillmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/LocationTimeZone"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "isClosed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LocationType": {
         "type": "object",
         "properties": {
@@ -1497,6 +2233,79 @@
         },
         "additionalProperties": false
       },
+      "CutoffHours": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "isClosed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeeklyCutoffHours": {
+        "type": "object",
+        "properties": {
+          "sunday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "monday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "tuesday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "wednesday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "thursday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "friday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "saturday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutoffSchedule": {
+        "type": "object",
+        "properties": {
+          "fulfillmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "times": {
+            "$ref": "#/components/schemas/WeeklyCutoffHours"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutoffTimes": {
+        "type": "object",
+        "properties": {
+          "timeZone": {
+            "$ref": "#/components/schemas/LocationTimeZone"
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CutoffSchedule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ShippingOriginContact": {
         "type": "object",
         "properties": {
@@ -1587,20 +2396,6 @@
         },
         "additionalProperties": false
       },
-      "TransferTime": {
-        "type": "object",
-        "properties": {
-          "unit": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
       "ReceiveProcessingTime": {
         "type": "object",
         "properties": {
@@ -1625,9 +2420,6 @@
             },
             "nullable": true
           },
-          "transfer": {
-            "$ref": "#/components/schemas/TransferTime"
-          },
           "receive": {
             "$ref": "#/components/schemas/ReceiveProcessingTime"
           }
@@ -1647,6 +2439,21 @@
           "targetServiceLevelPercentage": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Capacity": {
+        "type": "object",
+        "properties": {
+          "unitOfMeasure": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipmentsPerUnit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1700,6 +2507,9 @@
           "regularHours": {
             "$ref": "#/components/schemas/RegularHours"
           },
+          "cutoffTimes": {
+            "$ref": "#/components/schemas/CutoffTimes"
+          },
           "shippingOriginContact": {
             "$ref": "#/components/schemas/ShippingOriginContact"
           },
@@ -1739,6 +2549,9 @@
           "shipToHomeConsolidation": {
             "type": "boolean"
           },
+          "deliveryConsolidation": {
+            "type": "boolean"
+          },
           "includeInInventoryAggregrate": {
             "type": "boolean"
           },
@@ -1760,6 +2573,9 @@
               "$ref": "#/components/schemas/SlaConfiguration"
             },
             "nullable": true
+          },
+          "capacity": {
+            "$ref": "#/components/schemas/Capacity"
           }
         },
         "additionalProperties": false
@@ -2188,6 +3004,76 @@
         },
         "additionalProperties": false
       },
+      "LocationTransferTime": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fromId": {
+            "type": "string",
+            "nullable": true
+          },
+          "toId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromName": {
+            "type": "string",
+            "nullable": true
+          },
+          "toName": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferTimeInHours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransferTimesCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationTransferTime"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AdminUserAuditInfo": {
         "type": "object",
         "properties": {
@@ -2487,6 +3373,27 @@
         },
         "additionalProperties": false
       },
+      "LocationTimeZone": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "offset": {
+            "type": "number",
+            "format": "double"
+          },
+          "isDaylightSavingsTime": {
+            "type": "boolean"
+          },
+          "ianaCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LocationLocationGroup": {
         "type": "object",
         "properties": {
@@ -2538,6 +3445,13 @@
           },
           "enableMultiPieceShipment": {
             "type": "boolean",
+            "nullable": true
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },

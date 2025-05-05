@@ -638,6 +638,79 @@
         },
         "additionalProperties": false
       },
+      "CutoffHours": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "isClosed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeeklyCutoffHours": {
+        "type": "object",
+        "properties": {
+          "sunday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "monday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "tuesday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "wednesday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "thursday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "friday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "saturday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutoffSchedule": {
+        "type": "object",
+        "properties": {
+          "fulfillmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "times": {
+            "$ref": "#/components/schemas/WeeklyCutoffHours"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutoffTimes": {
+        "type": "object",
+        "properties": {
+          "timeZone": {
+            "$ref": "#/components/schemas/LocationTimeZone"
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CutoffSchedule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ShippingOriginContact": {
         "type": "object",
         "properties": {
@@ -728,20 +801,6 @@
         },
         "additionalProperties": false
       },
-      "TransferTime": {
-        "type": "object",
-        "properties": {
-          "unit": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
       "ReceiveProcessingTime": {
         "type": "object",
         "properties": {
@@ -766,9 +825,6 @@
             },
             "nullable": true
           },
-          "transfer": {
-            "$ref": "#/components/schemas/TransferTime"
-          },
           "receive": {
             "$ref": "#/components/schemas/ReceiveProcessingTime"
           }
@@ -788,6 +844,21 @@
           "targetServiceLevelPercentage": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Capacity": {
+        "type": "object",
+        "properties": {
+          "unitOfMeasure": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipmentsPerUnit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -841,6 +912,9 @@
           "regularHours": {
             "$ref": "#/components/schemas/RegularHours"
           },
+          "cutoffTimes": {
+            "$ref": "#/components/schemas/CutoffTimes"
+          },
           "shippingOriginContact": {
             "$ref": "#/components/schemas/ShippingOriginContact"
           },
@@ -880,6 +954,9 @@
           "shipToHomeConsolidation": {
             "type": "boolean"
           },
+          "deliveryConsolidation": {
+            "type": "boolean"
+          },
           "includeInInventoryAggregrate": {
             "type": "boolean"
           },
@@ -901,6 +978,9 @@
               "$ref": "#/components/schemas/SlaConfiguration"
             },
             "nullable": true
+          },
+          "capacity": {
+            "$ref": "#/components/schemas/Capacity"
           }
         },
         "additionalProperties": false
@@ -1200,6 +1280,27 @@
           },
           "content": {
             "$ref": "#/components/schemas/AttributeValueLocalizedContent"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationTimeZone": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "offset": {
+            "type": "number",
+            "format": "double"
+          },
+          "isDaylightSavingsTime": {
+            "type": "boolean"
+          },
+          "ianaCode": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
