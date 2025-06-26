@@ -86,6 +86,37 @@
         "summary": "Create Export Settings"
       }
     },
+    "/commerce/inventory/v1/export": {
+      "post": {
+        "tags": [
+          "ExportInventory"
+        ],
+        "description": "Run Export Settings Job",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ExportInventoryRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportInventoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        },
+        "summary": "Run Export"
+      }
+    },
     "/commerce/inventory/v1/export/update": {
       "post": {
         "tags": [
@@ -191,7 +222,7 @@
         "tags": [
           "ExportInventory"
         ],
-        "description": "Update an Export Settings FTP",
+        "description": "Updates the FTP settings within an existing Export Settings object.",
         "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateExportSettingsFTPRequest"
@@ -371,6 +402,115 @@
           }
         },
         "summary": "Delete Export Settings S3"
+      }
+    },
+    "/commerce/inventory/v1/export/gcs/create": {
+      "post": {
+        "tags": [
+          "ExportInventory"
+        ],
+        "description": "Creates new GSC settings and adds them to an existing Export Settings object, which may be useful if you want the export to go to a new endpoint instead of the one originally set up (or if the export needs to go to multiple endpoints). This call will not function unless you have performed the initial Create Export Settings request first.",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateExportSettingsGCSRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportSettingsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        },
+        "summary": "Create Export Settings GCS"
+      }
+    },
+    "/commerce/inventory/v1/export/gcs/update": {
+      "post": {
+        "tags": [
+          "ExportInventory"
+        ],
+        "description": "Updates the GCS settings within an existing Export Settings object.",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UpdateExportSettingsGCSRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateExportSettingsGCSResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "No Settings Found"
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        },
+        "summary": "Update Export Settings GCS"
+      }
+    },
+    "/commerce/inventory/v1/export/gcs/{exportSettingsName}/{exportSettingsGCSName}": {
+      "delete": {
+        "tags": [
+          "ExportInventory"
+        ],
+        "description": "Deletes the specified GCS settings object. Not specifying exportSettingsGCSID deletes ALL GCS settings for the specified export settings.",
+        "parameters": [
+          {
+            "name": "exportSettingsName",
+            "in": "path",
+            "description": "Export Settings Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exportSettingsGCSName",
+            "in": "path",
+            "description": "Export Settings GCS Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedCountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Delete Export Settings GCS"
       }
     },
     "/commerce/inventory/v1/config/fetchfile/{fetchFileConfigID}": {
@@ -598,31 +738,6 @@
           }
         },
         "summary": "Get Location Groups"
-      }
-    },
-    "/commerce/inventory/v5/inventory/redistribute": {
-      "post": {
-        "tags": [
-          "ModifyInventory"
-        ],
-        "description": "Create jobs to redistribute inventory across tags for the given tenant",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/JobQueueResponse"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "summary": "Redistribute Inventory Across Tags"
       }
     },
     "/commerce/inventory/v5/inventory/shipmentInventoryAllocations": {
@@ -1071,10 +1186,70 @@
             }
           }
         },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/AdjustFutureDateRequest"
-        },
         "summary": "Adjust Future Date"
+      }
+    },
+    "/cache/invalidate": {
+      "post": {
+        "tags": [
+          "InventoryCache"
+        ],
+        "description": "Invalidate Cache",
+        "parameters": [],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/InvalidateCacheRequest"
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Cache key invalidated successfully."
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid request parameters."
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Server error."
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Invalidates the current inventory cache."
       }
     },
     "/commerce/inventory/v5/inventory/allocate": {
@@ -1136,7 +1311,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BaseResponse"
+                  "$ref": "#/components/schemas/JobQueueResponse"
                 }
               }
             }
@@ -1179,7 +1354,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BaseResponse"
+                  "$ref": "#/components/schemas/JobQueueResponse"
                 }
               }
             }
@@ -1524,73 +1699,6 @@
         "summary": "Block Assignment"
       }
     },
-    "/commerce/inventory/v1/export": {
-      "get": {
-        "tags": [
-          "ExportInventory"
-        ],
-        "description": "Get an export settings",
-        "parameters": [
-          {
-            "name": "exportSettingsName",
-            "in": "query",
-            "description": "Export Settings Name",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetExportSettingsResponse"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Export Setting Not Found"
-          }
-        },
-        "summary": "Get Export Settings"
-      },
-      "post": {
-        "tags": [
-          "ExportInventory"
-        ],
-        "description": "Run Export Settings Job",
-        "parameters": [],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/ExportInventoryRequest"
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExportInventoryResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Service Error"
-          }
-        },
-        "summary": "Run Export"
-      }
-    },
     "/commerce/inventory/v1/config/fetchfile": {
       "get": {
         "tags": [
@@ -1604,7 +1712,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/M_FetchFileConfig"
+                  "$ref": "#/components/schemas/GetFetchFileConfigResponse"
                 }
               }
             }
@@ -1643,12 +1751,190 @@
       }
     },
     "/commerce/inventory/v5/inventory": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "description": "Gets inventory from a specified location.",
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "query",
+            "description": "Site ID",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Type of request enum",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ALL",
+                "PARTIAL",
+                "ANY",
+                "ALL_STORES"
+              ]
+            }
+          },
+          {
+            "name": "items",
+            "in": "query",
+            "description": "List of Items to search on",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ItemQuantity"
+              }
+            }
+          },
+          {
+            "name": "requestLocation",
+            "in": "query",
+            "description": "Location for Request",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/RequestLocation"
+            }
+          },
+          {
+            "name": "locationWhitelist",
+            "in": "query",
+            "description": "List of location codes that are allowed to be included in results",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "locationBlacklist",
+            "in": "query",
+            "description": "List of location codes that are NOT allowed to be included in results",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of results to return, defaults to 100 for most",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "ignoreSafetyStock",
+            "in": "query",
+            "description": "Whether to ignore the safety stock buffer put in place",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeNegativeInventory",
+            "in": "query",
+            "description": "Whether to allow items with negative inventory in the results",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "shippingLocation",
+            "in": "query",
+            "description": "Whether to limit results to locations that are shipping enabled",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "transferEnabled",
+            "in": "query",
+            "description": "Filter results by locations that have transfer enabled (true) or don't (false)",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pickup",
+            "in": "query",
+            "description": "Filter results by locations that are pickup-enabled (true) or not (false)",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeInAggregate",
+            "in": "query",
+            "description": "Filter results by locations that have aggregate export enabled (true) or don't (false)",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeAttributes",
+            "in": "query",
+            "description": "Flag to include attributes or not",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InventoryResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bins Not Found"
+          }
+        },
+        "summary": "Get Inventory (GET)"
+      },
       "post": {
         "tags": [
           "Inventory"
         ],
         "description": "Queries for specified inventory at given location. To call the version of this API with RIS (<a href=\"https://docs.kibocommerce.com/help/real-time-inventory-service\">real-time inventory service</a>) data, use the /commerce/realtime-inventory/v5/inventory endpoint instead.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "query",
+            "description": "Site ID",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
           "$ref": "#/components/requestBodies/InventoryRequest"
         },
@@ -1670,7 +1956,7 @@
             "description": "Bad Request"
           }
         },
-        "summary": "Get Inventory"
+        "summary": "Get Inventory (POST)"
       }
     },
     "/commerce/inventory/v5/inventory/aggregate": {
@@ -1679,7 +1965,17 @@
           "Inventory"
         ],
         "description": "Aggregates inventory.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "query",
+            "description": "Site ID",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
           "$ref": "#/components/requestBodies/AggregateRequest"
         },
@@ -2010,7 +2306,17 @@
           "ModifyInventory"
         ],
         "description": "Delete Inventory",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "query",
+            "description": "Site ID",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
           "$ref": "#/components/requestBodies/DeleteItemRequest"
         },
@@ -2038,7 +2344,17 @@
           "ModifyInventory"
         ],
         "description": "Deletes future inventory.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "query",
+            "description": "Site ID",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
           "$ref": "#/components/requestBodies/DeleteFutureItemRequest"
         },
@@ -2066,7 +2382,17 @@
           "ModifyInventory"
         ],
         "description": "Deletes multiple inventory items.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "x-vol-site",
+            "in": "query",
+            "description": "Site ID",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
           "$ref": "#/components/requestBodies/DeleteItemsRequest"
         },
@@ -2351,6 +2677,37 @@
         },
         "type": "object"
       },
+      "ExportSettingsGcs": {
+        "title": "Export Settings GCS",
+        "description": "Export Settings GCS",
+        "required": [
+          "name",
+          "gcs_bucket"
+        ],
+        "properties": {
+          "exportSettingsID": {
+            "description": "Export Settings ID",
+            "type": "integer"
+          },
+          "exportSettingsGcsID": {
+            "description": "Export Settings GCS ID",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Export Settings GCS Name",
+            "type": "string"
+          },
+          "active": {
+            "description": "Flag for Active State",
+            "type": "boolean"
+          },
+          "gcsBucket": {
+            "description": "GCS Bucket (directory)",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "tags": {
         "description": "Associative Map of <String, String> for tagCategoryName => tagName",
         "type": "object",
@@ -2408,6 +2765,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExportSettingsS3"
+            }
+          },
+          "gcsInformation": {
+            "description": "List of export S3 settings",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExportSettingsGcs"
             }
           },
           "exportSingleFile": {
@@ -2555,6 +2919,80 @@
           "exportSettingsS3Name": {
             "description": "Created Export Settings S3 Name",
             "type": "string"
+          },
+          "exportSettingsGcsName": {
+            "description": "Created Export Settings GCS Name",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ExportInventoryRequest": {
+        "title": "Export Inventory Request",
+        "description": "Export Inventory Request",
+        "allOf": [
+          {
+            "properties": {
+              "exportSettingsName": {
+                "description": "Name of the Export Settings to use",
+                "type": "string"
+              },
+              "exportSettingsFTPName": {
+                "description": "Name of the FTP Settings to use. Will only check for this if exportID is already set",
+                "type": "string"
+              },
+              "exportSettingsS3Name": {
+                "description": "Name of the S3 Settings to use. Will only check for this if exportID is already set",
+                "type": "string"
+              },
+              "exportSettingsGcsName": {
+                "description": "Name of the Gcs Settings to use. Will only check for this if exportID is already set",
+                "type": "string"
+              },
+              "development": {
+                "description": "Flag for sending the exports to the development droppoint",
+                "type": "boolean"
+              },
+              "exportSettingsId": {
+                "description": "Export id post import",
+                "type": "integer"
+              },
+              "exportSettingsFtpId": {
+                "description": "FTP id post import",
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "ExportInventoryJobResponse": {
+        "title": "Export Inventory Job Response",
+        "description": "Response for each export job creation",
+        "properties": {
+          "exportSettingsID": {
+            "description": "Export Settings ID",
+            "type": "integer"
+          },
+          "jobID": {
+            "description": "ID of newly created job",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ExportInventoryResponse": {
+        "title": "Export Inventory Response",
+        "description": "Response for Export Inventory api",
+        "properties": {
+          "exportInventoryJobResponses": {
+            "description": "List of Export Inventory Job Responses",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExportInventoryJobResponse"
+            }
           }
         },
         "type": "object"
@@ -2760,6 +3198,79 @@
           }
         ]
       },
+      "CreateExportSettingsGcsRequest": {
+        "title": "Create Export Settings GCS Request",
+        "description": "Request needed for creating Export Settings GCS",
+        "required": [
+          "exportSettingsGcs",
+          "exportSettingsName"
+        ],
+        "allOf": [
+          {
+            "properties": {
+              "exportSettingsName": {
+                "description": "Export Settings Name to associate the GCS settings with",
+                "type": "string"
+              },
+              "exportSettingsGcs": {
+                "$ref": "#/components/schemas/ExportSettingsGcs"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "UpdateExportSettingsGcsRequest": {
+        "title": "Update Export Settings GCS Request",
+        "description": "Request needed for updating existing Export Settings GCS",
+        "required": [
+          "exportSettingsName",
+          "exportSettingsGcs"
+        ],
+        "allOf": [
+          {
+            "properties": {
+              "exportSettingsName": {
+                "description": "Export Settings Name to associate the ftp settings with",
+                "type": "string"
+              },
+              "exportSettingsGcs": {
+                "$ref": "#/components/schemas/ExportSettingsGcs"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseRequest"
+          }
+        ]
+      },
+      "UpdateExportSettingsGCSResponse": {
+        "title": "Update Export Settings Gcs Response",
+        "description": "Update Export Settings Gcs Response",
+        "allOf": [
+          {
+            "properties": {
+              "tenantID": {
+                "description": "Tenant ID",
+                "type": "integer"
+              },
+              "exportSettingsGcsID": {
+                "description": "Export Settings Gcs ID",
+                "type": "integer"
+              },
+              "exportSettingsID": {
+                "description": "Export Settings ID to associate the Gcs settings with",
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
+          }
+        ]
+      },
       "DeletedResponse": {
         "title": "Deleted Response",
         "description": "Deleted Response Model",
@@ -2784,6 +3295,20 @@
           },
           "ftpArchiveFiles": {
             "description": "List of files found on the specified sftp archive directory",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gcsFiles": {
+            "description": "List of files found on the specified gcs bucket/path",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gcsArchiveFiles": {
+            "description": "List of files found on the specified gcs archive bucket/path",
             "type": "array",
             "items": {
               "type": "string"
@@ -2886,6 +3411,10 @@
               "wmsEnabled": {
                 "description": "Flag for whether the location is WMS Enabled",
                 "type": "boolean"
+              },
+              "deliveryEnabled": {
+                "description": "Flag for whether the location is deliveryEnabled",
+                "type": "boolean"
               }
             }
           },
@@ -2940,6 +3469,203 @@
             "$ref": "#/components/schemas/BaseResponse"
           }
         ]
+      },
+      "ShipmentInventoryAllocationRequest": {
+        "title": "ShipmentInventoryAllocation Request",
+        "description": "ShipmentInventoryAllocation Request Object",
+        "required": [
+          "shipmentIDs"
+        ],
+        "properties": {
+          "shipmentIDs": {
+            "description": "Shipment Ids",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "type": "object"
+      },
+      "InventoryAllocationResponse": {
+        "title": "InventoryAllocationResponse",
+        "description": "InventoryAllocationResponse Object",
+        "properties": {
+          "orderItemID": {
+            "title": "order item ID",
+            "description": "order item ID",
+            "type": "integer"
+          },
+          "upc": {
+            "title": "upc",
+            "description": "upc",
+            "type": "string"
+          },
+          "state": {
+            "title": "state",
+            "description": "state",
+            "type": "string"
+          },
+          "quantity": {
+            "title": "quantity",
+            "description": "quantity",
+            "type": "integer"
+          },
+          "futureDate": {
+            "description": "Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'",
+            "type": "string",
+            "format": "date-time"
+          },
+          "externalId": {
+            "title": "externalId",
+            "description": "External ID",
+            "type": "string"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/tags"
+          }
+        },
+        "type": "object"
+      },
+      "allocationList": {
+        "description": "List of InventoryAllocationResponse objects",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/InventoryAllocationResponse"
+        }
+      },
+      "ShipmentAllocationsResponse": {
+        "title": "ShipmentAllocationsResponse",
+        "description": "ShipmentAllocationsResponse Object",
+        "properties": {
+          "currentAllocations": {
+            "$ref": "#/components/schemas/allocationList"
+          },
+          "futureAllocations": {
+            "$ref": "#/components/schemas/allocationList"
+          }
+        },
+        "type": "object"
+      },
+      "shipments": {
+        "description": "Associative Map of Map<shipmentId, ShipmentAllocationsResponse>",
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/ShipmentAllocationsResponse"
+        }
+      },
+      "ShipmentInventoryAllocationResponse": {
+        "title": "ShipmentInventoryAllocation Response",
+        "description": "ShipmentInventoryAllocation Response Object",
+        "properties": {
+          "shipments": {
+            "$ref": "#/components/schemas/shipments"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateTenantSiloConfigRequest": {
+        "title": "Create Tenant Silo Config Request",
+        "description": "Request for creating or updating tenant silo config.",
+        "properties": {
+          "tenantID": {
+            "description": "A Tenant ID",
+            "type": "integer"
+          },
+          "batchWorkers": {
+            "description": "Number of batch workers to run for this tenant.",
+            "type": "integer"
+          },
+          "eventSenderWorkers": {
+            "description": "Number of event sender workers to run for this tenant.",
+            "type": "integer"
+          },
+          "nonBatchWorkers": {
+            "description": "Number of event dedicated non-batch workers to run for this silo.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "TenantSiloConfigModel": {
+        "title": "Tenant Silo Config Model",
+        "description": "Model of a tenant silo config.",
+        "properties": {
+          "siloID": {
+            "description": "A Silo ID",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Name of the Silo",
+            "type": "string"
+          },
+          "description": {
+            "description": "Description of silo configuration",
+            "type": "string"
+          },
+          "usable": {
+            "description": "Whether the  silo config is usable or not",
+            "type": "boolean"
+          },
+          "additonalTenantsAllowed": {
+            "description": "Check whether theAdditional tenants allowed or not ",
+            "type": "boolean"
+          },
+          "batchWorkers": {
+            "description": "Number of Batch Workers to run for this tenant.",
+            "type": "integer"
+          },
+          "eventSenderWorkers": {
+            "description": "Number of Event Sender Workers to run for this tenant.",
+            "type": "integer"
+          },
+          "nonBatchWorkers": {
+            "description": "Number of Non-Batch Workers to run for this tenant.",
+            "type": "integer"
+          },
+          "isolateNonBatchJobs": {
+            "description": "Whether to isolate non-batch jobs or not",
+            "type": "boolean"
+          },
+          "tenantID": {
+            "description": "A Tenant ID",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "TagCategory": {
+        "title": "Tag Category Response",
+        "description": "Request and response object for a tag category",
+        "properties": {
+          "tagCategoryID": {
+            "description": "Tag Category ID",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Tag Category Name",
+            "type": "string"
+          },
+          "created": {
+            "description": "Date tag category was created.",
+            "type": "string"
+          },
+          "deletion_job_ids": {
+            "description": "List of deletion job ID's",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "tags": {
+            "description": "Tags within this category",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InventoryTag"
+            }
+          }
+        },
+        "type": "object"
       },
       "JobQueueResponse": {
         "title": "Job Queue Response",
@@ -3021,209 +3747,19 @@
           }
         ]
       },
-      "ShipmentInventoryAllocationRequest": {
-        "title": "ShipmentInventoryAllocation Request",
-        "description": "ShipmentInventoryAllocation Request Object",
+      "InvalidateCacheRequest": {
+        "title": "Invalidate Cache Request",
+        "description": "Request to invalidate a specific cache entry by its key",
         "required": [
-          "shipmentIDs"
+          "cacheKey"
         ],
-        "properties": {
-          "shipmentIDs": {
-            "description": "Shipment Ids",
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "type": "object"
-      },
-      "InventoryAllocationResponse": {
-        "title": "InventoryAllocationResponse",
-        "description": "InventoryAllocationResponse Object",
-        "properties": {
-          "orderItemID": {
-            "title": "order item ID",
-            "description": "order item ID",
-            "type": "integer"
-          },
-          "upc": {
-            "title": "upc",
-            "description": "upc",
-            "type": "string"
-          },
-          "state": {
-            "title": "state",
-            "description": "state",
-            "type": "string"
-          },
-          "quantity": {
-            "title": "quantity",
-            "description": "quantity",
-            "type": "integer"
-          },
-          "futureDate": {
-            "description": "Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'",
-            "type": "string",
-            "format": "date-time"
-          },
-          "lotCode": {
-            "type": "string"
-          },
-          "condition": {
-            "type": "string"
-          },
-          "serialNumber": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "tags": {
-            "$ref": "#/components/schemas/tags"
-          }
-        },
-        "type": "object"
-      },
-      "allocationList": {
-        "description": "List of InventoryAllocationResponse objects",
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/InventoryAllocationResponse"
-        }
-      },
-      "ShipmentAllocationsResponse": {
-        "title": "ShipmentAllocationsResponse",
-        "description": "ShipmentAllocationsResponse Object",
-        "properties": {
-          "currentAllocations": {
-            "$ref": "#/components/schemas/allocationList"
-          },
-          "futureAllocations": {
-            "$ref": "#/components/schemas/allocationList"
-          }
-        },
-        "type": "object"
-      },
-      "shipments": {
-        "description": "Associative Map of Map<shipmentId, ShipmentAllocationsResponse>",
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/ShipmentAllocationsResponse"
-        }
-      },
-      "ShipmentInventoryAllocationResponse": {
-        "title": "ShipmentInventoryAllocation Response",
-        "description": "ShipmentInventoryAllocation Response Object",
-        "properties": {
-          "shipments": {
-            "$ref": "#/components/schemas/shipments"
-          }
-        },
-        "type": "object"
-      },
-      "UpdateTenantSiloConfigRequest": {
-        "title": "Create Tenant Silo Config Request",
-        "description": "Request for creating or updating tenant silo config.",
-        "properties": {
-          "tenantID": {
-            "description": "A Tenant ID",
-            "type": "integer"
-          },
-          "batchWorkers": {
-            "description": "Number of batch workers to run for this tenant.",
-            "type": "integer"
-          },
-          "eventSenderWorkers": {
-            "description": "Number of event sender workers to run for this tenant.",
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
-      "TenantSiloConfigModel": {
-        "title": "Tenant Silo Config Model",
-        "description": "Model of a tenant silo config.",
-        "properties": {
-          "siloID": {
-            "description": "A Silo ID",
-            "type": "integer"
-          },
-          "name": {
-            "description": "Name of the Silo",
-            "type": "string"
-          },
-          "description": {
-            "description": "Description of silo configuration",
-            "type": "string"
-          },
-          "usable": {
-            "description": "Whether the  silo config is usable or not",
-            "type": "boolean"
-          },
-          "additonalTenantsAllowed": {
-            "description": "Check whether theAdditional tenants allowed or not ",
-            "type": "boolean"
-          },
-          "batchWorkers": {
-            "description": "Number of Batch Workers to run for this tenant.",
-            "type": "integer"
-          },
-          "eventSenderWorkers": {
-            "description": "Number of Event Sender Workers to run for this tenant.",
-            "type": "integer"
-          },
-          "tenantID": {
-            "description": "A Tenant ID",
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
-      "TagCategory": {
-        "title": "Tag Category Response",
-        "description": "Request and response object for a tag category",
-        "properties": {
-          "tagCategoryID": {
-            "description": "Tag Category ID",
-            "type": "integer"
-          },
-          "name": {
-            "description": "Tag Category Name",
-            "type": "string"
-          },
-          "created": {
-            "description": "Date tag category was created.",
-            "type": "string"
-          },
-          "deletion_job_ids": {
-            "description": "List of deletion job ID's",
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tags": {
-            "description": "Tags within this category",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InventoryTag"
-            }
-          }
-        },
-        "type": "object"
-      },
-      "AdjustFutureDateRequest": {
-        "title": "Adjust Future Date Request",
-        "description": "Request for adjusting the future date",
         "allOf": [
           {
             "properties": {
-              "futureDate": {
-                "description": "Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'",
-                "type": "string",
-                "format": "date-time"
+              "cacheKey": {
+                "title": "Cache Key",
+                "description": "Cache key to invalidate",
+                "type": "string"
               }
             }
           },
@@ -3265,13 +3801,18 @@
           },
           "orderID": {
             "title": "order ID",
-            "description": "order ID",
+            "description": "The Order Number in UCP",
             "type": "integer"
           },
           "orderItemID": {
             "title": "order item ID",
             "description": "order item ID",
             "type": "integer"
+          },
+          "ucpOrderID": {
+            "title": "ucp order ID",
+            "description": "The Order ID in UCP (GUID)",
+            "type": "string"
           },
           "cartID": {
             "title": "Cart ID",
@@ -3313,6 +3854,11 @@
             "description": "Block assignment of item at product/location level. ONLY allowed on deallocate.",
             "type": "boolean"
           },
+          "holdBlockAssignment": {
+            "title": "Hold Block Item Assignment",
+            "description": "Hold Block assignment flag of item at product/location level. ONLY allowed on deallocate.",
+            "type": "boolean"
+          },
           "tags": {
             "$ref": "#/components/schemas/tags"
           },
@@ -3340,6 +3886,11 @@
             "description": "Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management. Only used in Allocate calls.",
             "type": "string",
             "format": "date-time"
+          },
+          "inventoryID": {
+            "title": "Inventory ID",
+            "description": "Specific inventory record to perform deallocates/fulfills against. Only used for Deallocate/Fulfill calls",
+            "type": "integer"
           }
         },
         "type": "object"
@@ -3378,7 +3929,7 @@
                 "type": "boolean"
               },
               "runSynchronous": {
-                "description": "flag to determine whether the allocation should run synchronously, defaults to false",
+                "description": "flag to determine whether the runSyncronous flag is set and the allocation should be run synchronously",
                 "type": "boolean"
               }
             }
@@ -3411,6 +3962,16 @@
             "title": "shipment ID",
             "description": "shipment ID",
             "type": "integer"
+          },
+          "futureDate": {
+            "description": "Expected format '2020-09-28T12:00:00-0500'",
+            "type": "string",
+            "format": "date-time"
+          },
+          "locationCode": {
+            "title": "Location Code",
+            "description": "Location Code",
+            "type": "string"
           },
           "transitionItemID": {
             "title": "transition item ID",
@@ -3977,6 +4538,11 @@
             "title": "Block Item Assignment",
             "description": "Block assignment of item at product/location level. ONLY allowed on deallocate.",
             "type": "boolean"
+          },
+          "holdBlockAssignment": {
+            "title": "Hold Block Item Assignment",
+            "description": "Hold Block assignment of item at product/location level. ONLY allowed on deallocate.",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -4005,75 +4571,7 @@
           }
         ]
       },
-      "GetExportSettingsResponse": {
-        "title": "Get Export Settings Response",
-        "description": "Response for get Export Settings",
-        "properties": {
-          "exportSettings": {
-            "$ref": "#/components/schemas/ExportSettings"
-          }
-        },
-        "type": "object"
-      },
-      "ExportInventoryRequest": {
-        "title": "Export Inventory Request",
-        "description": "Export Inventory Request",
-        "allOf": [
-          {
-            "properties": {
-              "exportSettingsName": {
-                "description": "Name of the Export Settings to use",
-                "type": "string"
-              },
-              "exportSettingsFTPName": {
-                "description": "Name of the FTP Settings to use. Will only check for this if exportID is already set",
-                "type": "string"
-              },
-              "exportSettingsS3Name": {
-                "description": "Name of the S3 Settings to use. Will only check for this if exportID is already set",
-                "type": "string"
-              },
-              "development": {
-                "description": "Flag for sending the exports to the development droppoint",
-                "type": "boolean"
-              }
-            }
-          },
-          {
-            "$ref": "#/components/schemas/BaseRequest"
-          }
-        ]
-      },
-      "ExportInventoryJobResponse": {
-        "title": "Export Inventory Job Response",
-        "description": "Response for each export job creation",
-        "properties": {
-          "exportSettingsID": {
-            "description": "Export Settings ID",
-            "type": "integer"
-          },
-          "jobID": {
-            "description": "ID of newly created job",
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
-      "ExportInventoryResponse": {
-        "title": "Export Inventory Response",
-        "description": "Response for Export Inventory api",
-        "properties": {
-          "exportInventoryJobResponses": {
-            "description": "List of Export Inventory Job Responses",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExportInventoryJobResponse"
-            }
-          }
-        },
-        "type": "object"
-      },
-      "M_FetchFileConfig": {
+      "GetFetchFileConfigItem": {
         "title": "M_FetchFileConfig",
         "description": "Fetch File Config Model",
         "properties": {
@@ -4088,10 +4586,6 @@
           "active": {
             "description": "Active",
             "type": "boolean"
-          },
-          "failed_attempts": {
-            "description": "Failed Attempts",
-            "type": "integer"
           },
           "lastModified": {
             "description": "Time config was last modified",
@@ -4143,14 +4637,6 @@
           },
           "region": {
             "description": "S3 Region",
-            "type": "string"
-          },
-          "s3Key": {
-            "description": "S3 Key",
-            "type": "string"
-          },
-          "secret": {
-            "description": "S3 Secret",
             "type": "string"
           },
           "bucket": {
@@ -4228,6 +4714,32 @@
               "SWAP_PART_NUMBER_WITH_UPC",
               "SWAP_SKU_WITH_UPC"
             ]
+          },
+          "gcsBucket": {
+            "description": "GCS Bucket",
+            "type": "string"
+          },
+          "gcsPath": {
+            "description": "GCS Path (directory)",
+            "type": "string"
+          },
+          "gcsArchivePath": {
+            "description": "GCS Archive Bucket",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "GetFetchFileConfigResponse": {
+        "title": "GetFetchFileConfigResponse",
+        "description": "Get Fetch File Config Response",
+        "properties": {
+          "items": {
+            "description": "List of Fetch File Configurations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetFetchFileConfigItem"
+            }
           }
         },
         "type": "object"
@@ -4297,6 +4809,18 @@
               },
               "ftpRemotePathArchive": {
                 "description": "FTP server remote path archive",
+                "type": "string"
+              },
+              "gcsBucket": {
+                "description": "GCS Bucket",
+                "type": "string"
+              },
+              "gcsPath": {
+                "description": "GCS Path",
+                "type": "string"
+              },
+              "gcsArchivePath": {
+                "description": "GCS Archive Path",
                 "type": "string"
               },
               "region": {
@@ -4394,19 +4918,6 @@
             "description": "Stock Keeping Unit",
             "type": "string"
           },
-          "condition": {
-            "type": "string"
-          },
-          "lotCode": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "serialNumber": {
-            "type": "string"
-          },
           "quantity": {
             "description": "Quantity",
             "type": "integer"
@@ -4480,6 +4991,120 @@
           }
         },
         "type": "object"
+      },
+      "InventoryResponse": {
+        "title": "Inventory Response",
+        "description": "Inventory Response",
+        "allOf": [
+          {
+            "properties": {
+              "locationName": {
+                "description": "Location Name",
+                "type": "string"
+              },
+              "locationCode": {
+                "description": "Location Code",
+                "type": "string"
+              },
+              "tenantID": {
+                "description": "Tenant Identifier",
+                "type": "integer"
+              },
+              "onHand": {
+                "description": "The quantity the location has in its possession",
+                "type": "integer"
+              },
+              "available": {
+                "description": "The quantity the location has that are available for purchase",
+                "type": "integer"
+              },
+              "allocated": {
+                "description": "The quantity the location has that are already allocated.",
+                "type": "integer"
+              },
+              "pending": {
+                "description": "The quantity the location has that are pending.",
+                "type": "integer"
+              },
+              "partNumber": {
+                "description": "Part/Product Number",
+                "type": "string"
+              },
+              "upc": {
+                "description": "Universal Product Code",
+                "type": "string"
+              },
+              "sku": {
+                "description": "Stock Keeping Unit",
+                "type": "string"
+              },
+              "blockAssignment": {
+                "description": "Whether or not the product is blocked for assignment",
+                "type": "boolean"
+              },
+              "ltd": {
+                "description": "Custom field used for store prioritization",
+                "type": "number"
+              },
+              "floor": {
+                "description": "Absolute minimum quantity of this item that should be in stock at any time",
+                "type": "integer"
+              },
+              "safetyStock": {
+                "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
+                "type": "integer"
+              },
+              "distance": {
+                "description": "The distance in miles from this location to the item's destination",
+                "type": "number"
+              },
+              "directShip": {
+                "description": "Whether this location can ship to a consumer",
+                "type": "boolean"
+              },
+              "transferEnabled": {
+                "description": "Whether the location can ship to another location (store), thus restocking that location.",
+                "type": "boolean"
+              },
+              "pickup": {
+                "description": "Whether a consumer can pick up product at this location (store)",
+                "type": "boolean"
+              },
+              "countryCode": {
+                "description": "The country code of this location",
+                "type": "string"
+              },
+              "currencyID": {
+                "description": "The currency identifier for the retailPrice",
+                "type": "integer"
+              },
+              "retailPrice": {
+                "description": "The price of the product at this location",
+                "type": "number"
+              },
+              "inventoryLocatorName": {
+                "description": "The inventory locator name of the individual item",
+                "type": "string"
+              },
+              "attributes": {
+                "description": "List of Inventory Attributes",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "taggedInventory": {
+                "$ref": "#/components/schemas/taggedInventoryMap"
+              },
+              "futureInventory": {
+                "$ref": "#/components/schemas/futureInventoryArray"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseResponse"
+          }
+        ]
       },
       "InventoryRequest": {
         "title": "Inventory Request",
@@ -4619,116 +5244,6 @@
           }
         ]
       },
-      "InventoryResponse": {
-        "title": "Inventory Response",
-        "description": "Inventory Response",
-        "allOf": [
-          {
-            "properties": {
-              "locationName": {
-                "description": "Location Name",
-                "type": "string"
-              },
-              "locationCode": {
-                "description": "Location Code",
-                "type": "string"
-              },
-              "tenantID": {
-                "description": "Tenant Identifier",
-                "type": "integer"
-              },
-              "onHand": {
-                "description": "The quantity the location has in its possession",
-                "type": "integer"
-              },
-              "available": {
-                "description": "The quantity the location has that are available for purchase",
-                "type": "integer"
-              },
-              "allocated": {
-                "description": "The quantity the location has that are already allocated.",
-                "type": "integer"
-              },
-              "pending": {
-                "description": "The quantity the location has that are pending.",
-                "type": "integer"
-              },
-              "partNumber": {
-                "description": "Part/Product Number",
-                "type": "string"
-              },
-              "upc": {
-                "description": "Universal Product Code",
-                "type": "string"
-              },
-              "sku": {
-                "description": "Stock Keeping Unit",
-                "type": "string"
-              },
-              "blockAssignment": {
-                "description": "Whether or not the product is blocked for assignment",
-                "type": "boolean"
-              },
-              "ltd": {
-                "description": "Custom field used for store prioritization",
-                "type": "number"
-              },
-              "floor": {
-                "description": "Absolute minimum quantity of this item that should be in stock at any time",
-                "type": "integer"
-              },
-              "safetyStock": {
-                "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
-                "type": "integer"
-              },
-              "distance": {
-                "description": "The distance in miles from this location to the item's destination",
-                "type": "number"
-              },
-              "directShip": {
-                "description": "Whether this location can ship to a consumer",
-                "type": "boolean"
-              },
-              "transferEnabled": {
-                "description": "Whether the location can ship to another location (store), thus restocking that location.",
-                "type": "boolean"
-              },
-              "pickup": {
-                "description": "Whether a consumer can pick up product at this location (store)",
-                "type": "boolean"
-              },
-              "countryCode": {
-                "description": "The country code of this location",
-                "type": "string"
-              },
-              "inventoryLocatorName": {
-                "description": "The inventory locator name of the individual item",
-                "type": "string"
-              },
-              "attributes": {
-                "description": "List of Inventory Attributes",
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "taggedInventory": {
-                "$ref": "#/components/schemas/taggedInventoryMap"
-              },
-              "futureInventory": {
-                "$ref": "#/components/schemas/futureInventoryArray"
-              },
-              "externalID": {
-                "description": "External ID of the item",
-                "type": "string"
-              }
-            }
-          },
-          {
-            "$ref": "#/components/schemas/BaseResponse"
-          }
-        ]
-      },
       "AggregateRequest": {
         "title": "Aggregate Request",
         "description": "Request for aggregating inventory",
@@ -4769,11 +5284,11 @@
                 "$ref": "#/components/schemas/tags"
               },
               "includeFutureInventory": {
-                "description": "Include future inventory or not",
+                "description": "Enum for including future inventory: [futureOnly, futureAndCurrent]",
                 "type": "string",
                 "enum": [
-                  "FUTURE_ONLY",
-                  "FUTURE_AND_CURRENT"
+                  "futureOnly",
+                  "futureAndCurrent"
                 ]
               },
               "includeNegativeFutureInventory": {
@@ -4940,33 +5455,6 @@
             "description": "Bin Location Identifier",
             "type": "integer"
           },
-          "lotCode": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "description": "Track which lot a product is manufactured in"
-          },
-          "condition": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "description": "Describes the state of the product"
-          },
-          "serialNumber": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "description": "A serial number unique to a specific, physical unit of inventory"
-          },
-          "date": {
-            "type": "string",
-            "description": "Date related to manufacturing, expiry, or use-by",
-            "format": "date-time"
-          },
-          "granularInventoryTrackingEnabled": {
-            "type": "boolean",
-            "readOnly": true
-          },
           "LTD": {
             "description": "Custom field used for store prioritization",
             "type": "number"
@@ -4981,6 +5469,14 @@
           },
           "quantity": {
             "description": "Current Quantity of Item",
+            "type": "integer"
+          },
+          "retailPrice": {
+            "description": "Stock Keeping Unit",
+            "type": "number"
+          },
+          "currencyID": {
+            "description": "The price of the item",
             "type": "integer"
           },
           "inventoryLocatorName": {
@@ -5003,8 +5499,25 @@
             "format": "date-time"
           },
           "externalID": {
-            "description": "External ID of the item",
+            "description": "External Identifier for the given future inventory record. Will not create a new future inventory record unless deliveryDate is specified",
             "type": "string"
+          },
+          "lotCode": {
+            "description": "Track which lot a product is manufactured in",
+            "type": "string"
+          },
+          "condition": {
+            "description": "Describes the state of the product",
+            "type": "string"
+          },
+          "serialNumber": {
+            "description": "A serial number is unique to a specific, physical unit of inventory",
+            "type": "string"
+          },
+          "date": {
+            "description": "Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management",
+            "type": "string",
+            "format": "date-time"
           }
         },
         "type": "object"
@@ -5056,33 +5569,6 @@
             "description": "Current Quantity of Item",
             "type": "integer"
           },
-          "lotCode": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "description": "Track which lot a product is manufactured in"
-          },
-          "condition": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "description": "Describes the state of the product"
-          },
-          "serialNumber": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "description": "A serial number unique to a specific, physical unit of inventory"
-          },
-          "date": {
-            "type": "string",
-            "description": "Date related to manufacturing, expiry, or use-by",
-            "format": "date-time"
-          },
-          "granularInventoryTrackingEnabled": {
-            "type": "boolean",
-            "readOnly": true
-          },
           "tags": {
             "$ref": "#/components/schemas/tags"
           },
@@ -5092,8 +5578,25 @@
             "format": "date-time"
           },
           "externalID": {
-            "description": "External ID of the item",
+            "description": "External Identifier for the given future inventory record. Will not create a new future inventory record unless deliveryDate is specified",
             "type": "string"
+          },
+          "lotCode": {
+            "description": "Track which lot a product is manufactured in",
+            "type": "string"
+          },
+          "condition": {
+            "description": "Describes the state of the product",
+            "type": "string"
+          },
+          "serialNumber": {
+            "description": "A serial number is unique to a specific, physical unit of inventory",
+            "type": "string"
+          },
+          "date": {
+            "description": "Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management",
+            "type": "string",
+            "format": "date-time"
           }
         },
         "type": "object"
@@ -5155,6 +5658,27 @@
           },
           "tags": {
             "$ref": "#/components/schemas/tags"
+          },
+          "lotCode": {
+            "description": "Track which lot a product is manufactured in",
+            "type": "string"
+          },
+          "condition": {
+            "description": "Describes the state of the product",
+            "type": "string"
+          },
+          "serialNumber": {
+            "description": "A serial number is unique to a specific, physical unit of inventory",
+            "type": "string"
+          },
+          "date": {
+            "description": "Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management",
+            "type": "string",
+            "format": "date-time"
+          },
+          "deleteGranularRecord": {
+            "description": "Flag to determine whether to delete a granular record without granular fields or delete all associated granular records. Only considered when no granular fields are specified.",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -5306,6 +5830,34 @@
             "description": "End of future date range to search on. Required Field example '2023-01-26T19:59:00+0000'",
             "type": "string",
             "format": "date-time"
+          },
+          "externalIDs": {
+            "description": "An array of externalIDs to be considered for item-deletion purposes. Optional.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "lotCode": {
+            "description": "Track which lot a product is manufactured in",
+            "type": "string"
+          },
+          "condition": {
+            "description": "Describes the state of the product",
+            "type": "string"
+          },
+          "serialNumber": {
+            "description": "A serial number is unique to a specific, physical unit of inventory",
+            "type": "string"
+          },
+          "date": {
+            "description": "Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management",
+            "type": "string",
+            "format": "date-time"
+          },
+          "deleteGranularRecord": {
+            "description": "Flag to determine whether to delete a granular record without granular fields or delete all associated granular records. Only considered when no granular fields are specified.",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -5330,6 +5882,10 @@
             "type": "boolean"
           },
           "totalLocationsAffected": {
+            "description": "Flag used to differentiate between a test and a non-test run.",
+            "type": "boolean"
+          },
+          "totalexternalIDsAffected": {
             "description": "Flag used to differentiate between a test and a non-test run.",
             "type": "boolean"
           },
@@ -5612,19 +6168,6 @@
             "description": "Stock Keeping Unit",
             "type": "string"
           },
-          "condition": {
-            "type": "string"
-          },
-          "lotCode": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "serialNumber": {
-            "type": "string"
-          },
           "tags": {
             "$ref": "#/components/schemas/tags"
           }
@@ -5715,6 +6258,17 @@
           }
         }
       },
+      "ExportInventoryRequest": {
+        "description": "Request to run an inventory export",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ExportInventoryRequest"
+            }
+          }
+        }
+      },
       "UpdateExportSettingsRequest": {
         "description": "Request to update an existing Export Settings",
         "required": true,
@@ -5770,6 +6324,28 @@
           }
         }
       },
+      "CreateExportSettingsGCSRequest": {
+        "description": "Request body for creating Export Settings GCS",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreateExportSettingsGcsRequest"
+            }
+          }
+        }
+      },
+      "UpdateExportSettingsGCSRequest": {
+        "description": "Request body for updating Export Settings GCS",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateExportSettingsGcsRequest"
+            }
+          }
+        }
+      },
       "ShipmentInventoryAllocationRequest": {
         "description": "Request to future and current inventory allocations of item",
         "required": true,
@@ -5814,13 +6390,13 @@
           }
         }
       },
-      "AdjustFutureDateRequest": {
-        "description": "Request for adjusting the future date",
+      "InvalidateCacheRequest": {
+        "description": "Request to invalidate a specific cache entry by its key",
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/AdjustFutureDateRequest"
+              "$ref": "#/components/schemas/InvalidateCacheRequest"
             }
           }
         }
@@ -5898,17 +6474,6 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/BlockAssignmentRequest"
-            }
-          }
-        }
-      },
-      "ExportInventoryRequest": {
-        "description": "Request to run an inventory export",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ExportInventoryRequest"
             }
           }
         }

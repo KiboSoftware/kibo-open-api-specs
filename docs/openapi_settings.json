@@ -2308,6 +2308,15 @@
         },
         "additionalProperties": false
       },
+      "MultipleConsolidation": {
+        "type": "object",
+        "properties": {
+          "isEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "ShipToHomeConsolidation": {
         "type": "object",
         "properties": {
@@ -2322,6 +2331,13 @@
           },
           "forceSTHConsolidationOnSplitShipments": {
             "$ref": "#/components/schemas/ForceSTHConsolidationOnSplitShipments"
+          },
+          "allowPartialFulfillment": {
+            "type": "boolean",
+            "description": "AllowPartialFulfillment"
+          },
+          "multipleConsolidation": {
+            "$ref": "#/components/schemas/MultipleConsolidation"
           }
         },
         "additionalProperties": false
@@ -2347,6 +2363,10 @@
           },
           "forceDeliveryConsolidation": {
             "type": "boolean"
+          },
+          "allowPartialFulfillment": {
+            "type": "boolean",
+            "description": "AllowPartialFulfillment"
           }
         },
         "additionalProperties": false
@@ -2414,6 +2434,11 @@
           },
           "reserveInventoryOnOrderPendingShipment": {
             "type": "boolean"
+          },
+          "refreshPricingOnOrderEdit": {
+            "type": "boolean",
+            "description": "Indicates whether pricing should be refreshed when orders are edited.",
+            "nullable": true
           },
           "b2BOrderRelease": {
             "$ref": "#/components/schemas/B2BOrderRelease"
@@ -3383,6 +3408,15 @@
             "type": "integer",
             "description": "Specifies the number of days to send subscription order reminder email before the next continuity order.",
             "format": "int32",
+            "nullable": true
+          },
+          "applyLatestItemPriceOnContinuityOrder": {
+            "type": "boolean",
+            "description": "If this setting is enabled, the item price on the continuity order will be updated to the current price upon creation.",
+            "nullable": true
+          },
+          "applyBestPriceOnContinuityOrder": {
+            "type": "boolean",
             "nullable": true
           },
           "orderNowResetNextOrderDate": {

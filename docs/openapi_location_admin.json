@@ -6,283 +6,6 @@
     "version": "1.0.1"
   },
   "paths": {
-    "/commerce/locations/cutoffoverrides": {
-      "post": {
-        "tags": [
-          "CutoffTimeOverride"
-        ],
-        "summary": "Create Cut Off Time Override",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CutoffTimeOverride"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverride"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverride"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverride"
-                }
-              }
-            }
-          }
-        },
-        "description": "Create a new Cut Off Time override.",
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      },
-      "get": {
-        "tags": [
-          "CutoffTimeOverride"
-        ],
-        "summary": "Get Cut Off Time Overrides",
-        "parameters": [
-          {
-            "name": "locationCode",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fromDate",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "toDate",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "fulfillmentType",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "startIndex",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 100
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
-                }
-              }
-            }
-          }
-        },
-        "description": "Gets all Cut Off Time overrides. Location and/or Date Range and/or FulfillmentType can be used to filter the results. For a single date, pass only the fromDate parameter."
-      }
-    },
-    "/commerce/locations/cutoffoverrides/{overrideId}": {
-      "get": {
-        "tags": [
-          "CutoffTimeOverride"
-        ],
-        "summary": "Get Cutoff Time Override by Id",
-        "parameters": [
-          {
-            "name": "overrideId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverride"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverride"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CutoffTimeOverride"
-                }
-              }
-            }
-          }
-        },
-        "description": "Retrieves a Cutoff Time override by Id"
-      },
-      "delete": {
-        "tags": [
-          "CutoffTimeOverride"
-        ],
-        "summary": "Delete Cut Off Time Override",
-        "parameters": [
-          {
-            "name": "overrideId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        },
-        "description": "Deletes a specific Cut Off Time override"
-      }
-    },
-    "/commerce/locations/{locationCode}/cutofftime": {
-      "post": {
-        "tags": [
-          "CutoffTimeOverride"
-        ],
-        "summary": "Get Location Cut Off Time",
-        "parameters": [
-          {
-            "name": "locationCode",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CutOffTimeRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CutoffTimeResponse"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CutoffTimeResponse"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CutoffTimeResponse"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Gets an override if available, otherwise returns CutoffTime from Location"
-      }
-    },
     "/commerce/admin/locations": {
       "post": {
         "tags": [
@@ -515,6 +238,283 @@
             }
           }
         }
+      }
+    },
+    "/commerce/admin/locations/cutoffoverrides": {
+      "post": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Create Cutoff Time Override",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CutoffTimeOverride"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              }
+            }
+          }
+        },
+        "description": "Creates a new Cut Off Time override.",
+        "parameters": [
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Get Cutoff Time Overrides",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "fulfillmentType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverrideCollection"
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets all Cut Off Time overrides. Location and/or Date Range and/or FulfillmentType can be used to filter the results. For a single date, pass only the fromDate parameter."
+      }
+    },
+    "/commerce/admin/locations/cutoffoverrides/{overrideId}": {
+      "get": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Get Cutoff Time Override by Id",
+        "parameters": [
+          {
+            "name": "overrideId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CutoffTimeOverride"
+                }
+              }
+            }
+          }
+        },
+        "description": "Retrieves a Cut Off Time override by its ID."
+      },
+      "delete": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Delete Cutoff Time Override",
+        "parameters": [
+          {
+            "name": "overrideId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Deletes a Cut Off Time override."
+      }
+    },
+    "/commerce/admin/locations/{locationCode}/cutofftime": {
+      "post": {
+        "tags": [
+          "LocationAdmin"
+        ],
+        "summary": "Get Location Cut Off Time",
+        "parameters": [
+          {
+            "name": "locationCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFields",
+            "in": "query",
+            "description": "limits which fields are returned in the response body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CutOffTimeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CutoffTimeResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CutoffTimeResponse"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CutoffTimeResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Gets an override if available, otherwise returns CutoffTime from Location"
       }
     },
     "/commerce/admin/locations/attributedefinition/attributes": {
@@ -2002,140 +2002,6 @@
   },
   "components": {
     "schemas": {
-      "CutoffTimeOverride": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "locationCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "fulfillmentType": {
-            "type": "string",
-            "nullable": true
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "startTime": {
-            "type": "string",
-            "format": "date-span",
-            "nullable": true
-          },
-          "endTime": {
-            "type": "string",
-            "format": "date-span",
-            "nullable": true
-          },
-          "isClosed": {
-            "type": "boolean"
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CutoffTimeOverrideCollection": {
-        "type": "object",
-        "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CutoffTimeOverride"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CutOffTimeRequest": {
-        "type": "object",
-        "properties": {
-          "fulfillmentType": {
-            "type": "string",
-            "nullable": true
-          },
-          "dates": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CutoffTimeResponse": {
-        "type": "object",
-        "properties": {
-          "fulfillmentType": {
-            "type": "string",
-            "nullable": true
-          },
-          "timeZone": {
-            "$ref": "#/components/schemas/LocationTimeZone"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "startTime": {
-            "type": "string",
-            "format": "date-span",
-            "nullable": true
-          },
-          "endTime": {
-            "type": "string",
-            "format": "date-span",
-            "nullable": true
-          },
-          "isClosed": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "lastUpdated": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "LocationType": {
         "type": "object",
         "properties": {
@@ -2609,6 +2475,140 @@
         },
         "additionalProperties": false
       },
+      "CutoffTimeOverride": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "fulfillmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "isClosed": {
+            "type": "boolean"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutoffTimeOverrideCollection": {
+        "type": "object",
+        "properties": {
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CutoffTimeOverride"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutOffTimeRequest": {
+        "type": "object",
+        "properties": {
+          "fulfillmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "dates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CutoffTimeResponse": {
+        "type": "object",
+        "properties": {
+          "fulfillmentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/LocationTimeZone"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "isClosed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LocationGroupCollection": {
         "type": "object",
         "properties": {
@@ -2906,6 +2906,14 @@
             "nullable": true
           },
           "enablePnpForBOPIS": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enablePnpForDelivery": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "enablePnp": {
             "type": "boolean",
             "nullable": true
           },

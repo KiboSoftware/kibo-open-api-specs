@@ -458,6 +458,20 @@
             }
           },
           {
+            "name": "ssoNameId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "session",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -1988,6 +2002,10 @@
             "type": "string",
             "nullable": true
           },
+          "ssoSession": {
+            "type": "string",
+            "nullable": true
+          },
           "refreshTokenExpiration": {
             "type": "string",
             "format": "date-time"
@@ -2008,6 +2026,10 @@
               "type": "integer",
               "format": "int32"
             },
+            "nullable": true
+          },
+          "ssoNameId": {
+            "type": "string",
             "nullable": true
           }
         },
