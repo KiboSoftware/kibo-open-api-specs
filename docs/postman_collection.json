@@ -35,7 +35,48 @@
            "value": "futureInventoryID"
           }
          ],
-         "query": []
+         "query": [
+          {
+           "disabled": true
+          }
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "cache",
+   "item": [
+    {
+     "name": "invalidate",
+     "item": [
+      {
+       "name": "Invalidates the current inventory cache.",
+       "request": {
+        "method": "POST",
+        "header": [
+         {
+          "key": "x-vol-site",
+          "value": "{{siteId}}",
+          "disabled": false
+         }
+        ],
+        "url": {
+         "raw": "{{baseUrl}}/cache/invalidate",
+         "host": "{{baseUrl}}",
+         "path": [
+          "cache",
+          "invalidate"
+         ],
+         "variable": [],
+         "query": [
+          {
+           "disabled": true
+          }
+         ]
         }
        }
       }
@@ -529,6 +570,167 @@
          ]
         },
         {
+         "name": "cutoffoverrides",
+         "item": [
+          {
+           "name": "{overrideId}",
+           "item": [
+            {
+             "name": "Get Cutoff Time Override by Id",
+             "request": {
+              "method": "GET",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/admin/locations/cutoffoverrides/:overrideId",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "admin",
+                "locations",
+                "cutoffoverrides",
+                ":overrideId"
+               ],
+               "variable": [
+                {
+                 "key": "overrideId",
+                 "value": "overrideId"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            },
+            {
+             "name": "Delete a Cutoff Time Override",
+             "request": {
+              "method": "DELETE",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/admin/locations/cutoffoverrides/:overrideId",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "admin",
+                "locations",
+                "cutoffoverrides",
+                ":overrideId"
+               ],
+               "variable": [
+                {
+                 "key": "overrideId",
+                 "value": "overrideId"
+                }
+               ],
+               "query": []
+              }
+             }
+            }
+           ]
+          },
+          {
+           "name": "Create a new Cutoff Time Override",
+           "request": {
+            "method": "POST",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/admin/locations/cutoffoverrides",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "admin",
+              "locations",
+              "cutoffoverrides"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Get all Cutoff Time Overrides",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/admin/locations/cutoffoverrides",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "admin",
+              "locations",
+              "cutoffoverrides"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "key": "locationCode",
+               "disabled": true
+              },
+              {
+               "key": "fromDate",
+               "disabled": true
+              },
+              {
+               "key": "toDate",
+               "disabled": true
+              },
+              {
+               "key": "fulfillmentType",
+               "disabled": true
+              },
+              {
+               "key": "startIndex",
+               "disabled": true
+              },
+              {
+               "key": "pageSize",
+               "disabled": true
+              },
+              {
+               "key": "responseFields",
+               "disabled": true
+              }
+             ]
+            }
+           }
+          }
+         ]
+        },
+        {
          "name": "transfertimes",
          "item": [
           {
@@ -761,6 +963,47 @@
         {
          "name": "{locationCode}",
          "item": [
+          {
+           "name": "cutofftime",
+           "item": [
+            {
+             "name": "Get Location Cut Off Time",
+             "request": {
+              "method": "POST",
+              "header": [
+               {
+                "key": "x-vol-site",
+                "value": "{{siteId}}",
+                "disabled": false
+               }
+              ],
+              "url": {
+               "raw": "{{baseUrl}}/commerce/admin/locations/:locationCode/cutofftime",
+               "host": "{{baseUrl}}",
+               "path": [
+                "commerce",
+                "admin",
+                "locations",
+                ":locationCode",
+                "cutofftime"
+               ],
+               "variable": [
+                {
+                 "key": "locationCode",
+                 "value": "locationCode"
+                }
+               ],
+               "query": [
+                {
+                 "key": "responseFields",
+                 "disabled": true
+                }
+               ]
+              }
+             }
+            }
+           ]
+          },
           {
            "name": "Update Location",
            "request": {
@@ -5170,6 +5413,7 @@
                ]
               },
               {
+               "name": "Get Category Attributes",
                "request": {
                 "method": "GET",
                 "header": [
@@ -15695,7 +15939,7 @@
            "name": "resolved",
            "item": [
             {
-             "name": "Get Resolved Price List",
+             "name": "Get Resolved Price List (GET)",
              "request": {
               "method": "GET",
               "header": [
@@ -15730,7 +15974,7 @@
              }
             },
             {
-             "name": "Get resolved price list.",
+             "name": "Get Resolved Price List (POST)",
              "request": {
               "method": "POST",
               "header": [
@@ -16000,6 +16244,10 @@
                   },
                   {
                    "key": "subscriptionFrequency",
+                   "disabled": true
+                  },
+                  {
+                   "key": "customerSegments",
                    "disabled": true
                   },
                   {
@@ -16325,6 +16573,10 @@
                  "disabled": true
                 },
                 {
+                 "key": "customerSegments",
+                 "disabled": true
+                },
+                {
                  "key": "responseFields",
                  "disabled": true
                 }
@@ -16406,6 +16658,10 @@
               },
               {
                "key": "collapse",
+               "disabled": true
+              },
+              {
+               "key": "customerSegments",
                "disabled": true
               },
               {
@@ -16669,6 +16925,10 @@
                 },
                 {
                  "key": "merchandizingRuleCode",
+                 "disabled": true
+                },
+                {
+                 "key": "customerSegments",
                  "disabled": true
                 },
                 {
@@ -26376,7 +26636,11 @@
                 "binStatuses"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26407,7 +26671,11 @@
                 "binTypes"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26438,7 +26706,11 @@
                 "loadInventory"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26469,7 +26741,11 @@
                 "searchInventory"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26500,7 +26776,11 @@
                 "updateBins"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26536,7 +26816,11 @@
                  "value": "bin_id"
                 }
                ],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26564,6 +26848,9 @@
              ],
              "variable": [],
              "query": [
+              {
+               "disabled": true
+              },
               {
                "key": "locationID",
                "disabled": true
@@ -26605,7 +26892,11 @@
               "bin"
              ],
              "variable": [],
-             "query": []
+             "query": [
+              {
+               "disabled": true
+              }
+             ]
             }
            }
           }
@@ -26652,7 +26943,11 @@
                      "value": "fetchFileConfigID"
                     }
                    ],
-                   "query": []
+                   "query": [
+                    {
+                     "disabled": true
+                    }
+                   ]
                   }
                  }
                 }
@@ -26691,7 +26986,11 @@
                    "value": "fetchFileConfigID"
                   }
                  ],
-                 "query": []
+                 "query": [
+                  {
+                   "disabled": true
+                  }
+                 ]
                 }
                }
               }
@@ -26719,7 +27018,11 @@
                 "fetchfile"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             },
@@ -26745,7 +27048,11 @@
                 "fetchfile"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26790,7 +27097,11 @@
                    "value": "months"
                   }
                  ],
-                 "query": []
+                 "query": [
+                  {
+                   "disabled": true
+                  }
+                 ]
                 }
                }
               }
@@ -26828,7 +27139,11 @@
                  "value": "months"
                 }
                ],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26864,7 +27179,11 @@
                 "create"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -26899,7 +27218,11 @@
                   "create"
                  ],
                  "variable": [],
-                 "query": []
+                 "query": [
+                  {
+                   "disabled": true
+                  }
+                 ]
                 }
                }
               }
@@ -26931,7 +27254,11 @@
                   "update"
                  ],
                  "variable": [],
-                 "query": []
+                 "query": [
+                  {
+                   "disabled": true
+                  }
+                 ]
                 }
                }
               }
@@ -26982,6 +27309,143 @@
                     },
                     {
                      "disabled": true
+                    },
+                    {
+                     "disabled": true
+                    }
+                   ]
+                  }
+                 }
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "name": "gcs",
+           "item": [
+            {
+             "name": "create",
+             "item": [
+              {
+               "name": "Create Export Settings GCS",
+               "request": {
+                "method": "POST",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/inventory/v1/export/gcs/create",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "inventory",
+                  "v1",
+                  "export",
+                  "gcs",
+                  "create"
+                 ],
+                 "variable": [],
+                 "query": [
+                  {
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
+             "name": "update",
+             "item": [
+              {
+               "name": "Update Export Settings GCS",
+               "request": {
+                "method": "POST",
+                "header": [
+                 {
+                  "key": "x-vol-site",
+                  "value": "{{siteId}}",
+                  "disabled": false
+                 }
+                ],
+                "url": {
+                 "raw": "{{baseUrl}}/commerce/inventory/v1/export/gcs/update",
+                 "host": "{{baseUrl}}",
+                 "path": [
+                  "commerce",
+                  "inventory",
+                  "v1",
+                  "export",
+                  "gcs",
+                  "update"
+                 ],
+                 "variable": [],
+                 "query": [
+                  {
+                   "disabled": true
+                  }
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            {
+             "name": "{exportSettingsName}",
+             "item": [
+              {
+               "name": "{exportSettingsGCSName}",
+               "item": [
+                {
+                 "name": "Delete Export Settings GCS",
+                 "request": {
+                  "method": "DELETE",
+                  "header": [
+                   {
+                    "key": "x-vol-site",
+                    "value": "{{siteId}}",
+                    "disabled": false
+                   }
+                  ],
+                  "url": {
+                   "raw": "{{baseUrl}}/commerce/inventory/v1/export/gcs/:exportSettingsName/:exportSettingsGCSName",
+                   "host": "{{baseUrl}}",
+                   "path": [
+                    "commerce",
+                    "inventory",
+                    "v1",
+                    "export",
+                    "gcs",
+                    ":exportSettingsName",
+                    ":exportSettingsGCSName"
+                   ],
+                   "variable": [
+                    {
+                     "key": "exportSettingsName",
+                     "value": "exportSettingsName"
+                    },
+                    {
+                     "key": "exportSettingsGCSName",
+                     "value": "exportSettingsGCSName"
+                    }
+                   ],
+                   "query": [
+                    {
+                     "disabled": true
+                    },
+                    {
+                     "disabled": true
+                    },
+                    {
+                     "disabled": true
                     }
                    ]
                   }
@@ -27022,7 +27486,11 @@
                   "create"
                  ],
                  "variable": [],
-                 "query": []
+                 "query": [
+                  {
+                   "disabled": true
+                  }
+                 ]
                 }
                }
               }
@@ -27054,7 +27522,11 @@
                   "update"
                  ],
                  "variable": [],
-                 "query": []
+                 "query": [
+                  {
+                   "disabled": true
+                  }
+                 ]
                 }
                }
               }
@@ -27105,6 +27577,9 @@
                     },
                     {
                      "disabled": true
+                    },
+                    {
+                     "disabled": true
                     }
                    ]
                   }
@@ -27141,7 +27616,11 @@
                 "update"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27180,41 +27659,15 @@
                "query": [
                 {
                  "disabled": true
+                },
+                {
+                 "disabled": true
                 }
                ]
               }
              }
             }
            ]
-          },
-          {
-           "name": "Get Export Settings",
-           "request": {
-            "method": "GET",
-            "header": [
-             {
-              "key": "x-vol-site",
-              "value": "{{siteId}}",
-              "disabled": false
-             }
-            ],
-            "url": {
-             "raw": "{{baseUrl}}/commerce/inventory/v1/export",
-             "host": "{{baseUrl}}",
-             "path": [
-              "commerce",
-              "inventory",
-              "v1",
-              "export"
-             ],
-             "variable": [],
-             "query": [
-              {
-               "disabled": true
-              }
-             ]
-            }
-           }
           },
           {
            "name": "Run Export",
@@ -27237,7 +27690,11 @@
               "export"
              ],
              "variable": [],
-             "query": []
+             "query": [
+              {
+               "disabled": true
+              }
+             ]
             }
            }
           }
@@ -27276,7 +27733,11 @@
                  "value": "locationCode"
                 }
                ],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27312,7 +27773,11 @@
                  "value": "locationGroupCode"
                 }
                ],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27339,7 +27804,11 @@
               "location"
              ],
              "variable": [],
-             "query": []
+             "query": [
+              {
+               "disabled": true
+              }
+             ]
             }
            }
           },
@@ -27364,7 +27833,11 @@
               "location"
              ],
              "variable": [],
-             "query": []
+             "query": [
+              {
+               "disabled": true
+              }
+             ]
             }
            }
           }
@@ -27394,7 +27867,11 @@
               "locationGroup"
              ],
              "variable": [],
-             "query": []
+             "query": [
+              {
+               "disabled": true
+              }
+             ]
             }
            }
           }
@@ -27433,7 +27910,11 @@
                  "value": "jobID"
                 }
                ],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27461,6 +27942,9 @@
              ],
              "variable": [],
              "query": [
+              {
+               "disabled": true
+              },
               {
                "key": "locationCode",
                "disabled": true
@@ -27514,7 +27998,11 @@
                 "siloConfig"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27573,6 +28061,9 @@
                     },
                     {
                      "disabled": true
+                    },
+                    {
+                     "disabled": true
                     }
                    ]
                   }
@@ -27612,6 +28103,9 @@
                     }
                    ],
                    "query": [
+                    {
+                     "disabled": true
+                    },
                     {
                      "disabled": true
                     },
@@ -27661,6 +28155,9 @@
                     },
                     {
                      "disabled": true
+                    },
+                    {
+                     "disabled": true
                     }
                    ]
                   }
@@ -27697,6 +28194,9 @@
                   }
                  ],
                  "query": [
+                  {
+                   "disabled": true
+                  },
                   {
                    "disabled": true
                   }
@@ -27736,6 +28236,9 @@
                "query": [
                 {
                  "disabled": true
+                },
+                {
+                 "disabled": true
                 }
                ]
               }
@@ -27769,6 +28272,9 @@
                 }
                ],
                "query": [
+                {
+                 "disabled": true
+                },
                 {
                  "disabled": true
                 }
@@ -27806,6 +28312,9 @@
                "query": [
                 {
                  "disabled": true
+                },
+                {
+                 "disabled": true
                 }
                ]
               }
@@ -27834,7 +28343,11 @@
               "tagCategory"
              ],
              "variable": [],
-             "query": []
+             "query": [
+              {
+               "disabled": true
+              }
+             ]
             }
            }
           }
@@ -27873,7 +28386,11 @@
                 "adjust"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27904,7 +28421,14 @@
                 "aggregate"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                },
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27935,7 +28459,11 @@
                 "allocate"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27966,7 +28494,11 @@
                 "blockAssignment"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -27997,7 +28529,11 @@
                 "deallocate"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -28028,7 +28564,14 @@
                 "delete"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                },
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -28059,7 +28602,14 @@
                 "deleteFutureInventory"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                },
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -28090,7 +28640,14 @@
                 "deleteItems"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                },
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -28121,7 +28678,11 @@
                 "fulfill"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -28152,38 +28713,11 @@
                 "getOrderItemInformation"
                ],
                "variable": [],
-               "query": []
-              }
-             }
-            }
-           ]
-          },
-          {
-           "name": "redistribute",
-           "item": [
-            {
-             "name": "Redistribute Inventory Across Tags",
-             "request": {
-              "method": "POST",
-              "header": [
-               {
-                "key": "x-vol-site",
-                "value": "{{siteId}}",
-                "disabled": false
-               }
-              ],
-              "url": {
-               "raw": "{{baseUrl}}/commerce/inventory/v5/inventory/redistribute",
-               "host": "{{baseUrl}}",
-               "path": [
-                "commerce",
-                "inventory",
-                "v5",
-                "inventory",
-                "redistribute"
-               ],
-               "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -28214,7 +28748,11 @@
                 "refresh"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -28245,7 +28783,11 @@
                 "shipmentInventoryAllocations"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
@@ -28276,14 +28818,89 @@
                 "transitionCart"
                ],
                "variable": [],
-               "query": []
+               "query": [
+                {
+                 "disabled": true
+                }
+               ]
               }
              }
             }
            ]
           },
           {
-           "name": "Get Inventory",
+           "name": "Get Inventory (GET)",
+           "request": {
+            "method": "GET",
+            "header": [
+             {
+              "key": "x-vol-site",
+              "value": "{{siteId}}",
+              "disabled": false
+             }
+            ],
+            "url": {
+             "raw": "{{baseUrl}}/commerce/inventory/v5/inventory",
+             "host": "{{baseUrl}}",
+             "path": [
+              "commerce",
+              "inventory",
+              "v5",
+              "inventory"
+             ],
+             "variable": [],
+             "query": [
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              }
+             ]
+            }
+           }
+          },
+          {
+           "name": "Get Inventory (POST)",
            "request": {
             "method": "POST",
             "header": [
@@ -28303,7 +28920,14 @@
               "inventory"
              ],
              "variable": [],
-             "query": []
+             "query": [
+              {
+               "disabled": true
+              },
+              {
+               "disabled": true
+              }
+             ]
             }
            }
           }
@@ -28347,213 +28971,6 @@
            ]
           }
          }
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "name": "locations",
-     "item": [
-      {
-       "name": "cutoffoverrides",
-       "item": [
-        {
-         "name": "{overrideId}",
-         "item": [
-          {
-           "name": "Get Cut Off Time Override by Id",
-           "request": {
-            "method": "GET",
-            "header": [
-             {
-              "key": "x-vol-site",
-              "value": "{{siteId}}",
-              "disabled": false
-             }
-            ],
-            "url": {
-             "raw": "{{baseUrl}}/commerce/locations/cutoffoverrides/:overrideId",
-             "host": "{{baseUrl}}",
-             "path": [
-              "commerce",
-              "locations",
-              "cutoffoverrides",
-              ":overrideId"
-             ],
-             "variable": [
-              {
-               "key": "overrideId",
-               "value": "overrideId"
-              }
-             ],
-             "query": [
-              {
-               "key": "responseFields",
-               "disabled": true
-              }
-             ]
-            }
-           }
-          },
-          {
-           "name": "Delete Cut Off Time Override",
-           "request": {
-            "method": "DELETE",
-            "header": [
-             {
-              "key": "x-vol-site",
-              "value": "{{siteId}}",
-              "disabled": false
-             }
-            ],
-            "url": {
-             "raw": "{{baseUrl}}/commerce/locations/cutoffoverrides/:overrideId",
-             "host": "{{baseUrl}}",
-             "path": [
-              "commerce",
-              "locations",
-              "cutoffoverrides",
-              ":overrideId"
-             ],
-             "variable": [
-              {
-               "key": "overrideId",
-               "value": "overrideId"
-              }
-             ],
-             "query": []
-            }
-           }
-          }
-         ]
-        },
-        {
-         "name": "Create Cut Off Time Override",
-         "request": {
-          "method": "POST",
-          "header": [
-           {
-            "key": "x-vol-site",
-            "value": "{{siteId}}",
-            "disabled": false
-           }
-          ],
-          "url": {
-           "raw": "{{baseUrl}}/commerce/locations/cutoffoverrides",
-           "host": "{{baseUrl}}",
-           "path": [
-            "commerce",
-            "locations",
-            "cutoffoverrides"
-           ],
-           "variable": [],
-           "query": [
-            {
-             "key": "responseFields",
-             "disabled": true
-            }
-           ]
-          }
-         }
-        },
-        {
-         "name": "Get Cutoff Time Overrides",
-         "request": {
-          "method": "GET",
-          "header": [
-           {
-            "key": "x-vol-site",
-            "value": "{{siteId}}",
-            "disabled": false
-           }
-          ],
-          "url": {
-           "raw": "{{baseUrl}}/commerce/locations/cutoffoverrides",
-           "host": "{{baseUrl}}",
-           "path": [
-            "commerce",
-            "locations",
-            "cutoffoverrides"
-           ],
-           "variable": [],
-           "query": [
-            {
-             "key": "locationCode",
-             "disabled": true
-            },
-            {
-             "key": "fromDate",
-             "disabled": true
-            },
-            {
-             "key": "toDate",
-             "disabled": true
-            },
-            {
-             "key": "fulfillmentType",
-             "disabled": true
-            },
-            {
-             "key": "startIndex",
-             "disabled": true
-            },
-            {
-             "key": "pageSize",
-             "disabled": true
-            },
-            {
-             "key": "responseFields",
-             "disabled": true
-            }
-           ]
-          }
-         }
-        }
-       ]
-      },
-      {
-       "name": "{locationCode}",
-       "item": [
-        {
-         "name": "cutofftime",
-         "item": [
-          {
-           "name": "Get Location Cut Off Time",
-           "request": {
-            "method": "POST",
-            "header": [
-             {
-              "key": "x-vol-site",
-              "value": "{{siteId}}",
-              "disabled": false
-             }
-            ],
-            "url": {
-             "raw": "{{baseUrl}}/commerce/locations/:locationCode/cutofftime",
-             "host": "{{baseUrl}}",
-             "path": [
-              "commerce",
-              "locations",
-              ":locationCode",
-              "cutofftime"
-             ],
-             "variable": [
-              {
-               "key": "locationCode",
-               "value": "locationCode"
-              }
-             ],
-             "query": [
-              {
-               "key": "responseFields",
-               "disabled": true
-              }
-             ]
-            }
-           }
-          }
-         ]
         }
        ]
       }
@@ -35225,7 +35642,7 @@
          "name": "processreturnrules",
          "item": [
           {
-           "name": "Applies the return rules to the shipment items and responds if items are eligible for return.",
+           "name": "Process Return Rules",
            "request": {
             "method": "POST",
             "header": [
@@ -35848,7 +36265,7 @@
              "name": "repricesubstitutes",
              "item": [
               {
-               "name": "Reprice substitute items in shipments",
+               "name": "Reprice Substitutes",
                "request": {
                 "method": "POST",
                 "header": [

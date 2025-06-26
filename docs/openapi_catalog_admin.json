@@ -1417,6 +1417,7 @@
         "tags": [
           "Categories"
         ],
+        "summary": "Get Category Attributes",
         "description": "Retrieves a list of category attributes. This current version of the Categories API includes localizedContent to support <a href=\"https://docs.kibocommerce.com/help/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".",
         "parameters": [
           {
@@ -6010,7 +6011,7 @@
           "PriceListEntries"
         ],
         "summary": "Bulk Update Price List Entries.",
-        "description": "Updates up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail. <p>Disable the publishEvents parameter to prevent publishing the event related to updating price list entries in the system. Disabling this property helps you prevent performance delays if you expect the event to trigger the re-indexing of a large number of products, or if you want to postpone the operations of other applications and services listening for the event. Disable the invalidateCache parameter if you expect to encounter unacceptable performance hits related to clearing the cache for each product in the price list entries.</p>",
+        "description": "Updates up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail. <p>This method performs an upsert, which will add missing entries if they do not exist. It can be used in place of Bulk Add Price List Entries to simplify application logic when the desired behavior is to update an entry or add the entry if it does not exist.</p> <p>Disable the publishEvents parameter to prevent publishing the event related to updating price list entries in the system. Disabling this property helps you prevent performance delays if you expect the event to trigger the re-indexing of a large number of products, or if you want to postpone the operations of other applications and services listening for the event. Disable the invalidateCache parameter if you expect to encounter unacceptable performance hits related to clearing the cache for each product in the price list entries.</p>",
         "parameters": [
           {
             "name": "publishEvents",
