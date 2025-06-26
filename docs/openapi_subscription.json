@@ -4656,6 +4656,218 @@
         },
         "additionalProperties": false
       },
+      "SubscriptionRuntimeCommerceAggregate": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier of the shopper who created the cart.",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "description": "Unique identifier of the Tenant.",
+            "format": "int32",
+            "nullable": true
+          },
+          "siteId": {
+            "type": "integer",
+            "description": "Unique identifier of the Site.",
+            "format": "int32",
+            "nullable": true
+          },
+          "channelCode": {
+            "type": "string",
+            "description": "Unique identifier of the channel for this item.",
+            "nullable": true
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "ISO Currency Code. Currently, only USD is supported.",
+            "nullable": true
+          },
+          "visitId": {
+            "type": "string",
+            "description": "Identifies the Visit ID that was current when the order was placed or when the cart was last updated.",
+            "nullable": true
+          },
+          "webSessionId": {
+            "type": "string",
+            "description": "Identifies the web session used to place the order or last update the cart.",
+            "nullable": true
+          },
+          "customerInteractionType": {
+            "type": "string",
+            "description": "Determines the interaction type that a customer will use to create this object.\r\nValid values are: Website, Store, Call, Unknown",
+            "nullable": true
+          },
+          "fulfillmentInfo": {
+            "$ref": "#/components/schemas/FulfillmentInfo"
+          },
+          "orderDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
+            },
+            "description": "The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.",
+            "nullable": true
+          },
+          "suggestedDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SuggestedDiscount"
+            },
+            "nullable": true
+          },
+          "rejectedDiscounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SuggestedDiscount"
+            },
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "description": "Custom data for a given vendor set within the commerce process.",
+            "nullable": true
+          },
+          "taxData": {
+            "type": "object",
+            "description": "Storage for any additional/custom tax data.",
+            "nullable": true
+          },
+          "subtotal": {
+            "type": "number",
+            "description": "Combined price for all cart items, including all selected options but excluding any discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "discountedSubtotal": {
+            "type": "number",
+            "description": "Combined price for all cart items, including all selected options as well as any discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "discountTotal": {
+            "type": "number",
+            "description": "Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.",
+            "format": "double",
+            "nullable": true
+          },
+          "discountedTotal": {
+            "type": "number",
+            "description": "Subtotal minus the discounted total",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingTotal": {
+            "type": "number",
+            "description": "Shipping does not appear on cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingSubTotal": {
+            "type": "number",
+            "description": "Shipping total without discounts applied.",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingTaxTotal": {
+            "type": "number",
+            "description": "Not implemented. Tax does not appear on cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "handlingTaxTotal": {
+            "type": "number",
+            "description": "Total tax on handling",
+            "format": "double",
+            "nullable": true
+          },
+          "itemTaxTotal": {
+            "type": "number",
+            "description": "Not implemented. Tax does not appear on cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "taxTotal": {
+            "type": "number",
+            "description": "Tax does not appear on cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "feeTotal": {
+            "type": "number",
+            "description": "Not implemented. Total cost of fees for all items in the cart.",
+            "format": "double",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "description": "Final total amount of the order including all discounts, shipping, and tax.",
+            "format": "double",
+            "nullable": true
+          },
+          "lineItemSubtotalWithOrderAdjustments": {
+            "type": "number",
+            "description": "Line Item Subtotals with Order Adjustments",
+            "format": "double",
+            "nullable": true
+          },
+          "shippingAmountBeforeDiscountsAndAdjustments": {
+            "type": "number",
+            "description": "Shipping Amount before discount and adjustments",
+            "format": "double",
+            "nullable": true
+          },
+          "lastValidationDate": {
+            "type": "string",
+            "description": "Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. \r\nIf changed, it updates LastValidationDate.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "description": "When the order will no longer be active. That is, the order is considered abandoned. \r\nOrders of anonymous shoppers expire after 14 days of inactivity. \r\nAn order never expires for shoppers who are logged into their account. \r\nDate in UTC Date/Time.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "changeMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeChangeMessage"
+            },
+            "description": "List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.",
+            "nullable": true
+          },
+          "extendedProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtendedProperty"
+            },
+            "description": "Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.",
+            "nullable": true
+          },
+          "discountThresholdMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommerceRuntimeThresholdMessage"
+            },
+            "description": "List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.",
+            "nullable": true
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Base class for cart and order"
+      },
       "CommerceRuntimeFutureInventory": {
         "type": "object",
         "properties": {
@@ -7284,218 +7496,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "SubscriptionRuntimeCommerceAggregate": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "description": "Unique identifier of the shopper who created the cart.",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "description": "Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).",
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "integer",
-            "description": "Unique identifier of the Tenant.",
-            "format": "int32",
-            "nullable": true
-          },
-          "siteId": {
-            "type": "integer",
-            "description": "Unique identifier of the Site.",
-            "format": "int32",
-            "nullable": true
-          },
-          "channelCode": {
-            "type": "string",
-            "description": "Unique identifier of the channel for this item.",
-            "nullable": true
-          },
-          "currencyCode": {
-            "type": "string",
-            "description": "ISO Currency Code. Currently, only USD is supported.",
-            "nullable": true
-          },
-          "visitId": {
-            "type": "string",
-            "description": "Identifies the Visit ID that was current when the order was placed or when the cart was last updated.",
-            "nullable": true
-          },
-          "webSessionId": {
-            "type": "string",
-            "description": "Identifies the web session used to place the order or last update the cart.",
-            "nullable": true
-          },
-          "customerInteractionType": {
-            "type": "string",
-            "description": "Determines the interaction type that a customer will use to create this object.\r\nValid values are: Website, Store, Call, Unknown",
-            "nullable": true
-          },
-          "fulfillmentInfo": {
-            "$ref": "#/components/schemas/FulfillmentInfo"
-          },
-          "orderDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SubscriptionRuntimeAppliedDiscount"
-            },
-            "description": "The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.",
-            "nullable": true
-          },
-          "suggestedDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SuggestedDiscount"
-            },
-            "nullable": true
-          },
-          "rejectedDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SuggestedDiscount"
-            },
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "description": "Custom data for a given vendor set within the commerce process.",
-            "nullable": true
-          },
-          "taxData": {
-            "type": "object",
-            "description": "Storage for any additional/custom tax data.",
-            "nullable": true
-          },
-          "subtotal": {
-            "type": "number",
-            "description": "Combined price for all cart items, including all selected options but excluding any discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountedSubtotal": {
-            "type": "number",
-            "description": "Combined price for all cart items, including all selected options as well as any discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountTotal": {
-            "type": "number",
-            "description": "Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountedTotal": {
-            "type": "number",
-            "description": "Subtotal minus the discounted total",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingTotal": {
-            "type": "number",
-            "description": "Shipping does not appear on cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingSubTotal": {
-            "type": "number",
-            "description": "Shipping total without discounts applied.",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingTaxTotal": {
-            "type": "number",
-            "description": "Not implemented. Tax does not appear on cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingTaxTotal": {
-            "type": "number",
-            "description": "Total tax on handling",
-            "format": "double",
-            "nullable": true
-          },
-          "itemTaxTotal": {
-            "type": "number",
-            "description": "Not implemented. Tax does not appear on cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "taxTotal": {
-            "type": "number",
-            "description": "Tax does not appear on cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "feeTotal": {
-            "type": "number",
-            "description": "Not implemented. Total cost of fees for all items in the cart.",
-            "format": "double",
-            "nullable": true
-          },
-          "total": {
-            "type": "number",
-            "description": "Final total amount of the order including all discounts, shipping, and tax.",
-            "format": "double",
-            "nullable": true
-          },
-          "lineItemSubtotalWithOrderAdjustments": {
-            "type": "number",
-            "description": "Line Item Subtotals with Order Adjustments",
-            "format": "double",
-            "nullable": true
-          },
-          "shippingAmountBeforeDiscountsAndAdjustments": {
-            "type": "number",
-            "description": "Shipping Amount before discount and adjustments",
-            "format": "double",
-            "nullable": true
-          },
-          "lastValidationDate": {
-            "type": "string",
-            "description": "Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. \r\nIf changed, it updates LastValidationDate.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "expirationDate": {
-            "type": "string",
-            "description": "When the order will no longer be active. That is, the order is considered abandoned. \r\nOrders of anonymous shoppers expire after 14 days of inactivity. \r\nAn order never expires for shoppers who are logged into their account. \r\nDate in UTC Date/Time.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "changeMessages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeChangeMessage"
-            },
-            "description": "List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.",
-            "nullable": true
-          },
-          "extendedProperties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExtendedProperty"
-            },
-            "description": "Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.",
-            "nullable": true
-          },
-          "discountThresholdMessages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommerceRuntimeThresholdMessage"
-            },
-            "description": "List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.",
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Base class for cart and order"
       },
       "SubscriptionRuntimeAppliedProductDiscount": {
         "type": "object",

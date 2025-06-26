@@ -161,7 +161,7 @@
         "tags": [
           "PriceLists"
         ],
-        "summary": "Get Resolved Price List",
+        "summary": "Get Resolved Price List (GET)",
         "description": "This is primarily used when creating an offline order for a shopper. You can use this operation alongside custom Arc.js actions to alter the price list to which a shopper resolves.",
         "parameters": [
           {
@@ -208,7 +208,7 @@
         "tags": [
           "PriceLists"
         ],
-        "summary": "Get resolved price list.",
+        "summary": "Get Resolved Price List (POST)",
         "description": "This is primarily used when creating an offline order for a shopper. You can use this operation alongside custom Arc.js actions to alter the price list to which a shopper resolves.",
         "requestBody": {
           "content": {
@@ -699,6 +699,13 @@
             }
           },
           {
+            "name": "customerSegments",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -842,6 +849,13 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "customerSegments",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -1029,6 +1043,14 @@
             }
           },
           {
+            "name": "customerSegments",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "responseFields",
             "in": "query",
             "description": "limits which fields are returned in the response body",
@@ -1144,6 +1166,7 @@
           {
             "name": "acceptVariantProductCode",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "boolean",
               "default": false
@@ -2194,6 +2217,13 @@
             "name": "merchandizingRuleCode",
             "in": "query",
             "description": "Optional. Use a specific search-merchandizing-rule code if provided.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerSegments",
+            "in": "query",
             "schema": {
               "type": "string"
             }
