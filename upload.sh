@@ -1,22 +1,22 @@
-rdme openapi docs/openapi_appdevelopement.json --key=$README_API_KEY --id=6491a76a8286d3131c4fce4a
-rdme openapi docs/openapi_catalog_admin.json --key=$README_API_KEY --id=6491a77fff9d8d132a44d0c5
-rdme openapi docs/openapi_catalog_storefront.json --key=$README_API_KEY --id=648df00ff2df0300597ce439
-rdme openapi docs/openapi_commerce.json --key=$README_API_KEY --id=6491a91bbd83600be3d27adf
-rdme openapi docs/openapi_content.json --key=$README_API_KEY --id=648dee6e7682bf005d506cfd
-rdme openapi docs/openapi_customer.json --key=$README_API_KEY --id=6491a95c04e526131a7ca8d3
-rdme openapi docs/openapi_entities.json --key=$README_API_KEY --id=6491a9abeec691132e51b0f0
-rdme openapi docs/openapi_event.json --key=$README_API_KEY --id=6491aaaae159110058a86605
-rdme openapi docs/openapi_fulfillment.json --key=$README_API_KEY --id=6498cefb934bdd005deb19e8
-rdme openapi docs/openapi_importexport.json --key=$README_API_KEY --id=64cb902bac59e10b01cb720f
-rdme openapi docs/openapi_inventory.json --key=$README_API_KEY --id=6498cd55ddbd210046ea6bd9
-rdme openapi docs/openapi_location_admin.json --key=$README_API_KEY --id=6491adc3afa991162da527ef
-rdme openapi docs/openapi_location_storefront.json --key=$README_API_KEY --id=6491adfd7c86c0139e3bff99
-rdme openapi docs/openapi_orderrouting.json --key=$README_API_KEY --id=6491ae0b6022db131bcc2857
-rdme openapi docs/openapi_reservation.json --key=$README_API_KEY --id=6491ae22759bde000b032335
-rdme openapi docs/openapi_settings.json --key=$README_API_KEY --id=6491b05033acdb167885292c
-rdme openapi docs/openapi_shipping_admin.json --key=$README_API_KEY --id=6498d397047a18001fe42add
-rdme openapi docs/openapi_shipping_storefront.json --key=$README_API_KEY --id=6498d3b20542100049917af8
-rdme openapi docs/openapi_subscription.json --key=$README_API_KEY --id=6491b4e56ae2c10983af7bd6
-rdme openapi docs/openapi_tenant.json --key=$README_API_KEY --id=6491b4f9eec691132e5251b5
-rdme openapi docs/openapi_user.json --key=$README_API_KEY --id=6491b501759bde000b03b082g
-rdme openapi docs/webhooks.json --key=$README_API_KEY --id=649742a8c917450cce39fcd9
+npx rdme openapi docs/openapi_appdevelopement.json --key=$README_API_KEY --id=6491a76a8286d3131c4fce4a
+npx rdme openapi docs/openapi_catalog_admin.json --key=$README_API_KEY --id=6491a77fff9d8d132a44d0c5
+npx rdme openapi docs/openapi_catalog_storefront.json --key=$README_API_KEY --id=648df00ff2df0300597ce439
+npx rdme openapi docs/openapi_commerce.json --key=$README_API_KEY --id=6491a91bbd83600be3d27adf
+npx rdme openapi docs/openapi_content.json --key=$README_API_KEY --id=648dee6e7682bf005d506cfd
+npx rdme openapi docs/openapi_customer.json --key=$README_API_KEY --id=6491a95c04e526131a7ca8d3
+npx rdme openapi docs/openapi_entities.json --key=$README_API_KEY --id=6491a9abeec691132e51b0f0
+npx rdme openapi docs/openapi_event.json --key=$README_API_KEY --id=6491aaaae159110058a86605
+npx rdme openapi docs/openapi_fulfillment.json --key=$README_API_KEY --id=6498cefb934bdd005deb19e8
+npx rdme openapi docs/openapi_importexport.json --key=$README_API_KEY --id=64cb902bac59e10b01cb720f
+npx rdme openapi docs/openapi_inventory.json --key=$README_API_KEY --id=6498cd55ddbd210046ea6bd9
+npx rdme openapi docs/openapi_location_admin.json --key=$README_API_KEY --id=6491adc3afa991162da527ef
+npx rdme openapi docs/openapi_location_storefront.json --key=$README_API_KEY --id=6491adfd7c86c0139e3bff99
+npx rdme openapi docs/openapi_orderrouting.json --key=$README_API_KEY --id=6491ae0b6022db131bcc2857
+npx rdme openapi docs/openapi_reservation.json --key=$README_API_KEY --id=6491ae22759bde000b032335
+npx rdme openapi docs/openapi_settings.json --key=$README_API_KEY --id=6491b05033acdb167885292c
+npx rdme openapi docs/openapi_shipping_admin.json --key=$README_API_KEY --id=6498d397047a18001fe42add
+npx rdme openapi docs/openapi_shipping_storefront.json --key=$README_API_KEY --id=6498d3b20542100049917af8
+npx rdme openapi docs/openapi_subscription.json --key=$README_API_KEY --id=6491b4e56ae2c10983af7bd6
+npx rdme openapi docs/openapi_tenant.json --key=$README_API_KEY --id=6491b4f9eec691132e5251b5
+npx rdme openapi docs/openapi_user.json --key=$README_API_KEY --id=6491b501759bde000b03b082g
+npx rdme openapi docs/webhooks.json --key=$README_API_KEY --id=649742a8c917450cce39fcd9
