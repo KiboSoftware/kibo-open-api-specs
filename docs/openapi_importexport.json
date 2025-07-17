@@ -1949,6 +1949,54 @@
   },
   "servers": [
     {
+      "url": "https://t{tenantId}-s{siteId}.{env}.usc1.kibocommerce.com/api",
+      "description": "GCP-US Site Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "siteId": {
+          "default": "0",
+          "description": "Id of the Site"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg2"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://t{tenantId}.{env}.usc1.kibocommerce.com/api",
+      "description": "GCP-US Tenant Level Api",
+      "variables": {
+        "tenantId": {
+          "default": "0",
+          "description": "Id of the Tenant"
+        },
+        "env": {
+          "default": "sb",
+          "enum": [
+            "sb",
+            "tp1",
+            "tp2",
+            "tp3",
+            "tp4",
+            "tp5",
+            "stg2"
+          ]
+        }
+      }
+    },
+    {
       "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
       "description": "Site Level Api",
       "variables": {
