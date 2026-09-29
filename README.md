@@ -13,6 +13,8 @@ Kibo provides a comprehensive set of REST APIs that power modern composable comm
 ## API Categories & OpenAPI Specifications
 
 ### Getting Started
+- **Overview** – General overview of the Kibo Unified Commerce Platform (UCP) REST APIs.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_overview.json
 - **Getting Started with Your API** – Learn how to authenticate and make your first API calls to the Kibo platform.
   - Docs: https://docs.kibocommerce.com/api-overviews/getting-started.md
 
@@ -20,7 +22,7 @@ Kibo provides a comprehensive set of REST APIs that power modern composable comm
 
 ### Application Development
 - **App Development** – Manage installed applications, authentication tickets, and application packages for your tenant.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_appdevelopement_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_appdevelopement.json
 
 ---
 
@@ -28,63 +30,73 @@ Kibo provides a comprehensive set of REST APIs that power modern composable comm
 
 #### Catalog Administration
 - **Catalog Administration** – Configure catalogs, products, categories, discounts, price lists, and search settings for your storefront.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_catalog_admin_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_catalog_admin.json
 
 #### Catalog Storefront
 - **Catalog Storefront** – Retrieve product categories, pricing, and search results for the shopper-facing storefront experience.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_catalog_storefront_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_catalog_storefront.json
+
+#### Pricing
+- **Pricing** – Compute product pricing for the shopper-facing storefront experience.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_pricing.json
 
 ---
 
 ### Commerce Operations
 
 - **Commerce** – Manage shopping carts, checkouts, orders, returns, wishlists, and B2B quotes for your commerce operations.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_commerce_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_commerce.json
 
 ---
 
 ### Content Management
 
 - **Content** – Organize site content into document hierarchies and manage publishing workflows for your storefront.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_content_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_content.json
 
 ---
 
 ### Customer Management
 
 - **Customer** – Manage customer accounts, contacts, segments, credits, B2B hierarchies, and authentication for shoppers.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_customer_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_customer.json
 
 ---
 
 ### Data & Entities
 
 - **Entities** – Store and query custom JSON data with indexed properties for large, filterable datasets.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_entities_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_entities.json
 
 ---
 
 ### Events & Subscriptions
 
 - **Events** – Subscribe to push notifications for CRUD operations and query event history for your applications.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_event_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_event.json
 
 ---
 
 ### Fulfillment & Logistics
 
 - **Fulfillment** – Manage shipments, packages, pick waves, and manifests throughout the order fulfillment workflow.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_fulfillment_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_fulfillment.json
+
+- **DropShip** – Manage dropship connections and vendor inventory feeds for distributed fulfillment.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_dropship.json
+
+- **Order Routing** – Configure routing filters, location groups, and rules to determine optimal fulfillers for orders.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_orderrouting.json
 
 ---
 
 ### Inventory Management
 
 - **Inventory** – Retrieve and adjust inventory levels, manage allocations, and segment stock with tags across fulfillment locations.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_inventory_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_inventory.json
 
 - **Reservations** – Create and manage inventory reservations for items, quantities, and fulfillment methods.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_reservation_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_reservation.json
 
 ---
 
@@ -92,39 +104,61 @@ Kibo provides a comprehensive set of REST APIs that power modern composable comm
 
 #### Location Administration
 - **Location Administration** – Create and manage fulfillment locations, location groups, and location types for inventory and pickup.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_location_admin_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_location_admin.json
+  - OpenAPI (alternate): https://docs.kibocommerce.com/openapi/openapi_location.json
 
 #### Location Storefront
 - **Location Storefront** – Retrieve fulfillment location details for the shopper-facing storefront experience.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_location_storefront_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_location_storefront.json
 
 ---
 
-### Order Management
+### Shipping Management
 
-- **Order Routing** – Configure routing filters, location groups, and rules to determine optimal fulfillers for orders.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_orderrouting_overview.json
+#### Shipping Administration
+- **Shipping Administration** – Administer shipping settings such as carrier configurations and labels.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_shipping_admin.json
+  - OpenAPI (alternate): https://docs.kibocommerce.com/openapi/openapi_shipping.json
+
+#### Shipping Storefront
+- **Shipping Storefront** – Retrieve available shipping methods and rates for the shopper-facing storefront experience.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_shipping_storefront.json
 
 ---
 
 ### Import/Export
 
 - **Import/Export** – Bulk import and export Kibo resources using CSV files for efficient data management.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_importexport_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_importexport.json
 
 ---
 
 ### Settings & Configuration
 
 - **Site Settings** – Configure site, checkout, payment, and application settings for your tenant and storefronts.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_settings_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_settings.json
 
 ---
 
 ### Subscriptions & Recurring Orders
 
 - **Subscriptions** – Manage recurring order subscriptions, including items, frequencies, and subscription lifecycle.
-  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_subscription_overview.json
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_subscription.json
+
+---
+
+### Platform & Administration
+
+- **Admin User & Tenant** – Manage admin user accounts, tenants, and related resources.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_tenant_and_user.json
+  - OpenAPI (admin users only): https://docs.kibocommerce.com/openapi/openapi_user.json
+  - OpenAPI (tenants only): https://docs.kibocommerce.com/openapi/openapi_tenant.json
+
+- **GraphQL** – Query and mutate the same resources as the REST APIs through a GraphQL interface.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_graphql.json
+
+- **Audit Logs** – Retrieve audit log entries for tracking changes across the platform.
+  - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_audit_logs.json
 
 ---
 
@@ -132,6 +166,13 @@ Kibo provides a comprehensive set of REST APIs that power modern composable comm
 
 - **GDPR** – Handle personal data requests and compliance with GDPR regulations.
   - OpenAPI: https://docs.kibocommerce.com/openapi/openapi_gdpr.json
+
+---
+
+### Webhooks
+
+- **Webhooks** – Subscribe to webhooks for events such as order placement and inventory updates.
+  - Spec: [docs/webhooks.json](docs/webhooks.json)
 
 ---
 
@@ -150,7 +191,7 @@ All OpenAPI specifications are available in JSON format from the URLs listed abo
 
 ```bash
 # Download a specification
-curl -o catalog_admin.json https://docs.kibocommerce.com/openapi/openapi_catalog_admin_overview.json
+curl -o catalog_admin.json https://docs.kibocommerce.com/openapi/openapi_catalog_admin.json
 
 # Generate a TypeScript client (using openapi-generator-cli)
 openapi-generator-cli generate \
