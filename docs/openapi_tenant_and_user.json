@@ -1288,7 +1288,7 @@
     }
   },
   "info": {
-    "description": "OpenAPI Spec for Kibo Admin User Service",
+    "description": "<div id=\"overview_TENANT_AND_USER\">\n            <h2>ADMIN USER &amp; TENANT</h2>\n            <p>The AdminUser and Tenants APIs are a collection of resources related to admin user accounts within tenants, their user roles, and authorization tickets.\n                This is not compatible with SCIM at the moment,\n                though SAML is supported.</p>\n            <p>Use the <strong>Admin User</strong> resource to retrieve information about user accounts\n                in your Unified Commerce tenant, add users to the platform, and update or remove those users. Additionally, administrators\n                are able to view, add, and remove the roles that are assigned to users. However, it is recommended to\n                use the\n                <a href=\"/pages/permissions\">Unified Commerce Admin\n                    interface</a>\n                to configure any new role types that may be desired so that all appropriate behaviors and permissions\n                can be accounted for. The <strong>Role</strong> resource only allows you to retrieve a list of available roles.\n                </p>\n            <p>Use the <strong>AuthTickets</strong> resources for Admins and Developer Admins to generate and refresh authentication tickets that \n                enable account users to access development or production tenants.</p>\n            <p>You will soon be able to use the <strong>Admin Groups</strong> resource to support the B2B Quotes review feature, though the functionality is not\n                yet released. See\n                the <a href=\"/pages/users-and-user-groups\">User Management\n                    guide</a> for more information.</p>\n        </div>",
     "title": "Admin User"
   },
   "openapi": "3.0.1",
@@ -2859,6 +2859,57 @@
         "summary": "Get Roles",
         "tags": [
           "Role"
+        ]
+      }
+    },
+    "/platform/tenants/{tenantId}": {
+      "get": {
+        "description": "Retrieve information about a tenant. The attributes object will contain flags indicating whether or not certain features are enabled on the tenant. Kibo employees can reference <a href=\"/pages/tenant-attributes\">this internal-only documentation</a> for a list of all attributes. </ul>",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tenant"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tenant"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tenant"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Tenant by ID",
+        "tags": [
+          "Tenants"
         ]
       }
     }

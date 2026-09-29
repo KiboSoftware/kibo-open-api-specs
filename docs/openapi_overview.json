@@ -1,0 +1,36 @@
+{
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "<div id=\"overview_general\">\n<h2>OVERVIEW</h2>\n        <p>Implementing Unified Commerce REST APIs allows merchants to take advantage of efficient ecommerce, order\n            management, and fulfillment strategies to bridge the gap between online and in-store shopping. To begin\n            working\n            with the toolset, a developer should be familiar with APIs and the process of authentication. </p>\n        <p>This documentation provides the HTTP request and response information of each API, including field\n            definitions,\n            templates, and example calls. </p>\n        <p>For information about applying sorting and filtering to these APIs, see the <a\n            href=\"https://docs.kibocommerce.com/116616/649589-sorting-and-filtering\">user guide.</a>\n        </p>\n    </div>\n",
+    "title": "UCP"
+  },
+  "openapi": "3.0.0",
+  "paths": {},
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
+    }
+  ]
+}

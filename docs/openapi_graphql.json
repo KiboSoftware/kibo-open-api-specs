@@ -1,0 +1,36 @@
+{
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "<div id=\"overview_graphql\">\n  <h2>GraphQL</h2>\n   <p>The GraphQL API provides queries and mutations to the same resources stored on the Kibo platform as those of the REST API.       A full listing of the queries and mutations can be retrieved from the GraphQL schema which can be obtained via <a href='https://graphql.org/learn/introspection/' >introspection</a> or via the Documentation Explorer in the GraphQL playground located in the root of your site /graphql or thru the Graphql Voyager located [yoursite]/graphql/voyager.    </p>    \n  <h3>GraphQL Playground </h3>\n  <p>\n  To access the GraphQL Storefront API Playground and documentation view your sites web front end ( so that a cookie can be set ) and then navigate to /graphql.  </>\n  <p>Then clicke the settings gear in the upper right corner and set  <code> \"request.credentials\": \"include\"</code>\n    <img src='graphql_settings.jpg' >\n  </p>\n  <p>From there you can make any storefront calls allowed by a shopper.\n  </p>\n  <img src='graphql_1.jpg'>\n  <p>To make admistrative calls.  Use a jwt token gotten from the application development <a href='/?spec=add_dev#post-/platform/applications/authtickets/oauth'>oauth authenticate method.</a>\n</div>\n",
+    "title": "GraphQL"
+  },
+  "openapi": "3.0.0",
+  "paths": {},
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,650 @@
+{
+  "components": {
+    "schemas": {
+      "AffectedEntitiesResponse": {
+        "properties": {
+          "checkouts": {
+            "$ref": "#/components/schemas/EntityGroupResponse"
+          },
+          "customerAccountId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "orders": {
+            "$ref": "#/components/schemas/EntityGroupResponse"
+          },
+          "payments": {
+            "$ref": "#/components/schemas/EntityGroupResponse"
+          },
+          "returns": {
+            "$ref": "#/components/schemas/EntityGroupResponse"
+          },
+          "shipments": {
+            "$ref": "#/components/schemas/EntityGroupResponse"
+          },
+          "wishlists": {
+            "$ref": "#/components/schemas/EntityGroupResponse"
+          }
+        },
+        "type": "object"
+      },
+      "AttributeFqnsRequest": {
+        "properties": {
+          "customer": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "order": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "return": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "shipment": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "AttributeFqnsResponse": {
+        "properties": {
+          "customer": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "order": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "return": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "shipment": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "AuditInfoResponse": {
+        "properties": {
+          "createBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updateBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ClearDataNodesRequest": {
+        "properties": {
+          "checkouts": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "orders": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "shipments": {
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "ClearDataNodesResponse": {
+        "properties": {
+          "checkouts": {
+            "type": "boolean"
+          },
+          "orders": {
+            "type": "boolean"
+          },
+          "shipments": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "CreateReportRequest": {
+        "properties": {
+          "attributeFqns": {
+            "$ref": "#/components/schemas/AttributeFqnsRequest"
+          },
+          "clearDataNodes": {
+            "$ref": "#/components/schemas/ClearDataNodesRequest"
+          },
+          "customerAccountId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "userId": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "EntityGroupResponse": {
+        "properties": {
+          "count": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "ids": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "OperationLogEntry": {
+        "properties": {
+          "durationMs": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "entityId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "entityType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "errorMessage": {
+            "nullable": true,
+            "type": "string"
+          },
+          "operation": {
+            "nullable": true,
+            "type": "string"
+          },
+          "phase": {
+            "nullable": true,
+            "type": "string"
+          },
+          "recordsAffected": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "store": {
+            "nullable": true,
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "RedactionReportResponse": {
+        "properties": {
+          "affectedEntities": {
+            "$ref": "#/components/schemas/AffectedEntitiesResponse"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfoResponse"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "errorSummary": {
+            "nullable": true,
+            "type": "string"
+          },
+          "executionCompletedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "executionStartedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "operationLog": {
+            "items": {
+              "$ref": "#/components/schemas/OperationLogEntry"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "reportId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "request": {
+            "$ref": "#/components/schemas/RequestResponse"
+          },
+          "schemaVersion": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "subject": {
+            "$ref": "#/components/schemas/SubjectResponse"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RedactionReportSummaryListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/RedactionReportSummaryResponse"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RedactionReportSummaryResponse": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfoResponse"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "errorSummary": {
+            "nullable": true,
+            "type": "string"
+          },
+          "executionCompletedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "executionStartedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "reportId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "schemaVersion": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "subject": {
+            "$ref": "#/components/schemas/SubjectResponse"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RequestResponse": {
+        "properties": {
+          "attributeFqns": {
+            "$ref": "#/components/schemas/AttributeFqnsResponse"
+          },
+          "clearDataNodes": {
+            "$ref": "#/components/schemas/ClearDataNodesResponse"
+          },
+          "correlationId": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SubjectResponse": {
+        "properties": {
+          "customerAccountId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "resolvedEmailAddresses": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "userId": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "OpenAPI Spec for Kibo Redaction Service",
+    "title": "Redaction"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/platform/data/redaction/execute/{reportId}": {
+      "post": {
+        "description": "Executes an approved draft redaction report. This action is irreversible — it permanently removes or overwrites all PII identified in the report. The report status changes from Draft to Executed and operationLog is populated. See the <a href=\"/developer-guides/redaction-services\">Redaction Services Developer Guide</a> for the complete workflow and warnings.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Execute Redaction",
+        "tags": [
+          "Redaction"
+        ]
+      }
+    },
+    "/platform/data/redaction/report/{reportId}": {
+      "get": {
+        "description": "Retrieves a single redaction report by ID. Returns the full report including affectedEntities and, after execution, the operationLog. Use this to review a draft before executing or to audit a completed redaction. See the <a href=\"/developer-guides/redaction-services\">Redaction Services Developer Guide</a> for field descriptions.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Redaction Report",
+        "tags": [
+          "Redaction"
+        ]
+      }
+    },
+    "/platform/data/redaction/report": {
+      "get": {
+        "description": "Lists redaction reports for the tenant, with optional filtering by status (Draft or Executed) and date range. Returns summary objects without affectedEntities or operationLog; retrieve individual reports by ID for full details. See the <a href=\"/developer-guides/redaction-services\">Redaction Services Developer Guide</a> for auditing guidance.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportSummaryListResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportSummaryListResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportSummaryListResponse"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "List Redaction Reports",
+        "tags": [
+          "Redaction"
+        ]
+      },
+      "post": {
+        "description": "Creates a draft redaction report by scanning tenant data for all PII associated with the specified data subject. No data is modified at this stage. Review the returned report before executing. See the <a href=\"/developer-guides/redaction-services\">Redaction Services Developer Guide</a> for the complete two-phase workflow.",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedactionReportResponse"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Generate Redaction Report",
+        "tags": [
+          "Redaction"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
+    }
+  ]
+}

@@ -1,27 +1,1482 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "Shipping Storefront",
-    "description": "OpenAPI Spec for Kibo ShippingRuntime Service",
-    "version": "1.0.1"
+  "components": {
+    "schemas": {
+      "Address": {
+        "properties": {
+          "address1": {
+            "nullable": true,
+            "type": "string"
+          },
+          "address2": {
+            "nullable": true,
+            "type": "string"
+          },
+          "address3": {
+            "nullable": true,
+            "type": "string"
+          },
+          "address4": {
+            "nullable": true,
+            "type": "string"
+          },
+          "addressType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "cityOrTown": {
+            "nullable": true,
+            "type": "string"
+          },
+          "countryCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isValidated": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "postalOrZipCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "stateOrProvince": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AuditInfo": {
+        "properties": {
+          "createBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "updateBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CarrierMethods": {
+        "properties": {
+          "carrierId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "shippingMethods": {
+            "description": "Selected Shipping Service Type.",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "CarrierRatesResponse": {
+        "properties": {
+          "carrierId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "customAttributes": {
+            "deprecated": true,
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "fulfillmentMethod": {
+            "description": "The fulfillment method for which this carrier rate is applicable to. Possible values are Ship and Delivery.",
+            "nullable": true,
+            "type": "string"
+          },
+          "shippingRates": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeShippingRate"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "CarrierResponse": {
+        "description": "Response containing a list of Carriers supported on a tenant / site.",
+        "properties": {
+          "carriers": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeCarrier"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "CarrierTransitTimes": {
+        "properties": {
+          "carrierId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "estimatedDeliveryDates": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeEstimatedDeliveryDate"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "itemIds": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ConsolidationReference": {
+        "properties": {
+          "relatedOrderId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "relatedOrderNumber": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "relatedShipmentNumber": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Contact": {
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "companyOrOrganization": {
+            "nullable": true,
+            "type": "string"
+          },
+          "email": {
+            "nullable": true,
+            "type": "string"
+          },
+          "firstName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "lastNameOrSurname": {
+            "nullable": true,
+            "type": "string"
+          },
+          "middleNameOrInitial": {
+            "nullable": true,
+            "type": "string"
+          },
+          "phoneNumbers": {
+            "$ref": "#/components/schemas/Phone"
+          }
+        },
+        "type": "object"
+      },
+      "CustomAttribute": {
+        "properties": {
+          "childAttributes": {
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "key": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CustomerReferences": {
+        "properties": {
+          "key": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ExternalRateRequest": {
+        "properties": {
+          "attributes": {
+            "description": "Order Attributes. Made available for Arc.js to use",
+            "items": {
+              "$ref": "#/components/schemas/RateRequestAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "carrierIds": {
+            "description": "Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "carrierRates": {
+            "description": "The list of carriers and their respected rates for which this request needs calculated",
+            "items": {
+              "$ref": "#/components/schemas/CarrierMethods"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "customAttributes": {
+            "deprecated": true,
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "data": {
+            "nullable": true,
+            "type": "object"
+          },
+          "destinationAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "estimatedShipmentDate": {
+            "description": "Estimate Date/Time when the shipment for this will be sent.  Primarily utilize to estimate delivery date.",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "handlingTotal": {
+            "description": "The order Handling total after discounts to be used in rate calculation",
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isDestinationAddressCommercial": {
+            "description": "Is the destination address a commercial address?",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "isoCurrencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/RateRequestItem"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "orderDiscountedSubTotal": {
+            "description": "The Order SubTotal After Discounts to be used in rate calculation",
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "orderTotal": {
+            "description": "The OrderTotal to be used in rate calculation",
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "originAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "originLocationCode": {
+            "description": "Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.",
+            "nullable": true,
+            "type": "string"
+          },
+          "relatedOrderId": {
+            "description": "The Order ID to be used in rate calculation\nInformational only",
+            "nullable": true,
+            "type": "string"
+          },
+          "relatedOrderNumber": {
+            "description": "The Order Number to be used in rate calculation\nInformational only",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "shippingServiceTypes": {
+            "description": "Optional.  If one or more Shipping Service Type Codes are specified then only the specified rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ItemMeasurements": {
+        "properties": {
+          "girth": {
+            "description": "Not exposed publicly",
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "height": {
+            "$ref": "#/components/schemas/Measurement"
+          },
+          "length": {
+            "$ref": "#/components/schemas/Measurement"
+          },
+          "weight": {
+            "$ref": "#/components/schemas/Measurement"
+          },
+          "width": {
+            "$ref": "#/components/schemas/Measurement"
+          }
+        },
+        "type": "object"
+      },
+      "LabelRequest": {
+        "properties": {
+          "carrierId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "labelFormat": {
+            "nullable": true,
+            "type": "string"
+          },
+          "packageTrackingNumber": {
+            "nullable": true,
+            "type": "string"
+          },
+          "trackingNumber": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LabelResponse": {
+        "properties": {
+          "packageLabels": {
+            "items": {
+              "$ref": "#/components/schemas/PackageLabelResponse"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "trackingNumber": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Measurement": {
+        "properties": {
+          "unit": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "Money": {
+        "properties": {
+          "currencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "Notification": {
+        "properties": {
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "message": {
+            "nullable": true,
+            "type": "string"
+          },
+          "source": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PackageLabelResponse": {
+        "properties": {
+          "label": {
+            "$ref": "#/components/schemas/ShippingLabel"
+          },
+          "trackingNumber": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Phone": {
+        "properties": {
+          "home": {
+            "nullable": true,
+            "type": "string"
+          },
+          "mobile": {
+            "nullable": true,
+            "type": "string"
+          },
+          "work": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ProductSummary": {
+        "properties": {
+          "categories": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeCategory"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeProductOption"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "price": {
+            "description": "Price (unit price * quantity)",
+            "format": "double",
+            "type": "number"
+          },
+          "productCode": {
+            "description": "Merchant-created code that uniquely identifies the product.",
+            "nullable": true,
+            "type": "string"
+          },
+          "productDescription": {
+            "description": "Product name/description",
+            "nullable": true,
+            "type": "string"
+          },
+          "productType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "properties": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeProductProperty"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "quantity": {
+            "description": "Product quantity",
+            "format": "int32",
+            "type": "integer"
+          },
+          "unitMeasurements": {
+            "$ref": "#/components/schemas/ItemMeasurements"
+          }
+        },
+        "type": "object"
+      },
+      "RateRequest": {
+        "properties": {
+          "attributes": {
+            "description": "Order Attributes. Made available for Arc.js to use",
+            "items": {
+              "$ref": "#/components/schemas/RateRequestAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "carrierIds": {
+            "description": "Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "customAttributes": {
+            "deprecated": true,
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "data": {
+            "nullable": true,
+            "type": "object"
+          },
+          "destinationAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "estimatedShipmentDate": {
+            "description": "Estimate Date/Time when the shipment for this will be sent.  Primarily utilize to estimate delivery date.",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "handlingTotal": {
+            "description": "The order Handling total after discounts to be used in rate calculation",
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isDestinationAddressCommercial": {
+            "description": "Is the destination address a commercial address?",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "isoCurrencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/RateRequestItem"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "orderDiscountedSubTotal": {
+            "description": "The Order SubTotal After Discounts to be used in rate calculation",
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "orderTotal": {
+            "description": "The OrderTotal to be used in rate calculation",
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "originAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "originLocationCode": {
+            "description": "Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.",
+            "nullable": true,
+            "type": "string"
+          },
+          "relatedOrderId": {
+            "description": "The Order ID to be used in rate calculation\nInformational only",
+            "nullable": true,
+            "type": "string"
+          },
+          "relatedOrderNumber": {
+            "description": "The Order Number to be used in rate calculation\nInformational only",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "shippingServiceTypes": {
+            "description": "Optional.  If one or more Shipping Service Type Codes are specified then only the specified rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "RateRequestAttribute": {
+        "properties": {
+          "attributeDefinitionId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "fullyQualifiedName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "values": {
+            "items": {},
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "RateRequestGroup": {
+        "properties": {
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "rateRequests": {
+            "items": {
+              "$ref": "#/components/schemas/RateRequest"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "RateRequestItem": {
+        "description": "Represents an item in a rate request, inheriting from RequestItem.",
+        "properties": {
+          "data": {
+            "nullable": true,
+            "type": "object"
+          },
+          "fulfillmentMethod": {
+            "description": "The fulfillment method on item to fetch rates for. Supported values are Ship and Delivery. Will assume Ship if nothing is passed.",
+            "nullable": true,
+            "type": "string"
+          },
+          "itemId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "itemTotal": {
+            "description": "Item total.",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "productSummaries": {
+            "description": "If Product Summaries are populated, this information will be utilized in Product Rules (e.g. ProductCode eq \"ABC\" or (Weight.Unit eq \"lbs\" and Weight.Value ge 50)",
+            "items": {
+              "$ref": "#/components/schemas/ProductSummary"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "quantity": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "shipsByItself": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "unitMeasurements": {
+            "$ref": "#/components/schemas/ItemMeasurements"
+          }
+        },
+        "type": "object"
+      },
+      "RatesResponse": {
+        "properties": {
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "rates": {
+            "items": {
+              "$ref": "#/components/schemas/CarrierRatesResponse"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "resolvedShippingZoneCode": {
+            "description": "Resolved Shipping Zone Code.  This value can be null if the tenant/site does not have shipping zones defined or there are no matching \nshipping zones for the request (e.g. the only zone defined is \"UNITED-STATES\" and the destination address of the rate request is in Canada)",
+            "nullable": true,
+            "type": "string"
+          },
+          "shippingZoneCodes": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "RatesResponseGroup": {
+        "properties": {
+          "componentRates": {
+            "items": {
+              "$ref": "#/components/schemas/RatesResponse"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "ratesResponse": {
+            "$ref": "#/components/schemas/RatesResponse"
+          }
+        },
+        "type": "object"
+      },
+      "RequestItem": {
+        "properties": {
+          "data": {
+            "nullable": true,
+            "type": "object"
+          },
+          "itemId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "quantity": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "unitMeasurements": {
+            "$ref": "#/components/schemas/ItemMeasurements"
+          }
+        },
+        "type": "object"
+      },
+      "ShipmentRequest": {
+        "properties": {
+          "carrierAccountNumber": {
+            "description": "Optional shipper-provided carrier account number. When provided, postage is\nbilled to this account using SENDER billing via EasyPost options.payment,\noverriding any stored-credential billing for this request. Not persisted in\nKibo; masked (last 4) in logs.",
+            "nullable": true,
+            "type": "string"
+          },
+          "carrierId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "consolidationReferences": {
+            "description": "Consolidation references for Order Number, Shipment Number and Order Id",
+            "items": {
+              "$ref": "#/components/schemas/ConsolidationReference"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "customAttributes": {
+            "description": "Carrier specific options\n\nEx: RequiresDeliveryConfirmation when using usps with non-express mail service type.",
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "customerReferences": {
+            "items": {
+              "$ref": "#/components/schemas/CustomerReferences"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "externalOrderId": {
+            "description": "Optional external (non-Kibo) order identifier to print on the label.\nMapped into EasyPost PrintCustom reference lines alongside ReferenceNotes\nand CustomerReferences, within the 3-line carrier capacity.",
+            "nullable": true,
+            "type": "string"
+          },
+          "fulfillmentMethod": {
+            "description": "Fulfillment method for the shipment. STH / Delivery. Empty will be assumed as STH.",
+            "nullable": true,
+            "type": "string"
+          },
+          "hazmatClassification": {
+            "description": "Optional hazardous-materials classification (pass-through string). Conveyed\nto the carrier via EasyPost options.hazmat. The system maintains no hazmat\ntaxonomy; unsupported values are rejected by EasyPost and surfaced as an error.\nNever inferred or defaulted.",
+            "nullable": true,
+            "type": "string"
+          },
+          "isoCurrencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "labelFormat": {
+            "description": "Returns the Label in the requested format.\nSpecify either \"LASER\" or \"THERMAL\" format.\nActual supported image formats vary by carrier.",
+            "nullable": true,
+            "type": "string"
+          },
+          "referenceNotes": {
+            "description": "Optional freeform reference notes to print on the label. Mapped into EasyPost\nPrintCustom reference lines alongside ExternalOrderId and CustomerReferences,\nwithin the 3-line carrier capacity. Truncated on overflow with a warning.",
+            "nullable": true,
+            "type": "string"
+          },
+          "relatedOrderId": {
+            "description": "The related Order ID for this shipment request.\nInformational only.",
+            "nullable": true,
+            "type": "string"
+          },
+          "relatedOrderNumber": {
+            "description": "The related Order Number for this shipment request.\nInformational only.",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "relatedShipmentNumber": {
+            "description": "The related Shipment Number for this shipment request.\nInformational only.",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "shipment": {
+            "$ref": "#/components/schemas/ShippingRuntimeShipment"
+          },
+          "shipmentRequestType": {
+            "description": "Selected Shipment Request Type.",
+            "nullable": true,
+            "type": "string"
+          },
+          "shippingServiceType": {
+            "description": "Selected Shipping Service Type.",
+            "nullable": true,
+            "type": "string"
+          },
+          "signatureOption": {
+            "description": "Specify an optional signature option for this shipment.\nAll packages will inherit this option value automatically.\nSet this option on the package level to override this value.",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ShipmentResponse": {
+        "properties": {
+          "customAttributes": {
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "isSuccessful": {
+            "type": "boolean"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "packageResponses": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimePackageResponse"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "shippingTotal": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "trackingNumber": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingLabel": {
+        "properties": {
+          "imageData": {
+            "format": "byte",
+            "nullable": true,
+            "type": "string"
+          },
+          "imageFormat": {
+            "nullable": true,
+            "type": "string"
+          },
+          "labelUrl": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRateLocalizedContent": {
+        "properties": {
+          "localeCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRateValidationMessage": {
+        "description": "Shipping Rate Validation Message",
+        "properties": {
+          "helpLink": {
+            "description": "Help Link",
+            "nullable": true,
+            "type": "string"
+          },
+          "message": {
+            "description": "Message",
+            "nullable": true,
+            "type": "string"
+          },
+          "severity": {
+            "description": "Severity",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeCarrier": {
+        "description": "A Carrier definition supported by Shipping Runtime.",
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "carrierId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "certified": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "features": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "isBuiltIn": {
+            "type": "boolean"
+          },
+          "logoUrl": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeCategory": {
+        "description": "Categories to which the product belongs.",
+        "properties": {
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/ShippingRuntimeCategory"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeDeliveryWindow": {
+        "properties": {
+          "dropoffTime": {
+            "$ref": "#/components/schemas/TimeWindow"
+          },
+          "pickupTime": {
+            "$ref": "#/components/schemas/TimeWindow"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeEstimatedDeliveryDate": {
+        "properties": {
+          "data": {
+            "nullable": true,
+            "type": "object"
+          },
+          "deliveryDate": {
+            "nullable": true,
+            "type": "string"
+          },
+          "fulfillmentMethod": {
+            "nullable": true,
+            "type": "string"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRateValidationMessage"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "serviceType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "windows": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeDeliveryWindow"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimePackage": {
+        "properties": {
+          "contentsValue": {
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "customAttributes": {
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isGift": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "measurements": {
+            "$ref": "#/components/schemas/ShippingRuntimePackageMeasurements"
+          },
+          "packagingType": {
+            "description": "Selected PackagingType.  Shipping provider dependent.",
+            "nullable": true,
+            "type": "string"
+          },
+          "productSummaries": {
+            "description": "Product details in the package",
+            "items": {
+              "$ref": "#/components/schemas/ProductSummary"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "signatureOption": {
+            "description": "Specify an optional signature option for this package.\nIf not specified, will inherit the option value from the shipment.",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimePackageMeasurements": {
+        "properties": {
+          "height": {
+            "$ref": "#/components/schemas/Measurement"
+          },
+          "length": {
+            "$ref": "#/components/schemas/Measurement"
+          },
+          "weight": {
+            "$ref": "#/components/schemas/Measurement"
+          },
+          "width": {
+            "$ref": "#/components/schemas/Measurement"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimePackageResponse": {
+        "properties": {
+          "customAttributes": {
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "integratorId": {
+            "description": "Easypost ShipmentId required for manifests",
+            "nullable": true,
+            "type": "string"
+          },
+          "label": {
+            "$ref": "#/components/schemas/ShippingLabel"
+          },
+          "trackingNumber": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeProductOption": {
+        "properties": {
+          "attributeFQN": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dataType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeProductProperty": {
+        "properties": {
+          "attributeFQN": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dataType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "values": {
+            "items": {},
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeShipment": {
+        "properties": {
+          "customAttributes": {
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/Contact"
+          },
+          "estimatedShipmentDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "fulfillmentLocationCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "orderTotal": {
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/Contact"
+          },
+          "packages": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimePackage"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "shippingMethodCodes": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeShippingItemRate": {
+        "description": "The shipping rate for a particular line item",
+        "properties": {
+          "amount": {
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "itemId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "quantity": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingRuntimeShippingRate": {
+        "properties": {
+          "amount": {
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "content": {
+            "$ref": "#/components/schemas/ShippingRateLocalizedContent"
+          },
+          "customAttributes": {
+            "items": {
+              "$ref": "#/components/schemas/CustomAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "data": {
+            "nullable": true,
+            "type": "object"
+          },
+          "daysInTransit": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRateValidationMessage"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "shippingItemRates": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeShippingItemRate"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "windows": {
+            "items": {
+              "$ref": "#/components/schemas/ShippingRuntimeDeliveryWindow"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "TimeWindow": {
+        "description": "Represents a time window with a start and end time.",
+        "properties": {
+          "endsAt": {
+            "description": "Gets or sets the end time of the time window.",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "startsAt": {
+            "description": "Gets or sets the start time of the time window.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TransitTimesItem": {
+        "properties": {
+          "data": {
+            "nullable": true,
+            "type": "object"
+          },
+          "itemId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "productCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "quantity": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "unitMeasurements": {
+            "$ref": "#/components/schemas/ItemMeasurements"
+          }
+        },
+        "type": "object"
+      },
+      "TransitTimesRequest": {
+        "properties": {
+          "data": {
+            "description": "Custom data for the request",
+            "nullable": true,
+            "type": "object"
+          },
+          "destinationAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "fulfillmentMethod": {
+            "nullable": true,
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TransitTimesItem"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "originAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "originLocationCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "shipDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "shippingServiceTypes": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "TransitTimesResponse": {
+        "properties": {
+          "data": {
+            "nullable": true,
+            "type": "object"
+          },
+          "destinationAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TransitTimesItem"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "originLocationCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "shipDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "transitTimes": {
+            "items": {
+              "$ref": "#/components/schemas/CarrierTransitTimes"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
   },
+  "info": {
+    "description": "OpenAPI Spec for Kibo ShippingRuntime Service",
+    "title": "Shipping Storefront"
+  },
+  "openapi": "3.0.1",
   "paths": {
     "/commerce/catalog/storefront/shipping/carriers": {
       "get": {
-        "tags": [
-          "Shipping"
-        ],
-        "summary": "Get Carriers",
         "description": "Get a list of supported carriers.",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Success",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CarrierResponse"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CarrierResponse"
@@ -31,231 +1486,99 @@
                 "schema": {
                   "$ref": "#/components/schemas/CarrierResponse"
                 }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarrierResponse"
+                }
               }
-            }
+            },
+            "description": "OK"
           }
         },
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "summary": "Get Carriers",
+        "tags": [
+          "Shipping"
         ]
-      }
-    },
-    "/commerce/catalog/storefront/shipping/request-rates": {
-      "post": {
-        "tags": [
-          "Shipping"
-        ],
-        "summary": "Get Rates",
-        "description": "Get Rate Responses for a Rate Request",
-        "parameters": [
-          {
-            "name": "includeRawResponse",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RateRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/RatesResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RatesResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RatesResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/commerce/catalog/storefront/shipping/request-multi-rates": {
-      "post": {
-        "tags": [
-          "Shipping"
-        ],
-        "summary": "Get Multi Rates",
-        "description": "Get List of Rate Responses for a List of Rate Requests",
-        "parameters": [
-          {
-            "name": "includeRawResponse",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/RateRequestGroup"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/RatesResponseGroup"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/RatesResponseGroup"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/RatesResponseGroup"
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/commerce/catalog/storefront/shipping/request-labels": {
       "post": {
-        "tags": [
-          "Shipping"
-        ],
-        "summary": "Get Labels",
         "description": "Get Shipping Label for the Service Type Requested",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ShipmentRequest"
               }
             }
-          }
+          },
+          "description": ""
         },
         "responses": {
           "200": {
-            "description": "Success",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
+                  "$ref": "#/components/schemas/ShipmentResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ShippingRuntimeShipmentResponse"
+                  "$ref": "#/components/schemas/ShipmentResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShipmentResponse"
                 }
               }
-            }
+            },
+            "description": "OK"
           }
         },
-        "parameters": [
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "summary": "Get Labels",
+        "tags": [
+          "Shipping"
         ]
       }
     },
     "/commerce/catalog/storefront/shipping/get-labels": {
       "post": {
-        "tags": [
-          "Shipping"
-        ],
-        "summary": "Get Labels By Tracking Number",
         "description": "Get shipping labels by tracking number.",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/LabelRequest"
               }
             }
-          }
+          },
+          "description": ""
         },
         "responses": {
           "200": {
-            "description": "Success",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/LabelResponse"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LabelResponse"
@@ -265,40 +1588,162 @@
                 "schema": {
                   "$ref": "#/components/schemas/LabelResponse"
                 }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LabelResponse"
+                }
               }
-            }
+            },
+            "description": "OK"
           }
         },
+        "summary": "Get Labels By Tracking Number",
+        "tags": [
+          "Shipping"
+        ]
+      }
+    },
+    "/commerce/catalog/storefront/shipping/request-multi-rates": {
+      "post": {
+        "description": "Get List of Rate Responses for a List of Rate Requests",
         "parameters": [
           {
-            "name": "responseFields",
+            "description": "",
             "in": "query",
+            "name": "includeRawResponse",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
             "schema": {
               "type": "string"
             }
           }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "$ref": "#/components/schemas/RateRequestGroup"
+                },
+                "type": "array"
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/RatesResponseGroup"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/RatesResponseGroup"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/RatesResponseGroup"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Multi Rates",
+        "tags": [
+          "Shipping"
+        ]
+      }
+    },
+    "/commerce/catalog/storefront/shipping/request-rates": {
+      "post": {
+        "description": "Get Rate Responses for a Rate Request",
+        "parameters": [
+          {
+            "description": "",
+            "in": "query",
+            "name": "includeRawResponse",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RateRequest"
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RatesResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RatesResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RatesResponse"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Rates",
+        "tags": [
+          "Shipping"
         ]
       }
     },
     "/commerce/catalog/storefront/shipping/transit-times": {
       "post": {
-        "tags": [
-          "Shipping"
-        ],
+        "description": "Get Transit Times",
         "parameters": [
           {
-            "name": "includeRawResponse",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
             "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
             "schema": {
               "type": "string"
             }
@@ -315,13 +1760,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransitTimesResponse"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TransitTimesResponse"
@@ -331,1491 +1770,38 @@
                 "schema": {
                   "$ref": "#/components/schemas/TransitTimesResponse"
                 }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransitTimesResponse"
+                }
               }
-            }
+            },
+            "description": "OK"
           }
         },
         "summary": "Get Transit Times",
-        "description": "Get Transit Times"
+        "tags": [
+          "Shipping"
+        ]
       }
     }
   },
-  "components": {
-    "schemas": {
-      "CarrierResponse": {
-        "type": "object",
-        "properties": {
-          "carriers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeCarrier"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Response containing a list of Carriers supported on a tenant / site."
-      },
-      "ItemMeasurements": {
-        "type": "object",
-        "properties": {
-          "height": {
-            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
-          },
-          "width": {
-            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
-          },
-          "length": {
-            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
-          },
-          "weight": {
-            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
-          },
-          "girth": {
-            "type": "number",
-            "description": "Not exposed publicly",
-            "format": "double",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RequestItem": {
-        "type": "object",
-        "properties": {
-          "itemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "unitMeasurements": {
-            "$ref": "#/components/schemas/ItemMeasurements"
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ProductSummary": {
-        "type": "object",
-        "properties": {
-          "productCode": {
-            "type": "string",
-            "description": "Merchant-created code that uniquely identifies the product.",
-            "nullable": true
-          },
-          "productType": {
-            "type": "string",
-            "nullable": true
-          },
-          "categories": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeCategory"
-            },
-            "nullable": true
-          },
-          "unitMeasurements": {
-            "$ref": "#/components/schemas/ItemMeasurements"
-          },
-          "properties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeProductProperty"
-            },
-            "nullable": true
-          },
-          "options": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeProductOption"
-            },
-            "nullable": true
-          },
-          "productDescription": {
-            "type": "string",
-            "description": "Product name/description",
-            "nullable": true
-          },
-          "quantity": {
-            "type": "integer",
-            "description": "Product quantity",
-            "format": "int32"
-          },
-          "price": {
-            "type": "number",
-            "description": "Price (unit price * quantity)",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
-      "RateRequestItem": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/RequestItem"
-          }
-        ],
-        "properties": {
-          "fulfillmentMethod": {
-            "type": "string",
-            "description": "The fulfillment method on item to fetch rates for. Supported values are Ship and Delivery. Will assume Ship if nothing is passed.",
-            "nullable": true
-          },
-          "productSummaries": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductSummary"
-            },
-            "description": "If Product Summaries are populated, this information will be utilized in Product Rules (e.g. ProductCode eq \"ABC\" or (Weight.Unit eq \"lbs\" and Weight.Value ge 50)",
-            "nullable": true
-          },
-          "shipsByItself": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "itemTotal": {
-            "type": "integer",
-            "description": "Item total.",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Represents an item in a rate request, inheriting from RequestItem."
-      },
-      "RateRequestAttribute": {
-        "type": "object",
-        "properties": {
-          "fullyQualifiedName": {
-            "type": "string",
-            "nullable": true
-          },
-          "attributeDefinitionId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "values": {
-            "type": "array",
-            "items": {},
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CustomAttribute": {
-        "type": "object",
-        "properties": {
-          "childAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "key": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RateRequest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "isoCurrencyCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "originAddress": {
-            "$ref": "#/components/schemas/CommerceRuntimeAddress"
-          },
-          "destinationAddress": {
-            "$ref": "#/components/schemas/CommerceRuntimeAddress"
-          },
-          "carrierIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.",
-            "nullable": true
-          },
-          "shippingServiceTypes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Optional.  If one or more Shipping Service Type Codes are specified then only the specified rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.",
-            "nullable": true
-          },
-          "orderTotal": {
-            "type": "number",
-            "description": "The OrderTotal to be used in rate calculation",
-            "format": "double",
-            "nullable": true
-          },
-          "orderDiscountedSubTotal": {
-            "type": "number",
-            "description": "The Order SubTotal After Discounts to be used in rate calculation",
-            "format": "double",
-            "nullable": true
-          },
-          "handlingTotal": {
-            "type": "number",
-            "description": "The order Handling total after discounts to be used in rate calculation",
-            "format": "double",
-            "nullable": true
-          },
-          "relatedOrderId": {
-            "type": "string",
-            "description": "The Order ID to be used in rate calculation\r\nInformational only",
-            "nullable": true
-          },
-          "relatedOrderNumber": {
-            "type": "integer",
-            "description": "The Order Number to be used in rate calculation\r\nInformational only",
-            "format": "int32",
-            "nullable": true
-          },
-          "isDestinationAddressCommercial": {
-            "type": "boolean",
-            "description": "Is the destination address a commercial address?",
-            "nullable": true
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RateRequestItem"
-            },
-            "nullable": true
-          },
-          "estimatedShipmentDate": {
-            "type": "string",
-            "description": "Estimate Date/Time when the shipment for this will be sent.  Primarily utilize to estimate delivery date.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "attributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RateRequestAttribute"
-            },
-            "description": "Order Attributes. Made available for Arc.js to use",
-            "nullable": true
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true,
-            "deprecated": true
-          },
-          "data": {
-            "type": "object",
-            "nullable": true
-          },
-          "originLocationCode": {
-            "type": "string",
-            "description": "Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRateLocalizedContent": {
-        "type": "object",
-        "properties": {
-          "localeCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRateValidationMessage": {
-        "type": "object",
-        "properties": {
-          "severity": {
-            "type": "string",
-            "description": "Severity",
-            "nullable": true
-          },
-          "message": {
-            "type": "string",
-            "description": "Message",
-            "nullable": true
-          },
-          "helpLink": {
-            "type": "string",
-            "description": "Help Link",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Shipping Rate Validation Message"
-      },
-      "TimeWindow": {
-        "type": "object",
-        "properties": {
-          "startsAt": {
-            "type": "string",
-            "description": "Gets or sets the start time of the time window.",
-            "format": "date-time"
-          },
-          "endsAt": {
-            "type": "string",
-            "description": "Gets or sets the end time of the time window.",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Represents a time window with a start and end time."
-      },
-      "CarrierRatesResponse": {
-        "type": "object",
-        "properties": {
-          "carrierId": {
-            "type": "string",
-            "nullable": true
-          },
-          "shippingRates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeShippingRate"
-            },
-            "nullable": true
-          },
-          "fulfillmentMethod": {
-            "type": "string",
-            "description": "The fulfillment method for which this carrier rate is applicable to. Possible values are Ship and Delivery.",
-            "nullable": true
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true,
-            "deprecated": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RatesResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "resolvedShippingZoneCode": {
-            "type": "string",
-            "description": "Resolved Shipping Zone Code.  This value can be null if the tenant/site does not have shipping zones defined or there are no matching \r\nshipping zones for the request (e.g. the only zone defined is \"UNITED-STATES\" and the destination address of the rate request is in Canada)",
-            "nullable": true
-          },
-          "shippingZoneCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "rates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CarrierRatesResponse"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RateRequestGroup": {
-        "type": "object",
-        "properties": {
-          "rateRequests": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RateRequest"
-            },
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RatesResponseGroup": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "ratesResponse": {
-            "$ref": "#/components/schemas/RatesResponse"
-          },
-          "componentRates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RatesResponse"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CustomerReferences": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ConsolidationReference": {
-        "type": "object",
-        "properties": {
-          "relatedOrderId": {
-            "type": "string",
-            "nullable": true
-          },
-          "relatedOrderNumber": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "relatedShipmentNumber": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShipmentRequest": {
-        "type": "object",
-        "properties": {
-          "isoCurrencyCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "shipment": {
-            "$ref": "#/components/schemas/ShippingRuntimeShipment"
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "description": "Carrier specific options\r\n\r\nEx: RequiresDeliveryConfirmation when using usps with non-express mail service type.",
-            "nullable": true
-          },
-          "carrierId": {
-            "type": "string",
-            "nullable": true
-          },
-          "shippingServiceType": {
-            "type": "string",
-            "description": "Selected Shipping Service Type.",
-            "nullable": true
-          },
-          "shipmentRequestType": {
-            "type": "string",
-            "description": "Selected Shipment Request Type.",
-            "nullable": true
-          },
-          "signatureOption": {
-            "type": "string",
-            "description": "Specify an optional signature option for this shipment.\r\nAll packages will inherit this option value automatically.\r\nSet this option on the package level to override this value.",
-            "nullable": true
-          },
-          "labelFormat": {
-            "type": "string",
-            "description": "Returns the Label in the requested format.\r\nSpecify either \"LASER\" or \"THERMAL\" format.\r\nActual supported image formats vary by carrier.",
-            "nullable": true
-          },
-          "customerReferences": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomerReferences"
-            },
-            "nullable": true
-          },
-          "relatedOrderId": {
-            "type": "string",
-            "description": "The related Order ID for this shipment request.\r\nInformational only.",
-            "nullable": true
-          },
-          "relatedOrderNumber": {
-            "type": "integer",
-            "description": "The related Order Number for this shipment request.\r\nInformational only.",
-            "format": "int32",
-            "nullable": true
-          },
-          "relatedShipmentNumber": {
-            "type": "integer",
-            "description": "The related Shipment Number for this shipment request.\r\nInformational only.",
-            "format": "int32",
-            "nullable": true
-          },
-          "consolidationReferences": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ConsolidationReference"
-            },
-            "description": "Consolidation references for Order Number, Shipment Number and Order Id",
-            "nullable": true
-          },
-          "fulfillmentMethod": {
-            "type": "string",
-            "description": "Fulfillment method for the shipment. STH / Delivery. Empty will be assumed as STH.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Money": {
-        "type": "object",
-        "properties": {
-          "currencyCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingLabel": {
-        "type": "object",
-        "properties": {
-          "imageFormat": {
-            "type": "string",
-            "nullable": true
-          },
-          "imageData": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          },
-          "labelUrl": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Notification": {
-        "type": "object",
-        "properties": {
-          "source": {
-            "type": "string",
-            "nullable": true
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "LabelRequest": {
-        "type": "object",
-        "properties": {
-          "carrierId": {
-            "type": "string",
-            "nullable": true
-          },
-          "labelFormat": {
-            "type": "string",
-            "nullable": true
-          },
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "packageTrackingNumber": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PackageLabelResponse": {
-        "type": "object",
-        "properties": {
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "label": {
-            "$ref": "#/components/schemas/ShippingLabel"
-          }
-        },
-        "additionalProperties": false
-      },
-      "LabelResponse": {
-        "type": "object",
-        "properties": {
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "packageLabels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PackageLabelResponse"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TransitTimesItem": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/RequestItem"
-          }
-        ],
-        "properties": {
-          "productCode": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TransitTimesRequest": {
-        "type": "object",
-        "properties": {
-          "originLocationCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "originAddress": {
-            "$ref": "#/components/schemas/CommerceRuntimeAddress"
-          },
-          "destinationAddress": {
-            "$ref": "#/components/schemas/CommerceRuntimeAddress"
-          },
-          "fulfillmentMethod": {
-            "type": "string",
-            "nullable": true
-          },
-          "shippingServiceTypes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "shipDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransitTimesItem"
-            },
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "description": "Custom data for the request",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CarrierTransitTimes": {
-        "type": "object",
-        "properties": {
-          "carrierId": {
-            "type": "string",
-            "nullable": true
-          },
-          "estimatedDeliveryDates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeEstimatedDeliveryDate"
-            },
-            "nullable": true
-          },
-          "itemIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TransitTimesResponse": {
-        "type": "object",
-        "properties": {
-          "originLocationCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "destinationAddress": {
-            "$ref": "#/components/schemas/CommerceRuntimeAddress"
-          },
-          "shipDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransitTimesItem"
-            },
-            "nullable": true
-          },
-          "transitTimes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CarrierTransitTimes"
-            },
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AdminUserAuditInfo": {
-        "type": "object",
-        "properties": {
-          "updateDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "updateBy": {
-            "type": "string",
-            "nullable": true
-          },
-          "createBy": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimePackage": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "contentsValue": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "measurements": {
-            "$ref": "#/components/schemas/ReservationWebAPIPackageMeasurements"
-          },
-          "isGift": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "signatureOption": {
-            "type": "string",
-            "description": "Specify an optional signature option for this package.\r\nIf not specified, will inherit the option value from the shipment.",
-            "nullable": true
-          },
-          "packagingType": {
-            "type": "string",
-            "description": "Selected PackagingType.  Shipping provider dependent.",
-            "nullable": true
-          },
-          "productSummaries": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductSummary"
-            },
-            "description": "Product details in the package",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommerceRuntimePhone": {
-        "type": "object",
-        "properties": {
-          "home": {
-            "type": "string",
-            "nullable": true
-          },
-          "mobile": {
-            "type": "string",
-            "nullable": true
-          },
-          "work": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommerceRuntimeAddress": {
-        "type": "object",
-        "properties": {
-          "address1": {
-            "type": "string",
-            "nullable": true
-          },
-          "address2": {
-            "type": "string",
-            "nullable": true
-          },
-          "address3": {
-            "type": "string",
-            "nullable": true
-          },
-          "address4": {
-            "type": "string",
-            "nullable": true
-          },
-          "cityOrTown": {
-            "type": "string",
-            "nullable": true
-          },
-          "stateOrProvince": {
-            "type": "string",
-            "nullable": true
-          },
-          "postalOrZipCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "countryCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "addressType": {
-            "type": "string",
-            "nullable": true
-          },
-          "isValidated": {
-            "type": "boolean",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommerceRuntimeContact": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "middleNameOrInitial": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastNameOrSurname": {
-            "type": "string",
-            "nullable": true
-          },
-          "companyOrOrganization": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumbers": {
-            "$ref": "#/components/schemas/CommerceRuntimePhone"
-          },
-          "address": {
-            "$ref": "#/components/schemas/CommerceRuntimeAddress"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommerceRuntimeMeasurement": {
-        "type": "object",
-        "properties": {
-          "unit": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ReservationWebAPIPackageMeasurements": {
-        "type": "object",
-        "properties": {
-          "height": {
-            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
-          },
-          "width": {
-            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
-          },
-          "length": {
-            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
-          },
-          "weight": {
-            "$ref": "#/components/schemas/CommerceRuntimeMeasurement"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimeProductOption": {
-        "type": "object",
-        "properties": {
-          "attributeFQN": {
-            "type": "string",
-            "nullable": true
-          },
-          "dataType": {
-            "type": "string",
-            "nullable": true
-          },
-          "value": {
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimeProductProperty": {
-        "type": "object",
-        "properties": {
-          "attributeFQN": {
-            "type": "string",
-            "nullable": true
-          },
-          "dataType": {
-            "type": "string",
-            "nullable": true
-          },
-          "values": {
-            "type": "array",
-            "items": {},
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimeCategory": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "parent": {
-            "$ref": "#/components/schemas/ShippingRuntimeCategory"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Categories to which the product belongs."
-      },
-      "ShippingRuntimeDeliveryWindow": {
-        "type": "object",
-        "properties": {
-          "pickupTime": {
-            "$ref": "#/components/schemas/TimeWindow"
-          },
-          "dropoffTime": {
-            "$ref": "#/components/schemas/TimeWindow"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimeShippingItemRate": {
-        "type": "object",
-        "properties": {
-          "itemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "amount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The shipping rate for a particular line item"
-      },
-      "ShippingRuntimeShippingRate": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "content": {
-            "$ref": "#/components/schemas/ShippingRateLocalizedContent"
-          },
-          "amount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "daysInTransit": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "shippingItemRates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeShippingItemRate"
-            },
-            "nullable": true
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRateValidationMessage"
-            },
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "nullable": true
-          },
-          "windows": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeDeliveryWindow"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimeShipment": {
-        "type": "object",
-        "properties": {
-          "orderTotal": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "origin": {
-            "$ref": "#/components/schemas/CommerceRuntimeContact"
-          },
-          "destination": {
-            "$ref": "#/components/schemas/CommerceRuntimeContact"
-          },
-          "fulfillmentLocationCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "packages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimePackage"
-            },
-            "nullable": true
-          },
-          "shippingMethodCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "estimatedShipmentDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimePackageResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "label": {
-            "$ref": "#/components/schemas/ShippingLabel"
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "integratorId": {
-            "type": "string",
-            "description": "Easypost ShipmentId required for manifests",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimeCarrier": {
-        "type": "object",
-        "properties": {
-          "carrierId": {
-            "type": "string",
-            "nullable": true
-          },
-          "isBuiltIn": {
-            "type": "boolean"
-          },
-          "certified": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "logoUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "features": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A Carrier definition supported by Shipping Runtime."
-      },
-      "ShippingRuntimeEstimatedDeliveryDate": {
-        "type": "object",
-        "properties": {
-          "fulfillmentMethod": {
-            "type": "string",
-            "nullable": true
-          },
-          "serviceType": {
-            "type": "string",
-            "nullable": true
-          },
-          "deliveryDate": {
-            "type": "string",
-            "nullable": true
-          },
-          "windows": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimeDeliveryWindow"
-            },
-            "nullable": true
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRateValidationMessage"
-            },
-            "nullable": true
-          },
-          "data": {
-            "type": "object",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ShippingRuntimeShipmentResponse": {
-        "type": "object",
-        "properties": {
-          "shippingTotal": {
-            "$ref": "#/components/schemas/Money"
-          },
-          "trackingNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "packageResponses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ShippingRuntimePackageResponse"
-            },
-            "nullable": true
-          },
-          "customAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomAttribute"
-            },
-            "nullable": true
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Notification"
-            },
-            "nullable": true
-          },
-          "isSuccessful": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "description": "JWT Authorization header using the Bearer scheme.",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    }
-  },
-  "servers": [
-    {
-      "url": "https://t{tenantId}-s{siteId}.{env}.usc1.kibocommerce.com/api",
-      "description": "GCP-US Site Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
-        },
-        "siteId": {
-          "default": "0",
-          "description": "Id of the Site"
-        },
-        "env": {
-          "default": "sb",
-          "enum": [
-            "sb",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg2"
-          ]
-        }
-      }
-    },
-    {
-      "url": "https://t{tenantId}.{env}.usc1.kibocommerce.com/api",
-      "description": "GCP-US Tenant Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
-        },
-        "env": {
-          "default": "sb",
-          "enum": [
-            "sb",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg2"
-          ]
-        }
-      }
-    },
-    {
-      "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
-      "description": "Site Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
-        },
-        "siteId": {
-          "default": "0",
-          "description": "Id of the Site"
-        },
-        "env": {
-          "default": "sandbox",
-          "enum": [
-            "sandbox",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg1"
-          ]
-        }
-      }
-    },
-    {
-      "url": "https://t{tenantId}.{env}.mozu.com/api",
-      "description": "Tenant Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
-        },
-        "env": {
-          "default": "sandbox",
-          "enum": [
-            "sandbox",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg1",
-            "stg2"
-          ]
-        }
-      }
-    },
-    {
-      "url": "https://home.mozu.com/api",
-      "description": "HomePod Api"
-    },
-    {
-      "url": "https://t{tenantId}.{env}.euw1.kibocommerce.com/api",
-      "description": "EURO Tenant Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
-        },
-        "env": {
-          "default": "sb",
-          "enum": [
-            "sb",
-            "tp1"
-          ]
-        }
-      }
-    },
-    {
-      "url": "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api",
-      "description": "EURO Site Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
-        },
-        "siteId": {
-          "default": "0",
-          "description": "Id of the Site"
-        },
-        "env": {
-          "default": "sb",
-          "enum": [
-            "sb",
-            "tp1"
-          ]
-        }
-      }
-    },
-    {
-      "url": "https://home.euw1.kibocommerce.com/api",
-      "description": "EURO HomePod Api"
-    }
-  ],
   "security": [
     {
       "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
     }
   ]
 }

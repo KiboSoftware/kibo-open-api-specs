@@ -1,1120 +1,1044 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "Event Subscription",
-    "description": "<div id=\"overview_EVENT\">\r\n            <h2>EVENTS</h2>\r\n            <p>The Event APIs are used to subscribe to notifications when create, read, update, or delete operations are\r\n                performed. If an application subscribes to the event, use the <strong>Events</strong> resource to query for\r\n                recent events published to your application or events that were not published successfully. See the <a href=\"https://docs.kibocommerce.com/help/event-subscription\">Event Subscription documentation</a> for more information</p>\r\n            <p>The <strong>Subscriptions</strong> resource triggers a push service to sent immediate notifications to the subscribed\r\n                tenants\r\n                and applications. The resource sends messages regarding a subscription event that occurs in the tenant\r\n                or site.</p>\r\n        </div>",
-    "version": "1.0.1"
-  },
-  "paths": {
-    "/event/pull": {
-      "get": {
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get Events",
-        "description": "Retrieves a list of events according to any specified filter criteria and sort options.",
-        "parameters": [
-          {
-            "name": "startIndex",
-            "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "sortBy",
-            "in": "query",
-            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventCollection"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventCollection"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventCollection"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/event/pull/{eventId}": {
-      "get": {
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get Event",
-        "description": "Retrieves the details of a single event.",
-        "parameters": [
-          {
-            "name": "eventId",
-            "in": "path",
-            "description": "Unique identifier of the event. System-supplied and read-only.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventEvent"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventEvent"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventEvent"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/event/push/subscriptions/deliveryattempts": {
-      "get": {
-        "tags": [
-          "Subscription"
-        ],
-        "summary": "Get Delivery Attempt Summaries All Subscriptions",
-        "description": "Get delivery attempts",
-        "parameters": [
-          {
-            "name": "startIndex",
-            "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "sortBy",
-            "in": "query",
-            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/event/push/subscriptions/{subscriptionId}/deliveryattempts": {
-      "get": {
-        "tags": [
-          "Subscription"
-        ],
-        "summary": "Get Delivery Attempt Summaries",
-        "description": "Get delivery attempts for the specified subscription",
-        "parameters": [
-          {
-            "name": "subscriptionId",
-            "in": "path",
-            "description": "Subscription Identifier.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "startIndex",
-            "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "sortBy",
-            "in": "query",
-            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/event/push/subscriptions/{subscriptionId}/deliveryattempts/{processId}": {
-      "get": {
-        "tags": [
-          "Subscription"
-        ],
-        "summary": "Get Delivery Attempt Summary",
-        "description": "Get delivery attempt summary",
-        "parameters": [
-          {
-            "name": "subscriptionId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "processId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummary"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummary"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDeliverySummary"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/event/push/subscriptions": {
-      "get": {
-        "tags": [
-          "Subscription"
-        ],
-        "summary": "Get Subscriptions",
-        "description": "Retrieves a list of events according to any specified filter criteria and sort options.",
-        "parameters": [
-          {
-            "name": "startIndex",
-            "in": "query",
-            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "sortBy",
-            "in": "query",
-            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseGroups",
-            "in": "query",
-            "description": "Used to get more specific information from the request.  Available response groups: SubscribingSites.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "responseFields",
-            "in": "query",
-            "description": "limits which fields are returned in the response body",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventSubscriptionCollection"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventSubscriptionCollection"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventSubscriptionCollection"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
   "components": {
     "schemas": {
-      "EventExtendedProperty": {
-        "type": "object",
+      "AuditInfo": {
         "properties": {
-          "key": {
-            "type": "string",
-            "nullable": true
+          "createBy": {
+            "nullable": true,
+            "type": "string"
           },
-          "value": {
-            "nullable": true
+          "createDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "updateBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
           }
         },
-        "additionalProperties": false,
-        "description": "Event Extended Property"
+        "type": "object"
       },
       "EventCollection": {
-        "type": "object",
+        "description": "Collection of events returned as a whole.",
         "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
           "items": {
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/EventEvent"
             },
-            "nullable": true
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
           }
         },
-        "additionalProperties": false,
-        "description": "Collection of events returned as a whole."
-      },
-      "EventSummary": {
-        "type": "object",
-        "properties": {
-          "eventId": {
-            "type": "string",
-            "description": "Note: Remember in the contract version to convert this Guid to ToString(\"N\") so the dashes are not present",
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "integer",
-            "description": "Tenant Id",
-            "format": "int32",
-            "nullable": true
-          },
-          "masterCatalogId": {
-            "type": "integer",
-            "description": "Master Catalog Id",
-            "format": "int32",
-            "nullable": true
-          },
-          "catalogId": {
-            "type": "integer",
-            "description": "Catalog Id",
-            "format": "int32",
-            "nullable": true
-          },
-          "siteId": {
-            "type": "integer",
-            "description": "Site Id",
-            "format": "int32",
-            "nullable": true
-          },
-          "entityId": {
-            "type": "string",
-            "description": "Entity Id",
-            "nullable": true
-          },
-          "topic": {
-            "type": "string",
-            "description": "Topic",
-            "nullable": true
-          },
-          "extendedProperties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EventExtendedProperty"
-            },
-            "description": "Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.",
-            "nullable": true
-          },
-          "correlationId": {
-            "type": "string",
-            "description": "Correlation Id",
-            "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "description": "Create Date",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Event Summary is a trimmed version of an event that is utilized when displaying the event delivery (aka webhook, HTTP callback, HTTP POST) process history/details"
-      },
-      "HttpStatus": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "description": "The higher-level integer based HTTP Status Code returned by the remote endpoint",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "description": "Friendly text the HTTP Status Code returned by the remote endpoint",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Http Status"
+        "type": "object"
       },
       "EventDeliveryAttempt": {
-        "type": "object",
+        "description": "The external/public Event entity used specifically in PULL/POLL event scenarios",
         "properties": {
           "deliveryStatus": {
-            "type": "string",
             "description": "Status of the delivery process (EventDeliveryStatusType). System-supplied and read-only.",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
           },
           "errorType": {
-            "type": "string",
             "description": "Type of error that occurred, if the delivery was unsuccessful",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
+          },
+          "executionDate": {
+            "description": "The date that the delivery was attempted",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
           },
           "httpStatus": {
             "$ref": "#/components/schemas/HttpStatus"
           },
           "message": {
-            "type": "string",
             "description": "HTTP message returned by the remote endpoint",
-            "nullable": true
-          },
-          "executionDate": {
-            "type": "string",
-            "description": "The date that the delivery was attempted",
-            "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
           }
         },
-        "additionalProperties": false,
-        "description": "The external/public Event entity used specifically in PULL/POLL event scenarios"
+        "type": "object"
       },
       "EventDeliverySummary": {
-        "type": "object",
+        "description": "The external/public Event entity used specifically in PULL/POLL event scenarios",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique identifier for an event delivery summary",
-            "format": "int32",
-            "nullable": true
+          "createDate": {
+            "description": "Create Date",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "deliveryAttempts": {
+            "description": "Details about each attempted delivery of the event to the endpoint",
+            "items": {
+              "$ref": "#/components/schemas/EventDeliveryAttempt"
+            },
+            "nullable": true,
+            "type": "array"
           },
           "deliveryStatus": {
-            "type": "string",
             "description": "Status of the delivery process (EventDeliveryStatusType)",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
           },
           "eventSummary": {
             "$ref": "#/components/schemas/EventSummary"
           },
+          "id": {
+            "description": "The unique identifier for an event delivery summary",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
           "isRunning": {
-            "type": "boolean",
-            "description": "Indicates whether delivery of the event is currently being attempted at this moment in time"
+            "description": "Indicates whether delivery of the event is currently being attempted at this moment in time",
+            "type": "boolean"
           },
           "lastExecutionDate": {
-            "type": "string",
             "description": "The date that the delivery was last attempted (either successfully or not)",
-            "format": "date-time"
+            "format": "date-time",
+            "type": "string"
           },
           "nextExecutionDate": {
-            "type": "string",
             "description": "The date that the delivery will next be attempted, if the event has not been successfully delivered yet and there are still retries remaining",
-            "format": "date-time"
+            "format": "date-time",
+            "type": "string"
           },
           "retriesRemaining": {
-            "type": "integer",
             "description": "Number of delivery attempts remaining",
             "format": "int32",
-            "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "description": "Create Date",
-            "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "type": "integer"
           },
           "updateDate": {
-            "type": "string",
             "description": "Update Date",
             "format": "date-time",
-            "nullable": true
-          },
-          "deliveryAttempts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EventDeliveryAttempt"
-            },
-            "description": "Details about each attempted delivery of the event to the endpoint",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
           }
         },
-        "additionalProperties": false,
-        "description": "The external/public Event entity used specifically in PULL/POLL event scenarios"
+        "type": "object"
       },
       "EventDeliverySummaryCollection": {
-        "type": "object",
+        "description": "Collection of event deliver summaries",
         "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
           "items": {
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/EventDeliverySummary"
             },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Collection of event deliver summaries"
-      },
-      "SubscribingSite": {
-        "type": "object",
-        "properties": {
-          "siteId": {
-            "type": "integer",
-            "description": "The site identifier",
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
             "format": "int32",
-            "nullable": true
+            "type": "integer"
           },
-          "isActive": {
-            "type": "boolean",
-            "description": "Is the subscription active at the site level?",
-            "nullable": true
-          },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A site that is associated with a subscription"
-      },
-      "SubscribingTenant": {
-        "type": "object",
-        "properties": {
-          "subscribingContextLevelType": {
-            "type": "string",
-            "description": "Type of Subscribing Context\r\n!:SubscribingContextLevelTypeConst\r\nDerived from state of the subscription.  If any Subscribing Sites exist (e.g. subscription is not at the Tenant Level, then the value will be Site)",
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "integer",
-            "description": "The tenant identifier",
+          "pageSize": {
             "format": "int32",
-            "nullable": true
+            "type": "integer"
           },
-          "isActive": {
-            "type": "boolean",
-            "description": "Is the subscription active at the tenant level?  If the subscription context is at the Tenant Level this property will be utilized over the SiteLevel",
-            "nullable": true
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
           },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
-          },
-          "subscribingSites": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SubscribingSite"
-            },
-            "description": "Subscribing Sites",
-            "nullable": true
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
           }
         },
-        "additionalProperties": false,
-        "description": "A tenant that is associated with a subscription"
-      },
-      "AdminUserAuditInfo": {
-        "type": "object",
-        "properties": {
-          "updateDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "updateBy": {
-            "type": "string",
-            "nullable": true
-          },
-          "createBy": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
+        "type": "object"
       },
       "EventEvent": {
-        "type": "object",
+        "description": "The external/public Event entity used specifically in PULL/POLL event scenarios",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique identifier for an event",
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "integer",
-            "description": "TenantId",
-            "format": "int32",
-            "nullable": true
-          },
-          "masterCatalogId": {
-            "type": "integer",
-            "description": "MasterCatalogId",
-            "format": "int32",
-            "nullable": true
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
           },
           "catalogId": {
-            "type": "integer",
             "description": "CatalogId",
             "format": "int32",
-            "nullable": true
-          },
-          "siteId": {
-            "type": "integer",
-            "description": "SiteId",
-            "format": "int32",
-            "nullable": true
-          },
-          "topic": {
-            "type": "string",
-            "description": "The topic of the event (i.e. product.created)",
-            "nullable": true
-          },
-          "entityId": {
-            "type": "string",
-            "description": "The identifier / ID of the entity that changed (i.e. product code)",
-            "nullable": true
-          },
-          "isTest": {
-            "type": "boolean",
-            "description": "Is this a test?",
-            "nullable": true
+            "nullable": true,
+            "type": "integer"
           },
           "correlationId": {
-            "type": "string",
             "description": "The Correlation Id of the original API request that caused this event to occur",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
+          },
+          "entityId": {
+            "description": "The identifier / ID of the entity that changed (i.e. product code)",
+            "nullable": true,
+            "type": "string"
           },
           "extendedProperties": {
-            "type": "array",
+            "description": "Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.",
             "items": {
               "$ref": "#/components/schemas/EventExtendedProperty"
             },
-            "description": "Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.",
-            "nullable": true
+            "nullable": true,
+            "type": "array"
           },
-          "auditInfo": {
-            "$ref": "#/components/schemas/AdminUserAuditInfo"
+          "id": {
+            "description": "The unique identifier for an event",
+            "nullable": true,
+            "type": "string"
+          },
+          "isTest": {
+            "description": "Is this a test?",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "masterCatalogId": {
+            "description": "MasterCatalogId",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "siteId": {
+            "description": "SiteId",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "tenantId": {
+            "description": "TenantId",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "topic": {
+            "description": "The topic of the event (i.e. product.created)",
+            "nullable": true,
+            "type": "string"
           }
         },
-        "additionalProperties": false,
-        "description": "The external/public Event entity used specifically in PULL/POLL event scenarios"
+        "type": "object"
       },
-      "EventSubscription": {
-        "type": "object",
+      "EventExtendedProperty": {
+        "description": "Event Extended Property",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique identifier for a subscription",
+          "key": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
             "nullable": true
+          }
+        },
+        "type": "object"
+      },
+      "EventSummary": {
+        "description": "Event Summary is a trimmed version of an event that is utilized when displaying the event delivery (aka webhook, HTTP callback, HTTP POST) process history/details",
+        "properties": {
+          "catalogId": {
+            "description": "Catalog Id",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "correlationId": {
+            "description": "Correlation Id",
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "description": "Create Date",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "entityId": {
+            "description": "Entity Id",
+            "nullable": true,
+            "type": "string"
+          },
+          "eventId": {
+            "description": "Note: Remember in the contract version to convert this Guid to ToString(\"N\") so the dashes are not present",
+            "nullable": true,
+            "type": "string"
+          },
+          "extendedProperties": {
+            "description": "Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.",
+            "items": {
+              "$ref": "#/components/schemas/EventExtendedProperty"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "masterCatalogId": {
+            "description": "Master Catalog Id",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "siteId": {
+            "description": "Site Id",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "tenantId": {
+            "description": "Tenant Id",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "topic": {
+            "description": "Topic",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "HttpStatus": {
+        "description": "Http Status",
+        "properties": {
+          "code": {
+            "description": "The higher-level integer based HTTP Status Code returned by the remote endpoint",
+            "format": "int32",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Friendly text the HTTP Status Code returned by the remote endpoint",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PingEvent": {
+        "description": "Only utilized for testing",
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "catalogId": {
+            "description": "CatalogId",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "correlationId": {
+            "description": "The Correlation Id of the original API request that caused this event to occur",
+            "nullable": true,
+            "type": "string"
+          },
+          "endpoint": {
+            "description": "The Endpoint to ping",
+            "nullable": true,
+            "type": "string"
+          },
+          "entityId": {
+            "description": "The identifier / ID of the entity that changed (i.e. product code)",
+            "nullable": true,
+            "type": "string"
+          },
+          "extendedProperties": {
+            "description": "Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.",
+            "items": {
+              "$ref": "#/components/schemas/EventExtendedProperty"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "id": {
+            "description": "The unique identifier for an event",
+            "nullable": true,
+            "type": "string"
+          },
+          "isTest": {
+            "description": "Is this a test?",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "masterCatalogId": {
+            "description": "MasterCatalogId",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "siteId": {
+            "description": "SiteId",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "tenantId": {
+            "description": "TenantId",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "topic": {
+            "description": "The topic of the event (i.e. product.created)",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SubscribingSite": {
+        "description": "A site that is associated with a subscription",
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "isActive": {
+            "description": "Is the subscription active at the site level?",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "siteId": {
+            "description": "The site identifier",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "SubscribingTenant": {
+        "description": "A tenant that is associated with a subscription",
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "isActive": {
+            "description": "Is the subscription active at the tenant level?  If the subscription context is at the Tenant Level this property will be utilized over the SiteLevel",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "subscribingContextLevelType": {
+            "description": "Type of Subscribing Context\n!:SubscribingContextLevelTypeConst\nDerived from state of the subscription.  If any Subscribing Sites exist (e.g. subscription is not at the Tenant Level, then the value will be Site)",
+            "nullable": true,
+            "type": "string"
+          },
+          "subscribingSites": {
+            "description": "Subscribing Sites",
+            "items": {
+              "$ref": "#/components/schemas/SubscribingSite"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "tenantId": {
+            "description": "The tenant identifier",
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Subscription": {
+        "description": "The subscription entity used specifically in PUSH event scenarios where a third-party desires to receive notification of events",
+        "properties": {
+          "apiVersion": {
+            "description": "ApiVersion",
+            "nullable": true,
+            "type": "string"
           },
           "appId": {
-            "type": "string",
             "description": "Application identifier for subscription",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
           },
-          "apiVersion": {
-            "type": "string",
-            "description": "ApiVersion",
-            "nullable": true
+          "confirmed": {
+            "description": "A boolean value that indicates if the subscription endpoint has been confirmed",
+            "nullable": true,
+            "type": "boolean"
           },
-          "topics": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "A list of topics that the subscription relates to",
-            "nullable": true
+          "contentType": {
+            "description": "Content type of the payload that will be delivered.  This is utilized in combination with the notification delivery type.  Example:  A HTTP Post (notification delivery type) is performed with a JSON representation of the event data (content type).",
+            "nullable": true,
+            "type": "string"
+          },
+          "createBy": {
+            "description": "Identifier of the user who created the entity. System-supplied and read-only.",
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "description": "When the entity was created. System-supplied and read-only.",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "endpoint": {
+            "description": "The delivery endpoint that will receive notifications when events concerning the specified topics on the subscription occur.  The format of the endpoint may differ depending on the notification type.  For example, the endpoint may be a URL in some cases and an email address in others if multiple notification types are available.",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "description": "The unique identifier for a subscription",
+            "nullable": true,
+            "type": "string"
+          },
+          "isActive": {
+            "description": "A boolean value that indicates if the subscription is active.  The subscription may be inactive due to repeated downtimes at the endpoint.  If they subscription is deactivated the subscription owner or application will need to reactivate it for notifications to be delivered.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "noCallback": {
+            "description": "A boolean value that indicates if events should be delivered that resulted from an API call by the application.  If true, any events that occur as a result of a direct API call by the same application will not be delivered. This can prevent an endless loop in certain scenarios.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "notificationDeliveryType": {
+            "description": "Notification delivery type which is a string representation of an enumeration of values.  Example: Http (this is case insensitive, so http may also be passed in)",
+            "nullable": true,
+            "type": "string"
           },
           "subscribingTenants": {
-            "type": "array",
+            "description": "A list of subscribers or subscribing tenants that the subscription relates to",
             "items": {
               "$ref": "#/components/schemas/SubscribingTenant"
             },
-            "description": "A list of subscribers or subscribing tenants that the subscription relates to",
-            "nullable": true
+            "nullable": true,
+            "type": "array"
           },
-          "notificationDeliveryType": {
-            "type": "string",
-            "description": "Notification delivery type which is a string representation of an enumeration of values.  Example: Http (this is case insensitive, so http may also be passed in)",
-            "nullable": true
-          },
-          "contentType": {
-            "type": "string",
-            "description": "Content type of the payload that will be delivered.  This is utilized in combination with the notification delivery type.  Example:  A HTTP Post (notification delivery type) is performed with a JSON representation of the event data (content type).",
-            "nullable": true
-          },
-          "endpoint": {
-            "type": "string",
-            "description": "The delivery endpoint that will receive notifications when events concerning the specified topics on the subscription occur.  The format of the endpoint may differ depending on the notification type.  For example, the endpoint may be a URL in some cases and an email address in others if multiple notification types are available.",
-            "nullable": true
-          },
-          "confirmed": {
-            "type": "boolean",
-            "description": "A boolean value that indicates if the subscription endpoint has been confirmed",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": "A boolean value that indicates if the subscription is active.  The subscription may be inactive due to repeated downtimes at the endpoint.  If they subscription is deactivated the subscription owner or application will need to reactivate it for notifications to be delivered.",
-            "nullable": true
-          },
-          "noCallback": {
-            "type": "boolean",
-            "description": "A boolean value that indicates if events should be delivered that resulted from an API call by the application.  If true, any events that occur as a result of a direct API call by the same application will not be delivered. This can prevent an endless loop in certain scenarios.",
-            "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "description": "When the entity was created. System-supplied and read-only.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "updateDate": {
-            "type": "string",
-            "description": "When the entity was updated. System-supplied and read-only.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "createBy": {
-            "type": "string",
-            "description": "Identifier of the user who created the entity. System-supplied and read-only.",
-            "nullable": true
+          "topics": {
+            "description": "A list of topics that the subscription relates to",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
           },
           "updateBy": {
-            "type": "string",
             "description": "Identifier of the user who updated the entity. System-supplied and read-only.",
-            "nullable": true
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "description": "When the entity was updated. System-supplied and read-only.",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
           }
         },
-        "additionalProperties": false,
-        "description": "The subscription entity used specifically in PUSH event scenarios where a third-party desires to receive notification of events"
+        "type": "object"
       },
-      "EventSubscriptionCollection": {
-        "type": "object",
+      "SubscriptionCollection": {
+        "description": "Collection of subscriptions returned as a whole.",
         "properties": {
-          "startIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Subscription"
+            },
+            "nullable": true,
+            "type": "array"
           },
           "pageCount": {
-            "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
           },
           "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EventSubscription"
-            },
-            "nullable": true
+            "format": "int32",
+            "type": "integer"
           }
         },
-        "additionalProperties": false,
-        "description": "Collection of subscriptions returned as a whole."
+        "type": "object"
       }
     },
     "securitySchemes": {
       "bearerAuth": {
-        "type": "http",
+        "bearerFormat": "JWT",
         "description": "JWT Authorization header using the Bearer scheme.",
         "scheme": "bearer",
-        "bearerFormat": "JWT"
+        "type": "http"
       }
     }
   },
-  "servers": [
-    {
-      "url": "https://t{tenantId}-s{siteId}.{env}.usc1.kibocommerce.com/api",
-      "description": "GCP-US Site Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
+  "info": {
+    "description": "<div id=\"overview_EVENT\">\n            <h2>EVENTS</h2>\n            <p>The Event APIs are used to subscribe to notifications when create, read, update, or delete operations are\n                performed. If an application subscribes to the event, use the <strong>Events</strong> resource to query for\n                recent events published to your application or events that were not published successfully. See the <a href=\"/pages/event-subscription\">Event Subscription documentation</a> for more information</p>\n            <p>The <strong>Subscriptions</strong> resource triggers a push service to sent immediate notifications to the subscribed\n                tenants\n                and applications. The resource sends messages regarding a subscription event that occurs in the tenant\n                or site.</p>\n        </div>",
+    "title": "Event Subscription"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/event/pull/{eventId}": {
+      "get": {
+        "description": "Retrieves the details of a single event.",
+        "parameters": [
+          {
+            "description": "Unique identifier of the event. System-supplied and read-only.",
+            "in": "path",
+            "name": "eventId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventEvent"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventEvent"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventEvent"
+                }
+              }
+            },
+            "description": "OK"
+          }
         },
-        "siteId": {
-          "default": "0",
-          "description": "Id of the Site"
-        },
-        "env": {
-          "default": "sb",
-          "enum": [
-            "sb",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg2"
-          ]
-        }
+        "summary": "Get Event",
+        "tags": [
+          "Event"
+        ]
       }
     },
-    {
-      "url": "https://t{tenantId}.{env}.usc1.kibocommerce.com/api",
-      "description": "GCP-US Tenant Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
+    "/event/pull": {
+      "get": {
+        "description": "Retrieves a list of events according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
         },
-        "env": {
-          "default": "sb",
-          "enum": [
-            "sb",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg2"
-          ]
-        }
+        "summary": "Get Events",
+        "tags": [
+          "Event"
+        ]
       }
     },
-    {
-      "url": "https://t{tenantId}-s{siteId}.{env}.mozu.com/api",
-      "description": "Site Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
+    "/event/push/subscriptions/{subscriptionId}/deliveryattempts": {
+      "get": {
+        "description": "Get delivery attempts for the specified subscription",
+        "parameters": [
+          {
+            "description": "Subscription Identifier.",
+            "in": "path",
+            "name": "subscriptionId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
         },
-        "siteId": {
-          "default": "0",
-          "description": "Id of the Site"
-        },
-        "env": {
-          "default": "sandbox",
-          "enum": [
-            "sandbox",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg1"
-          ]
-        }
+        "summary": "Get Delivery Attempt Summaries",
+        "tags": [
+          "EventSubscription"
+        ]
       }
     },
-    {
-      "url": "https://t{tenantId}.{env}.mozu.com/api",
-      "description": "Tenant Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
+    "/event/push/subscriptions/deliveryattempts": {
+      "get": {
+        "description": "Get delivery attempts",
+        "parameters": [
+          {
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummaryCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
         },
-        "env": {
-          "default": "sandbox",
-          "enum": [
-            "sandbox",
-            "tp1",
-            "tp2",
-            "tp3",
-            "tp4",
-            "tp5",
-            "stg1",
-            "stg2"
-          ]
-        }
+        "summary": "Get Delivery Attempt Summaries All Subscriptions",
+        "tags": [
+          "EventSubscription"
+        ]
       }
     },
-    {
-      "url": "https://home.mozu.com/api",
-      "description": "HomePod Api"
-    },
-    {
-      "url": "https://t{tenantId}.{env}.euw1.kibocommerce.com/api",
-      "description": "EURO Tenant Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
+    "/event/push/subscriptions/{subscriptionId}/deliveryattempts/{processId}": {
+      "get": {
+        "description": "Get delivery attempt summary",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "subscriptionId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "processId",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummary"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDeliverySummary"
+                }
+              }
+            },
+            "description": "OK"
+          }
         },
-        "env": {
-          "default": "sb",
-          "enum": [
-            "sb",
-            "tp1"
-          ]
-        }
+        "summary": "Get Delivery Attempt Summary",
+        "tags": [
+          "EventSubscription"
+        ]
       }
     },
-    {
-      "url": "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api",
-      "description": "EURO Site Level Api",
-      "variables": {
-        "tenantId": {
-          "default": "0",
-          "description": "Id of the Tenant"
+    "/event/push/subscriptions": {
+      "get": {
+        "description": "Retrieves a list of events according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "description": "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used to get more specific information from the request.  Available response groups: SubscribingSites.",
+            "in": "query",
+            "name": "responseGroups",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
         },
-        "siteId": {
-          "default": "0",
-          "description": "Id of the Site"
-        },
-        "env": {
-          "default": "sb",
-          "enum": [
-            "sb",
-            "tp1"
-          ]
-        }
+        "summary": "Get Subscriptions",
+        "tags": [
+          "EventSubscription"
+        ]
       }
-    },
-    {
-      "url": "https://home.euw1.kibocommerce.com/api",
-      "description": "EURO HomePod Api"
     }
-  ],
+  },
   "security": [
     {
       "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
     }
   ]
 }
